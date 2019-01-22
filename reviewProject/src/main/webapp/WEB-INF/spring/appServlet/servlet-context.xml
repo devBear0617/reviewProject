@@ -33,10 +33,11 @@
 		<beans:property name="" value=""/>
 	</beans:bean>
 	 -->
-	
+<!-- 	
 	<beans:bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<beans:property name="dataSource" ref="dataSource"/>
 	</beans:bean>
 	
 	<tx:annotation-driven transaction-manager="transactionManager" /> 
+ -->
 </beans:beans>
