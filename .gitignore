@@ -128,4 +128,8 @@ buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
 
+### m2e ###
+.classpath
+.project
+
 # End of https://www.gitignore.io/api/java,gradle,eclipse
