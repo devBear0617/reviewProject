@@ -132,4 +132,6 @@ buildNumber.properties
 .classpath
 .project
 
+*.manifest
+
 # End of https://www.gitignore.io/api/java,gradle,eclipse
