@@ -44,7 +44,7 @@ $(document).ready(function() {
 			</form>
 		</div>
 		<div class = 'moveBT' data-target="#gameMain">
-			<form action="/review/movie/main" id="gameMain">
+			<form action="/review/game/main" id="gameMain">
 				<h1>test - game으로 이동</h1>
 			</form>
 		</div>
