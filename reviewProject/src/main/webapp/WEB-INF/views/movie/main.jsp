@@ -1,10 +1,27 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type = "text/javascript" src = "resources/script/jquery-2.1.1.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	data = {
+		"page_num": 1
+	}
+	$.ajax({
+		type : "POST",
+		url : "./contentView",
+		cache : false,
+		dataType : 'html',
+		data: data,
+		success : function(html) {
+			$(".content").append(html);
+		}
+	})
+});
+</script>
 </head>
 <body>
 
@@ -29,8 +46,7 @@
 	</div>
 	
 <!-- content -->
-	<div>
-		<jsp:include page="content.jsp" />
+	<div class="content">
 	</div>
 	
 <!-- 푸터 -->
