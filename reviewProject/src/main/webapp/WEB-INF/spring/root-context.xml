@@ -12,7 +12,7 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-	<!-- 
+	
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="oracle.jdbc.OracleDriver" />	
@@ -28,8 +28,8 @@
 	</bean>		
 	
 	<bean id="Mapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-		<property name="mapperInterface" value="com.project.review.dao.reviewMapper"/>
+		<property name="mapperInterface" value="com.project.review.dao.BoardDAO"/>
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>		
- -->	
+	
 </beans>

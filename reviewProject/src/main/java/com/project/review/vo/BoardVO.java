@@ -1,83 +1,97 @@
 package com.project.review.vo;
 
 import java.util.Date;
+import java.util.List;
 
 public class BoardVO {
+	private int board_num;
+	private String board_title;
+	private String board_content;
+	private Date board_date;
+	//private Date boardupdate;
+	private String member_id;
 	
-	private int boardnum;
-	private String boardname;
-	private Date boarddate;
-	private Date boardupdate;
-	private String boardcount;
-	private String boardcontent;
-	private int like_count;
-	private int com_count;
-	private String id;
+	private Board_MovieVO b_movieVO;
+/*	private Board_TvVO b_tvVO;
+	private Board_GameVO b_gameVO;*/
+	
+	private MemberVO memberVO;
+	private HashtagVO hashtagVO;
+	private List<ReplyVO> replyList;
 	
 	
-	public int getBoardnum() {
-		return boardnum;
+	public int getBoard_num() {
+		return board_num;
 	}
-	public void setBoardnum(int boardnum) {
-		this.boardnum = boardnum;
+	public void setBoard_num(int board_num) {
+		this.board_num = board_num;
 	}
-	public String getBoardname() {
-		return boardname;
+	public String getBoard_title() {
+		return board_title;
 	}
-	public void setBoardname(String boardname) {
-		this.boardname = boardname;
+	public void setBoard_title(String board_title) {
+		this.board_title = board_title;
 	}
-	public Date getBoarddate() {
-		return boarddate;
+	public String getBoard_content() {
+		return board_content;
 	}
-	public void setBoarddate(Date boarddate) {
-		this.boarddate = boarddate;
+	public void setBoard_content(String board_content) {
+		this.board_content = board_content;
 	}
-	public Date getBoardupdate() {
-		return boardupdate;
+	public Date getBoard_date() {
+		return board_date;
 	}
-	public void setBoardupdate(Date boardupdate) {
-		this.boardupdate = boardupdate;
+	public void setBoard_date(Date board_date) {
+		this.board_date = board_date;
 	}
-	public String getBoardcount() {
-		return boardcount;
+	public String getMember_id() {
+		return member_id;
 	}
-	public void setBoardcount(String boardcount) {
-		this.boardcount = boardcount;
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
 	}
-	public String getBoardcontent() {
-		return boardcontent;
+	public Board_MovieVO getB_movieVO() {
+		return b_movieVO;
 	}
-	public void setBoardcontent(String boardcontent) {
-		this.boardcontent = boardcontent;
+	public void setB_movieVO(Board_MovieVO b_movieVO) {
+		this.b_movieVO = b_movieVO;
 	}
-	public int getLike_count() {
-		return like_count;
+	/*public Board_TvVO getB_tvVO() {
+		return b_tvVO;
 	}
-	public void setLike_count(int like_count) {
-		this.like_count = like_count;
+	public void setB_tvVO(Board_TvVO b_tvVO) {
+		this.b_tvVO = b_tvVO;
 	}
-	public int getCom_count() {
-		return com_count;
+	public Board_GameVO getB_gameVO() {
+		return b_gameVO;
 	}
-	public void setCom_count(int com_count) {
-		this.com_count = com_count;
+	public void setB_gameVO(Board_GameVO b_gameVO) {
+		this.b_gameVO = b_gameVO;
+	}*/
+	public MemberVO getMemberVO() {
+		return memberVO;
 	}
-	public String getId() {
-		return id;
+	public void setMemberVO(MemberVO memberVO) {
+		this.memberVO = memberVO;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public HashtagVO getHashtagVO() {
+		return hashtagVO;
 	}
-	
+	public void setHashtagVO(HashtagVO hashtagVO) {
+		this.hashtagVO = hashtagVO;
+	}
+	public List<ReplyVO> getReplyList() {
+		return replyList;
+	}
+	public void setReplyList(List<ReplyVO> replyList) {
+		this.replyList = replyList;
+	}
+	/*
 	@Override
 	public String toString() {
-		return "BoardVO [boardnum=" + boardnum + ", boardname=" + boardname + ", boarddate=" + boarddate
-				+ ", boardupdate=" + boardupdate + ", boardcount=" + boardcount + ", boardcontent=" + boardcontent
-				+ ", like_count=" + like_count + ", com_count=" + com_count + ", id=" + id + "]";
-	}
-	
-	
-	
-	
+		return "BoardVO [board_num=" + board_num + ", board_title=" + board_title + ", board_content=" + board_content
+				+ ", board_date=" + board_date + ", member_id=" + member_id + ", b_movieVO=" + b_movieVO + ", b_tvVO="
+				+ b_tvVO + ", b_gameVO=" + b_gameVO + ", memberVO=" + memberVO + ", hashtagVO=" + hashtagVO
+				+ ", replyList=" + replyList + "]";
+	}*/
 }
