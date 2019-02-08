@@ -7,6 +7,6 @@ import com.project.review.vo.MovieApiVO;
 
 public interface MovieService {
 	public BoardVO getBoardById(int board_num);
-	List<BoardVO> getBoardList();
+	List<BoardVO> getMovieBoardList();
 	public MovieApiVO getMovieInfo(String movieNm);
 }

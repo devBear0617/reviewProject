@@ -11,12 +11,17 @@ public class BoardDAOImpl implements BoardDAO{
 	private BoardDAO boardDAO;
 	
 	@Override
-	public List<BoardVO> getBoardList() {
-		return boardDAO.getBoardList();
+	public List<BoardVO> getMovieBoardList() {
+		return boardDAO.getMovieBoardList();
 	}
 
 	@Override
 	public BoardVO getBoardById(int board_num) {
 		return boardDAO.getBoardById(board_num);
+	}
+
+	@Override
+	public List<BoardVO> getTvBoardList() {
+		return boardDAO.getTvBoardList();
 	}
 }

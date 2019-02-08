@@ -26,6 +26,7 @@ function move(e){
 		<c:forEach items="${board_list}" var="board">
 			<tr onclick="move(this)">
 				<td class="b_num">${board.board_num}</td>
+				<td>${board.b_movieVO.b_movie_num}</td>
 				<td>${board.board_title}</td>
 				<td>${board.board_content}</td>
 				<td>${board.board_date}</td>

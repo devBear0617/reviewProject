@@ -61,7 +61,7 @@ public class Movie_controller {
 	// >> 게시판 출력 ----------------------------------
 	@RequestMapping(value="/contentView")
 	public String contentView(HttpServletRequest request, Model model) {
-		List<BoardVO> board_list = movieService.getBoardList();
+		List<BoardVO> board_list = movieService.getMovieBoardList();
 		model.addAttribute("board_list", board_list);
 		
 		return "movie/content";

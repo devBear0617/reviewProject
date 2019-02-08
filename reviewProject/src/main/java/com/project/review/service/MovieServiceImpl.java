@@ -27,10 +27,10 @@ public class MovieServiceImpl implements MovieService {
 	}
 
 	@Override
-	public List<BoardVO> getBoardList() {
-		// movie/tv/game -> 해당하는 board값 호출하는 함수 작성
+	public List<BoardVO> getMovieBoardList() {
+		// movie/tv/game -> 해당하는 board값 호출하는 함수 작성,
 		
-		return boardDAO.getBoardList();
+		return boardDAO.getMovieBoardList();
 	}
 
 	@Override

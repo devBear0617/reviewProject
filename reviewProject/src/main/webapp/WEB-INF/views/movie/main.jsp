@@ -29,12 +29,11 @@ $(document).ready(function() {
 	<div>
 		<jsp:include page="../share/header.jsp" />
 	</div>
-	
 <!-- 카테고리 바 -->
 	<div>
 		<jsp:include page="../share/category_bar.jsp" />
 	</div>
-	
+
 <!-- 상세 메뉴 바 -->
 	<div>
 		<jsp:include page="detail_bar.jsp" />

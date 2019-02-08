@@ -23,6 +23,7 @@
 		<result property="member_id" column="member_id" />
 		<association property="memberVO" column="member_id" select="getMember" />
 		<association property="b_movieVO" column="board_num" select="getB_Movie" />
+		<association property="b_tvVO" column="board_num" select="getB_Tv" />
 		<association property="hashtagVO" column="board_num" select="getHashtag" />
 		<collection property="replyList" column="board_num" select="getReply" />
 	</resultMap> 
@@ -41,11 +42,21 @@
 		FROM board
 		WHERE board_num = #{board_num}
 	</select>
-	<select id="getBoardList" resultMap="Board">
+<!-- 	<select id="getBoardList" resultMap="Board">
 		SELECT *
 		FROM board
+	</select> -->
+	<select id="getMovieBoardList" resultMap="Board">
+		SELECT *
+		FROM board_movie m, board b
+		WHERE m.board_num = b.board_num		
 	</select>
-
+	
+	<select id="getTvBoardList" resultMap="Board">
+		SELECT *
+		FROM board_tv t, board b
+		WHERE t.board_num = b.board_num		
+	</select>
 	<select id="getMember" parameterType="String" resultType="Board_MovieVO">
 		SELECT *
 		FROM member
@@ -54,6 +65,11 @@
 	<select id="getB_Movie" parameterType="int" resultType="Board_MovieVO">
 		SELECT *
 		FROM board_movie
+		WHERE board_num = #{board_num}
+	</select>
+	<select id="getB_Tv" parameterType="int" resultType="Board_TvVO">
+		SELECT *
+		FROM board_tv
 		WHERE board_num = #{board_num}
 	</select>
 	<select id="getReply" resultType="ReplyVO">

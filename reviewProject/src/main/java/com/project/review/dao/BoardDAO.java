@@ -5,6 +5,8 @@ import java.util.List;
 import com.project.review.vo.BoardVO;
 
 public interface BoardDAO {
-	public List<BoardVO> getBoardList();
+	public List<BoardVO> getMovieBoardList();
+	public List<BoardVO> getTvBoardList();
 	public BoardVO getBoardById(int board_num);
+	
 }

@@ -12,8 +12,8 @@ public class BoardVO {
 	private String member_id;
 	
 	private Board_MovieVO b_movieVO;
-/*	private Board_TvVO b_tvVO;
-	private Board_GameVO b_gameVO;*/
+	private Board_TvVO b_tvVO;
+	/*private Board_GameVO b_gameVO;*/
 	
 	private MemberVO memberVO;
 	private HashtagVO hashtagVO;
@@ -56,13 +56,13 @@ public class BoardVO {
 	public void setB_movieVO(Board_MovieVO b_movieVO) {
 		this.b_movieVO = b_movieVO;
 	}
-	/*public Board_TvVO getB_tvVO() {
+	public Board_TvVO getB_tvVO() {
 		return b_tvVO;
 	}
 	public void setB_tvVO(Board_TvVO b_tvVO) {
 		this.b_tvVO = b_tvVO;
 	}
-	public Board_GameVO getB_gameVO() {
+	/*public Board_GameVO getB_gameVO() {
 		return b_gameVO;
 	}
 	public void setB_gameVO(Board_GameVO b_gameVO) {
