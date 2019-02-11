@@ -1,28 +1,55 @@
 package com.project.review.vo;
 
-public class replyVO {
+import java.util.Date;
+
+public class ReplyVO {
+	private int reply_num;
+	private int board_num;
+	private String member_id;
+	private String reply_content;
+/*	private Date reply_date;
+	private Date reply_update;*/
 	
-	private int REPLY_NUM;
-	private String REPLY_CONTENT;
-	
-	public int getREPLY_NUM() {
-		return REPLY_NUM;
+	public int getReply_num() {
+		return reply_num;
 	}
-	public void setREPLY_NUM(int rEPLY_NUM) {
-		REPLY_NUM = rEPLY_NUM;
+	public void setReply_num(int reply_num) {
+		this.reply_num = reply_num;
 	}
-	public String getREPLY_CONTENT() {
-		return REPLY_CONTENT;
+	public int getBoard_num() {
+		return board_num;
 	}
-	public void setREPLY_CONTENT(String rEPLY_CONTENT) {
-		REPLY_CONTENT = rEPLY_CONTENT;
+	public void setBoard_num(int board_num) {
+		this.board_num = board_num;
 	}
+	public String getMember_id() {
+		return member_id;
+	}
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
+	}
+	public String getReply_content() {
+		return reply_content;
+	}
+	public void setReply_content(String reply_content) {
+		this.reply_content = reply_content;
+	}
+/*	public Date getReply_date() {
+		return reply_date;
+	}
+	public void setReply_date(Date reply_date) {
+		this.reply_date = reply_date;
+	}
+	public Date getReply_update() {
+		return reply_update;
+	}
+	public void setReply_update(Date reply_update) {
+		this.reply_update = reply_update;
+	}*/
 	
 	@Override
 	public String toString() {
-		return "replyVO [REPLY_NUM=" + REPLY_NUM + ", REPLY_CONTENT=" + REPLY_CONTENT + "]";
+		return "ReplyVO [reply_num=" + reply_num + ", board_num=" + board_num + ", member_id=" + member_id
+				+ ", reply_content=" + reply_content + "]";
 	}
-	
-	
-	
 }

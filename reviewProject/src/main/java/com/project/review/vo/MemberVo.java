@@ -1,34 +1,39 @@
 package com.project.review.vo;
 
-public class MemberVo {
+import java.util.List;
+
+public class MemberVO {
+	private String member_id;
+	private String member_pw;
+	private String member_name;
+	//private String member_pic;
 	
-	private String MEMBER_ID;
-	private String MEMBER_PW;
-	private String MEMBER_NAME;
+	private List<BoardVO> boardList;
+	private List<ReplyVO> replyList;
+	private List<LikeItVO> likeList;
 	
-	public String getMEMBER_ID() {
-		return MEMBER_ID;
+	
+	public String getMember_id() {
+		return member_id;
 	}
-	public void setMEMBER_ID(String mEMBER_ID) {
-		MEMBER_ID = mEMBER_ID;
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
 	}
-	public String getMEMBER_PW() {
-		return MEMBER_PW;
+	public String getMember_pw() {
+		return member_pw;
 	}
-	public void setMEMBER_PW(String mEMBER_PW) {
-		MEMBER_PW = mEMBER_PW;
+	public void setMember_pw(String member_pw) {
+		this.member_pw = member_pw;
 	}
-	public String getMEMBER_NAME() {
-		return MEMBER_NAME;
+	public String getMember_name() {
+		return member_name;
 	}
-	public void setMEMBER_NAME(String mEMBER_NAME) {
-		MEMBER_NAME = mEMBER_NAME;
+	public void setMember_name(String member_name) {
+		this.member_name = member_name;
 	}
 	
 	@Override
 	public String toString() {
-		return "MemberVo [MEMBER_ID=" + MEMBER_ID + ", MEMBER_PW=" + MEMBER_PW + ", MEMBER_NAME=" + MEMBER_NAME + "]";
+		return "MemberVO [member_id=" + member_id + ", member_pw=" + member_pw + ", member_name=" + member_name + "]";
 	}
-	
-	
 }

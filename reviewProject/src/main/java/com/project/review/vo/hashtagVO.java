@@ -1,56 +1,60 @@
 package com.project.review.vo;
 
-public class hashtagVO {
+public class HashtagVO {
+	private int board_num;
+	private String hashtag1;
+	private String hashtag2;
+	private String hashtag3;
+	private String hashtag4;
+	private String hashtag5;
+	private String hashtag6;
 	
-	private String HASHTAG1;
-	private String HASHTAG2;
-	private String HASHTAG3;
-	private String HASHTAG4;
-	private String HASHTAG5;
-	private String HASHTAG6;
-	
-	public String getHASHTAG1() {
-		return HASHTAG1;
+	public int getBoard_num() {
+		return board_num;
 	}
-	public void setHASHTAG1(String hASHTAG1) {
-		HASHTAG1 = hASHTAG1;
+	public void setBoard_num(int board_num) {
+		this.board_num = board_num;
 	}
-	public String getHASHTAG2() {
-		return HASHTAG2;
+	public String getHashtag1() {
+		return hashtag1;
 	}
-	public void setHASHTAG2(String hASHTAG2) {
-		HASHTAG2 = hASHTAG2;
+	public void setHashtag1(String hashtag1) {
+		this.hashtag1 = hashtag1;
 	}
-	public String getHASHTAG3() {
-		return HASHTAG3;
+	public String getHashtag2() {
+		return hashtag2;
 	}
-	public void setHASHTAG3(String hASHTAG3) {
-		HASHTAG3 = hASHTAG3;
+	public void setHashtag2(String hashtag2) {
+		this.hashtag2 = hashtag2;
 	}
-	public String getHASHTAG4() {
-		return HASHTAG4;
+	public String getHashtag3() {
+		return hashtag3;
 	}
-	public void setHASHTAG4(String hASHTAG4) {
-		HASHTAG4 = hASHTAG4;
+	public void setHashtag3(String hashtag3) {
+		this.hashtag3 = hashtag3;
 	}
-	public String getHASHTAG5() {
-		return HASHTAG5;
+	public String getHashtag4() {
+		return hashtag4;
 	}
-	public void setHASHTAG5(String hASHTAG5) {
-		HASHTAG5 = hASHTAG5;
+	public void setHashtag4(String hashtag4) {
+		this.hashtag4 = hashtag4;
 	}
-	public String getHASHTAG6() {
-		return HASHTAG6;
+	public String getHashtag5() {
+		return hashtag5;
 	}
-	public void setHASHTAG6(String hASHTAG6) {
-		HASHTAG6 = hASHTAG6;
+	public void setHashtag5(String hashtag5) {
+		this.hashtag5 = hashtag5;
 	}
-	
+	public String getHashtag6() {
+		return hashtag6;
+	}
+	public void setHashtag6(String hashtag6) {
+		this.hashtag6 = hashtag6;
+	}
+
 	@Override
 	public String toString() {
-		return "hashtagVO [HASHTAG1=" + HASHTAG1 + ", HASHTAG2=" + HASHTAG2 + ", HASHTAG3=" + HASHTAG3 + ", HASHTAG4="
-				+ HASHTAG4 + ", HASHTAG5=" + HASHTAG5 + ", HASHTAG6=" + HASHTAG6 + "]";
+		return "HashtagVO [board_num=" + board_num + ", hashtag1=" + hashtag1 + ", hashtag2=" + hashtag2 + ", hashtag3="
+				+ hashtag3 + ", hashtag4=" + hashtag4 + ", hashtag5=" + hashtag5 + ", hashtag6=" + hashtag6 + "]";
 	}
-	
-	
 }

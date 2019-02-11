@@ -1,22 +1,24 @@
 package com.project.review.vo;
 
-public class Board_tvVo {
+public class Board_TvVO {
+	private String board_num;
+	private int b_tv_num;
 	
-	private int B_TV_NUM;
-
-	public int getB_TV_NUM() {
-		return B_TV_NUM;
+	public String getBoard_num() {
+		return board_num;
 	}
-
-	public void setB_TV_NUM(int b_TV_NUM) {
-		B_TV_NUM = b_TV_NUM;
+	public void setBoard_num(String board_num) {
+		this.board_num = board_num;
 	}
-
+	public int getB_tv_num() {
+		return b_tv_num;
+	}
+	public void setB_tv_num(int b_tv_num) {
+		this.b_tv_num = b_tv_num;
+	}
+	
 	@Override
 	public String toString() {
-		return "Board_tvVo [B_TV_NUM=" + B_TV_NUM + "]";
+		return "Board_TvVO [board_num=" + board_num + ", b_tv_num=" + b_tv_num + "]";
 	}
-	
-	
-	
 }

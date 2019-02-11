@@ -1,22 +1,24 @@
 package com.project.review.vo;
 
-public class Board_gameVO {
+public class Board_GameVO {
+	private String board_num;
+	private int b_game_num;
 	
-	private int B_GAME_NUM;
-
-	public int getB_GAME_NUM() {
-		return B_GAME_NUM;
+	public String getBoard_num() {
+		return board_num;
 	}
-
-	public void setB_GAME_NUM(int b_GAME_NUM) {
-		B_GAME_NUM = b_GAME_NUM;
+	public void setBoard_num(String board_num) {
+		this.board_num = board_num;
 	}
-
+	public int getB_game_num() {
+		return b_game_num;
+	}
+	public void setB_game_num(int b_game_num) {
+		this.b_game_num = b_game_num;
+	}
+	
 	@Override
 	public String toString() {
-		return "Board_gameVO [B_GAME_NUM=" + B_GAME_NUM + "]";
+		return "Board_GameVO [board_num=" + board_num + ", b_game_num=" + b_game_num + "]";
 	}
-	
-	
-	
 }
