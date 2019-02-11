@@ -10,5 +10,4 @@ public interface MovieService {
 	List<BoardVO> getMovieBoardList();
 	public MovieApiVO getMovieInfo(String movieNm);
 	
-	public void Board_write(BoardVO vo);
 }

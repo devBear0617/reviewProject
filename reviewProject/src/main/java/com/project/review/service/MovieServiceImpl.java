@@ -39,9 +39,5 @@ public class MovieServiceImpl implements MovieService {
 		return movieApiDAO.getMovie(movieNm);
 	}
 
-	@Override
-	public void Board_write(BoardVO vo) {
-		String title = 
-		
-	}
+
 }
