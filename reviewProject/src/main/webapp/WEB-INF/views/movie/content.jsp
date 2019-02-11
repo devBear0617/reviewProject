@@ -14,7 +14,7 @@ function move(e){
 		<ul>
 			<li>최신순</li>
 			<li>좋아요순</li>
-			<li>별점순</li>
+			<li>별점순순</li>
 			<!-- if 오름 내림 차순 선택가능. -->
 		</ul>
 	</div>
