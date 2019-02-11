@@ -2,62 +2,32 @@ package com.project.review.vo;
 
 public class MemberVo {
 	
-	private String id;
-	private String pw;
-	private String nickname;
-	private int gender;
-	private int age;
-	private String likesomthing;
-	private String grade;
+	private String MEMBER_ID;
+	private String MEMBER_PW;
+	private String MEMBER_NAME;
 	
-	
-	public String getId() {
-		return id;
+	public String getMEMBER_ID() {
+		return MEMBER_ID;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setMEMBER_ID(String mEMBER_ID) {
+		MEMBER_ID = mEMBER_ID;
 	}
-	public String getPw() {
-		return pw;
+	public String getMEMBER_PW() {
+		return MEMBER_PW;
 	}
-	public void setPw(String pw) {
-		this.pw = pw;
+	public void setMEMBER_PW(String mEMBER_PW) {
+		MEMBER_PW = mEMBER_PW;
 	}
-	public String getNickname() {
-		return nickname;
+	public String getMEMBER_NAME() {
+		return MEMBER_NAME;
 	}
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
-	public int getGender() {
-		return gender;
-	}
-	public void setGender(int gender) {
-		this.gender = gender;
-	}
-	public int getAge() {
-		return age;
-	}
-	public void setAge(int age) {
-		this.age = age;
-	}
-	public String getLikesomthing() {
-		return likesomthing;
-	}
-	public void setLikesomthing(String likesomthing) {
-		this.likesomthing = likesomthing;
-	}
-	public String getGrade() {
-		return grade;
-	}
-	public void setGrade(String grade) {
-		this.grade = grade;
+	public void setMEMBER_NAME(String mEMBER_NAME) {
+		MEMBER_NAME = mEMBER_NAME;
 	}
 	
 	@Override
 	public String toString() {
-		return "MemberVo [id=" + id + ", pw=" + pw + ", nickname=" + nickname + ", gender=" + gender + ", age=" + age
-				+ ", likesomthing=" + likesomthing + ", grade=" + grade + "]";
+		return "MemberVo [MEMBER_ID=" + MEMBER_ID + ", MEMBER_PW=" + MEMBER_PW + ", MEMBER_NAME=" + MEMBER_NAME + "]";
 	}
 	
 	
