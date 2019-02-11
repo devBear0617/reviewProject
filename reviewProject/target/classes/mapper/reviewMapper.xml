@@ -19,14 +19,18 @@
 		<result property="board_title" column="board_title" />
 		<result property="board_content" column="board_content" />
 		<result property="board_date" column="board_date" />
-		<!-- <result property="boardupdate" column="boardupdate" /> -->
+		<result property="boardupdate" column="boardupdate" />
 		<result property="member_id" column="member_id" />
+<!-- 		<result property="member_pw" column="member_pw" />
+		<result property="member_name" column="member_name" /> -->
 		<association property="memberVO" column="member_id" select="getMember" />
 		<association property="b_movieVO" column="board_num" select="getB_Movie" />
 		<association property="b_tvVO" column="board_num" select="getB_Tv" />
 		<association property="hashtagVO" column="board_num" select="getHashtag" />
 		<collection property="replyList" column="board_num" select="getReply" />
-	</resultMap> 
+	</resultMap>
+	
+
 	
 	
 	<!-- select	
@@ -37,6 +41,21 @@
 		#{}				파라미터 값 - 파라미터 변수명과 달라도 인식O - But 파라미터 변수명과 일치시키는 것 권유 
 		${}				파라미터 값 - 파라미터 변수명과 다르면 인식X, 보안 취약
 	-->
+
+	<select id="searchBoard" parameterType="int" resultMap="Board">
+		SELECT *
+		FROM board
+		WHERE board_num = #{board_num}
+	</select>
+	
+	<insert id="newBoard" parameterType="String">
+		INSERT INTO board(board_title, board_content, member_id)
+		VALUES('#{board_title}', '#{board_content}', '#{member_id}')
+	</insert>
+	
+	
+	
+	
 	<select id="getBoardById" parameterType="int" resultMap="Board">
 		SELECT *
 		FROM board
