@@ -16,13 +16,21 @@ public class TvServiceImpl implements TvService {
 
 	@Override
 	public List<BoardVO> getTvBoardList() {
-		// TODO Auto-generated method stub
+
 		return boardDAO.getTvBoardList();
 	}
 	
+	@Override
+	public BoardVO searchBoard(int board_num) {
+		
+		return boardDAO.searchBoard(board_num);
+	}
 	
-	
-	
+	@Override
+	public BoardVO newBoard(String board_title, String board_content, String member_id) {
+		
+		return boardDAO.newBoard(board_title, board_content, member_id);
+	}
 	
 
 }

@@ -1,6 +1,7 @@
 package com.project.review.vo;
 
-import java.util.Date;
+
+import java.sql.Date;
 import java.util.List;
 
 public class BoardVO {
@@ -9,7 +10,12 @@ public class BoardVO {
 	private String board_content;
 	private Date board_date;
 	//private Date boardupdate;
+	
+	
 	private String member_id;
+/*	private String member_pw;
+	private String member_name;*/
+	
 	
 	private Board_MovieVO b_movieVO;
 	private Board_TvVO b_tvVO;
@@ -20,6 +26,18 @@ public class BoardVO {
 	private List<ReplyVO> replyList;
 	
 	
+/*	public String getMember_pw() {
+		return member_pw;
+	}
+	public void setMember_pw(String member_pw) {
+		this.member_pw = member_pw;
+	}
+	public String getMember_name() {
+		return member_name;
+	}
+	public void setMember_name(String member_name) {
+		this.member_name = member_name;
+	}*/
 	public int getBoard_num() {
 		return board_num;
 	}
