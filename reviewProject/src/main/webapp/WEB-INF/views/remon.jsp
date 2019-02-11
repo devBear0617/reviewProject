@@ -17,6 +17,15 @@ $(document).ready(function() {
 <body>
 	<h1>맨첫 페이지.</h1>
 	<a href="movie/detail_bar.jsp">ㄱㄱ</a>
+	
+	
+	<br><br>
+	
+	<input type="button" value="로그인" 
+		onclick="location.href='/review/mypage/login'">
+	
+	<br><br>
+	
 
 <!-- 상단바, 로고 -->
 	<div>

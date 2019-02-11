@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.review.dao.MemberDAO">
+	
+	<resultMap id="Member" type="MemberVO">
+		<id property="member_id" column="member_id" />
+		<result property="member_pw" column="member_pw" />
+		<result property="member_name" column="member_name" />
+	</resultMap>
+
+
+	
+	<insert id="joinMember" parameterType="MemberVO">
+		INSERT INTO member (member_id, member_pw, member_name)
+		VALUES (#{member_id}, #{member_pw}, #{member_name})
+	</insert>	
+
+
+</mapper>

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.project.review.vo.BoardVO;
 
+
 public class BoardDAOImpl implements BoardDAO{
 	@Autowired
 	private BoardDAO boardDAO;
@@ -24,6 +25,7 @@ public class BoardDAOImpl implements BoardDAO{
 	public List<BoardVO> getTvBoardList() {
 		return boardDAO.getTvBoardList();
 	}
+<<<<<<< HEAD
 
 	@Override
 	public void Board_write(BoardVO vo) {
@@ -32,4 +34,20 @@ public class BoardDAOImpl implements BoardDAO{
 	}
 	
 
+=======
+	
+	@Override
+	public BoardVO searchBoard(int board_num) {
+		
+		return boardDAO.searchBoard(board_num);
+	}
+	
+	@Override
+	public BoardVO newBoard(String board_title, String board_content, String member_id) {
+		
+		return boardDAO.newBoard(board_title, board_content, member_id);
+	}
+	
+	
+>>>>>>> origin/bear2
 }
