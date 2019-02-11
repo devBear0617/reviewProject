@@ -4,6 +4,6 @@ import com.project.review.vo.MemberVO;
 
 public interface MemberDAO {
 
-	public MemberVO joinMember(MemberVO member);
+	public void joinMember(MemberVO member);
 	
 }

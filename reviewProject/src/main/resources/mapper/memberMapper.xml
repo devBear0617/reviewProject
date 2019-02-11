@@ -11,7 +11,7 @@
 
 
 	
-	<insert id="joinMember" parameterType="MemberVO">
+	<insert id="joinMember" parameterType="MemberVO" >
 		INSERT INTO member (member_id, member_pw, member_name)
 		VALUES (#{member_id}, #{member_pw}, #{member_name})
 	</insert>	

@@ -10,9 +10,9 @@ public class MemberDAOImpl implements MemberDAO {
 	private MemberDAO memberDAO;
 	
 	@Override
-	public MemberVO joinMember(MemberVO member) {
+	public void joinMember(MemberVO member) {
 		
-		return memberDAO.joinMember(member);
+		memberDAO.joinMember(member);
 	}
 	
 }
