@@ -25,7 +25,6 @@ public class BoardDAOImpl implements BoardDAO{
 	public List<BoardVO> getTvBoardList() {
 		return boardDAO.getTvBoardList();
 	}
-<<<<<<< HEAD
 
 	@Override
 	public void Board_write(BoardVO vo) {
@@ -34,7 +33,6 @@ public class BoardDAOImpl implements BoardDAO{
 	}
 	
 
-=======
 	
 	@Override
 	public BoardVO searchBoard(int board_num) {
@@ -49,5 +47,4 @@ public class BoardDAOImpl implements BoardDAO{
 	}
 	
 	
->>>>>>> origin/bear2
 }
