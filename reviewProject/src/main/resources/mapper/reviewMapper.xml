@@ -81,4 +81,14 @@
 		FROM hashtag
 		WHERE board_num = #{board_num}
 	</select>
+
+    
+    <insert id="board_write" parameterType="BoardVO">
+<!-- 	<selectKey keyProperty="" resultType="" order="">
+		작성자 아이디 
+	</selectKey> -->	
+	INSERT INTO BOARD( board_title,board_content)
+        VALUES(#{board_title},#{board_content})
+</insert>
+		
 </mapper>

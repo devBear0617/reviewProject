@@ -13,7 +13,7 @@ public class BoardVO {
 	
 	private Board_MovieVO b_movieVO;
 	private Board_TvVO b_tvVO;
-	/*private Board_GameVO b_gameVO;*/
+	private Board_GameVO b_gameVO;
 	
 	private MemberVO memberVO;
 	private HashtagVO hashtagVO;
@@ -62,12 +62,12 @@ public class BoardVO {
 	public void setB_tvVO(Board_TvVO b_tvVO) {
 		this.b_tvVO = b_tvVO;
 	}
-	/*public Board_GameVO getB_gameVO() {
+	public Board_GameVO getB_gameVO() {
 		return b_gameVO;
 	}
 	public void setB_gameVO(Board_GameVO b_gameVO) {
 		this.b_gameVO = b_gameVO;
-	}*/
+	}
 	public MemberVO getMemberVO() {
 		return memberVO;
 	}
@@ -86,12 +86,12 @@ public class BoardVO {
 	public void setReplyList(List<ReplyVO> replyList) {
 		this.replyList = replyList;
 	}
-	/*
+	
 	@Override
 	public String toString() {
 		return "BoardVO [board_num=" + board_num + ", board_title=" + board_title + ", board_content=" + board_content
 				+ ", board_date=" + board_date + ", member_id=" + member_id + ", b_movieVO=" + b_movieVO + ", b_tvVO="
 				+ b_tvVO + ", b_gameVO=" + b_gameVO + ", memberVO=" + memberVO + ", hashtagVO=" + hashtagVO
 				+ ", replyList=" + replyList + "]";
-	}*/
+	}
 }

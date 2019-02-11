@@ -9,4 +9,6 @@ public interface BoardDAO {
 	public List<BoardVO> getTvBoardList();
 	public BoardVO getBoardById(int board_num);
 	
+	public void Board_write(BoardVO vo);
+	
 }

@@ -87,5 +87,14 @@ public class Movie_controller {
 		
 		return "movie/detail_view";
 	}
-
+	// -- 상세페이지 ---------------------------------------------------------
+	
+	// >> 게시글 작성
+	@RequestMapping(value="/board_write")
+	public String board_write(HttpServletRequest request, Model model) {		
+		
+		return "movie/board_write";
+		
+	}
+	
 }

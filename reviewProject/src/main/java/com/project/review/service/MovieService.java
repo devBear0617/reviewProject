@@ -9,4 +9,6 @@ public interface MovieService {
 	public BoardVO getBoardById(int board_num);
 	List<BoardVO> getMovieBoardList();
 	public MovieApiVO getMovieInfo(String movieNm);
+	
+	public void Board_write(BoardVO vo);
 }

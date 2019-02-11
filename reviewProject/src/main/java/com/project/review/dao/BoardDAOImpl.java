@@ -24,4 +24,12 @@ public class BoardDAOImpl implements BoardDAO{
 	public List<BoardVO> getTvBoardList() {
 		return boardDAO.getTvBoardList();
 	}
+
+	@Override
+	public void Board_write(BoardVO vo) {
+		boardDAO.Board_write(vo);
+		
+	}
+	
+
 }
