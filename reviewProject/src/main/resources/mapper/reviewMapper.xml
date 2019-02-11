@@ -1,5 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.project.review.dao.reviewMapper">
+<mapper namespace="com.project.review.dao.BoardDAO">
+	<!-- 
+		resultMap	class(VO)와 테이블의 값을 각각 매칭하여 할당해주는 map 
+		id			resultMap 명칭
+		type		resultMap 타입 - VO 등 - 해당 class에 setter가 정의 되어 있어야 함
+		id			테이블의 pk
+		property	vo의 변수명
+		column		테이블의 칼럼명
+		select		select문 이름 - 해당 select의 where에 지정된 칼럼과 column이 같아야 함, 파라미터 값 할당 필수
+		association 1:1관계
+		collection	1:n관계
+	-->
+	
+	<resultMap id="Board" type="BoardVO">
+		<id property="board_num" column="board_num" />
+		<result property="board_title" column="board_title" />
+		<result property="board_content" column="board_content" />
+		<result property="board_date" column="board_date" />
+		<!-- <result property="boardupdate" column="boardupdate" /> -->
+		<result property="member_id" column="member_id" />
+		<association property="memberVO" column="member_id" select="getMember" />
+		<association property="b_movieVO" column="board_num" select="getB_Movie" />
+		<association property="b_tvVO" column="board_num" select="getB_Tv" />
+		<association property="hashtagVO" column="board_num" select="getHashtag" />
+		<collection property="replyList" column="board_num" select="getReply" />
+	</resultMap> 
+	
+	
+	<!-- select	
+		id				명칭
+		parameterType	int/String/VO/HashMap 등 파라미터 타입 - 1개만 가능 2개X
+		resultMap		결과를 resultMap으로 할당
+		resultType		int/String/VO/HashMap 등 결과값 타입 - 1개만 가능 2개X
+		#{}				파라미터 값 - 파라미터 변수명과 달라도 인식O - But 파라미터 변수명과 일치시키는 것 권유 
+		${}				파라미터 값 - 파라미터 변수명과 다르면 인식X, 보안 취약
+	-->
+	<select id="getBoardById" parameterType="int" resultMap="Board">
+		SELECT *
+		FROM board
+		WHERE board_num = #{board_num}
+	</select>
+<!-- 	<select id="getBoardList" resultMap="Board">
+		SELECT *
+		FROM board
+	</select> -->
+	<select id="getMovieBoardList" resultMap="Board">
+		SELECT *
+		FROM board_movie m, board b
+		WHERE m.board_num = b.board_num		
+	</select>
+	
+	<select id="getTvBoardList" resultMap="Board">
+		SELECT *
+		FROM board_tv t, board b
+		WHERE t.board_num = b.board_num		
+	</select>
+	<select id="getMember" parameterType="String" resultType="Board_MovieVO">
+		SELECT *
+		FROM member
+		WHERE member_id = #{member_id}
+	</select>
+	<select id="getB_Movie" parameterType="int" resultType="Board_MovieVO">
+		SELECT *
+		FROM board_movie
+		WHERE board_num = #{board_num}
+	</select>
+	<select id="getB_Tv" parameterType="int" resultType="Board_TvVO">
+		SELECT *
+		FROM board_tv
+		WHERE board_num = #{board_num}
+	</select>
+	<select id="getReply" resultType="ReplyVO">
+		SELECT *
+		FROM reply
+	</select>
+	<select id="getHashtag" parameterType="int" resultType="HashtagVO">
+		SELECT *
+		FROM hashtag
+		WHERE board_num = #{board_num}
+	</select>
+
+    
+    <insert id="board_write" parameterType="BoardVO">
+<!-- 	<selectKey keyProperty="" resultType="" order="">
+		작성자 아이디 
+	</selectKey> -->	
+	INSERT INTO BOARD( board_title,board_content)
+        VALUES(#{board_title},#{board_content})
+</insert>
+		
 </mapper>
