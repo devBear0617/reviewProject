@@ -41,6 +41,13 @@
 		#{}				파라미터 값 - 파라미터 변수명과 달라도 인식O - But 파라미터 변수명과 일치시키는 것 권유 
 		${}				파라미터 값 - 파라미터 변수명과 다르면 인식X, 보안 취약
 	-->
+	
+	<insert id="insertMovie" parameterType="BoardVO">
+		INSERT INTO board(member_id, board_title, board_content)
+		VALUES('qwe', #{board_title}, #{board_content})
+	</insert>
+	
+	
 
 	<select id="searchBoard" parameterType="int" resultMap="Board">
 		SELECT *

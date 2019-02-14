@@ -38,6 +38,12 @@ public class MovieServiceImpl implements MovieService {
 		
 		return movieApiDAO.getMovie(movieNm);
 	}
+	
+	@Override
+	public void insertMovie(BoardVO board) {
+		
+		boardDAO.insertMovie(board);
+	}
 
 
 }

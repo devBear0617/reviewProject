@@ -10,4 +10,6 @@ public interface MovieService {
 	List<BoardVO> getMovieBoardList();
 	public MovieApiVO getMovieInfo(String movieNm);
 	
+	public void insertMovie(BoardVO board);
+	
 }

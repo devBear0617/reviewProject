@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.project.review.service.MovieService;
 import com.project.review.vo.BoardVO;
+import com.project.review.vo.Board_MovieVO;
 import com.project.review.vo.MovieApiVO;
 
 //맵핑명, 변수명, jsp명 = 가칭O, 변경 가능, test용
@@ -90,11 +91,29 @@ public class Movie_controller {
 	// -- 상세페이지 ---------------------------------------------------------
 	
 	// >> 게시글 작성
-	@RequestMapping(value="/board_write")
-	public String board_write(HttpServletRequest request, Model model) {		
+	@RequestMapping(value="/board_writeForm")
+	public String board_writeForm() {		
 		
-		return "movie/board_write";
-		
+		return "movie/board_writeForm";
 	}
+	
+	@RequestMapping(value="/board_write")
+	public String board_write(BoardVO board, Board_MovieVO movie, HttpServletRequest request, Model model) {		
+		
+		/*String member_id = "qwe";
+		String board_title = request.getParameter("board_title");
+		String board_content = request.getParameter("board_content");*/
+		
+		movieService.insertMovie(board);
+		
+		return "movie/board_writeCheck";
+	}
+	
+	/*@RequestMapping(value="/board_writeCheck")
+	public String board_writeCheck() {		
+		
+		return "movie/board_writeCheck";
+	}*/
+	
 	
 }

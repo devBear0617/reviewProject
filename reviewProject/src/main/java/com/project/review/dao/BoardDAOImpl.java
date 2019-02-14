@@ -32,8 +32,6 @@ public class BoardDAOImpl implements BoardDAO{
 		
 	}
 	
-
-	
 	@Override
 	public BoardVO searchBoard(int board_num) {
 		
@@ -44,6 +42,12 @@ public class BoardDAOImpl implements BoardDAO{
 	public BoardVO newBoard(String board_title, String board_content, String member_id) {
 		
 		return boardDAO.newBoard(board_title, board_content, member_id);
+	}
+	
+	@Override
+	public void insertMovie(BoardVO board) {
+		
+		boardDAO.insertMovie(board);
 	}
 	
 	

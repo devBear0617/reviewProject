@@ -14,4 +14,6 @@ public interface BoardDAO {
 	public BoardVO searchBoard(int board_num);
 	public BoardVO newBoard(String board_title, String board_content, String member_id);
 	
+	public void insertMovie(BoardVO board);
+	
 }
