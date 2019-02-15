@@ -27,11 +27,13 @@ public class BoardDAOImpl implements BoardDAO{
 	}
 
 	@Override
-	public void Board_write(BoardVO vo) {
-		boardDAO.Board_write(vo);
-		
+	public void insertBoard(BoardVO vo) {
+		boardDAO.insertBoard(vo);		
 	}
-	
+	@Override
+	public void insertB_Movie(int board_num) {
+		boardDAO.insertB_Movie(board_num);		
+	}
 
 	
 	@Override
@@ -45,6 +47,8 @@ public class BoardDAOImpl implements BoardDAO{
 		
 		return boardDAO.newBoard(board_title, board_content, member_id);
 	}
+
+	
 	
 	
 }

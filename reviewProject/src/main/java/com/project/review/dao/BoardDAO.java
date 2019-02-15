@@ -10,7 +10,9 @@ public interface BoardDAO {
 	public List<BoardVO> getTvBoardList();
 	public BoardVO getBoardById(int board_num);
 	
-	public void Board_write(BoardVO vo);
+	public void insertBoard(BoardVO vo);
+	public void insertB_Movie(int board_num);
+	
 	public BoardVO searchBoard(int board_num);
 	public BoardVO newBoard(String board_title, String board_content, String member_id);
 	
