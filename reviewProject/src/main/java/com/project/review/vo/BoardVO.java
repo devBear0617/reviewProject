@@ -16,6 +16,18 @@ public class BoardVO {
 /*	private String member_pw;
 	private String member_name;*/
 	
+	private String board_type;
+	private int lemon_grade;
+	private int grade_score;
+	private String score_name1;
+	private int score_grade1;
+	private String score_name2;
+	private int score_grade2;
+	private String score_name3;
+	private int score_grade3;
+	private String score_name4;
+	private int score_grade4;
+	
 	
 	private Board_MovieVO b_movieVO;
 	private Board_TvVO b_tvVO;
@@ -26,18 +38,6 @@ public class BoardVO {
 	private List<ReplyVO> replyList;
 	
 	
-/*	public String getMember_pw() {
-		return member_pw;
-	}
-	public void setMember_pw(String member_pw) {
-		this.member_pw = member_pw;
-	}
-	public String getMember_name() {
-		return member_name;
-	}
-	public void setMember_name(String member_name) {
-		this.member_name = member_name;
-	}*/
 	public int getBoard_num() {
 		return board_num;
 	}
@@ -68,6 +68,72 @@ public class BoardVO {
 	public void setMember_id(String member_id) {
 		this.member_id = member_id;
 	}
+	public String getBoard_type() {
+		return board_type;
+	}
+	public void setBoard_type(String board_type) {
+		this.board_type = board_type;
+	}
+	public int getLemon_grade() {
+		return lemon_grade;
+	}
+	public void setLemon_grade(int lemon_grade) {
+		this.lemon_grade = lemon_grade;
+	}
+	public int getGrade_score() {
+		return grade_score;
+	}
+	public void setGrade_score(int grade_score) {
+		this.grade_score = grade_score;
+	}
+	public String getScore_name1() {
+		return score_name1;
+	}
+	public void setScore_name1(String score_name1) {
+		this.score_name1 = score_name1;
+	}
+	public int getScore_grade1() {
+		return score_grade1;
+	}
+	public void setScore_grade1(int score_grade1) {
+		this.score_grade1 = score_grade1;
+	}
+	public String getScore_name2() {
+		return score_name2;
+	}
+	public void setScore_name2(String score_name2) {
+		this.score_name2 = score_name2;
+	}
+	public int getScore_grade2() {
+		return score_grade2;
+	}
+	public void setScore_grade2(int score_grade2) {
+		this.score_grade2 = score_grade2;
+	}
+	public String getScore_name3() {
+		return score_name3;
+	}
+	public void setScore_name3(String score_name3) {
+		this.score_name3 = score_name3;
+	}
+	public int getScore_grade3() {
+		return score_grade3;
+	}
+	public void setScore_grade3(int score_grade3) {
+		this.score_grade3 = score_grade3;
+	}
+	public String getScore_name4() {
+		return score_name4;
+	}
+	public void setScore_name4(String score_name4) {
+		this.score_name4 = score_name4;
+	}
+	public int getScore_grade4() {
+		return score_grade4;
+	}
+	public void setScore_grade4(int score_grade4) {
+		this.score_grade4 = score_grade4;
+	}
 	public Board_MovieVO getB_movieVO() {
 		return b_movieVO;
 	}
@@ -80,12 +146,6 @@ public class BoardVO {
 	public void setB_tvVO(Board_TvVO b_tvVO) {
 		this.b_tvVO = b_tvVO;
 	}
-	/*public Board_GameVO getB_gameVO() {
-		return b_gameVO;
-	}
-	public void setB_gameVO(Board_GameVO b_gameVO) {
-		this.b_gameVO = b_gameVO;
-	}*/
 	public MemberVO getMemberVO() {
 		return memberVO;
 	}
@@ -104,12 +164,16 @@ public class BoardVO {
 	public void setReplyList(List<ReplyVO> replyList) {
 		this.replyList = replyList;
 	}
-	/*
 	@Override
 	public String toString() {
 		return "BoardVO [board_num=" + board_num + ", board_title=" + board_title + ", board_content=" + board_content
-				+ ", board_date=" + board_date + ", member_id=" + member_id + ", b_movieVO=" + b_movieVO + ", b_tvVO="
-				+ b_tvVO + ", b_gameVO=" + b_gameVO + ", memberVO=" + memberVO + ", hashtagVO=" + hashtagVO
-				+ ", replyList=" + replyList + "]";
-	}*/
+				+ ", board_date=" + board_date + ", member_id=" + member_id + ", board_type=" + board_type
+				+ ", lemon_grade=" + lemon_grade + ", grade_score=" + grade_score + ", score_name1=" + score_name1
+				+ ", score_grade1=" + score_grade1 + ", score_name2=" + score_name2 + ", score_grade2=" + score_grade2
+				+ ", score_name3=" + score_name3 + ", score_grade3=" + score_grade3 + ", score_name4=" + score_name4
+				+ ", score_grade4=" + score_grade4 + ", b_movieVO=" + b_movieVO + ", b_tvVO=" + b_tvVO + ", memberVO="
+				+ memberVO + ", hashtagVO=" + hashtagVO + ", replyList=" + replyList + "]";
+	}
+	
+
 }

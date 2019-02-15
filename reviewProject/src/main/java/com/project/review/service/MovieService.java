@@ -11,5 +11,7 @@ public interface MovieService {
 	public MovieApiVO getMovieInfo(String movieNm);
 	
 	public void insertMovie(BoardVO board);
+	public void insertMovieNum(int board_num);
+	public void insertHashtag(int board_num);
 	
 }

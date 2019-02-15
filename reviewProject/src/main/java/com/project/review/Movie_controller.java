@@ -98,13 +98,11 @@ public class Movie_controller {
 	}
 	
 	@RequestMapping(value="/board_write")
-	public String board_write(BoardVO board, Board_MovieVO movie, HttpServletRequest request, Model model) {		
-		
-		/*String member_id = "qwe";
-		String board_title = request.getParameter("board_title");
-		String board_content = request.getParameter("board_content");*/
+	public String board_write(BoardVO board, HttpServletRequest request, Model model) {		
 		
 		movieService.insertMovie(board);
+		movieService.insertMovieNum(board.getBoard_num());
+		movieService.insertHashtag(board.getBoard_num());
 		
 		return "movie/board_writeCheck";
 	}

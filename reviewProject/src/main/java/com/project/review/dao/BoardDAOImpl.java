@@ -50,5 +50,16 @@ public class BoardDAOImpl implements BoardDAO{
 		boardDAO.insertMovie(board);
 	}
 	
+	@Override
+	public void insertMovieNum(int board_num) {
+		
+		boardDAO.insertMovieNum(board_num);
+	}
+	
+	@Override
+	public void insertHashtag(int board_num) {
+		
+		boardDAO.insertHashtag(board_num);
+	}
 	
 }

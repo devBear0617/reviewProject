@@ -14,6 +14,7 @@ import com.project.review.vo.MovieApiVO;
 
 @Service
 public class MovieServiceImpl implements MovieService {
+	
 	@Autowired
 	private BoardDAO boardDAO;
 	@Autowired
@@ -43,6 +44,18 @@ public class MovieServiceImpl implements MovieService {
 	public void insertMovie(BoardVO board) {
 		
 		boardDAO.insertMovie(board);
+	}
+	
+	@Override
+	public void insertMovieNum(int board_num) {
+		
+		boardDAO.insertMovieNum(board_num);
+	}
+	
+	@Override
+	public void insertHashtag(int board_num) {
+		
+		boardDAO.insertHashtag(board_num);
 	}
 
 

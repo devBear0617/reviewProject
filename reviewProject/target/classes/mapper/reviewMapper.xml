@@ -43,9 +43,32 @@
 	-->
 	
 	<insert id="insertMovie" parameterType="BoardVO">
-		INSERT INTO board(member_id, board_title, board_content)
-		VALUES('qwe', #{board_title}, #{board_content})
+		<selectKey keyProperty="board_num" resultType="int" order="BEFORE">
+         	SELECT bnum_seq.nextval as board_num FROM dual
+      	</selectKey>
+		INSERT INTO board(member_id, board_title, board_content, lemon_grade, grade_score,
+			score_name1, score_grade1, score_name2, score_grade2, score_name3, score_grade3, score_name4, score_grade4)
+		VALUES('qwe', #{board_title}, #{board_content}, #{lemon_grade}, #{grade_score},
+			#{score_name1}, #{score_grade1}, #{score_name2}, #{score_grade2}, #{score_name3}, #{score_grade3}, #{score_name4}, #{score_grade4})
 	</insert>
+	
+	<insert id="insertMovieNum" parameterType="int">
+		INSERT INTO board_movie(board_num)
+		VALUES(#{board_num})
+	</insert>
+	
+	<insert id="insertHashtag" parameterType="HashtagVO">
+		INSERT INTO hashtag(board_num, hashtag1, hashtag2, hashtag3, hashtag4, hashtag5, hashtag6)
+		VALUES(#{board_num}, #{hashtag1}, #{hashtag2}, #{hashtag3}, #{hashtag4}, #{hashtag5}, #{hashtag6})
+	</insert>
+	
+	<!-- <select id="selectBnum" parameterType="String" resultMap="Board">
+		SELECT *
+		FROM board
+		WHERE member_id = #{member_id}
+		AND board_title = #{board_title}
+		AND board_content = #{board_content}
+	</select> -->
 	
 	
 
@@ -75,13 +98,14 @@
 	<select id="getMovieBoardList" resultMap="Board">
 		SELECT *
 		FROM board_movie m, board b
-		WHERE m.board_num = b.board_num		
+		WHERE m.board_num = b.board_num
+<!-- 		ORDER BY board_num DESC -->
 	</select>
 	
 	<select id="getTvBoardList" resultMap="Board">
 		SELECT *
 		FROM board_tv t, board b
-		WHERE t.board_num = b.board_num		
+		WHERE t.board_num = b.board_num
 	</select>
 	<select id="getMember" parameterType="String" resultType="Board_MovieVO">
 		SELECT *
