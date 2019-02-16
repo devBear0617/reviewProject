@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.project.review.service.MovieService;
 import com.project.review.vo.BoardVO;
-import com.project.review.vo.Board_MovieVO;
+import com.project.review.vo.HashtagVO;
 import com.project.review.vo.MovieApiVO;
 
 //맵핑명, 변수명, jsp명 = 가칭O, 변경 가능, test용
@@ -98,11 +98,14 @@ public class Movie_controller {
 	}
 	
 	@RequestMapping(value="/board_write")
-	public String board_write(BoardVO board, HttpServletRequest request, Model model) {		
+	public String board_write(BoardVO board, HashtagVO hash, HttpServletRequest request, Model model) {		
 		
 		movieService.insertMovie(board);
-		movieService.insertMovieNum(board.getBoard_num());
-		movieService.insertHashtag(board.getBoard_num());
+/*		movieService.insertMovieNum(board.getBoard_num());
+		movieService.insertHashtag(board.getBoard_num(), hash);*/
+	/*	movieService.updateHashtag(hash);*/
+		/*System.out.println(board.getBoard_num());
+		movieService.updateHashtag(hash);*/
 		
 		return "movie/board_writeCheck";
 	}

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.project.review.dao.BoardDAO;
 import com.project.review.dao.MovieApiDAO;
 import com.project.review.vo.BoardVO;
+import com.project.review.vo.HashtagVO;
 import com.project.review.vo.MovieApiVO;
 
 
@@ -44,19 +45,26 @@ public class MovieServiceImpl implements MovieService {
 	public void insertMovie(BoardVO board) {
 		
 		boardDAO.insertMovie(board);
+		
 	}
 	
-	@Override
+/*	@Override
 	public void insertMovieNum(int board_num) {
 		
 		boardDAO.insertMovieNum(board_num);
 	}
 	
 	@Override
-	public void insertHashtag(int board_num) {
+	public HashtagVO insertHashtag(int board_num) {
 		
-		boardDAO.insertHashtag(board_num);
-	}
+		return boardDAO.insertHashtag(board_num);
+	}*/
+	
+	/*@Override
+	public void updateHashtag(HashtagVO hash) {
+		
+		boardDAO.updateHashtag(hash);
+	}*/
 
 
 }

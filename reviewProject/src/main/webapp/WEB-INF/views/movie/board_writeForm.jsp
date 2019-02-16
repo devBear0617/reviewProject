@@ -29,6 +29,10 @@
 <textarea name="board_content" cols="40" rows="8" ></textarea>
 <br><br>
 
+EX : <input type="text" name="ex" >
+
+<br><br>
+
 리뷰 점수 : <input type="text" name="lemon_grade"> 점
 <br>
 <input type="radio" name="grade_score" value="1">이 영화를 추천합니다.
