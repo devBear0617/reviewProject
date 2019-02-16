@@ -11,8 +11,8 @@ public interface MovieService {
 	List<BoardVO> getMovieBoardList();
 	public MovieApiVO getMovieInfo(String movieNm);
 	
-	public void insertMovie(BoardVO board);
-	public void insertB_movie(Board_MovieVO movie);
+	public void insertMovie(BoardVO board, Board_MovieVO movie);
+/*	public void insertB_movie(Board_MovieVO movie);*/
 /*	public void insertMovieNum(int board_num);
 	public HashtagVO insertHashtag(int board_num);*/
 	/*public void updateHashtag(HashtagVO hash);*/

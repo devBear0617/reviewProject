@@ -42,16 +42,18 @@ public class MovieServiceImpl implements MovieService {
 	}
 	
 	@Override
-	public void insertMovie(BoardVO board) {
+	public void insertMovie(BoardVO board, Board_MovieVO movie) {
 		
 		boardDAO.insertMovie(board);
+		movie.setBoard_num(board.getBoard_num());
+		boardDAO.insertB_movie(movie);
 	}
 	
-	@Override
+/*	@Override
 	public void insertB_movie(Board_MovieVO movie) {
 		
 		boardDAO.insertB_movie(movie);
-	}
+	}*/
 	
 /*	@Override
 	public void insertMovieNum(int board_num) {
