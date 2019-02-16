@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.project.review.service.MovieService;
 import com.project.review.vo.BoardVO;
@@ -98,13 +99,20 @@ public class Movie_controller {
 		return "movie/board_writeForm";
 	}
 	
-	@RequestMapping(value="/board_write")
+	@RequestMapping(value="/board_write", method=RequestMethod.POST)
 	public String board_write(BoardVO board, Board_MovieVO movie, HashtagVO hash, HttpServletRequest request, Model model) {		
 		
 		movieService.insertMovie(board, movie, hash);
-
 		
-		return "movie/board_writeCheck";
+		int board_num = board.getBoard_num();
+		BoardVO board_m = movieService.getBoardById(board_num);
+		model.addAttribute("board", board_m);
+		
+		String movieNm = "레고 무비2";
+		MovieApiVO mApiVO = movieService.getMovieInfo(movieNm);		
+		model.addAttribute("mApiVO", mApiVO);
+		
+		return "movie/detail_view";
 	}
 
 	

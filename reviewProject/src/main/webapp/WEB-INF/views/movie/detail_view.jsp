@@ -15,7 +15,7 @@
 		<span>${board.memberVO.member_name}</span>
 		<span>유저ID: ${board.member_id}</span>&nbsp;&nbsp;&nbsp;     
 		--%>
-		<span>유저ID: ${board.memberVO.member_id}</span>&nbsp;&nbsp;&nbsp;  
+		<span>유저ID: ${board.member_id}</span>&nbsp;&nbsp;&nbsp;  
 		<span>리뷰 제목: ${board.board_title}</span>&nbsp;&nbsp;&nbsp;     
 		<span>날짜 : ${board.board_date}</span>
 	</div>
@@ -80,6 +80,10 @@
 		<br>댓글<br>
 		<jsp:include page="../share/reply.jsp" />
 	</div>
+	
+	<br><br>
+	<input type="button" value="홈"
+				onclick="location.href='/review/movie/main'">
 
 </body>
 </html>

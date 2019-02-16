@@ -1,14 +1,15 @@
 package com.project.review.vo;
 
 
-import java.sql.Date;
+
+import java.sql.Timestamp;
 import java.util.List;
 
 public class BoardVO {
 	private int board_num;
 	private String board_title;
 	private String board_content;
-	private Date board_date;
+	private Timestamp board_date;
 	//private Date boardupdate;
 	
 	
@@ -64,10 +65,10 @@ public class BoardVO {
 	public void setBoard_content(String board_content) {
 		this.board_content = board_content;
 	}
-	public Date getBoard_date() {
+	public Timestamp getBoard_date() {
 		return board_date;
 	}
-	public void setBoard_date(Date board_date) {
+	public void setBoard_date(Timestamp board_date) {
 		this.board_date = board_date;
 	}
 	public String getMember_id() {
