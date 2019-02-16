@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.project.review.vo.BoardVO;
-import com.project.review.vo.HashtagVO;
+import com.project.review.vo.Board_MovieVO;
 
 
 public class BoardDAOImpl implements BoardDAO{
@@ -51,6 +51,12 @@ public class BoardDAOImpl implements BoardDAO{
 		boardDAO.insertMovie(board);
 	}
 	
+	@Override
+	public void insertB_movie(Board_MovieVO movie) {
+		
+		boardDAO.insertB_movie(movie);
+	}
+	
 	/*@Override
 	public void insertMovieNum(int board_num) {
 		
@@ -63,10 +69,10 @@ public class BoardDAOImpl implements BoardDAO{
 		return boardDAO.insertHashtag(board_num);
 	}*/
 	
-	@Override
+	/*@Override
 	public void insertHashtag(HashtagVO hash) {
 		
 		boardDAO.insertHashtag(hash);
-	}
+	}*/
 	
 }

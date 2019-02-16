@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.project.review.dao.BoardDAO;
 import com.project.review.dao.MovieApiDAO;
 import com.project.review.vo.BoardVO;
-import com.project.review.vo.HashtagVO;
+import com.project.review.vo.Board_MovieVO;
 import com.project.review.vo.MovieApiVO;
 
 
@@ -45,7 +45,12 @@ public class MovieServiceImpl implements MovieService {
 	public void insertMovie(BoardVO board) {
 		
 		boardDAO.insertMovie(board);
+	}
+	
+	@Override
+	public void insertB_movie(Board_MovieVO movie) {
 		
+		boardDAO.insertB_movie(movie);
 	}
 	
 /*	@Override
