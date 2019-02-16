@@ -16,8 +16,15 @@ public interface BoardDAO {
 	public BoardVO searchBoard(int board_num);
 	public BoardVO newBoard(String board_title, String board_content, String member_id);
 	
+	/*insert*/
 	public void insertMovie(BoardVO board);
 	public void insertB_movie(Board_MovieVO movie);
 	public void insertHashtag(HashtagVO hash);
+	/*update*/
+	public void updateMovie(BoardVO board);
+	public void updateB_movie(Board_MovieVO movie);
+	public void updateHashtag(HashtagVO hash);
+	
+	
 	
 }

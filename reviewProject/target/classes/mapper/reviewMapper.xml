@@ -23,7 +23,7 @@
 		<result property="member_id" column="member_id" />
 		
 		<result property="lemon_grade" column="lemon_grade" />
-		<result property="grade_score" column="grade_score" />
+		<result property="recommend" column="recommend" />
 		<result property="score_name1" column="score_name1" />
 		<result property="score_name2" column="score_name2" />
 		<result property="score_name3" column="score_name3" />
@@ -57,12 +57,15 @@
 		${}				파라미터 값 - 파라미터 변수명과 다르면 인식X, 보안 취약
 	-->
 	
+	<!-- insert -->
 	<insert id="insertMovie" parameterType="BoardVO">
 		<selectKey keyProperty="board_num" resultType="int" order="BEFORE">
 			select BNUM_SEQ.nextval as board_num from dual
 		</selectKey>
-		INSERT INTO BOARD(board_num, board_title, board_content, member_id)
-		VALUES(#{board_num},#{board_title},#{board_content},'qwe')
+		INSERT INTO BOARD(board_num, board_title, board_content, member_id, lemon_grade, recommend,
+			score_name1, score_grade1, score_name2, score_grade2, score_name3, score_grade3, score_name4, score_grade4)
+		VALUES(#{board_num},#{board_title},#{board_content},'qwe', #{lemon_grade}, #{recommend}, #{score_name1}, #{score_grade1}, 
+			#{score_name2}, #{score_grade2}, #{score_name3}, #{score_grade3}, #{score_name4}, #{score_grade4})
 	</insert>
 	<insert id="insertB_movie" parameterType="Board_MovieVO">
 		INSERT INTO board_movie(board_num, ex)
@@ -73,8 +76,38 @@
 		VALUES(#{board_num}, #{hashtag1}, #{hashtag2}, #{hashtag3}, #{hashtag4}, #{hashtag5}, #{hashtag6})
 	</insert>
 	
-	
-	
+	<!-- update -->
+	<update id="updateMovie" parameterType="BoardVO">
+		UPDATE board SET
+			board_title = #{board_title},
+			board_content = #{board_content},
+			lemon_grade = #{lemon_grade},
+			recommend = #{recommend},
+			score_name1 = #{score_name1},
+			score_grade1 = #{score_grade1},
+			score_name2 = #{score_name2},
+			score_grade2 = #{score_grade2},
+			score_name3 = #{score_name3},
+			score_grade3 = #{score_grade3},
+			score_name4 = #{score_name4},
+			score_grade4 = #{score_grade4}
+		WHERE board_num = #{board_num}
+	</update>
+	<update id="updateB_movie" parameterType="Board_MovieVO">
+		UPDATE board_movie SET
+			ex = #{ex}
+		WHERE board_num = #{board_num}
+	</update>
+	<update id="updateHashtag" parameterType="HashtagVO">
+		UPDATE hashtag SET
+			hashtag1 = #{hashtag1},
+			hashtag2 = #{hashtag2},
+			hashtag3 = #{hashtag3},
+			hashtag4 = #{hashtag4},
+			hashtag5 = #{hashtag5},
+			hashtag6 = #{hashtag6}
+		WHERE board_num = #{board_num}
+	</update>
 	
 
 	

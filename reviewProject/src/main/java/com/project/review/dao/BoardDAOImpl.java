@@ -64,4 +64,22 @@ public class BoardDAOImpl implements BoardDAO{
 		boardDAO.insertHashtag(hash);
 	}
 	
+	@Override
+	public void updateMovie(BoardVO board) {
+		
+		boardDAO.updateMovie(board);
+	}
+	
+	@Override
+	public void updateB_movie(Board_MovieVO movie) {
+		
+		boardDAO.updateB_movie(movie);
+	}
+	
+	@Override
+	public void updateHashtag(HashtagVO hash) {
+		
+		boardDAO.updateHashtag(hash);
+	}
+	
 }

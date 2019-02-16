@@ -52,6 +52,20 @@ public class MovieServiceImpl implements MovieService {
 		boardDAO.insertHashtag(hash);
 	}
 	
+	@Override
+	public void updateMovie(int board_num, BoardVO board, Board_MovieVO movie, HashtagVO hash) {
+		
+		boardDAO.getBoardById(board_num);
+		
+		board.setBoard_num(board.getBoard_num());
+		movie.setBoard_num(board.getBoard_num());
+		hash.setBoard_num(board.getBoard_num());
+		
+		boardDAO.updateMovie(board);
+		boardDAO.updateB_movie(movie);
+		boardDAO.updateHashtag(hash);
+		
+	}
 
 
 

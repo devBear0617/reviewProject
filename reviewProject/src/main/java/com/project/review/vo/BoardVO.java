@@ -19,7 +19,7 @@ public class BoardVO {
 	
 	private String board_type;
 	private int lemon_grade;
-	private int grade_score;
+	private int recommend;
 	private String score_name1;
 	private int score_grade1;
 	private String score_name2;
@@ -38,13 +38,6 @@ public class BoardVO {
 	private HashtagVO hashtagVO;
 	private List<ReplyVO> replyList;
 	
-	
-	/*private String hashtag1;
-	private String hashtag2;
-	private String hashtag3;
-	private String hashtag4;
-	private String hashtag5;
-	private String hashtag6;*/
 	
 	
 	public int getBoard_num() {
@@ -89,11 +82,11 @@ public class BoardVO {
 	public void setLemon_grade(int lemon_grade) {
 		this.lemon_grade = lemon_grade;
 	}
-	public int getGrade_score() {
-		return grade_score;
+	public int getRecommend() {
+		return recommend;
 	}
-	public void setGrade_score(int grade_score) {
-		this.grade_score = grade_score;
+	public void setRecommend(int recommend) {
+		this.recommend = recommend;
 	}
 	public String getScore_name1() {
 		return score_name1;
@@ -173,52 +166,20 @@ public class BoardVO {
 	public void setReplyList(List<ReplyVO> replyList) {
 		this.replyList = replyList;
 	}
-/*	public String getHashtag1() {
-		return hashtag1;
-	}
-	public void setHashtag1(String hashtag1) {
-		this.hashtag1 = hashtag1;
-	}
-	public String getHashtag2() {
-		return hashtag2;
-	}
-	public void setHashtag2(String hashtag2) {
-		this.hashtag2 = hashtag2;
-	}
-	public String getHashtag3() {
-		return hashtag3;
-	}
-	public void setHashtag3(String hashtag3) {
-		this.hashtag3 = hashtag3;
-	}
-	public String getHashtag4() {
-		return hashtag4;
-	}
-	public void setHashtag4(String hashtag4) {
-		this.hashtag4 = hashtag4;
-	}
-	public String getHashtag5() {
-		return hashtag5;
-	}
-	public void setHashtag5(String hashtag5) {
-		this.hashtag5 = hashtag5;
-	}
-	public String getHashtag6() {
-		return hashtag6;
-	}
-	public void setHashtag6(String hashtag6) {
-		this.hashtag6 = hashtag6;
-	}*/
 	@Override
 	public String toString() {
 		return "BoardVO [board_num=" + board_num + ", board_title=" + board_title + ", board_content=" + board_content
 				+ ", board_date=" + board_date + ", member_id=" + member_id + ", board_type=" + board_type
-				+ ", lemon_grade=" + lemon_grade + ", grade_score=" + grade_score + ", score_name1=" + score_name1
+				+ ", lemon_grade=" + lemon_grade + ", recommend=" + recommend + ", score_name1=" + score_name1
 				+ ", score_grade1=" + score_grade1 + ", score_name2=" + score_name2 + ", score_grade2=" + score_grade2
 				+ ", score_name3=" + score_name3 + ", score_grade3=" + score_grade3 + ", score_name4=" + score_name4
 				+ ", score_grade4=" + score_grade4 + ", b_movieVO=" + b_movieVO + ", b_tvVO=" + b_tvVO + ", memberVO="
 				+ memberVO + ", hashtagVO=" + hashtagVO + ", replyList=" + replyList + "]";
 	}
+	
+	
+	
+	
 	
 	
 
