@@ -56,6 +56,10 @@
 		<div>
 		<br>
 			리뷰내용: ${board.board_content}
+		<br>
+			무비ex: ${board.b_movieVO.ex}
+		<br><br>
+		
 		</div>
 		
 		<!-- 영화 간단 정보 (영화 제목, 장르, 감독, 개봉일시) -->

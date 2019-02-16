@@ -10,6 +10,7 @@ import com.project.review.dao.BoardDAO;
 import com.project.review.dao.MovieApiDAO;
 import com.project.review.vo.BoardVO;
 import com.project.review.vo.Board_MovieVO;
+import com.project.review.vo.HashtagVO;
 import com.project.review.vo.MovieApiVO;
 
 
@@ -42,36 +43,16 @@ public class MovieServiceImpl implements MovieService {
 	}
 	
 	@Override
-	public void insertMovie(BoardVO board, Board_MovieVO movie) {
+	public void insertMovie(BoardVO board, Board_MovieVO movie, HashtagVO hash) {
 		
 		boardDAO.insertMovie(board);
 		movie.setBoard_num(board.getBoard_num());
+		hash.setBoard_num(board.getBoard_num());
 		boardDAO.insertB_movie(movie);
+		boardDAO.insertHashtag(hash);
 	}
 	
-/*	@Override
-	public void insertB_movie(Board_MovieVO movie) {
-		
-		boardDAO.insertB_movie(movie);
-	}*/
-	
-/*	@Override
-	public void insertMovieNum(int board_num) {
-		
-		boardDAO.insertMovieNum(board_num);
-	}
-	
-	@Override
-	public HashtagVO insertHashtag(int board_num) {
-		
-		return boardDAO.insertHashtag(board_num);
-	}*/
-	
-	/*@Override
-	public void updateHashtag(HashtagVO hash) {
-		
-		boardDAO.updateHashtag(hash);
-	}*/
+
 
 
 }

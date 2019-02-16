@@ -29,10 +29,10 @@
 <textarea name="board_content" cols="40" rows="8" ></textarea>
 <br><br>
 
-EX : <input type="text" name="ex" >
+무비 EX : <input type="text" name="ex" >
 
 <br><br>
-<!-- 
+
 리뷰 점수 : <input type="text" name="lemon_grade"> 점
 <br>
 <input type="radio" name="grade_score" value="1">이 영화를 추천합니다.
@@ -108,7 +108,7 @@ hashtag2 : #<input type="text" name="hashtag2"><br>
 hashtag3 : #<input type="text" name="hashtag3"><br>
 hashtag4 : #<input type="text" name="hashtag4"><br>
 hashtag5 : #<input type="text" name="hashtag5"><br>
-hashtag6 : #<input type="text" name="hashtag6"><br><br> -->
+hashtag6 : #<input type="text" name="hashtag6"><br><br>
 
 <input type="submit" value="확인">
 <input type="reset" value="취소">

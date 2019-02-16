@@ -31,9 +31,7 @@
 		<result property="score_grade1" column="score_grade1" />
 		<result property="score_grade2" column="score_grade2" />
 		<result property="score_grade3" column="score_grade3" />
-		<result property="score_grade4" column="score_grade4" />
-		
-		
+		<result property="score_grade4" column="score_grade4" />	
 		
 <!-- 		<result property="member_pw" column="member_pw" />
 		<result property="member_name" column="member_name" /> -->
@@ -45,15 +43,7 @@
 		
 	</resultMap>
 	
-	<!-- <resultMap id="Hashtag" type="HashtagVO">
-		<result property="board_num" column="board_num" />
-		<result property="hashtag1" column="hashtag1" />
-		<result property="hashtag2" column="hashtag2" />
-		<result property="hashtag3" column="hashtag3" />
-		<result property="hashtag4" column="hashtag4" />
-		<result property="hashtag5" column="hashtag5" />
-		<result property="hashtag6" column="hashtag6" />
-	</resultMap> -->
+	
 	
 
 	
@@ -78,49 +68,15 @@
 		INSERT INTO board_movie(board_num, ex)
 		VALUES(#{board_num}, #{ex})
 	</insert>
-	
-	<!-- <insert id="insertMovie" parameterType="BoardVO">
-		<selectKey keyProperty="board_num" resultType="int" order="BEFORE">
-			select BNUM_SEQ.nextval as board_num from dual
-		</selectKey>
-		INSERT ALL
-		INTO BOARD(board_num, board_title, board_content, member_id, lemon_grade, grade_score,
-			score_name1, score_grade1, score_name2, score_grade2, score_name3, score_grade3, score_name4, score_grade4)
-		VALUES(#{board_num},#{board_title},#{board_content},'qwe', #{lemon_grade}, #{grade_score},
-			#{score_name1}, #{score_grade1}, #{score_name2}, #{score_grade2}, #{score_name3}, #{score_grade3}, #{score_name4}, #{score_grade4})
-		INTO board_movie(board_num)	
-		VALUES(#{board_num})
-		INTO hashtag(board_num)
-		VALUES(#{board_num})
-		SELECT * FROM DUAL
-	</insert> -->
-	<!-- <insert id="insertHashtag" parameterType="HashtagVO" keyProperty="board_num">
-		INSERT INTO HASHTAG(board_num, hashtag1, hashtag2, hashtag3, hashtag4, hashtag5, hashtag6)
-		VALSUES(#{board_num}, #{hashtag1}, #{hashtag2}, #{hashtag3}, #{hashtag4}, #{hashtag5}, #{hashtag6})
-	</insert> -->
-	<!-- <insert id="insertMovieNum" parameterType="int">
-		INSERT INTO BOARD_MOVIE(board_num)
-		VALUES(#{board_num})
-	</insert>
 	<insert id="insertHashtag" parameterType="HashtagVO">
-		INSERT INTO HASHTAG(board_num, hashtag1, hashtag2, hashtag3, hashtag4, hashtag5, hashtag6)
-		VALUES(#{board_num}, #{hasgtag1}, #{hasgtag2}, #{hasgtag3}, #{hasgtag4}, #{hasgtag5}, #{hasgtag6})
-	</insert> -->
-	<!-- <update id="updateHashtag" parameterType="HashtagVO">
-		UPDATE hashtag 
-		SET hashtag1 = #{hashtag1}
-		WHERE board_num = #{board_num}
-	</update> -->
+		INSERT INTO hashtag(board_num, hashtag1, hashtag2, hashtag3, hashtag4, hashtag5, hashtag6)
+		VALUES(#{board_num}, #{hashtag1}, #{hashtag2}, #{hashtag3}, #{hashtag4}, #{hashtag5}, #{hashtag6})
+	</insert>
 	
 	
 	
-	<!-- <select id="selectBnum" parameterType="String" resultMap="Board">
-		SELECT *
-		FROM board
-		WHERE member_id = #{member_id}
-		AND board_title = #{board_title}
-		AND board_content = #{board_content}
-	</select> -->
+	
+
 	
 	
 

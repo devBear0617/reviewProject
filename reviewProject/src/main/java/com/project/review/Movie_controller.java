@@ -101,23 +101,12 @@ public class Movie_controller {
 	@RequestMapping(value="/board_write")
 	public String board_write(BoardVO board, Board_MovieVO movie, HashtagVO hash, HttpServletRequest request, Model model) {		
 		
-		movieService.insertMovie(board, movie);
-/*		movie.setBoard_num(board.getBoard_num());
-		movieService.insertB_movie(movie);*/
-/*		movieService.insertMovieNum(board.getBoard_num());
-		movieService.insertHashtag(board.getBoard_num(), hash);*/
-	/*	movieService.updateHashtag(hash);*/
-		/*System.out.println(board.getBoard_num());
-		movieService.updateHashtag(hash);*/
+		movieService.insertMovie(board, movie, hash);
+
 		
 		return "movie/board_writeCheck";
 	}
-	
-	/*@RequestMapping(value="/board_writeCheck")
-	public String board_writeCheck() {		
-		
-		return "movie/board_writeCheck";
-	}*/
+
 	
 	
 }
