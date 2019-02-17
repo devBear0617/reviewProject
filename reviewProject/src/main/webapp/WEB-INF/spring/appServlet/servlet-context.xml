@@ -22,6 +22,7 @@
 	<resources mapping="movie/resources/**" location="/resources/" />
 	<resources mapping="tv/resources/**" location="/resources/" />
 	<resources mapping="mypage/resources/**" location="/resources/" />
+	<resources mapping="article/resources/**" location="/resources/" />
 	<resources mapping="/resources/**" location="/resources/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
