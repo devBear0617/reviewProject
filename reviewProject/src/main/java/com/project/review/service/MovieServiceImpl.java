@@ -53,9 +53,7 @@ public class MovieServiceImpl implements MovieService {
 	}
 	
 	@Override
-	public void updateMovie(int board_num, BoardVO board, Board_MovieVO movie, HashtagVO hash) {
-		
-		boardDAO.getBoardById(board_num);
+	public void updateMovie(BoardVO board, Board_MovieVO movie, HashtagVO hash) {
 		
 		board.setBoard_num(board.getBoard_num());
 		movie.setBoard_num(board.getBoard_num());
@@ -67,6 +65,15 @@ public class MovieServiceImpl implements MovieService {
 		
 	}
 
-
+	@Override
+	public void deleteMovie(BoardVO board, Board_MovieVO movie, HashtagVO hash) {	
+		
+		boardDAO.deleteHashtag(hash);
+		boardDAO.deleteB_movie(movie);
+		boardDAO.deleteMovie(board);
+		
+		
+	}
+	
 
 }

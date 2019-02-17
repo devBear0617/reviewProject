@@ -131,8 +131,9 @@
 	<input type="button" value="수정"
 				onclick="location.href='/review/movie/board_updateForm/${board.board_num}'">
 	&nbsp;&nbsp;
-	<input type="button" value="삭제"
-				onclick="location.href='/review/movie/board_deleteForm'">
+	<form action="/review/movie/board_delete/${board.board_num}" method="post" id="board_delete">
+	<input type="submit" value="삭제">
+	</form>
 
 </body>
 </html>

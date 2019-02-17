@@ -131,12 +131,12 @@ public class Movie_controller {
 	}
 	
 	@RequestMapping(value="/board_update/{board_num}", method=RequestMethod.POST)
-	public String board_update(@PathVariable int board_num, BoardVO board, Board_MovieVO movie, HashtagVO hash, Model model) {
+	public String board_update(BoardVO board, Board_MovieVO movie, HashtagVO hash, Model model) {
 		
-		movieService.updateMovie(board_num, board, movie, hash);
+		movieService.updateMovie(board, movie, hash);
 		
-		int b_num = board.getBoard_num();
-		BoardVO board_m = movieService.getBoardById(b_num);
+		int board_num = board.getBoard_num();
+		BoardVO board_m = movieService.getBoardById(board_num);
 		model.addAttribute("board", board_m);
 		
 		String movieNm = "레고 무비2";
@@ -145,6 +145,16 @@ public class Movie_controller {
 		
 		return "movie/detail_view";
 	}
+	
+	// >> 게시글 삭제
+	@RequestMapping(value="/board_delete/{board_num}", method=RequestMethod.POST)
+	public String board_delete(@PathVariable int board_num, BoardVO board, Board_MovieVO movie, HashtagVO hash, Model model) {
+
+		movieService.deleteMovie(board, movie, hash);
+		
+		return "movie/main";
+	}
+	
 	
 	
 }

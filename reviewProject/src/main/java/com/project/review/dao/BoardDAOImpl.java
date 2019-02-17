@@ -82,4 +82,38 @@ public class BoardDAOImpl implements BoardDAO{
 		boardDAO.updateHashtag(hash);
 	}
 	
+	@Override
+	public void deleteMovie(BoardVO board) {
+		
+		boardDAO.deleteMovie(board);
+	}
+	
+	@Override
+	public void deleteB_movie(Board_MovieVO movie) {
+		
+		boardDAO.deleteB_movie(movie);
+	}
+	
+	@Override
+	public void deleteHashtag(HashtagVO hash) {
+		
+		boardDAO.deleteHashtag(hash);
+	}
+	
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

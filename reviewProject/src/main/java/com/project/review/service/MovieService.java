@@ -13,6 +13,7 @@ public interface MovieService {
 	public MovieApiVO getMovieInfo(String movieNm);
 	
 	public void insertMovie(BoardVO board, Board_MovieVO movie, HashtagVO hash);
-	public void updateMovie(int board_num, BoardVO board, Board_MovieVO movie, HashtagVO hash);
+	public void updateMovie(BoardVO board, Board_MovieVO movie, HashtagVO hash);
+	public void deleteMovie(BoardVO board, Board_MovieVO movie, HashtagVO hash);
 	
 }
