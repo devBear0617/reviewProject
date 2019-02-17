@@ -25,8 +25,8 @@ public interface BoardDAO {
 	public void updateB_movie(Board_MovieVO movie);
 	public void updateHashtag(HashtagVO hash);
 	/*delete*/
-	public void deleteMovie(BoardVO board);
-	public void deleteB_movie(Board_MovieVO movie);
-	public void deleteHashtag(HashtagVO hash);	
+	public void deleteMovie(int board_num);
+	public void deleteB_movie(int board_num);
+	public void deleteHashtag(int board_num);	
 	
 }

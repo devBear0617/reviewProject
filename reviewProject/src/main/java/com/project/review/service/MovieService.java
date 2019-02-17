@@ -14,6 +14,6 @@ public interface MovieService {
 	
 	public void insertMovie(BoardVO board, Board_MovieVO movie, HashtagVO hash);
 	public void updateMovie(BoardVO board, Board_MovieVO movie, HashtagVO hash);
-	public void deleteMovie(BoardVO board, Board_MovieVO movie, HashtagVO hash);
+	public void deleteMovie(int board_num);
 	
 }

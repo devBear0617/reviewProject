@@ -148,11 +148,11 @@ public class Movie_controller {
 	
 	// >> 게시글 삭제
 	@RequestMapping(value="/board_delete/{board_num}", method=RequestMethod.POST)
-	public String board_delete(@PathVariable int board_num, BoardVO board, Board_MovieVO movie, HashtagVO hash, Model model) {
+	public String board_delete(@PathVariable int board_num) {
 
-		movieService.deleteMovie(board, movie, hash);
+		movieService.deleteMovie(board_num);
 		
-		return "movie/main";
+		return "redirect:/movie/main";
 	}
 	
 	

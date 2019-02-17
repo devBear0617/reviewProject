@@ -83,21 +83,21 @@ public class BoardDAOImpl implements BoardDAO{
 	}
 	
 	@Override
-	public void deleteMovie(BoardVO board) {
+	public void deleteMovie(int board_num) {
 		
-		boardDAO.deleteMovie(board);
+		boardDAO.deleteMovie(board_num);
 	}
 	
 	@Override
-	public void deleteB_movie(Board_MovieVO movie) {
+	public void deleteB_movie(int board_num) {
 		
-		boardDAO.deleteB_movie(movie);
+		boardDAO.deleteB_movie(board_num);
 	}
 	
 	@Override
-	public void deleteHashtag(HashtagVO hash) {
+	public void deleteHashtag(int board_num) {
 		
-		boardDAO.deleteHashtag(hash);
+		boardDAO.deleteHashtag(board_num);
 	}
 	
 	

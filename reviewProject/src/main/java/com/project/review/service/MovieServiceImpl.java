@@ -66,11 +66,11 @@ public class MovieServiceImpl implements MovieService {
 	}
 
 	@Override
-	public void deleteMovie(BoardVO board, Board_MovieVO movie, HashtagVO hash) {	
+	public void deleteMovie(int board_num) {	
 		
-		boardDAO.deleteHashtag(hash);
-		boardDAO.deleteB_movie(movie);
-		boardDAO.deleteMovie(board);
+		boardDAO.deleteHashtag(board_num);
+		boardDAO.deleteB_movie(board_num);
+		boardDAO.deleteMovie(board_num);
 		
 		
 	}
