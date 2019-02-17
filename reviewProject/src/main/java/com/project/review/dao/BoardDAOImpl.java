@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.project.review.vo.BoardVO;
 
-
-public class BoardDAOImpl implements BoardDAO{
+public class BoardDAOImpl{}
+/*public class BoardDAOImpl implements BoardDAO{
 	@Autowired
 	private BoardDAO boardDAO;
 	
@@ -48,3 +48,4 @@ public class BoardDAOImpl implements BoardDAO{
 	
 	
 }
+*/

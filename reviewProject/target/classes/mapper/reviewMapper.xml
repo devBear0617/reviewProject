@@ -19,10 +19,8 @@
 		<result property="board_title" column="board_title" />
 		<result property="board_content" column="board_content" />
 		<result property="board_date" column="board_date" />
-		<result property="boardupdate" column="boardupdate" />
+		<!-- <result property="boardupdate" column="boardupdate" /> -->
 		<result property="member_id" column="member_id" />
-<!-- 		<result property="member_pw" column="member_pw" />
-		<result property="member_name" column="member_name" /> -->
 		<association property="memberVO" column="member_id" select="getMember" />
 		<association property="b_movieVO" column="board_num" select="getB_Movie" />
 		<association property="b_tvVO" column="board_num" select="getB_Tv" />
@@ -31,8 +29,6 @@
 	</resultMap>
 	
 
-	
-	
 	<!-- select	
 		id				명칭
 		parameterType	int/String/VO/HashMap 등 파라미터 타입 - 1개만 가능 2개X
@@ -41,41 +37,50 @@
 		#{}				파라미터 값 - 파라미터 변수명과 달라도 인식O - But 파라미터 변수명과 일치시키는 것 권유 
 		${}				파라미터 값 - 파라미터 변수명과 다르면 인식X, 보안 취약
 	-->
-
-	<select id="searchBoard" parameterType="int" resultMap="Board">
-		SELECT *
-		FROM board
-		WHERE board_num = #{board_num}
-	</select>
 	
-	<insert id="newBoard" parameterType="String">
-		INSERT INTO board(board_title, board_content, member_id)
-		VALUES('#{board_title}', '#{board_content}', '#{member_id}')
-	</insert>
-	
-	
-	
-	
+	<!-- 게시글 호출______________________________________________________________________ -->
 	<select id="getBoardById" parameterType="int" resultMap="Board">
 		SELECT *
 		FROM board
 		WHERE board_num = #{board_num}
 	</select>
-<!-- 	<select id="getBoardList" resultMap="Board">
+	
+	
+	<!-- ____게시판 호출______________________________________________________________________ -->
+	<select id="getBoardList" resultMap="Board">
 		SELECT *
 		FROM board
-	</select> -->
+	</select>
 	<select id="getMovieBoardList" resultMap="Board">
 		SELECT *
 		FROM board_movie m, board b
 		WHERE m.board_num = b.board_num		
 	</select>
-	
 	<select id="getTvBoardList" resultMap="Board">
 		SELECT *
 		FROM board_tv t, board b
 		WHERE t.board_num = b.board_num		
 	</select>
+
+
+	<!-- ____게시글 추가______________________________________________________________________ -->
+	<insert id="setBoard" parameterType="BoardVO">
+		<selectKey keyProperty="board_num,board_date" resultType="BoardVO" order="BEFORE"> 
+			SELECT bnum_seq.nextval AS board_num, sysdate AS board_date FROM dual 
+		</selectKey>
+		INSERT INTO board(board_num, board_title, board_content, board_date, member_id) 
+		VALUES(#{board_num}, #{board_title},#{board_content,jdbcType=CLOB}, #{board_date}, #{member_id}) 
+	</insert>
+	<insert id="setB_Movie" parameterType="Board_MovieVO">
+		<selectKey keyProperty="b_movie_num" resultType="Board_MovieVO" order="BEFORE">
+			SELECT movie_bnum_seq.nextval AS b_movie_num FROM dual 
+		</selectKey>
+		INSERT INTO board_movie 
+		VALUES(#{board_num}, #{b_movie_num}) 
+	</insert>
+
+
+	<!-- ____resultMap 조인______________________________________________________________________ -->
 	<select id="getMember" parameterType="String" resultType="Board_MovieVO">
 		SELECT *
 		FROM member
@@ -101,13 +106,22 @@
 		WHERE board_num = #{board_num}
 	</select>
 
-    
-    <insert id="board_write" parameterType="BoardVO">
-<!-- 	<selectKey keyProperty="" resultType="" order="">
-		작성자 아이디 
-	</selectKey> -->	
-	INSERT INTO BOARD( board_title,board_content)
-        VALUES(#{board_title},#{board_content})
-</insert>
 		
+	<!--겹치는 내용
+		searchBoard = getBoardById(초기 생성) -> 제일 처음에 작성한 getBoardById 사용. 다른 메소드와 명칭 통일하기 위해 추후에도 사용 예정. 
+		board_write = newBoard = addBoard(신규) -> 내용 추가되어 임시로 addBoard 사용. 추후 변경 가능
+	-->	
+	<select id="searchBoard" parameterType="int" resultMap="Board">
+		SELECT *
+		FROM board
+		WHERE board_num = #{board_num}
+	</select>
+	<insert id="board_write" parameterType="BoardVO">
+		INSERT INTO BOARD( board_title,board_content)
+	    VALUES(#{board_title},#{board_content})
+	</insert>
+	<insert id="newBoard" parameterType="String">
+		INSERT INTO board(board_title, board_content, member_id)
+		VALUES('#{board_title}', '#{board_content}', '#{member_id}')
+	</insert>	
 </mapper>

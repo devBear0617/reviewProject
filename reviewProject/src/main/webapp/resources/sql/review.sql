@@ -399,6 +399,22 @@ Insert into REVIEWPROJECT.REPLY (REPLY_NUM,BOARD_NUM,MEMBER_ID,REPLY_CONTENT) va
 	  REFERENCES "REVIEWPROJECT"."BOARD" ("BOARD_NUM") ENABLE;
   ALTER TABLE "REVIEWPROJECT"."REPLY" ADD CONSTRAINT "REPLY_FK2" FOREIGN KEY ("MEMBER_ID")
 	  REFERENCES "REVIEWPROJECT"."MEMBER" ("MEMBER_ID") ENABLE;
+	  
+	  
+--------------------------------------------------------
+--  board 칼럼 데이터타입 clob으로 변경 및 순서 변경
+--------------------------------------------------------	  
+ALTER TABLE board ADD (TMP_CONTENTS CLOB);
+
+UPDATE board SET TMP_CONTENTS = BOARD_CONTENT; 
+UPDATE board SET BOARD_CONTENT = NULL; 
+COMMIT;
+
+ALTER TABLE board DROP COLUMN BOARD_CONTENT;
+ALTER TABLE board RENAME COLUMN TMP_CONTENTS TO BOARD_CONTENT;
+
+create table temp as select BOARD_NUM, BOARD_TITLE, BOARD_CONTENT, BOARD_DATE, MEMBER_ID from board;
+drop table board;	  
 --------------------------------------------------------
 --  DDL for Trigger BNUM_SEQ
 --------------------------------------------------------

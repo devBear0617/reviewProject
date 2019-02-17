@@ -56,10 +56,10 @@ $(document).ready(function() {
 	
 <!-- 새글쓰기 -->
 	<div class = 'moveBT' data-target="#board_write" >
-			<form action="/review/movie/board_write" id="board_write">
-				<h1>새글작성</h1>
-			</form>
-		</div>
+		<form action="/review/movie/board_write" id="board_write">
+			<input type="submit"  value="새글작성">
+		</form>
+	</div>
 <!-- 푸터 -->
 	<div>
 		<jsp:include page="../share/footer.jsp" />

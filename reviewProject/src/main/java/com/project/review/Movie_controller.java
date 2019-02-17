@@ -7,7 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.project.review.service.MovieService;
@@ -70,6 +72,27 @@ public class Movie_controller {
 	
 	
 	
+	// -- 작성 페이지 ---------------------------------------------------------
+	
+		// >> 게시글 작성 초기 페이지
+		@GetMapping("board_write")
+		public String board_write(Model model) {		
+			BoardVO boardVO = new BoardVO();
+			model.addAttribute("boardVO", boardVO);
+			
+			return "movie/write_board";
+		}
+
+		// >> 게시글 작성 완료
+		@PostMapping("board_write")
+		public String board_write(BoardVO boardVO, Model model) {	
+			int board_num = movieService.addBoard(boardVO);
+			
+			return "redirect:./detail_view/"+board_num ;
+		}
+	
+	
+	
 	// -- 상세페이지 ---------------------------------------------------------
 	
 	// >> 게시글 출력 ----------------------------------
@@ -86,15 +109,6 @@ public class Movie_controller {
 		model.addAttribute("mApiVO", mApiVO);
 		
 		return "movie/detail_view";
-	}
-	// -- 상세페이지 ---------------------------------------------------------
-	
-	// >> 게시글 작성
-	@RequestMapping(value="/board_write")
-	public String board_write(HttpServletRequest request, Model model) {		
-		
-		return "movie/board_write";
-		
 	}
 	
 }
