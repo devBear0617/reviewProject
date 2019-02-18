@@ -8,10 +8,15 @@ import com.project.review.vo.HashtagVO;
 import com.project.review.vo.MovieApiVO;
 
 public interface MovieService {
+	//select Board
 	public BoardVO getBoardById(int board_num);
-	List<BoardVO> getMovieBoardList();
-	public MovieApiVO getMovieInfo(String movieNm);
+	public List<BoardVO> getBoardList();
+	public List<BoardVO> getMovieBoardList();
 	
+	//insert Board 
+	public int addBoard(BoardVO boardVO);
+	
+<<<<<<< HEAD
 <<<<<<< HEAD
 	public void insertBoard(BoardVO vo);
 	public void insertB_Movie(int board_num);
@@ -21,4 +26,8 @@ public interface MovieService {
 	public void deleteMovie(int board_num);
 >>>>>>> origin/bear1
 	
+=======
+	//MovieApi
+	public MovieApiVO getMovieInfo(String movieNm);
+>>>>>>> 40d0463a9913e21b8972a123f895c5813490ecd7
 }

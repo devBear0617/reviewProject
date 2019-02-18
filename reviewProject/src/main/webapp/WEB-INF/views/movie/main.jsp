@@ -56,6 +56,7 @@ $(document).ready(function() {
 	
 <!-- 새글쓰기 -->
 <<<<<<< HEAD
+<<<<<<< HEAD
 	<div class = 'moveBT' data-target="#board_write">
 			<form action="/review/movie/board_write" id="board_write">
 				<h1>새글 작성</h1>
@@ -66,6 +67,13 @@ $(document).ready(function() {
 >>>>>>> origin/bear1
 			</form>
 		</div>
+=======
+	<div class = 'moveBT' data-target="#board_write" >
+		<form action="/review/movie/board_write" id="board_write">
+			<input type="submit"  value="새글작성">
+		</form>
+	</div>
+>>>>>>> 40d0463a9913e21b8972a123f895c5813490ecd7
 <!-- 푸터 -->
 	<div>
 		<jsp:include page="../share/footer.jsp" />

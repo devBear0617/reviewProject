@@ -7,7 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -74,7 +76,35 @@ public class Movie_controller {
 
 		return "movie/content";
 	}
+<<<<<<< HEAD
 
+=======
+	
+	
+	
+	
+	// -- 작성 페이지 ---------------------------------------------------------
+	
+		// >> 게시글 작성 초기 페이지
+		@GetMapping("board_write")
+		public String board_write(Model model) {		
+			BoardVO boardVO = new BoardVO();
+			model.addAttribute("boardVO", boardVO);
+			
+			return "movie/write_board";
+		}
+
+		// >> 게시글 작성 완료
+		@PostMapping("board_write")
+		public String board_write(BoardVO boardVO, Model model) {	
+			int board_num = movieService.addBoard(boardVO);
+			
+			return "redirect:./detail_view/"+board_num ;
+		}
+	
+	
+	
+>>>>>>> 40d0463a9913e21b8972a123f895c5813490ecd7
 	// -- 상세페이지 ---------------------------------------------------------
 
 	// >> 게시글 출력 ----------------------------------
@@ -123,6 +153,7 @@ public class Movie_controller {
 		
 		return "movie/detail_view";
 	}
+<<<<<<< HEAD
 
 	// >> 게시글 수정
 	@RequestMapping(value="/board_updateForm/{board_num}")
@@ -177,4 +208,16 @@ public class Movie_controller {
 	
 	
 	
+=======
+	
+	@RequestMapping(value="/test")
+	public String test(HttpServletRequest request, Model model) {
+		String movieNm = request.getParameter("movieNm");
+		MovieApiVO mApiVO = movieService.getMovieInfo(movieNm);
+		
+		model.addAttribute("mApiVO", mApiVO);
+		
+		return "movie/movieTestR";
+	}
+>>>>>>> 40d0463a9913e21b8972a123f895c5813490ecd7
 }

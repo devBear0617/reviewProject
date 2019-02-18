@@ -13,11 +13,17 @@ public class Board_MovieVO {
 	public void setB_movie_num(int b_movie_num) {
 		this.b_movie_num = b_movie_num;
 	}
+<<<<<<< HEAD
 
 	public int getBoard_num() {
 		return board_num;
 	}
 
+=======
+	public int getBoard_num() {
+		return board_num;
+	}
+>>>>>>> 40d0463a9913e21b8972a123f895c5813490ecd7
 	public void setBoard_num(int board_num) {
 		this.board_num = board_num;
 	}
@@ -32,7 +38,11 @@ public class Board_MovieVO {
 
 	@Override
 	public String toString() {
+<<<<<<< HEAD
 		return "Board_MovieVO [b_movie_num=" + b_movie_num + ", board_num=" + board_num + ", ex=" + ex + "]";
+=======
+		return "Board_MovieVO [b_movie_num=" + b_movie_num + ", board_num=" + board_num + "]";
+>>>>>>> 40d0463a9913e21b8972a123f895c5813490ecd7
 	}
 
 	

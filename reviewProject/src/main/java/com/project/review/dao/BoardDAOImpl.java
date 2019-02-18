@@ -8,8 +8,8 @@ import com.project.review.vo.BoardVO;
 import com.project.review.vo.Board_MovieVO;
 import com.project.review.vo.HashtagVO;
 
-
-public class BoardDAOImpl implements BoardDAO{
+public class BoardDAOImpl{}
+/*public class BoardDAOImpl implements BoardDAO{
 	@Autowired
 	private BoardDAO boardDAO;
 	
@@ -112,6 +112,7 @@ public class BoardDAOImpl implements BoardDAO{
 	
 	
 }
+<<<<<<< HEAD
 
 
 
@@ -126,3 +127,6 @@ public class BoardDAOImpl implements BoardDAO{
 
 
 
+=======
+*/
+>>>>>>> 40d0463a9913e21b8972a123f895c5813490ecd7
