@@ -30,12 +30,7 @@
 	<bean id="Mapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="mapperInterface" value="com.project.review.dao.BoardDAO" />
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-	</bean>		
-
-	<bean id="Mapper2" class="org.mybatis.spring.mapper.MapperFactoryBean">
-		<property name="mapperInterface" value="com.project.review.dao.ArticleDAO" />
-		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-	</bean>		
+	</bean>			
 	
  	<bean id="Mapper1" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="mapperInterface" value="com.project.review.dao.MemberDAO" />

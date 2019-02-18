@@ -69,7 +69,7 @@
 			SELECT bnum_seq.nextval AS board_num, sysdate AS board_date FROM dual 
 		</selectKey>
 		INSERT INTO board(board_num, board_title, board_content, board_date, member_id) 
-		VALUES(#{board_num}, #{board_title},#{board_content,jdbcType=CLOB}, #{board_date}, #{member_id}) 
+		VALUES(#{board_num}, #{board_title},#{board_content,jdbcType=CLOB}, #{board_date}, 'qwe') 
 	</insert>
 	<insert id="setB_Movie" parameterType="Board_MovieVO">
 		<selectKey keyProperty="b_movie_num" resultType="Board_MovieVO" order="BEFORE">
