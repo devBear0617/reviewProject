@@ -11,9 +11,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.project.review.service.MovieService;
 import com.project.review.vo.BoardVO;
+import com.project.review.vo.Board_MovieVO;
+import com.project.review.vo.HashtagVO;
 import com.project.review.vo.MovieApiVO;
 
 //맵핑명, 변수명, jsp명 = 가칭O, 변경 가능, test용
@@ -74,22 +77,36 @@ public class Movie_controller {
 	
 	// -- 작성 페이지 ---------------------------------------------------------
 	
-		// >> 게시글 작성 초기 페이지
-		@GetMapping("board_write")
-		public String board_write(Model model) {		
-			BoardVO boardVO = new BoardVO();
-			model.addAttribute("boardVO", boardVO);
-			
-			return "movie/write_board";
-		}
+	// >> 게시글 작성 폼
+	//@GetMapping("board_write")
+	@RequestMapping(value="/board_writeForm")	
+	public String movie_writeFrom(Model model) {		
+		
+		return "movie/movie_writeForm";
+	}
 
-		// >> 게시글 작성 완료
-		@PostMapping("board_write")
-		public String board_write(BoardVO boardVO, Model model) {	
-			int board_num = movieService.addBoard(boardVO);
-			
-			return "redirect:./detail_view/"+board_num ;
-		}
+	// >> 게시글 작성 완료 후 글 상세보기로
+	/*@PostMapping("board_write")
+	public String board_write(BoardVO boardVO, Model model) {	
+		int board_num = movieService.addBoard(boardVO);
+		
+		return "redirect:./detail_view/"+board_num ;
+	}*/
+	@RequestMapping(value="/board_write", method=RequestMethod.POST)
+	public String movie_write(BoardVO board, Board_MovieVO movie, HashtagVO hash, Model model) {		
+		
+		movieService.insertMovie(board, movie, hash);
+		
+		int board_num = board.getBoard_num();
+		BoardVO board_m = movieService.getBoardById(board_num);
+		model.addAttribute("board", board_m);
+		
+		String movieNm = "레고 무비2";
+		MovieApiVO mApiVO = movieService.getMovieInfo(movieNm);		
+		model.addAttribute("mApiVO", mApiVO);
+		
+		return "movie/detail_view";
+	}
 	
 	
 	

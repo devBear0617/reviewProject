@@ -64,7 +64,7 @@
 
 
 	<!-- ____게시글 추가______________________________________________________________________ -->
-	<insert id="setBoard" parameterType="BoardVO">
+	<!-- <insert id="setBoard" parameterType="BoardVO">
 		<selectKey keyProperty="board_num" resultType="BoardVO" order="BEFORE"> 
 			SELECT bnum_seq.nextval AS board_num FROM dual 
 		</selectKey>
@@ -74,7 +74,7 @@
 	<insert id="setB_Movie" parameterType="Board_MovieVO">
 		INSERT INTO board_movie(board_num) 
 		VALUES(#{board_num})
-	</insert>
+	</insert> -->
 
 
 	<!-- ____resultMap 조인______________________________________________________________________ -->
