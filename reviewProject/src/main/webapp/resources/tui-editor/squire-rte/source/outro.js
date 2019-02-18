@@ -1,5 +1,5 @@
 /*jshint ignore:start */
-/*
+
 if ( typeof exports === 'object' ) {
     module.exports = Squire;
 } else if ( typeof define === 'function' && define.amd ) {
@@ -20,4 +20,3 @@ if ( typeof exports === 'object' ) {
 }
 
 }( document ) );
-*/
