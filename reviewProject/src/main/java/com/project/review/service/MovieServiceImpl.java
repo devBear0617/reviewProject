@@ -10,6 +10,7 @@ import com.project.review.dao.BoardDAO;
 import com.project.review.dao.MovieApiDAO;
 import com.project.review.vo.BoardVO;
 import com.project.review.vo.Board_MovieVO;
+import com.project.review.vo.GradeVO;
 import com.project.review.vo.HashtagVO;
 import com.project.review.vo.MovieApiVO;
 
@@ -47,13 +48,21 @@ public class MovieServiceImpl implements MovieService {
 	
 	// -- insert ---------------------------------------------------------
 	
-	//게시글 추가 (Board & Board_Movie)
+	//게시글 추가 (Board & Board_Movie & Garde & Hashtag)
 	@Override
-	public void insertMovie(BoardVO board, Board_MovieVO movie, HashtagVO hash) {
+	public void insertMovie(BoardVO board, Board_MovieVO movie, GradeVO grade, HashtagVO hash) {
 		
+		// member 처리 필요
+		board.setMember_id("qwe");
+		
+		// board테이블 추가
 		boardDAO.insertMovie(board);
+		// 추가한 board테이블에서 board_num 추출해서 다른 테이블 board_num에 대입
 		movie.setBoard_num(board.getBoard_num());
 		hash.setBoard_num(board.getBoard_num());
+		grade.setBoard_num(board.getBoard_num());
+		// 대입한 board_num으로 다른 테이블들도 insert
+		boardDAO.insertGrade(grade);
 		boardDAO.insertB_movie(movie);
 		boardDAO.insertHashtag(hash);
 	}
@@ -82,7 +91,35 @@ public class MovieServiceImpl implements MovieService {
 		}
 		
 	}*/
-	
+
+	//게시글 수정 (Board & Board_Movie & Garde & Hashtag)
+	@Override
+	public void updateMovie(BoardVO board, Board_MovieVO movie, GradeVO grade, HashtagVO hash) {
+		
+		// 현재 저장되어있는 baord_num을 다른 VO에 대입
+		board.setBoard_num(board.getBoard_num());
+		movie.setBoard_num(board.getBoard_num());
+		grade.setBoard_num(board.getBoard_num());
+		hash.setBoard_num(board.getBoard_num());
+		// 수정
+		boardDAO.updateMovie(board);
+		boardDAO.updateB_movie(movie);
+		boardDAO.updateGrade(grade);
+		boardDAO.updateHashtag(hash);
+		
+	}
+
+	@Override
+	public void deleteMovie(int board_num) {	
+		
+		// 삭제 (board_num으로)
+		boardDAO.deleteHashtag(board_num);
+		boardDAO.deleteB_movie(board_num);
+		boardDAO.deleteGrade(board_num);
+		boardDAO.deleteMovie(board_num);
+		
+		
+	}	
 	
 	
 	// -- api ---------------------------------------------------------

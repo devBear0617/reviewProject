@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.project.review.vo.BoardVO;
 import com.project.review.vo.Board_MovieVO;
+import com.project.review.vo.GradeVO;
 import com.project.review.vo.HashtagVO;
 
 public interface BoardDAO {
@@ -31,14 +32,17 @@ public interface BoardDAO {
 	
 	/*insert*/
 	public void insertMovie(BoardVO board);
+	public void insertGrade(GradeVO grade);
 	public void insertB_movie(Board_MovieVO movie);
 	public void insertHashtag(HashtagVO hash);
 	/*update*/
 	public void updateMovie(BoardVO board);
+	public void updateGrade(GradeVO grade);
 	public void updateB_movie(Board_MovieVO movie);
 	public void updateHashtag(HashtagVO hash);
 	/*delete*/
 	public void deleteMovie(int board_num);
+	public void deleteGrade(int board_num);
 	public void deleteB_movie(int board_num);
 	public void deleteHashtag(int board_num);
 	

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.project.review.service.MovieService;
 import com.project.review.vo.BoardVO;
 import com.project.review.vo.Board_MovieVO;
+import com.project.review.vo.GradeVO;
 import com.project.review.vo.HashtagVO;
 import com.project.review.vo.MovieApiVO;
 
@@ -79,7 +80,7 @@ public class Movie_controller {
 	
 	// >> 게시글 작성 폼
 	//@GetMapping("board_write")
-	@RequestMapping(value="/board_writeForm")	
+	@RequestMapping(value="/movie_writeForm")	
 	public String movie_writeFrom(Model model) {		
 		
 		return "movie/movie_writeForm";
@@ -92,20 +93,62 @@ public class Movie_controller {
 		
 		return "redirect:./detail_view/"+board_num ;
 	}*/
-	@RequestMapping(value="/board_write", method=RequestMethod.POST)
-	public String movie_write(BoardVO board, Board_MovieVO movie, HashtagVO hash, Model model) {		
+	@RequestMapping(value="/movie_write", method=RequestMethod.POST)
+	public String movie_write(BoardVO board, Board_MovieVO movie, GradeVO grade, HashtagVO hash, Model model) {		
 		
-		movieService.insertMovie(board, movie, hash);
+		// 게시글 추가 서비스
+		movieService.insertMovie(board, movie, grade, hash);
 		
+		// 게시글 추가 후 추가한 게시글 확인
 		int board_num = board.getBoard_num();
-		BoardVO board_m = movieService.getBoardById(board_num);
+		/*BoardVO board_m = movieService.getBoardById(board_num);
 		model.addAttribute("board", board_m);
 		
 		String movieNm = "레고 무비2";
 		MovieApiVO mApiVO = movieService.getMovieInfo(movieNm);		
-		model.addAttribute("mApiVO", mApiVO);
+		model.addAttribute("mApiVO", mApiVO);*/
 		
-		return "movie/detail_view";
+		return "redirect:/movie/detail_view/"+board_num;
+	}
+	
+	// >> 게시글 수정
+	@RequestMapping(value="/movie_updateForm/{board_num}")
+	public String movie_updateForm(@PathVariable int board_num, Model model) {
+			
+		String movieNm = "레고 무비2";
+			
+		BoardVO board_m = movieService.getBoardById(board_num);
+		MovieApiVO mApiVO = movieService.getMovieInfo(movieNm);
+			
+		model.addAttribute("board", board_m);
+		model.addAttribute("mApiVO", mApiVO);
+			
+		return "movie/movie_updateForm";
+	}
+		
+	@RequestMapping(value="/movie_update/{board_num}", method=RequestMethod.POST)
+	public String movie_update(BoardVO board, Board_MovieVO movie, GradeVO grade, HashtagVO hash, Model model) {
+			
+		movieService.updateMovie(board, movie, grade, hash);
+			
+		int board_num = board.getBoard_num();
+		/*BoardVO board_m = movieService.getBoardById(board_num);
+		model.addAttribute("board", board_m);
+			
+		String movieNm = "레고 무비2";
+		MovieApiVO mApiVO = movieService.getMovieInfo(movieNm);		
+		model.addAttribute("mApiVO", mApiVO);*/
+			
+		return "redirect:/movie/detail_view/"+board_num;
+	}
+		
+		// >> 게시글 삭제
+	@RequestMapping(value="/movie_delete/{board_num}", method=RequestMethod.POST)
+	public String movie_delete(@PathVariable int board_num) {
+
+		movieService.deleteMovie(board_num);
+			
+		return "redirect:/movie/main";
 	}
 	
 	

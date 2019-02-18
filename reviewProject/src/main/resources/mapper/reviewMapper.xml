@@ -23,6 +23,7 @@
 		<result property="member_id" column="member_id" />
 		<association property="memberVO" column="member_id" select="getMember" />
 		<association property="b_movieVO" column="board_num" select="getB_Movie" />
+		<association property="gradeVO" column="board_num" select="getGrade" />
 		<association property="b_tvVO" column="board_num" select="getB_Tv" />
 		<association property="hashtagVO" column="board_num" select="getHashtag" />
 		<collection property="replyList" column="board_num" select="getReply" />
@@ -75,8 +76,85 @@
 		INSERT INTO board_movie(board_num) 
 		VALUES(#{board_num})
 	</insert> -->
+	<insert id="insertMovie" parameterType="BoardVO">
+		<selectKey keyProperty="board_num" resultType="int" order="BEFORE">
+			SELECT bnum_seq.nextval AS board_num FROM DUAL
+		</selectKey>
+		INSERT INTO board(board_num, board_title, board_content, member_id, lemon_grade, recommend)
+		VALUES(#{board_num}, #{board_title}, #{board_content}, #{member_id}, #{lemon_grade}, #{recommend})
+	</insert>
+	<insert id="insertGrade" parameterType="GradeVO">
+		INSERT INTO grade(board_num, grade_name1, grade1, grade_name2, grade2, grade_name3, grade3, grade_name4, grade4)
+		VALUES(#{board_num}, #{grade_name1}, #{grade1}, #{grade_name2}, #{grade2}, #{grade_name3}, #{grade3}, #{grade_name4}, #{grade4})
+	</insert>
+	<insert id="insertB_movie" parameterType="Board_MovieVO">
+		INSERT INTO board_movie(board_num, ex)
+		VALUES(#{board_num}, #{ex})
+	</insert>
+	<insert id="insertHashtag" parameterType="HashtagVO">
+		INSERT INTO hashtag(board_num, hashtag1, hashtag2, hashtag3, hashtag4, hashtag5, hashtag6)
+		VALUES(#{board_num}, #{hashtag1}, #{hashtag2}, #{hashtag3}, #{hashtag4}, #{hashtag5}, #{hashtag6})
+	</insert>
 
-
+	<!-- ____게시글 수정______________________________________________________________________ -->
+	<!-- update -->
+	<update id="updateMovie" parameterType="BoardVO">
+		UPDATE board SET
+			board_title = #{board_title},
+			board_content = #{board_content},
+			lemon_grade = #{lemon_grade},
+			recommend = #{recommend}
+		WHERE board_num = #{board_num}
+	</update>
+	<update id="updateGrade" parameterType="GradeVO">
+		UPDATE grade SET
+			grade_name1 = #{grade_name1},
+			grade1 = #{grade1},
+			grade_name2 = #{grade_name1},
+			grade2 = #{grade1},
+			grade_name3 = #{grade_name1},
+			grade3 = #{grade1},
+			grade_name4 = #{grade_name1},
+			grade4 = #{grade1}
+		WHERE board_num = #{board_num}
+	</update>
+	<update id="updateB_movie" parameterType="Board_MovieVO">
+		UPDATE board_movie SET
+			ex = #{ex}
+		WHERE board_num = #{board_num}
+	</update>
+	<update id="updateHashtag" parameterType="HashtagVO">
+		UPDATE hashtag SET
+			hashtag1 = #{hashtag1},
+			hashtag2 = #{hashtag2},
+			hashtag3 = #{hashtag3},
+			hashtag4 = #{hashtag4},
+			hashtag5 = #{hashtag5},
+			hashtag6 = #{hashtag6}
+		WHERE board_num = #{board_num}
+	</update>
+	
+	<!-- ____게시글 삭제______________________________________________________________________ -->
+	<delete id="deleteHashtag" parameterType="HashtagVO">
+		DELETE FROM hashtag
+		WHERE board_num = #{board_num}
+	</delete>
+	<delete id="deleteB_movie" parameterType="Board_MovieVO">
+		DELETE FROM board_movie
+		WHERE board_num = #{board_num}
+	</delete>
+	<delete id="deleteGrade" parameterType="GradeVO">
+		DELETE FROM grade
+		WHERE board_num = #{board_num}
+	</delete>
+	<delete id="deleteMovie" parameterType="BoardVO">
+		DELETE FROM board
+		WHERE board_num = #{board_num}
+	</delete>
+	
+	
+	
+	
 	<!-- ____resultMap 조인______________________________________________________________________ -->
 	<select id="getMember" parameterType="String" resultType="Board_MovieVO">
 		SELECT *
@@ -86,6 +164,11 @@
 	<select id="getB_Movie" parameterType="int" resultType="Board_MovieVO">
 		SELECT *
 		FROM board_movie
+		WHERE board_num = #{board_num}
+	</select>
+	<select id="getGrade" parameterType="int" resultType="GradeVO">
+		SELECT *
+		FROM grade
 		WHERE board_num = #{board_num}
 	</select>
 	<select id="getB_Tv" parameterType="int" resultType="Board_TvVO">
