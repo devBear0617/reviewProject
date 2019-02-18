@@ -111,4 +111,13 @@ public class Movie_controller {
 		return "movie/detail_view";
 	}
 	
+	@RequestMapping(value="/test")
+	public String test(HttpServletRequest request, Model model) {
+		String movieNm = request.getParameter("movieNm");
+		MovieApiVO mApiVO = movieService.getMovieInfo(movieNm);
+		
+		model.addAttribute("mApiVO", mApiVO);
+		
+		return "movie/movieTestR";
+	}
 }
