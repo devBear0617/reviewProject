@@ -15,9 +15,9 @@
 		<span>${board.memberVO.member_name}</span>
 		<span>유저ID: ${board.member_id}</span>&nbsp;&nbsp;&nbsp;     
 		--%>
-		<span>유저ID: ${board.memberVO.member_id}</span>&nbsp;&nbsp;&nbsp;  
-		<span>리뷰 제목: ${board.board_title}</span>&nbsp;&nbsp;&nbsp;     
-		<span>날짜 : ${board.board_date}</span>
+		<span>유저ID: ${board.member_id}</span>&nbsp;&nbsp;&nbsp;  
+		<span>|&nbsp;&nbsp;&nbsp;리뷰 제목: ${board.board_title}</span>&nbsp;&nbsp;&nbsp;     
+		<span>|&nbsp;&nbsp;&nbsp;날짜 : ${board.board_date}</span>
 	</div>
 	
 <!-- 이미지, 평점(추천합니다/안합니다), 상세별점, 리뷰의 좋아요, #  -->
@@ -29,7 +29,49 @@
 		
 		<!-- 전체평점, 상세평점 (레몬으로) -->
 		<div>
-		
+		<br><br>
+		<table border="1">
+			<tr>
+				<td>
+				<table border="1">
+					<tr>
+						<td>
+						평점.
+						<br>
+						${board.lemon_grade}% 의 <br>
+						<c:choose>
+							<c:when test="${board.lemon_grade < 50}">'덜 익은'</c:when>
+							<c:when test="${board.lemon_grade > 51}">'잘 익은'</c:when>
+							<c:otherwise>상품 가치 없는</c:otherwise>
+						</c:choose>
+						레몬
+						</td>
+					</tr>
+					<tr>
+						<td>
+						<c:choose>
+							<c:when test="${board.recommend == 1}">
+								이 영화를 추천 합니다.
+							</c:when>
+							<c:otherwise>
+								이 영화를 추천하지 않습니다.
+							</c:otherwise>
+						</c:choose>
+						</td>
+					</tr>
+				</table>
+				</td>
+					
+				<td>
+					개별점수.  <br>
+					${board.score_name1} : ${board.score_grade1} <br>
+					${board.score_name2} : ${board.score_grade2} <br>
+					${board.score_name3} : ${board.score_grade3} <br>
+					${board.score_name4} : ${board.score_grade4} <br>
+				</td>
+			</tr>
+		</table>
+		<br><br>
 		</div>
 		
 		<!-- 좋아요 , 덧글 수 -->
@@ -56,6 +98,10 @@
 		<div>
 		<br>
 			리뷰내용: ${board.board_content}
+		<br><br>
+			무비ex: ${board.b_movieVO.ex}
+		<br><br>
+		
 		</div>
 		
 		<!-- 영화 간단 정보 (영화 제목, 장르, 감독, 개봉일시) -->
@@ -76,6 +122,18 @@
 		<br>댓글<br>
 		<jsp:include page="../share/reply.jsp" />
 	</div>
+	
+	<br><br>
+	글번 : ${board.board_num}
+	<input type="button" value="목록"
+				onclick="location.href='/review/movie/main'">
+	&nbsp;&nbsp;
+	<input type="button" value="수정"
+				onclick="location.href='/review/movie/board_updateForm/${board.board_num}'">
+	&nbsp;&nbsp;
+	<form action="/review/movie/board_delete/${board.board_num}" method="post" id="board_delete">
+	<input type="submit" value="삭제">
+	</form>
 
 </body>
 </html>
