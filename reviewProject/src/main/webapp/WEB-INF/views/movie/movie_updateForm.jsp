@@ -39,12 +39,13 @@
 <br><br>
 내용 : 
 <br>
-<textarea name="board_content" cols="40" rows="8">${board.board_content}</textarea>
+
+<%-- <textarea name="board_content" cols="40" rows="8">${board.board_content}</textarea> --%>
 
 <!-- tui-editor input -->
-<!-- <input type="text" name="board_content" id="board_content" hidden> -->
+<input type="text" name="board_content" id="board_content" hidden>
 <!-- tui-editor view -->
-<!-- <div class="code-html">
+<div class="code-html">
 <script src="resources/tui-editor/tui-color-picker/dist/tui-color-picker.js"></script>
 <script src="resources/tui-editor/tui-editor/dist/tui-editor-Editor.js"></script>
 <script src="resources/tui-editor/tui-editor/dist/tui-editor-extColorSyntax.js"></script>
@@ -62,7 +63,7 @@
 		exts: ['colorSyntax']
 	});
 </script>
- -->
+
 
 <br><br>
 

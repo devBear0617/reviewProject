@@ -81,7 +81,7 @@
 			SELECT bnum_seq.nextval AS board_num FROM DUAL
 		</selectKey>
 		INSERT INTO board(board_num, board_title, board_content, member_id, lemon_grade, recommend)
-		VALUES(#{board_num}, #{board_title}, #{board_content}, #{member_id}, #{lemon_grade}, #{recommend})
+		VALUES(#{board_num}, #{board_title}, #{board_content,jdbcType=CLOB}, #{member_id}, #{lemon_grade}, #{recommend})
 	</insert>
 	<insert id="insertGrade" parameterType="GradeVO">
 		INSERT INTO grade(board_num, grade_name1, grade1, grade_name2, grade2, grade_name3, grade3, grade_name4, grade4)
@@ -101,7 +101,7 @@
 	<update id="updateMovie" parameterType="BoardVO">
 		UPDATE board SET
 			board_title = #{board_title},
-			board_content = #{board_content},
+			board_content = #{board_content,jdbcType=CLOB},
 			lemon_grade = #{lemon_grade},
 			recommend = #{recommend}
 		WHERE board_num = #{board_num}
