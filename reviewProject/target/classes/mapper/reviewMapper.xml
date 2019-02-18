@@ -65,18 +65,15 @@
 
 	<!-- ____게시글 추가______________________________________________________________________ -->
 	<insert id="setBoard" parameterType="BoardVO">
-		<selectKey keyProperty="board_num,board_date" resultType="BoardVO" order="BEFORE"> 
-			SELECT bnum_seq.nextval AS board_num, sysdate AS board_date FROM dual 
+		<selectKey keyProperty="board_num" resultType="BoardVO" order="BEFORE"> 
+			SELECT bnum_seq.nextval AS board_num FROM dual 
 		</selectKey>
-		INSERT INTO board(board_num, board_title, board_content, board_date, member_id) 
-		VALUES(#{board_num}, #{board_title},#{board_content,jdbcType=CLOB}, #{board_date}, 'qwe') 
+		INSERT INTO board(board_num, board_title, board_content, member_id) 
+		VALUES(#{board_num}, #{board_title},#{board_content,jdbcType=CLOB}, '#{member_id}') 
 	</insert>
 	<insert id="setB_Movie" parameterType="Board_MovieVO">
-		<selectKey keyProperty="b_movie_num" resultType="Board_MovieVO" order="BEFORE">
-			SELECT movie_bnum_seq.nextval AS b_movie_num FROM dual 
-		</selectKey>
-		INSERT INTO board_movie 
-		VALUES(#{board_num}, #{b_movie_num}) 
+		INSERT INTO board_movie(board_num) 
+		VALUES(#{board_num})
 	</insert>
 
 
