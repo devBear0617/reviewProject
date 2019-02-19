@@ -161,7 +161,7 @@ hashtag5 : #<input type="text" name="hashtag5" value="${board.hashtagVO.hashtag5
 hashtag6 : #<input type="text" name="hashtag6" value="${board.hashtagVO.hashtag6}"><br><br>
 
 
-<input type="submit" value="확인">
+<input type="submit" id="form-submit" value="확인">
 <input type="reset" value="취소">
 
 </form>

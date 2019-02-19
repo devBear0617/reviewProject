@@ -148,7 +148,7 @@ hashtag4 : #<input type="text" name="hashtag4"><br>
 hashtag5 : #<input type="text" name="hashtag5"><br>
 hashtag6 : #<input type="text" name="hashtag6"><br><br>
 
-<input type="submit" value="확인">
+<input type="submit" id="form-submit" value="확인">
 <input type="reset" value="취소">
 
 </form>
