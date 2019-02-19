@@ -56,7 +56,7 @@ $(document).ready(function() {
 	
 <!-- 새글쓰기 -->
 	<div class = 'moveBT' data-target="#board_write" >
-		<form action="/review/movie/board_write" id="board_write">
+		<form action="/review/movie/movie_writeForm" id="movie_writeForm">
 			<input type="submit"  value="새글작성">
 		</form>
 	</div>
