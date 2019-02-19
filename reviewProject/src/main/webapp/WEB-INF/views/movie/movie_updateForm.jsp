@@ -8,15 +8,15 @@
 <title>Insert title here</title>
 
 <!-- tui-editor -->
-<script src="resources/tui-editor/jquery/dist/jquery.js"></script>
-<script src='resources/tui-editor/markdown-it/dist/markdown-it.js'></script>
-<script src="resources/tui-editor/to-mark/dist/to-mark.js"></script>
-<script src="resources/tui-editor/tui-code-snippet/dist/tui-code-snippet.js"></script>
-<script src="resources/tui-editor/codemirror/lib/codemirror.js"></script>
-<script src="resources/tui-editor/highlightjs/highlight.pack.js"></script>
-<script src="resources/tui-editor/squire-rte/build/squire-raw.js"></script>
-<link rel="stylesheet" href="resources/tui-editor/codemirror/lib/codemirror.css">
-<link rel="stylesheet" href="resources/tui-editor/highlightjs/styles/github.css">
+<script src="../resources/tui-editor/jquery/dist/jquery.js"></script>
+<script src='../resources/tui-editor/markdown-it/dist/markdown-it.js'></script>
+<script src="../resources/tui-editor/to-mark/dist/to-mark.js"></script>
+<script src="../resources/tui-editor/tui-code-snippet/dist/tui-code-snippet.js"></script>
+<script src="../resources/tui-editor/codemirror/lib/codemirror.js"></script>
+<script src="../resources/tui-editor/highlightjs/highlight.pack.js"></script>
+<script src="../resources/tui-editor/squire-rte/build/squire-raw.js"></script>
+<link rel="stylesheet" href="../resources/tui-editor/codemirror/lib/codemirror.css">
+<link rel="stylesheet" href="../resources/tui-editor/highlightjs/styles/github.css">
 
 </head>
 <body>
@@ -46,12 +46,12 @@
 <input type="text" name="board_content" id="board_content" hidden>
 <!-- tui-editor view -->
 <div class="code-html">
-<script src="resources/tui-editor/tui-color-picker/dist/tui-color-picker.js"></script>
-<script src="resources/tui-editor/tui-editor/dist/tui-editor-Editor.js"></script>
-<script src="resources/tui-editor/tui-editor/dist/tui-editor-extColorSyntax.js"></script>
-<link rel="stylesheet" href="resources/tui-editor/tui-editor/dist/tui-editor.css">
-<link rel="stylesheet" href="resources/tui-editor/tui-editor/dist/tui-editor-contents.css">
-<link rel="stylesheet" href="resources/tui-editor/tui-color-picker/dist/tui-color-picker.css">
+<script src="../resources/tui-editor/tui-color-picker/dist/tui-color-picker.js"></script>
+<script src="../resources/tui-editor/tui-editor/dist/tui-editor-Editor.js"></script>
+<script src="../resources/tui-editor/tui-editor/dist/tui-editor-extColorSyntax.js"></script>
+<link rel="stylesheet" href="../resources/tui-editor/tui-editor/dist/tui-editor.css">
+<link rel="stylesheet" href="../resources/tui-editor/tui-editor/dist/tui-editor-contents.css">
+<link rel="stylesheet" href="../resources/tui-editor/tui-color-picker/dist/tui-color-picker.css">
                 
 <div id="editSection"></div>
 </div>
