@@ -67,7 +67,7 @@
 
 <br><br>
 
-무비 EX : <input type="text" name="ex" >
+무비 EX : <input type="text" name="movie_nm" >
 
 <br><br>
 

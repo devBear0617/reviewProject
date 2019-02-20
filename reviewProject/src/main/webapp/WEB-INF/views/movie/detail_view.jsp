@@ -102,7 +102,7 @@
 			 ${board.board_content}
 			<br><br>--------------------------
 		<br><br>
-			무비ex: ${board.b_movieVO.ex}
+			무비 movie_nm: ${board.b_movieVO.movie_nm}
 		<br><br>
 		
 		</div>

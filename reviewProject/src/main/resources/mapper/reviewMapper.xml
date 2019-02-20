@@ -88,8 +88,8 @@
 		VALUES(#{board_num}, #{grade_name1}, #{grade1}, #{grade_name2}, #{grade2}, #{grade_name3}, #{grade3}, #{grade_name4}, #{grade4})
 	</insert>
 	<insert id="insertB_movie" parameterType="Board_MovieVO">
-		INSERT INTO board_movie(board_num, ex)
-		VALUES(#{board_num}, #{ex})
+		INSERT INTO board_movie(board_num, movie_nm)
+		VALUES(#{board_num}, #{movie_nm})
 	</insert>
 	<insert id="insertHashtag" parameterType="HashtagVO">
 		INSERT INTO hashtag(board_num, hashtag1, hashtag2, hashtag3, hashtag4, hashtag5, hashtag6)
@@ -120,7 +120,7 @@
 	</update>
 	<update id="updateB_movie" parameterType="Board_MovieVO">
 		UPDATE board_movie SET
-			ex = #{ex}
+			movie_nm = #{movie_nm}
 		WHERE board_num = #{board_num}
 	</update>
 	<update id="updateHashtag" parameterType="HashtagVO">

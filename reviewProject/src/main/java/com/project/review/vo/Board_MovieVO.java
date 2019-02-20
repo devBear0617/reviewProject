@@ -3,8 +3,7 @@ package com.project.review.vo;
 public class Board_MovieVO {
 	private int b_movie_num;
 	private int board_num;
-	private String ex;
-	
+	private String movie_nm;
 	
 	public int getB_movie_num() {
 		return b_movie_num;
@@ -18,16 +17,16 @@ public class Board_MovieVO {
 	public void setBoard_num(int board_num) {
 		this.board_num = board_num;
 	}
-	public String getEx() {
-		return ex;
+	public String getMovie_nm() {
+		return movie_nm;
 	}
-	public void setEx(String ex) {
-		this.ex = ex;
+	public void setMovie_nm(String movie_nm) {
+		this.movie_nm = movie_nm;
 	}
+	
 	@Override
 	public String toString() {
-		return "Board_MovieVO [b_movie_num=" + b_movie_num + ", board_num=" + board_num + ", ex=" + ex + "]";
+		return "Board_MovieVO [b_movie_num=" + b_movie_num + ", board_num=" + board_num + ", movie_nm=" + movie_nm
+				+ "]";
 	}
-	
-	
 }
