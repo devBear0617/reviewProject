@@ -67,7 +67,7 @@
 
 <br><br>
 
-무비 EX : <input type="text" name="ex" value="${board.b_movieVO.ex}">
+무비 EX : <input type="text" name="movie_nm" value="${board.b_movieVO.movie_nm}">
 
 <br><br>
 

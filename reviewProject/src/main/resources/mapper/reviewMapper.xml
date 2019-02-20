@@ -29,6 +29,15 @@
 		<collection property="replyList" column="board_num" select="getReply" />
 	</resultMap>
 	
+ 	<resultMap id="Board_movie" type="BoardVO">
+		<id property="board_num" column="board_num" />
+		<result property="board_title" column="board_title" />
+<!-- 		<result property="board_content" column="board_content" /> -->
+		<result property="board_date" column="board_date" />
+		<result property="member_id" column="member_id" />
+		<association property="b_movieVO" column="board_num" select="getB_Movie" />
+	</resultMap>
+	
 
 	<!-- select	
 		id				명칭
@@ -52,10 +61,11 @@
 		SELECT *
 		FROM board
 	</select>
-	<select id="getMovieBoardList" resultMap="Board">
+	<select id="getMovieBoardList" resultMap="Board_movie">
 		SELECT *
 		FROM board_movie m, board b
-		WHERE m.board_num = b.board_num		
+		WHERE m.board_num = b.board_num
+		ORDER BY m.board_num DESC
 	</select>
 	<select id="getTvBoardList" resultMap="Board">
 		SELECT *
