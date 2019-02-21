@@ -9,12 +9,22 @@
 		<result property="member_name" column="member_name" />
 	</resultMap>
 
-
-	
+	<!-- 가입 -->
 	<insert id="joinMember" parameterType="MemberVO" >
 		INSERT INTO member (member_id, member_pw, member_name)
 		VALUES (#{member_id}, #{member_pw}, #{member_name})
 	</insert>	
-
+	
+	<!-- 로그인 -->
+	<!-- <select id="loginMember" parameterType="String" resultMap="Member">
+		SELECT member_id
+		FROM member
+		WHERE member_id = #{member_id}
+	</select> -->
+	<select id="userCheck" parameterType="String" resultMap="Member">
+		SELECT member_pw
+		FROM member
+		WHERE member_id = #{member_id}
+	</select>
 
 </mapper>

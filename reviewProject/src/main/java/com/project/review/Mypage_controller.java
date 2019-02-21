@@ -20,53 +20,55 @@ public class Mypage_controller {
 	MemberService memberService;
 	
 	@RequestMapping(value="/login", method=RequestMethod.GET)
-	public String login() {
+	public String loginForm() {
 		
 		return "mypage/login";
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String login(MemberVO member, HttpServletRequest request, Model model) {
+	public String loginMember(MemberVO member, HttpServletRequest request, Model model) {
 		
-		request.getParameter("member_id");
-		request.getParameter("member_pw");
+		/*String id = request.getParameter("member_id");
+		memberService.loginMemberID(id);
+
+		String pw = request.getParameter("member_pw");
+	
+		return "mypage/check";*/
 		
+		String url = "loginFail";
+		String id = request.getParameter("member_id");
+		String pw = request.getParameter("member_pw");
 		
+		int result = memberService.userCheck(id, pw);
 		
-		return "mypage/check";
+		if (result == 1) {
+			
+			url = "loginCheck";
+		} else if (result == 0) {
+			
+		} else if (result == -1) {
+			
+		}
+		
+		return "mypage/"+url;
 	}
 	
 	// @GetMapping(value="/join")
 	@RequestMapping(value="/join", method=RequestMethod.GET)
-	public String join (Model model) {
+	public String joinForm(Model model) {
 		
 		return "mypage/join";
 	}
 	
 	//@PostMapping(value="/join")
 	@RequestMapping(value="/join", method=RequestMethod.POST)
-	public String join(MemberVO member, Model model) {
-		
-		/*String member_id = request.getParameter("member_id");
-		String member_pw = request.getParameter("member_pw");
-		String member_name = request.getParameter("member_name");
-		System.out.println(member_id);
-		System.out.println(member_pw);
-		System.out.println(member_name);
-		
-		model.addAttribute("member_id", member_id);
-		model.addAttribute("member_pw", member_pw);
-		model.addAttribute("member_name", member_name);*/
+	public String joinMember(MemberVO member, Model model) {
 		
 		memberService.joinMember(member);
 		
 		return "mypage/check";
 	}
 	
-/*	@RequestMapping(value="check")
-	public String check(){
-		
-		return "mypage/check";
-	}*/
+
 	
 }

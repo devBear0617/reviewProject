@@ -53,7 +53,7 @@
 <link rel="stylesheet" href="../resources/tui-editor/tui-editor/dist/tui-editor-contents.css">
 <link rel="stylesheet" href="../resources/tui-editor/tui-color-picker/dist/tui-color-picker.css">
                 
-<div id="editSection"></div>
+<div id="editSection">${board.board_content}</div>
 </div>
 <script class="code-js">
 	var editor = new tui.Editor({

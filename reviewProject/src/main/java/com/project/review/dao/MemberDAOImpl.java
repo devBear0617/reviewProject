@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.project.review.vo.MemberVO;
 
-public class MemberDAOImpl implements MemberDAO {
+public class MemberDAOImpl {}/*implements MemberDAO {
 
 	@Autowired
 	private MemberDAO memberDAO;
@@ -15,4 +15,4 @@ public class MemberDAOImpl implements MemberDAO {
 		memberDAO.joinMember(member);
 	}
 	
-}
+}*/
