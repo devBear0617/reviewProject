@@ -111,11 +111,9 @@
 		<div>
 			 영화 정보: 
 			 <ul style="list-style:none;">
-			 	<li>${mApiVO.movieCd}</li>
-			 	<li>${mApiVO.movieNm}</li>
-			 	<li>${mApiVO.genreAlt}</li>
-			 	<li>${mApiVO.repNationNm}</li>
-			 	<li>${mApiVO.peopleNm}</li>
+			 	<li>${mApiVO.movie_nm}</li>
+			 	<li>${mApiVO.genre}</li>
+			 	<li>${mApiVO.nation}</li>
 			 </ul>
 		</div>
 	</div>

@@ -5,6 +5,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -16,11 +19,12 @@ public class MovieApiDAOImpl implements MovieApiDAO{
 	public void setKey(String key) {
 		this.key = key;
 	}
-
+	
 	@Override
-	public MovieApiVO getMovie(String query) {
+	public JsonArray searchMovie(String query) {
 		StringBuffer response = new StringBuffer();
-		MovieApiVO movieApiVO = null;
+		JsonArray jsonArray = null;
+		
 		try {
 			String query_e = URLEncoder.encode(query, "UTF-8");
 				
@@ -45,18 +49,47 @@ public class MovieApiDAOImpl implements MovieApiDAO{
 			JsonParser Parser = new JsonParser();
 			JsonObject jsonObj = (JsonObject) Parser.parse(response.toString());
 			jsonObj = (JsonObject) jsonObj.get("movieListResult");
-			JsonArray jsonArray = (JsonArray) jsonObj.get("movieList");
-			JsonObject object = (JsonObject) jsonArray.get(0);
+			jsonArray = (JsonArray) jsonObj.get("movieList");
 
-			movieApiVO = new MovieApiVO();
-			movieApiVO.setMovieCd(object.get("movieCd").getAsInt());
-			movieApiVO.setMovieNm(object.get("movieNm").getAsString());
-			movieApiVO.setGenreAlt(object.get("genreAlt").getAsString());
-			movieApiVO.setRepNationNm(object.get("repNationNm").getAsString());
-			movieApiVO.setPeopleNm(object.get("peopleNm").getAsString());
-			
 		} catch (Exception e) {
-			System.out.println(e);
+			System.out.println("searchMovie : "+e);
+		}
+		return jsonArray;
+	}
+	
+	@Override
+	public JsonObject getMovieNmLsit(JsonArray jsonArray) {
+		JsonObject movieNameObject = new JsonObject();
+		try {
+			JsonArray movieNmArray = new JsonArray();
+			for (int i=0; i<jsonArray.size(); i++) {
+				if (i==10) 
+					break;
+				JsonObject object = (JsonObject) jsonArray.get(i);
+				String movieNm = object.get("movieNm").getAsString();
+				movieNmArray.add(movieNm);
+			}
+			movieNameObject.add("movieNmObject", movieNmArray);
+		}catch (Exception e) {
+			System.out.println("getMovieNmLsit : "+e);
+		}
+		return movieNameObject;
+	}
+	
+	@Override
+	public MovieApiVO getMovie(JsonArray jsonArray) {
+		MovieApiVO movieApiVO = null;
+		try {
+			JsonObject object = (JsonObject) jsonArray.get(0);
+			System.out.println(object.toString());
+			movieApiVO = new MovieApiVO();
+			movieApiVO.setMovie_cd(object.get("movieCd").getAsInt());
+			movieApiVO.setMovie_nm(object.get("movieNm").getAsString());
+			movieApiVO.setGenre(object.get("genreAlt").getAsString());
+			movieApiVO.setNation(object.get("repNationNm").getAsString());
+			//movieApiVO.setPeople(object.get("peopleNm").getAsString());
+		} catch (Exception e) {
+			System.out.println("getMovie : "+e);
 		}
 		return movieApiVO;
 	}

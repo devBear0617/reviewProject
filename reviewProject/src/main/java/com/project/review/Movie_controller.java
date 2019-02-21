@@ -1,8 +1,11 @@
 package com.project.review;
 
+import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +15,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.project.review.service.MovieService;
 import com.project.review.vo.BoardVO;
 import com.project.review.vo.Board_MovieVO;
@@ -38,7 +45,7 @@ public class Movie_controller {
 	@Autowired
 	private MovieService movieService;
 	
-	// -- 메인페이지 ---------------------------------------------------------
+	// -- 메인페이지 ----------------------------------------------------------------------------
 	
 	// >> 메인  ----------------------------------
 	@RequestMapping(value="/main")
@@ -76,76 +83,57 @@ public class Movie_controller {
 	
 	
 	
-	// -- 작성 페이지 ---------------------------------------------------------
+	// -- 작성 페이지 ----------------------------------------------------------------------------
 	
-	// >> 게시글 작성 폼
-	//@GetMapping("board_write")
+	// >> 게시글 작성 폼 (진입)----------------------------------
 	@RequestMapping(value="/movie_writeForm")	
 	public String movie_writeFrom(Model model) {		
-		
 		return "movie/movie_writeForm";
 	}
 
-	// >> 게시글 작성 완료 후 글 상세보기로
-	/*@PostMapping("board_write")
-	public String board_write(BoardVO boardVO, Model model) {	
-		int board_num = movieService.addBoard(boardVO);
-		
-		return "redirect:./detail_view/"+board_num ;
-	}*/
-	@RequestMapping(value="/movie_write", method=RequestMethod.POST)
-	public String movie_write(BoardVO board, Board_MovieVO movie, GradeVO grade, HashtagVO hash, Model model) {		
-		
-		// 게시글 추가 서비스
-		movieService.insertMovie(board, movie, grade, hash);
-		
-		// 게시글 추가 후 추가한 게시글 확인
-		int board_num = board.getBoard_num();
-		/*BoardVO board_m = movieService.getBoardById(board_num);
-		model.addAttribute("board", board_m);
-		
-		String movieNm = "레고 무비2";
-		MovieApiVO mApiVO = movieService.getMovieInfo(movieNm);		
-		model.addAttribute("mApiVO", mApiVO);*/
-		
-		return "redirect:/movie/detail_view/"+board_num;
+	// >> 영화 검색----------------------------------
+	@RequestMapping("/autocomplete")
+	public void searchBook(String movie_nm, HttpServletResponse response) throws IOException {
+		response.setContentType("text/html;charset=UTF-8"); 
+		response.getWriter().print(movieService.searchMovie(movie_nm));
 	}
 	
-	// >> 게시글 수정
+	// >> 게시글 작성 완료 (상세페이지 이동)----------------------------------
+	@RequestMapping(value="/movie_write", method=RequestMethod.POST)
+	public String movie_write(BoardVO board, Board_MovieVO movie, GradeVO grade, HashtagVO hash, Model model) {		
+		movieService.insertMovie(board, movie, grade, hash);
+		
+		return "redirect:/movie/detail_view/"+board.getBoard_num();
+	}
+
+	
+	
+	// -- 수정 페이지 ----------------------------------------------------------------------------
+	
+	// >> 게시글 수정 (진입)----------------------------------
 	@RequestMapping(value="/movie_updateForm/{board_num}")
 	public String movie_updateForm(@PathVariable int board_num, Model model) {
-			
-		String movieNm = "레고 무비2";
-			
 		BoardVO board_m = movieService.getBoardById(board_num);
-		MovieApiVO mApiVO = movieService.getMovieInfo(movieNm);
-			
 		model.addAttribute("board", board_m);
-		model.addAttribute("mApiVO", mApiVO);
-			
+		
 		return "movie/movie_updateForm";
 	}
-		
+	
+	// >> 게시글 수정 완료 (상세페이지 이동)----------------------------------	
 	@RequestMapping(value="/movie_update/{board_num}", method=RequestMethod.POST)
 	public String movie_update(BoardVO board, Board_MovieVO movie, GradeVO grade, HashtagVO hash, Model model) {
-			
 		movieService.updateMovie(board, movie, grade, hash);
+		movieService.getMovieInfo(movie.getMovie_nm());
 			
-		int board_num = board.getBoard_num();
-		/*BoardVO board_m = movieService.getBoardById(board_num);
-		model.addAttribute("board", board_m);
-			
-		String movieNm = "레고 무비2";
-		MovieApiVO mApiVO = movieService.getMovieInfo(movieNm);		
-		model.addAttribute("mApiVO", mApiVO);*/
-			
-		return "redirect:/movie/detail_view/"+board_num;
+		return "redirect:/movie/detail_view/"+board.getBoard_num();
 	}
-		
-		// >> 게시글 삭제
+	
+	
+	// -- 삭제 페이지 ----------------------------------------------------------------------------
+
+	// >> 게시글 삭제
 	@RequestMapping(value="/movie_delete/{board_num}", method=RequestMethod.POST)
 	public String movie_delete(@PathVariable int board_num) {
-
 		movieService.deleteMovie(board_num);
 			
 		return "redirect:/movie/main";
@@ -153,33 +141,17 @@ public class Movie_controller {
 	
 	
 	
-	// -- 상세페이지 ---------------------------------------------------------
-	
+	// -- 상세페이지----------------------------------------------------------------------------
+
 	// >> 게시글 출력 ----------------------------------
 	@RequestMapping(value="/detail_view/{board_num}")
 	public String detail_view(@PathVariable int board_num, HttpServletRequest request, Model model) {
-		//게시글 클릭 시 board_num과 movieNm 받기 -> jsp에서 동작 만들어야 함
-		//String movieNm = request.getParameter("movieNm");
-		String movieNm = "레고 무비2";
-		
 		BoardVO board_m = movieService.getBoardById(board_num);
-		MovieApiVO mApiVO = movieService.getMovieInfo(movieNm);
-		
+		MovieApiVO mApiVO = movieService.getMovieInfo(board_m.getB_movieVO().getMovie_nm());
+
 		model.addAttribute("board", board_m);
 		model.addAttribute("mApiVO", mApiVO);
 		
 		return "movie/detail_view";
 	}
-	
-	@RequestMapping(value="/test")
-	public String test(HttpServletRequest request, Model model) {
-		String movieNm = request.getParameter("movieNm");
-		MovieApiVO mApiVO = movieService.getMovieInfo(movieNm);
-		
-		model.addAttribute("mApiVO", mApiVO);
-		
-		return "movie/movieTestR";
-	}
-	
-	
 }

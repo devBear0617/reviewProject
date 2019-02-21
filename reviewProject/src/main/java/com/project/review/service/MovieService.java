@@ -2,6 +2,8 @@ package com.project.review.service;
 
 import java.util.List;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.project.review.vo.BoardVO;
 import com.project.review.vo.Board_MovieVO;
 import com.project.review.vo.GradeVO;
@@ -23,5 +25,7 @@ public interface MovieService {
 	public void deleteMovie(int board_num);
 	
 	//MovieApi
-	public MovieApiVO getMovieInfo(String movieNm);
+	public JsonObject searchMovie(String movie_nm);
+	public MovieApiVO getMovieInfo(String movie_nm);
+	
 }

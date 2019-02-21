@@ -18,6 +18,40 @@
 <link rel="stylesheet" href="../resources/tui-editor/codemirror/lib/codemirror.css">
 <link rel="stylesheet" href="../resources/tui-editor/highlightjs/styles/github.css">
 
+<!-- autoComplete -->
+<script	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+<style>
+.ui-autocomplete { 
+    overflow-y: scroll; 
+    overflow-x: hidden;
+}
+</STYLE>
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#movie_nm").autocomplete({
+		minLength: 1,
+        delay:50,
+		source : function(request, response) {
+			$.ajax({
+				url : "./autocomplete",
+				type : "post",
+				dataType : "json",
+				data : {
+					movie_nm : request.term
+                },
+				success : function(data) {
+					var movieNmObject = data.movieNmObject;
+					response(data.movieNmObject);
+				},
+				error : function(data) {
+					console.log("에러");
+				}
+			});
+		}
+	});
+});
+</script>
 </head>
 <body>
 <!-- 
@@ -67,7 +101,7 @@
 
 <br><br>
 
-무비 EX : <input type="text" name="ex" value="${board.b_movieVO.ex}">
+무비  : <input type="text" id="movie_nm" name="movie_nm">
 
 <br><br>
 

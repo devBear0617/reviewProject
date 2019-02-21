@@ -14,11 +14,6 @@ public interface BoardDAO {
 	public List<BoardVO> getMovieBoardList();
 	public List<BoardVO> getTvBoardList();
 	
-/*	//insert Board
-	public void setBoard(BoardVO boardVO);
-	//public void setB_Movie(int board_num);
-	public void setB_Movie(Board_MovieVO b_movie);*/
-
 	/*
 		겹치는 내용
 		Board_write = newBoard = setBoard(신규) -> 내용 추가되어 임시로setBoard 사용. 추후 변경 가능 
@@ -29,7 +24,6 @@ public interface BoardDAO {
 	public BoardVO newBoard(String board_title, String board_content, String member_id);
 	
 	/*-------------------------------------------------------*/
-	
 	/*insert*/
 	public void insertMovie(BoardVO board);
 	public void insertGrade(GradeVO grade);
