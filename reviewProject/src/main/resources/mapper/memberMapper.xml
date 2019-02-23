@@ -16,13 +16,8 @@
 	</insert>	
 	
 	<!-- 로그인 -->
-	<!-- <select id="loginMember" parameterType="String" resultMap="Member">
-		SELECT member_id
-		FROM member
-		WHERE member_id = #{member_id}
-	</select> -->
-	<select id="userCheck" parameterType="String" resultMap="Member">
-		SELECT member_pw
+	<select id="selectMember" parameterType="MemberVO" resultMap="Member">
+		SELECT *
 		FROM member
 		WHERE member_id = #{member_id}
 	</select>

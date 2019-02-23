@@ -20,15 +20,10 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	// 로그인
-	/*public MemberVO loginMemberID(String id) {
+	public MemberVO selectMember(String member_id) {
 		
-		return memberDAO.loginMemberID(id);
-		
-		
-	}*/
-	public int userCheck(String id, String pw) {
-		
-		return memberDAO.userCheck(id, pw);
+		return memberDAO.selectMember(member_id);
 	}
+
 
 }
