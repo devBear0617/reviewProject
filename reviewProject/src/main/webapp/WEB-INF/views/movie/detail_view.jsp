@@ -127,16 +127,22 @@
 	</div>
 	
 	<br><br>
-	글번 : ${board.board_num}
+	
+	<%-- 글번 : ${board.board_num} --%>
+	
 	<input type="button" value="목록"
 				onclick="location.href='/review/movie/main'">
-	&nbsp;&nbsp;
+	<br>
+	
+	<c:if test="${sessionScope.member_id == board.member_id}">
+	
 	<input type="button" value="수정"
 				onclick="location.href='/review/movie/movie_updateForm/${board.board_num}'">
 	&nbsp;&nbsp;
 	<form action="/review/movie/movie_delete/${board.board_num}" method="post" id="movie_delete">
 	<input type="submit" value="삭제">
 	</form>
-
+	
+	</c:if>
 </body>
 </html>

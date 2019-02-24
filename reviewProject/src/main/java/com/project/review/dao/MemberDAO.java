@@ -6,6 +6,9 @@ import com.project.review.vo.MemberVO;
 
 public interface MemberDAO {
 	
+	// 수정
+	public void updateMember(MemberVO member);
+	
 	// 마이페이지 확인
 	public MemberVO MemberInfo(String member_id);
 	

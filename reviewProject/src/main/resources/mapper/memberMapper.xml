@@ -9,6 +9,13 @@
 		<result property="member_name" column="member_name" />
 	</resultMap>
 	
+	<!-- 정보 수정 -->
+	<update id="updateMember" parameterType="MemberVO">
+		UPDATE member SET
+			member_pw = #{member_pw}
+		WHERE member_id = #{member_id}
+	</update>
+	
 	<!-- 마이페이지 확인 -->
 	<select id="MemberInfo" resultMap="Member">
 		SELECT *

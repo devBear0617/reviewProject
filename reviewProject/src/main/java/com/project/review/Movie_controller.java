@@ -22,6 +22,7 @@ import com.project.review.vo.GradeVO;
 import com.project.review.vo.HashtagVO;
 import com.project.review.vo.MemberVO;
 import com.project.review.vo.MovieApiVO;
+import com.project.review.vo.ReplyVO;
 
 //맵핑명, 변수명, jsp명 = 가칭O, 변경 가능, test용
 /*
@@ -49,12 +50,18 @@ public class Movie_controller {
 	@RequestMapping(value="/main")
 	public String movie(HttpServletRequest request, HttpSession session, Model model) {
 		
-		String user_id = (String)session.getAttribute("member_id");
+		if ((String)session.getAttribute("member_id") != null) {
+			String user_id = (String)session.getAttribute("member_id");
 		
-		MemberVO user = memberService.MemberInfo(user_id);
-		model.addAttribute("user", user);
+			MemberVO user = memberService.MemberInfo(user_id);
+			model.addAttribute("user", user);
 		
-		return "movie/main";
+			return "movie/main";
+			
+		} else {
+			
+			return "movie/main";	
+		}
 	}
 
 	// >> 상세 카테고리----------------------------------
@@ -96,27 +103,16 @@ public class Movie_controller {
 		return "movie/movie_writeForm";
 	}
 
-	// >> 게시글 작성 완료 후 글 상세보기로
-	/*@PostMapping("board_write")
-	public String board_write(BoardVO boardVO, Model model) {	
-		int board_num = movieService.addBoard(boardVO);
-		
-		return "redirect:./detail_view/"+board_num ;
-	}*/
 	@RequestMapping(value="/movie_write", method=RequestMethod.POST)
-	public String movie_write(BoardVO board, Board_MovieVO movie, GradeVO grade, HashtagVO hash, Model model) {		
+	public String movie_write(BoardVO board, Board_MovieVO movie, GradeVO grade, 
+			HashtagVO hash, HttpSession session, Model model) {		
 		
 		// 게시글 추가 서비스
-		movieService.insertMovie(board, movie, grade, hash);
+		String member_id = (String)session.getAttribute("member_id");
+		movieService.insertMovie(board, movie, grade, hash, member_id);
 		
 		// 게시글 추가 후 추가한 게시글 확인
 		int board_num = board.getBoard_num();
-		/*BoardVO board_m = movieService.getBoardById(board_num);
-		model.addAttribute("board", board_m);
-		
-		String movieNm = "레고 무비2";
-		MovieApiVO mApiVO = movieService.getMovieInfo(movieNm);		
-		model.addAttribute("mApiVO", mApiVO);*/
 		
 		return "redirect:/movie/detail_view/"+board_num;
 	}
@@ -142,12 +138,6 @@ public class Movie_controller {
 		movieService.updateMovie(board, movie, grade, hash);
 			
 		int board_num = board.getBoard_num();
-		/*BoardVO board_m = movieService.getBoardById(board_num);
-		model.addAttribute("board", board_m);
-			
-		String movieNm = "레고 무비2";
-		MovieApiVO mApiVO = movieService.getMovieInfo(movieNm);		
-		model.addAttribute("mApiVO", mApiVO);*/
 			
 		return "redirect:/movie/detail_view/"+board_num;
 	}
@@ -164,6 +154,16 @@ public class Movie_controller {
 	
 	
 	// -- 상세페이지 ---------------------------------------------------------
+	// >> reply 입력 ----------------------------------
+	@RequestMapping(value="/insert_Reply/{board_num}", method=RequestMethod.POST)
+	public String insert_Reply(@PathVariable int board_num, HttpSession session, 
+			ReplyVO reply, Model model) {
+		
+		String member_id = (String)session.getAttribute("member_id");
+		movieService.insertReply(reply, board_num, member_id);
+		
+		return "redirect:/movie/detail_view/"+board_num;
+	}
 	
 	// >> 게시글 출력 ----------------------------------
 	@RequestMapping(value="/detail_view/{board_num}")

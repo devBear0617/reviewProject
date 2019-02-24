@@ -48,6 +48,12 @@
 		${}				파라미터 값 - 파라미터 변수명과 다르면 인식X, 보안 취약
 	-->
 	
+	<!-- ____리플 추가______________________________________________________________________ -->
+	<insert id="insertReply" parameterType="ReplyVO">
+		INSERT INTO reply(board_num, member_id, reply_content)
+		VALUES(#{board_num}, #{member_id}, #{reply_content})
+	</insert>
+	
 	<!-- 게시글 호출______________________________________________________________________ -->
 	<select id="getBoardById" parameterType="int" resultMap="Board">
 		SELECT *
@@ -75,17 +81,6 @@
 
 
 	<!-- ____게시글 추가______________________________________________________________________ -->
-	<!-- <insert id="setBoard" parameterType="BoardVO">
-		<selectKey keyProperty="board_num" resultType="BoardVO" order="BEFORE"> 
-			SELECT bnum_seq.nextval AS board_num FROM dual 
-		</selectKey>
-		INSERT INTO board(board_num, board_title, board_content, member_id) 
-		VALUES(#{board_num}, #{board_title},#{board_content,jdbcType=CLOB}, '#{member_id}') 
-	</insert>
-	<insert id="setB_Movie" parameterType="Board_MovieVO">
-		INSERT INTO board_movie(board_num) 
-		VALUES(#{board_num})
-	</insert> -->
 	<insert id="insertMovie" parameterType="BoardVO">
 		<selectKey keyProperty="board_num" resultType="int" order="BEFORE">
 			SELECT bnum_seq.nextval AS board_num FROM DUAL
@@ -189,6 +184,7 @@
 	<select id="getReply" resultType="ReplyVO">
 		SELECT *
 		FROM reply
+		WHERE board_num = #{board_num}
 	</select>
 	<select id="getHashtag" parameterType="int" resultType="HashtagVO">
 		SELECT *

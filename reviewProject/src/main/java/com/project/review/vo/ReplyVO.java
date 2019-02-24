@@ -1,14 +1,14 @@
 package com.project.review.vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class ReplyVO {
 	private int reply_num;
 	private int board_num;
 	private String member_id;
 	private String reply_content;
-/*	private Date reply_date;
-	private Date reply_update;*/
+	private Date reply_date;
+	/*private Date reply_update;*/
 	
 	public int getReply_num() {
 		return reply_num;
@@ -34,13 +34,13 @@ public class ReplyVO {
 	public void setReply_content(String reply_content) {
 		this.reply_content = reply_content;
 	}
-/*	public Date getReply_date() {
+	public Date getReply_date() {
 		return reply_date;
 	}
 	public void setReply_date(Date reply_date) {
 		this.reply_date = reply_date;
 	}
-	public Date getReply_update() {
+/*	public Date getReply_update() {
 		return reply_update;
 	}
 	public void setReply_update(Date reply_update) {

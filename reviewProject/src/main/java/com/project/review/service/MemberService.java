@@ -6,6 +6,9 @@ import com.project.review.vo.MemberVO;
 
 public interface MemberService {
 	
+	// 수정
+	public void updateMember(MemberVO member);
+	
 	// 가입
 	public void joinMember(MemberVO member);
 	

@@ -23,6 +23,29 @@ public class Mypage_controller {
 	@Autowired
 	private MemberService memberService;
 	
+	// 정보변경 오류 해결 필요!
+	/*@RequestMapping(value="/updateMemberForm")
+	public String updateMemberGET(HttpSession session, Model model) {
+		
+		String user_id = (String)session.getAttribute("member_id");
+		
+		MemberVO user = memberService.MemberInfo(user_id);
+		model.addAttribute("user", user);
+		
+		return "mypage/updateMemberForm";
+	}*/
+	
+	@RequestMapping(value="/updateMember", method=RequestMethod.POST)
+	public String updateMember (MemberVO member, HttpSession session, Model model) {
+		
+		memberService.updateMember(member);
+	System.out.println(member);
+
+		
+		return "redirect:/mypage/mypageCheck";
+	}
+	
+	// 정보 확인
 	@RequestMapping(value="/mypageCheck", method=RequestMethod.GET)
 	public String mypageCheckGET(HttpSession session, Model model) {
 		
@@ -34,6 +57,7 @@ public class Mypage_controller {
 		return "mypage/mypageCheck";
 	}
 	
+	// 로그인
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String loginForm() {
 		
@@ -80,6 +104,7 @@ public class Mypage_controller {
 		return "mypage/login";
 	}
 	
+	// 로그아웃
 	@RequestMapping(value="/logout")
 	public String logout(HttpSession session) {
 		// 로그아웃 세션끊기.
@@ -88,6 +113,7 @@ public class Mypage_controller {
 		return "remon";
 	}
 	
+	// 가입
 	// @GetMapping(value="/join")
 	@RequestMapping(value="/join", method=RequestMethod.GET)
 	public String joinForm(Model model) {

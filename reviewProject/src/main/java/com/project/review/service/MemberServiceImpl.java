@@ -14,6 +14,12 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private MemberDAO memberDAO;
 	
+	// 수정
+	public void updateMember(MemberVO member) {
+		
+		memberDAO.updateMember(member);
+	}
+	
 	// 마이페이지 확인
 	@Override
 	public MemberVO MemberInfo(String member_id) {

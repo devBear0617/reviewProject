@@ -7,8 +7,13 @@ import com.project.review.vo.Board_MovieVO;
 import com.project.review.vo.GradeVO;
 import com.project.review.vo.HashtagVO;
 import com.project.review.vo.MovieApiVO;
+import com.project.review.vo.ReplyVO;
 
 public interface MovieService {
+	
+	// insert reply
+	public void insertReply(ReplyVO reply, int board_num, String member_id);
+	
 	//select Board
 	public BoardVO getBoardById(int board_num);
 	public List<BoardVO> getBoardList();
@@ -16,7 +21,8 @@ public interface MovieService {
 	
 	//insert Board 
 	/*public int addBoard(BoardVO boardVO);*/
-	public void insertMovie(BoardVO board, Board_MovieVO movie, GradeVO grade, HashtagVO hash);
+	public void insertMovie(BoardVO board, Board_MovieVO movie, GradeVO grade, 
+			HashtagVO hash, String member_id);
 	/*update Board*/
 	public void updateMovie(BoardVO board, Board_MovieVO movie, GradeVO grade, HashtagVO hash);
 	/*delete Board*/

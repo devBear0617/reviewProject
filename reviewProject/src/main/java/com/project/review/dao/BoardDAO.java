@@ -6,6 +6,7 @@ import com.project.review.vo.BoardVO;
 import com.project.review.vo.Board_MovieVO;
 import com.project.review.vo.GradeVO;
 import com.project.review.vo.HashtagVO;
+import com.project.review.vo.ReplyVO;
 
 public interface BoardDAO {
 	//select Board
@@ -29,6 +30,9 @@ public interface BoardDAO {
 	public BoardVO newBoard(String board_title, String board_content, String member_id);
 	
 	/*-------------------------------------------------------*/
+	
+	// 리플 추가
+	public void insertReply(ReplyVO reply);
 	
 	/*insert*/
 	public void insertMovie(BoardVO board);

@@ -13,6 +13,7 @@ import com.project.review.vo.Board_MovieVO;
 import com.project.review.vo.GradeVO;
 import com.project.review.vo.HashtagVO;
 import com.project.review.vo.MovieApiVO;
+import com.project.review.vo.ReplyVO;
 
 
 @Service
@@ -48,12 +49,26 @@ public class MovieServiceImpl implements MovieService {
 	
 	// -- insert ---------------------------------------------------------
 	
+	// 리플 추가
+	@Override
+	public void insertReply(ReplyVO reply, int board_num, String member_id) {
+		
+		// 보드넘 대입
+		/*board_num = reply.getBoard_num();*/
+		reply.setBoard_num(board_num);
+		reply.setMember_id(member_id);
+		// 리플 추가
+		boardDAO.insertReply(reply);
+		
+	}
+	
 	//게시글 추가 (Board & Board_Movie & Garde & Hashtag)
 	@Override
-	public void insertMovie(BoardVO board, Board_MovieVO movie, GradeVO grade, HashtagVO hash) {
+	public void insertMovie(BoardVO board, Board_MovieVO movie, GradeVO grade, 
+			HashtagVO hash, String member_id) {
 		
-		// member 처리 필요
-		board.setMember_id("qwe");
+		// member 처리
+		board.setMember_id(member_id);
 		
 		// board테이블 추가
 		boardDAO.insertMovie(board);

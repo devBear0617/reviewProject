@@ -17,7 +17,7 @@
 <input type="button" value="로그아웃" 
 	onclick="location.href='/review/mypage/logout'">
 <input type="button" value="정보변경"
-	onclick="location.href='/review/mypage/updateMember'">
+	onclick="location.href='/review/mypage/updateMemberForm'">
 
 
 </body>
