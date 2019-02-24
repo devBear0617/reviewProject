@@ -3,6 +3,7 @@ package com.project.review;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,11 +14,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.project.review.service.MemberService;
 import com.project.review.service.MovieService;
 import com.project.review.vo.BoardVO;
 import com.project.review.vo.Board_MovieVO;
 import com.project.review.vo.GradeVO;
 import com.project.review.vo.HashtagVO;
+import com.project.review.vo.MemberVO;
 import com.project.review.vo.MovieApiVO;
 
 //맵핑명, 변수명, jsp명 = 가칭O, 변경 가능, test용
@@ -37,12 +40,19 @@ public class Movie_controller {
 	
 	@Autowired
 	private MovieService movieService;
+	@Autowired
+	private MemberService memberService;
 	
 	// -- 메인페이지 ---------------------------------------------------------
 	
 	// >> 메인  ----------------------------------
 	@RequestMapping(value="/main")
-	public String movie(HttpServletRequest request, Model model) {
+	public String movie(HttpServletRequest request, HttpSession session, Model model) {
+		
+		String user_id = (String)session.getAttribute("member_id");
+		
+		MemberVO user = memberService.MemberInfo(user_id);
+		model.addAttribute("user", user);
 		
 		return "movie/main";
 	}

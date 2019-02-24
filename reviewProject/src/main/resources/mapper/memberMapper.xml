@@ -8,6 +8,13 @@
 		<result property="member_pw" column="member_pw" />
 		<result property="member_name" column="member_name" />
 	</resultMap>
+	
+	<!-- 마이페이지 확인 -->
+	<select id="MemberInfo" resultMap="Member">
+		SELECT *
+		FROM member
+		WHERE member_id = #{member_id}
+	</select>
 
 	<!-- 가입 -->
 	<insert id="joinMember" parameterType="MemberVO" >

@@ -1,5 +1,7 @@
 package com.project.review;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.project.review.service.MemberService;
+import com.project.review.vo.BoardVO;
 import com.project.review.vo.MemberVO;
 
 
@@ -18,7 +21,18 @@ import com.project.review.vo.MemberVO;
 public class Mypage_controller {
 	
 	@Autowired
-	MemberService memberService;
+	private MemberService memberService;
+	
+	@RequestMapping(value="/mypageCheck", method=RequestMethod.GET)
+	public String mypageCheckGET(HttpSession session, Model model) {
+		
+		String user_id = (String)session.getAttribute("member_id");
+		
+		MemberVO user = memberService.MemberInfo(user_id);
+		model.addAttribute("user", user);
+
+		return "mypage/mypageCheck";
+	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String loginForm() {
@@ -45,6 +59,11 @@ public class Mypage_controller {
 					if(pw.equals(member_pw)) {
 						// 비번 일치
 						session.setAttribute("member_id", member_id);
+						
+						String user_id = (String)session.getAttribute("member_id");
+						
+						MemberVO user = memberService.MemberInfo(user_id);
+						model.addAttribute("user", user);
 						
 						return "mypage/loginCheck";
 						

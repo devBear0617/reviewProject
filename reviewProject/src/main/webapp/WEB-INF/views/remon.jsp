@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,12 +21,18 @@ $(document).ready(function() {
 	
 	
 	<br><br>
-	
+	<c:if test="${empty sessionScope.member_id}">
 	<input type="button" value="로그인" 
 		onclick="location.href='/review/mypage/login'">
+	</c:if>
 	
+	<c:if test="${not empty sessionScope.member_id}">
+	<input type="button" value="로그아웃" 
+		onclick="location.href='/review/mypage/logout'">
+	<input type="button" value="정보변경"
+		onclick="location.href='/review/mypage/updateMember'">
+	</c:if>	
 	<br><br>
-	
 
 <!-- 상단바, 로고 -->
 	<div>

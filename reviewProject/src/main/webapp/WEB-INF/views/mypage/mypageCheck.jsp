@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,17 +9,16 @@
 </head>
 <body>
 
-<h1>로그인 성공.</h1>
-
+<h1>마이페이지.</h1>
 <h4>ID : ${user.member_id}</h4>
 <h4>PW : ${user.member_pw}</h4>
 <h4>NAME : ${user.member_name}</h4>
-<br><br>
 
-<input type="button" value="홈"
-				onclick="location.href='/review/'">
-<input type="button" value="mypage"
-				onclick="location.href='/review/mypage/mypageCheck'">
+<input type="button" value="로그아웃" 
+	onclick="location.href='/review/mypage/logout'">
+<input type="button" value="정보변경"
+	onclick="location.href='/review/mypage/updateMember'">
+
 
 </body>
 </html>
