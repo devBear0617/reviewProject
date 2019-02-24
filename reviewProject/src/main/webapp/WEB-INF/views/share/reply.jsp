@@ -17,7 +17,7 @@
 	<br>
 </c:forEach>
 <form action="/review/movie/insert_Reply/${board.board_num}" method="post" id="insert_Reply">
-Reply 작성 <input type="text" name="reply_content">
+Reply 작성 <input type="text" name="reply_content" value="리플 수정하기 기능 추가 필요!">
 <br><input type="submit" value="확인"><input type="reset" value="취소">
 </form> 
 
