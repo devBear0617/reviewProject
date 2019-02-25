@@ -54,7 +54,7 @@ $(document).ready(function() {
 <!-- content -->
 	<div class="content">	
 	</div>
-	
+	<br><br>
 <!-- 새글쓰기 -->
 	<c:if test="${empty sessionScope.member_id}">
 	<div class = 'moveBT' data-target="#login" >
@@ -74,6 +74,6 @@ $(document).ready(function() {
 	<div>
 		<jsp:include page="../share/footer.jsp" />
 	</div>
-
+<br><br>
 </body>
 </html>

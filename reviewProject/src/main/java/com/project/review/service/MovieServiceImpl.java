@@ -1,11 +1,14 @@
 package com.project.review.service;
 
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.project.review.dao.BoardDAO;
 import com.project.review.dao.MovieApiDAO;
 import com.project.review.vo.BoardVO;
@@ -64,11 +67,17 @@ public class MovieServiceImpl implements MovieService {
 	
 	//게시글 추가 (Board & Board_Movie & Garde & Hashtag)
 	@Override
+<<<<<<< HEAD
 	public void insertMovie(BoardVO board, Board_MovieVO movie, GradeVO grade, 
 			HashtagVO hash, String member_id) {
 		
 		// member 처리
 		board.setMember_id(member_id);
+=======
+	public void insertMovie(BoardVO board, Board_MovieVO movie, GradeVO grade, HashtagVO hash) {
+		// member 처리 필요
+		board.setMember_id("qwe");
+>>>>>>> Min01
 		
 		// board테이블 추가
 		boardDAO.insertMovie(board);
@@ -110,7 +119,6 @@ public class MovieServiceImpl implements MovieService {
 	//게시글 수정 (Board & Board_Movie & Garde & Hashtag)
 	@Override
 	public void updateMovie(BoardVO board, Board_MovieVO movie, GradeVO grade, HashtagVO hash) {
-		
 		// 현재 저장되어있는 baord_num을 다른 VO에 대입
 		board.setBoard_num(board.getBoard_num());
 		movie.setBoard_num(board.getBoard_num());
@@ -121,28 +129,31 @@ public class MovieServiceImpl implements MovieService {
 		boardDAO.updateB_movie(movie);
 		boardDAO.updateGrade(grade);
 		boardDAO.updateHashtag(hash);
-		
 	}
 
 	@Override
 	public void deleteMovie(int board_num) {	
-		
 		// 삭제 (board_num으로)
 		boardDAO.deleteHashtag(board_num);
 		boardDAO.deleteB_movie(board_num);
 		boardDAO.deleteGrade(board_num);
 		boardDAO.deleteMovie(board_num);
-		
-		
 	}	
 	
 	
 	// -- api ---------------------------------------------------------
+	@Override
+	public JsonObject searchMovie(String movie_nm) {
+		JsonArray jsonArray = movieApiDAO.searchMovie(movie_nm);
+		
+		return movieApiDAO.getMovieNmLsit(jsonArray);
+	}
 	
 	// 영화 기본 정보 호출
 	@Override
-	public MovieApiVO getMovieInfo(String movieNm) {
+	public MovieApiVO getMovieInfo(String movie_nm) {
+		JsonArray jsonArray = movieApiDAO.searchMovie(movie_nm);
 		
-		return movieApiDAO.getMovie(movieNm);
+		return movieApiDAO.getMovie(jsonArray);
 	}
 }

@@ -3,60 +3,53 @@ package com.project.review.vo;
 import java.util.Date;
 
 public class MovieApiVO {
-	private int movieCd;
-	private String movieNm;
-	private String movieNmEn;
-	private Date openDt;
-	private String genreAlt;
-	private String repNationNm;
-	private String peopleNm;
+	private int movie_cd;
+	private String movie_nm;
+	private Date open_dt;
+	private String genre;
+	private String nation;
+	private String people;
 	
-	public int getMovieCd() {
-		return movieCd;
+	public int getMovie_cd() {
+		return movie_cd;
 	}
-	public void setMovieCd(int movieCd) {
-		this.movieCd = movieCd;
+	public void setMovie_cd(int movie_cd) {
+		this.movie_cd = movie_cd;
 	}
-	public String getMovieNm() {
-		return movieNm;
+	public String getMovie_nm() {
+		return movie_nm;
 	}
-	public void setMovieNm(String movieNm) {
-		this.movieNm = movieNm;
+	public void setMovie_nm(String movie_nm) {
+		this.movie_nm = movie_nm;
 	}
-	public String getMovieNmEn() {
-		return movieNmEn;
+	public Date getOpen_dt() {
+		return open_dt;
 	}
-	public void setMovieNmEn(String movieNmEn) {
-		this.movieNmEn = movieNmEn;
+	public void setOpen_dt(Date open_dt) {
+		this.open_dt = open_dt;
 	}
-	public Date getOpenDt() {
-		return openDt;
+	public String getGenre() {
+		return genre;
 	}
-	public void setOpenDt(Date openDt) {
-		this.openDt = openDt;
+	public void setGenre(String genre) {
+		this.genre = genre;
 	}
-	public String getGenreAlt() {
-		return genreAlt;
+	public String getNation() {
+		return nation;
 	}
-	public void setGenreAlt(String genreAlt) {
-		this.genreAlt = genreAlt;
+	public void setNation(String nation) {
+		this.nation = nation;
 	}
-	public String getRepNationNm() {
-		return repNationNm;
+	public String getPeople() {
+		return people;
 	}
-	public void setRepNationNm(String repNationNm) {
-		this.repNationNm = repNationNm;
-	}
-	public String getPeopleNm() {
-		return peopleNm;
-	}
-	public void setPeopleNm(String peopleNm) {
-		this.peopleNm = peopleNm;
+	public void setPeople(String people) {
+		this.people = people;
 	}
 	
 	@Override
 	public String toString() {
-		return "MovieApiVO [movieCd=" + movieCd + ", movieNm=" + movieNm + ", movieNmEn=" + movieNmEn + ", openDt="
-				+ openDt + ", genreAlt=" + genreAlt + ", repNationNm=" + repNationNm + ", peopleNm=" + peopleNm + "]";
+		return "MovieApiVO [movie_cd=" + movie_cd + ", movie_nm=" + movie_nm + ", open_dt=" + open_dt + ", genre="
+				+ genre + ", nation=" + nation + ", people=" + people + "]";
 	}
 }
