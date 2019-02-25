@@ -38,7 +38,7 @@
 					<input type="text" id="query" name="query"
 						style="width: 400px; height: 30px; border-radius: 30px; border-color: #ABF200;">
 					<button
-						style="border-radius: 30px; height: 30px; background-color: #ABF200; color: white;">검색</button>
+						style="border-radius: 30px; height: 30px; background-color: #ABF200; color: white; border-style: none;">검색</button>
 				</form>
 			</div>
 			<br>
