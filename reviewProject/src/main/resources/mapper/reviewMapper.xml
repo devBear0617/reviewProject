@@ -110,12 +110,12 @@
 		UPDATE grade SET
 			grade_name1 = #{grade_name1},
 			grade1 = #{grade1},
-			grade_name2 = #{grade_name1},
-			grade2 = #{grade1},
-			grade_name3 = #{grade_name1},
-			grade3 = #{grade1},
-			grade_name4 = #{grade_name1},
-			grade4 = #{grade1}
+			grade_name2 = #{grade_name2},
+			grade2 = #{grade2},
+			grade_name3 = #{grade_name3},
+			grade3 = #{grade3},
+			grade_name4 = #{grade_name4},
+			grade4 = #{grade4}
 		WHERE board_num = #{board_num}
 	</update>
 	<update id="updateB_movie" parameterType="Board_MovieVO">

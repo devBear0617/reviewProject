@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +18,8 @@
 		--%>
 		<span>유저ID: ${board.member_id}</span>&nbsp;&nbsp;&nbsp;  
 		<span>|&nbsp;&nbsp;&nbsp;리뷰 제목: ${board.board_title}</span>&nbsp;&nbsp;&nbsp;     
-		<span>|&nbsp;&nbsp;&nbsp;날짜 : ${board.board_date}</span>
+		<span>|&nbsp;&nbsp;&nbsp;날짜 :
+		<fmt:formatDate value="${board.board_date}" pattern="yyyy-MM-dd hh:mm"/></span>
 	</div>
 	
 <!-- 이미지, 평점(추천합니다/안합니다), 상세별점, 리뷰의 좋아요, #  -->

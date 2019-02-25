@@ -53,7 +53,7 @@ $(document).ready(function() {
 <!-- content -->
 	<div class="content">	
 	</div>
-	
+	<br><br>
 <!-- 새글쓰기 -->
 	<div class = 'moveBT' data-target="#board_write" >
 		<form action="/review/movie/movie_writeForm" id="movie_writeForm">
@@ -64,6 +64,6 @@ $(document).ready(function() {
 	<div>
 		<jsp:include page="../share/footer.jsp" />
 	</div>
-
+<br><br>
 </body>
 </html>
