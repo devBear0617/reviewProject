@@ -7,7 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div style="background-color: #ABF200; height:200px;">
+	<div style="background-color: #ABF200; height: 50px;">
+	
 	</div>
 </body>
 </html>
