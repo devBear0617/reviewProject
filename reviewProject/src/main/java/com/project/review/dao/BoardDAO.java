@@ -25,13 +25,12 @@ public interface BoardDAO {
 	public BoardVO newBoard(String board_title, String board_content, String member_id);
 	
 	/*-------------------------------------------------------*/
-<<<<<<< HEAD
+
 	
 	// 리플 추가
 	public void insertReply(ReplyVO reply);
 	
-=======
->>>>>>> Min01
+
 	/*insert*/
 	public void insertMovie(BoardVO board);
 	public void insertGrade(GradeVO grade);

@@ -5,11 +5,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-<<<<<<< HEAD
 import javax.servlet.http.HttpSession;
-=======
 import javax.servlet.http.HttpServletResponse;
->>>>>>> Min01
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,13 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-<<<<<<< HEAD
 import com.project.review.service.MemberService;
-=======
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
->>>>>>> Min01
 import com.project.review.service.MovieService;
 import com.project.review.vo.BoardVO;
 import com.project.review.vo.Board_MovieVO;
@@ -114,7 +108,7 @@ public class Movie_controller {
 		return "movie/movie_writeForm";
 	}
 
-<<<<<<< HEAD
+//>> 게시글 작성 완료 (상세페이지 이동)----------------------------------
 	@RequestMapping(value="/movie_write", method=RequestMethod.POST)
 	public String movie_write(BoardVO board, Board_MovieVO movie, GradeVO grade, 
 			HashtagVO hash, HttpSession session, Model model) {		
@@ -127,22 +121,14 @@ public class Movie_controller {
 		int board_num = board.getBoard_num();
 		
 		return "redirect:/movie/detail_view/"+board_num;
-=======
+	}
 	// >> 영화 검색----------------------------------
 	@RequestMapping("/autocomplete")
 	public void searchBook(String movie_nm, HttpServletResponse response) throws IOException {
 		response.setContentType("text/html;charset=UTF-8"); 
 		response.getWriter().print(movieService.searchMovie(movie_nm));
 	}
-	
-	// >> 게시글 작성 완료 (상세페이지 이동)----------------------------------
-	@RequestMapping(value="/movie_write", method=RequestMethod.POST)
-	public String movie_write(BoardVO board, Board_MovieVO movie, GradeVO grade, HashtagVO hash, Model model) {		
-		movieService.insertMovie(board, movie, grade, hash);
-		
-		return "redirect:/movie/detail_view/"+board.getBoard_num();
->>>>>>> Min01
-	}
+
 
 	
 	
@@ -163,13 +149,9 @@ public class Movie_controller {
 		movieService.updateMovie(board, movie, grade, hash);
 		movieService.getMovieInfo(movie.getMovie_nm());
 			
-<<<<<<< HEAD
 		int board_num = board.getBoard_num();
 			
 		return "redirect:/movie/detail_view/"+board_num;
-=======
-		return "redirect:/movie/detail_view/"+board.getBoard_num();
->>>>>>> Min01
 	}
 	
 	
@@ -185,7 +167,6 @@ public class Movie_controller {
 	
 	
 	
-<<<<<<< HEAD
 	// -- 상세페이지 ---------------------------------------------------------
 	// >> reply 입력 ----------------------------------
 	@RequestMapping(value="/insert_Reply/{board_num}", method=RequestMethod.POST)
@@ -198,10 +179,7 @@ public class Movie_controller {
 		return "redirect:/movie/detail_view/"+board_num;
 	}
 	
-=======
-	// -- 상세페이지----------------------------------------------------------------------------
 
->>>>>>> Min01
 	// >> 게시글 출력 ----------------------------------
 	@RequestMapping(value="/detail_view/{board_num}")
 	public String detail_view(@PathVariable int board_num, HttpServletRequest request, Model model) {

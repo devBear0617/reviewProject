@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +14,8 @@
 	<span>작성자 : ${reply.member_id} &nbsp;&nbsp;&nbsp;&nbsp; |</span>
 	&nbsp;&nbsp;&nbsp;&nbsp;
 	<span>${reply.reply_content}&nbsp;&nbsp; |</span>
-	<span>${reply.reply_date}</span>
+	<span>
+	<fmt:formatDate value="${reply.reply_date}" pattern="yyyy-MM-dd hh:mm"/></span>
 	<br>
 </c:forEach>
 <form action="/review/movie/insert_Reply/${board.board_num}" method="post" id="insert_Reply">

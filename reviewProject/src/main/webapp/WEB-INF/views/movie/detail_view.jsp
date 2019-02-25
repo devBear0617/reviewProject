@@ -14,7 +14,6 @@
 		<%-- 
 		<span>${board.memberVO.member_pic}</span> 
 		<span>${board.memberVO.member_name}</span>
-		<span>유저ID: ${board.member_id}</span>&nbsp;&nbsp;&nbsp;     
 		--%>
 		<span>유저ID: ${board.member_id}</span>&nbsp;&nbsp;&nbsp;  
 		<span>|&nbsp;&nbsp;&nbsp;리뷰 제목: ${board.board_title}</span>&nbsp;&nbsp;&nbsp;     

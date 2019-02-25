@@ -67,18 +67,12 @@ public class MovieServiceImpl implements MovieService {
 	
 	//게시글 추가 (Board & Board_Movie & Garde & Hashtag)
 	@Override
-<<<<<<< HEAD
 	public void insertMovie(BoardVO board, Board_MovieVO movie, GradeVO grade, 
 			HashtagVO hash, String member_id) {
 		
 		// member 처리
 		board.setMember_id(member_id);
-=======
-	public void insertMovie(BoardVO board, Board_MovieVO movie, GradeVO grade, HashtagVO hash) {
-		// member 처리 필요
-		board.setMember_id("qwe");
->>>>>>> Min01
-		
+
 		// board테이블 추가
 		boardDAO.insertMovie(board);
 		// 추가한 board테이블에서 board_num 추출해서 다른 테이블 board_num에 대입
