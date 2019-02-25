@@ -30,7 +30,7 @@
 </STYLE>
 
 <!-- Grade1~4 Star CSS -->
-<link rel="stylesheet" href="../resources/script/star.css">
+<link rel="stylesheet" href="../resources/css/star.css">
 
 <script type="text/javascript">
 $(document).ready(function() {
