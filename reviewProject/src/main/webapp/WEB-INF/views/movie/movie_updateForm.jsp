@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -19,12 +19,13 @@
 <link rel="stylesheet" href="../resources/tui-editor/highlightjs/styles/github.css">
 
 <!-- autoComplete -->
-<script	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
-<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" 
+	rel="stylesheet" type="text/css" />
 <style>
-.ui-autocomplete { 
-    overflow-y: scroll; 
-    overflow-x: hidden;
+.ui-autocomplete {
+	overflow-y: scroll;
+	overflow-x: hidden;
 }
 </STYLE>
 
@@ -158,7 +159,7 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
-<!-- 
+	<!-- 
 1 유저 id x
 2 제목
 3 날짜(자동)
@@ -169,60 +170,59 @@ $(document).ready(function() {
 8 해시테그 1~6
 9 리뷰 영화의 정보 (api)
  -->
-<h1>글 수정.</h1>
-<form action="/review/movie/movie_update/${board.board_num}" method="post" id="movie_update">
-제목 : 
-<br>
-<input type="text" name="board_title" value="${board.board_title}">
-<br><br>
-내용 : 
-<br>
+	<h1>글 수정.</h1>
+	<form action="/review/movie/movie_update/${board.board_num}" method="post" id="movie_update">
+		<br> 제목 : <input type="text" name="board_title" value="${board.board_title}"> <br>
+		<br> 내용 : <br>
 
+		<!-- tui-editor input -->
+		<input type="text" name="board_content" id="board_content" hidden>
+		<!-- tui-editor view -->
+		<div class="code-html">
+			<script src="../resources/tui-editor/tui-color-picker/dist/tui-color-picker.js"></script>
+			<script src="../resources/tui-editor/tui-editor/dist/tui-editor-Editor.js"></script>
+			<script src="../resources/tui-editor/tui-editor/dist/tui-editor-extColorSyntax.js"></script>
+			<link rel="stylesheet" href="../resources/tui-editor/tui-editor/dist/tui-editor.css">
+			<link rel="stylesheet" href="../resources/tui-editor/tui-editor/dist/tui-editor-contents.css">
+			<link rel="stylesheet" href="../resources/tui-editor/tui-color-picker/dist/tui-color-picker.css">
 
-<!-- tui-editor input -->
-<input type="text" name="board_content" id="board_content" hidden>
-<!-- tui-editor view -->
-<div class="code-html">
-<script src="../resources/tui-editor/tui-color-picker/dist/tui-color-picker.js"></script>
-<script src="../resources/tui-editor/tui-editor/dist/tui-editor-Editor.js"></script>
-<script src="../resources/tui-editor/tui-editor/dist/tui-editor-extColorSyntax.js"></script>
-<link rel="stylesheet" href="../resources/tui-editor/tui-editor/dist/tui-editor.css">
-<link rel="stylesheet" href="../resources/tui-editor/tui-editor/dist/tui-editor-contents.css">
-<link rel="stylesheet" href="../resources/tui-editor/tui-color-picker/dist/tui-color-picker.css">
-                
-<div id="editSection">${board.board_content}</div>
-</div>
-<script class="code-js">
-	var editor = new tui.Editor({
-		el: document.querySelector('#editSection'),
-		initialEditType: 'wysiwyg',
-		height: '300px',
-		exts: ['colorSyntax']
-	});
-</script>
+			<div id="editSection">${board.board_content}</div>
+		</div>
+		<script class="code-js">
+			var editor = new tui.Editor({
+				el: document.querySelector('#editSection'),
+				initialEditType: 'wysiwyg',
+				height: '300px',
+				exts: ['colorSyntax']
+			});
+		</script>
 
-
-<br><br>
-
-무비  : <input type="text" id="movie_nm" name="movie_nm" value="${board.b_movieVO.movie_nm}">
-
-<br><br>
-	<input type ="hidden" value="${board.recommend}" id = "recommend_val">
-	
-		<input type="radio" name="recommend" value="1">이 영화를 추천합니다.
-		<input type="radio" name="recommend" value="0">이 영화를 추천하지 않습니다.
-	
-<br><br>
-
-<label for="lemon_grade">총합 점수 : </label>
-	<input type="hidden" value="${board.lemon_grade}" id="lemon_grade" name="lemon_grade">
-	<span class="total_value">${board.lemon_grade}</span>점
-<br>
-<br>
-		<input type ="hidden" value="${board.gradeVO.grade_name1}" id="grade_name1_val">
-개별점수 1. <select name="grade_name1" id="grade_name1" class="select_name">
-				<option value="">선택</option>			
-			<optgroup label="good" id ="good1">
+		<br>
+		<br> 
+		
+		무비 : <input type="text" id="movie_nm" name="movie_nm" value="${board.b_movieVO.movie_nm}"> 
+		
+		<br>
+		<br> 
+		
+		<input type="hidden" value="${board.recommend}" id="recommend_val"> 
+		<input type="radio" name="recommend" value="1">이 영화를 추천합니다. 
+		<input type="radio" name="recommend" value="0">이 영화를 추천하지 않습니다. 
+		
+		<br>
+		<br>
+		
+		<label for="lemon_grade">총합 점수 : </label> 
+		<input type="hidden" value="${board.lemon_grade}" id="lemon_grade" name="lemon_grade"> 
+		<span class="total_value">${board.lemon_grade}</span>점
+		
+		<br>
+		<br>
+		
+		<input type="hidden" value="${board.gradeVO.grade_name1}" id="grade_name1_val">
+		개별점수 1. <select name="grade_name1" id="grade_name1" class="select_name">
+			<option value="">선택</option>
+			<optgroup label="good" id="good1">
 				<option value="재미">재미</option>
 				<option value="액션">액션</option>
 				<option value="연출">연출</option>
@@ -234,7 +234,7 @@ $(document).ready(function() {
 				<option value="연기">연기</option>
 				<option value="캐스팅">캐스팅</option>
 			</optgroup>
-			<optgroup label="bad" id ="bad1">
+			<optgroup label="bad" id="bad1">
 				<option value="bad재미">bad재미</option>
 				<option value="bad액션">bad액션</option>
 				<option value="bad연출">bad연출</option>
@@ -247,45 +247,39 @@ $(document).ready(function() {
 				<option value="bad캐스팅">bad캐스팅</option>
 			</optgroup>
 		</select>
-				
-<div class="rating">
- 	<input type="hidden" value="${board.gradeVO.grade1}" id="grade1_val">
-  <label>
-    <input type="radio" name="grade1" value="5" />
-    <span class="icon">★</span>
-  </label>
-  <label>
-    <input type="radio" name="grade1" value="10" />
-    <span class="icon">★</span>
-    <span class="icon">★</span>
-  </label>
-  <label>
-    <input type="radio" name="grade1" value="15" />
-    <span class="icon">★</span>
-    <span class="icon">★</span>
-    <span class="icon">★</span>   
-  </label>
-  <label>
-    <input type="radio" name="grade1" value="20" />
-    <span class="icon">★</span>
-    <span class="icon">★</span>
-    <span class="icon">★</span>
-    <span class="icon">★</span>
-  </label>
-  <label>
-    <input type="radio" name="grade1" value="25" />
-    <span class="icon">★</span>
-    <span class="icon">★</span>
-    <span class="icon">★</span>
-    <span class="icon">★</span>
-    <span class="icon">★</span>
-  </label>
-</div>			
-<br>		
 
-<input type ="hidden" value="${board.gradeVO.grade_name2}" id="grade_name2_val">
-		개별점수 2. <select name="grade_name2" id="grade_name2" class="select_name">
-				<option value="">선택</option>
+		<div class="rating">
+			<input type="hidden" value="${board.gradeVO.grade1}" id="grade1_val">
+			<label> <input type="radio" name="grade1" value="5" /> 
+				<span class="icon">★</span>
+			</label> 
+			<label> <input type="radio" name="grade1" value="10" /> 
+				<span class="icon">★</span> 
+				<span class="icon">★</span>
+			</label> 
+			<label> <input type="radio" name="grade1" value="15" /> 
+				<span class="icon">★</span> 
+				<span class="icon">★</span> 
+				<span class="icon">★</span>
+			</label> 
+			<label> <input type="radio" name="grade1" value="20" /> 
+				<span class="icon">★</span> 
+				<span class="icon">★</span> 
+				<span class="icon">★</span>
+				<span class="icon">★</span>
+			</label> 
+			<label> <input type="radio" name="grade1" value="25" /> 
+				<span class="icon">★</span> 
+				<span class="icon">★</span> 
+				<span class="icon">★</span>
+				<span class="icon">★</span> 
+				<span class="icon">★</span>
+			</label>
+		</div>
+		<br> 
+		<input type="hidden" value="${board.gradeVO.grade_name2}" id="grade_name2_val"> 
+		개별점수 2. <select name="grade_name2" 	id="grade_name2" class="select_name">
+			<option value="">선택</option>
 			<optgroup label="good" id="good2">
 				<option value="재미">재미</option>
 				<option value="액션">액션</option>
@@ -311,43 +305,40 @@ $(document).ready(function() {
 				<option value="bad캐스팅">bad캐스팅</option>
 			</optgroup>
 		</select>
-<div class="rating">
-<input type="hidden" value="${board.gradeVO.grade2}" id="grade2_val">
-  <label>
-    <input type="radio" name="grade2" value="5" />
-    <span class="icon">★</span>
-  </label>
-  <label>
-    <input type="radio" name="grade2" value="10" />
-    <span class="icon">★</span>
-    <span class="icon">★</span>
-  </label>
-  <label>
-    <input type="radio" name="grade2" value="15" />
-    <span class="icon">★</span>
-    <span class="icon">★</span>
-    <span class="icon">★</span>   
-  </label>
-  <label>
-    <input type="radio" name="grade2" value="20" />
-    <span class="icon">★</span>
-    <span class="icon">★</span>
-    <span class="icon">★</span>
-    <span class="icon">★</span>
-  </label>
-  <label>
-    <input type="radio" name="grade2" value="25" />
-    <span class="icon">★</span>
-    <span class="icon">★</span>
-    <span class="icon">★</span>
-    <span class="icon">★</span>
-    <span class="icon">★</span>
-  </label>
-</div>			
-<br>	
-		<input type ="hidden" value="${board.gradeVO.grade_name3}" id="grade_name3_val">
-		개별점수 3. <select name="grade_name3" id="grade_name3" class="select_name">
-				<option value="">선택</option>
+		
+		<div class="rating">
+			<input type="hidden" value="${board.gradeVO.grade2}" id="grade2_val">
+			<label> <input type="radio" name="grade2" value="5" /> 
+				<span class="icon">★</span>
+			</label> 
+			<label> <input type="radio" name="grade2" value="10" /> 
+				<span class="icon">★</span> 
+				<span class="icon">★</span>
+			</label> 
+			<label> <input type="radio" name="grade2" value="15" /> 
+				<span class="icon">★</span> 
+				<span class="icon">★</span> 
+				<span class="icon">★</span>
+			</label> 
+			<label> <input type="radio" name="grade2" value="20" /> 
+				<span class="icon">★</span> 
+				<span class="icon">★</span> 
+				<span class="icon">★</span>
+				<span class="icon">★</span>
+			</label> 
+			<label> <input type="radio" name="grade2" value="25" /> 
+				<span class="icon">★</span> 
+				<span class="icon">★</span> 
+				<span class="icon">★</span>
+				<span class="icon">★</span> 
+				<span class="icon">★</span>
+			</label>
+		</div>
+		<br> 
+		
+		<input type="hidden" value="${board.gradeVO.grade_name3}" id="grade_name3_val"> 
+		개별점수 3. <select name="grade_name3" 	id="grade_name3" class="select_name">
+			<option value="">선택</option>
 			<optgroup label="good" id="good3">
 				<option value="재미">재미</option>
 				<option value="액션">액션</option>
@@ -374,42 +365,37 @@ $(document).ready(function() {
 			</optgroup>
 		</select>
 		<div class="rating">
-		<input type="hidden" value="${board.gradeVO.grade3}" id="grade3_val">
-  <label>
-    <input type="radio" name="grade3" value="5" />
-    <span class="icon">★</span>
-  </label>
-  <label>
-    <input type="radio" name="grade3" value="10" />
-    <span class="icon">★</span>
-    <span class="icon">★</span>
-  </label>
-  <label>
-    <input type="radio" name="grade3" value="15" />
-    <span class="icon">★</span>
-    <span class="icon">★</span>
-    <span class="icon">★</span>   
-  </label>
-  <label>
-    <input type="radio" name="grade3" value="20" />
-    <span class="icon">★</span>
-    <span class="icon">★</span>
-    <span class="icon">★</span>
-    <span class="icon">★</span>
-  </label>
-  <label>
-    <input type="radio" name="grade3" value="25" />
-    <span class="icon">★</span>
-    <span class="icon">★</span>
-    <span class="icon">★</span>
-    <span class="icon">★</span>
-    <span class="icon">★</span>
-  </label>
-</div>			
-		<br>
-		<input type ="hidden" value="${board.gradeVO.grade_name4}" id="grade_name4_val">
-		개별점수 4. <select name="grade_name4" id="grade_name4" class="select_name">
-				<option value="">선택</option>
+			<input type="hidden" value="${board.gradeVO.grade3}" id="grade3_val">
+			<label> <input type="radio" name="grade3" value="5" /> 
+				<span class="icon">★</span>
+			</label> 
+			<label> <input type="radio" name="grade3" value="10" /> 
+				<span class="icon">★</span> 
+				<span class="icon">★</span>
+			</label> 
+			<label> <input type="radio" name="grade3" value="15" /> 
+				<span class="icon">★</span> 
+				<span class="icon">★</span> 
+				<span class="icon">★</span>
+			</label> 
+			<label> <input type="radio" name="grade3" value="20" /> 
+				<span class="icon">★</span> 
+				<span class="icon">★</span> 
+				<span class="icon">★</span>
+				<span class="icon">★</span>
+			</label> 
+			<label> <input type="radio" name="grade3" value="25" /> 
+				<span class="icon">★</span> 
+				<span class="icon">★</span> 
+				<span class="icon">★</span>
+				<span class="icon">★</span> 
+				<span class="icon">★</span>
+			</label>
+		</div>
+		<br> <input type="hidden" value="${board.gradeVO.grade_name4}"
+			id="grade_name4_val"> 개별점수 4. <select name="grade_name4"
+			id="grade_name4" class="select_name">
+			<option value="">선택</option>
 			<optgroup label="good" id="good4">
 				<option value="재미">재미</option>
 				<option value="액션">액션</option>
@@ -436,54 +422,49 @@ $(document).ready(function() {
 			</optgroup>
 		</select>
 		<div class="rating">
-		<input type="hidden" value="${board.gradeVO.grade4}" id="grade4_val">
-  <label>
-    <input type="radio" name="grade4" value="5" />
-    <span class="icon">★</span>
-  </label>
-  <label>
-    <input type="radio" name="grade4" value="10" />
-    <span class="icon">★</span>
-    <span class="icon">★</span>
-  </label>
-  <label>
-    <input type="radio" name="grade4" value="15" />
-    <span class="icon">★</span>
-    <span class="icon">★</span>
-    <span class="icon">★</span>   
-  </label>
-  <label>
-    <input type="radio" name="grade4" value="20" />
-    <span class="icon">★</span>
-    <span class="icon">★</span>
-    <span class="icon">★</span>
-    <span class="icon">★</span>
-  </label>
-  <label>
-    <input type="radio" name="grade4" value="25" />
-    <span class="icon">★</span>
-    <span class="icon">★</span>
-    <span class="icon">★</span>
-    <span class="icon">★</span>
-    <span class="icon">★</span>
-  </label>
-</div>
+			<input type="hidden" value="${board.gradeVO.grade4}" id="grade4_val">
+			<label> <input type="radio" name="grade4" value="5" /> 
+				<span class="icon">★</span>
+			</label> 
+			<label> <input type="radio" name="grade4" value="10" /> 
+				<span class="icon">★</span> 
+				<span class="icon">★</span>
+			</label> 
+			<label> <input type="radio" name="grade4" value="15" /> 
+				<span class="icon">★</span> 
+				<span class="icon">★</span> 
+				<span class="icon">★</span>
+			</label> 
+			<label> <input type="radio" name="grade4" value="20" /> 
+				<span class="icon">★</span> 
+				<span class="icon">★</span> 
+				<span class="icon">★</span>
+				<span class="icon">★</span>
+			</label> 
+			<label> <input type="radio" name="grade4" value="25" /> 
+				<span class="icon">★</span> 
+				<span class="icon">★</span> 
+				<span class="icon">★</span>
+				<span class="icon">★</span> 
+				<span class="icon">★</span>
+			</label>
+		</div>
 		<br>
-		<br>	
-hashtag1 : #<input type="text" name="hashtag1" value="${board.hashtagVO.hashtag1}"><br>
-hashtag2 : #<input type="text" name="hashtag2" value="${board.hashtagVO.hashtag2}"><br>
-hashtag3 : #<input type="text" name="hashtag3" value="${board.hashtagVO.hashtag3}"><br>
-hashtag4 : #<input type="text" name="hashtag4" value="${board.hashtagVO.hashtag4}"><br>
-hashtag5 : #<input type="text" name="hashtag5" value="${board.hashtagVO.hashtag5}"><br>
-hashtag6 : #<input type="text" name="hashtag6" value="${board.hashtagVO.hashtag6}"><br><br>
+		<br>
+		
+		hashtag1 : #<input type="text" name="hashtag1" value="${board.hashtagVO.hashtag1}"><br>
+		hashtag2 : #<input type="text" name="hashtag2" value="${board.hashtagVO.hashtag2}"><br>
+		hashtag3 : #<input type="text" name="hashtag3" value="${board.hashtagVO.hashtag3}"><br>
+		hashtag4 : #<input type="text" name="hashtag4" value="${board.hashtagVO.hashtag4}"><br>
+		hashtag5 : #<input type="text" name="hashtag5" value="${board.hashtagVO.hashtag5}"><br> 
+		hashtag6 : #<input type="text" name="hashtag6" value="${board.hashtagVO.hashtag6}"><br>
+		<br> 
+		<input type="submit" id="form-submit" value="확인"> 
+		<input type="reset" value="취소">
 
+	</form>
 
-<input type="submit" id="form-submit" value="확인">
-<input type="reset" value="취소">
-
-</form>
-	
-<script>
+	<script>
 	var formSubmitButton = document.querySelector("#form-submit");
 	formSubmitButton.addEventListener('click', function() {
 		var contents = document.querySelector("#board_content");
@@ -492,7 +473,7 @@ hashtag6 : #<input type="text" name="hashtag6" value="${board.hashtagVO.hashtag6
 		$("option").prop("disabled" , false);//grade_name disabled 해제
 		alert(contents.value);
 	});
-</script>
-	
+	</script>
+
 </body>
 </html>
