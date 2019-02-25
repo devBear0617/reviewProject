@@ -76,7 +76,11 @@
 		
 		<!-- 좋아요 , 덧글 수 -->
 		<div>
-		
+			<h4>좋아요 : </h4>
+			<c:forEach items="${board.likeList}" var="like">
+				<span>작성자 : ${like.member_id}, ${like.likeit} </span>
+				<br>
+			</c:forEach>
 		</div>
 		
 		<!-- # 최대 6개 -->

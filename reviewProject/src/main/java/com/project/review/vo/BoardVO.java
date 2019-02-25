@@ -26,6 +26,7 @@ public class BoardVO {
 	
 	private MemberVO memberVO;
 	private HashtagVO hashtagVO;
+	private List<LikeItVO> likeList;
 	private List<ReplyVO> replyList;
 	
 	
@@ -101,6 +102,12 @@ public class BoardVO {
 	public void setHashtagVO(HashtagVO hashtagVO) {
 		this.hashtagVO = hashtagVO;
 	}
+	public List<LikeItVO> getLikeList() {
+		return likeList;
+	}
+	public void setLikeList(List<LikeItVO> likeList) {
+		this.likeList = likeList;
+	}
 	public List<ReplyVO> getReplyList() {
 		return replyList;
 	}
@@ -112,9 +119,9 @@ public class BoardVO {
 		return "BoardVO [board_num=" + board_num + ", board_title=" + board_title + ", board_content=" + board_content
 				+ ", board_date=" + board_date + ", member_id=" + member_id + ", lemon_grade=" + lemon_grade
 				+ ", recommend=" + recommend + ", gradeVO=" + gradeVO + ", b_movieVO=" + b_movieVO + ", b_tvVO="
-				+ b_tvVO + ", memberVO=" + memberVO + ", hashtagVO=" + hashtagVO + ", replyList=" + replyList + "]";
+				+ b_tvVO + ", memberVO=" + memberVO + ", hashtagVO=" + hashtagVO + ", likeList=" + likeList
+				+ ", replyList=" + replyList + "]";
 	}
-	
-	
+
 
 }

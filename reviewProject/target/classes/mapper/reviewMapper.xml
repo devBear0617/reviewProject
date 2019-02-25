@@ -21,11 +21,14 @@
 		<result property="board_date" column="board_date" />
 		<!-- <result property="boardupdate" column="boardupdate" /> -->
 		<result property="member_id" column="member_id" />
+		
 		<association property="memberVO" column="member_id" select="getMember" />
 		<association property="b_movieVO" column="board_num" select="getB_Movie" />
 		<association property="gradeVO" column="board_num" select="getGrade" />
 		<association property="b_tvVO" column="board_num" select="getB_Tv" />
 		<association property="hashtagVO" column="board_num" select="getHashtag" />
+		
+		<collection property="likeList" column="board_num" select="getLike" />
 		<collection property="replyList" column="board_num" select="getReply" />
 	</resultMap>
 	
@@ -181,14 +184,20 @@
 		FROM board_tv
 		WHERE board_num = #{board_num}
 	</select>
+	<select id="getHashtag" parameterType="int" resultType="HashtagVO">
+		SELECT *
+		FROM hashtag
+		WHERE board_num = #{board_num}
+	</select>
+	
 	<select id="getReply" resultType="ReplyVO">
 		SELECT *
 		FROM reply
 		WHERE board_num = #{board_num}
 	</select>
-	<select id="getHashtag" parameterType="int" resultType="HashtagVO">
+	<select id="getLike" resultType="LikeItVO">
 		SELECT *
-		FROM hashtag
+		FROM likeit
 		WHERE board_num = #{board_num}
 	</select>
 
