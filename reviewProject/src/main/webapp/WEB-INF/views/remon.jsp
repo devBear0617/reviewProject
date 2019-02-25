@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-<<<<<<< HEAD
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-=======
 	pageEncoding="UTF-8"%>
->>>>>>> dec970eba130567941842ee11a7c856d59dbab01
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,31 +17,10 @@
 </head>
 <jsp:include page="share/Main_header.jsp" />
 <body>
-<<<<<<< HEAD
-	<h1>맨첫 페이지.</h1>
-	<a href="movie/detail_bar.jsp">ㄱㄱ</a>
-	
-	
-	<br><br>
-	<c:if test="${empty sessionScope.member_id}">
-	<input type="button" value="로그인" 
-		onclick="location.href='/review/mypage/login'">
-	</c:if>
-	
-	<c:if test="${not empty sessionScope.member_id}">
-	<input type="button" value="로그아웃" 
-		onclick="location.href='/review/mypage/logout'">
-	<input type="button" value="정보변경"
-		onclick="location.href='/review/mypage/updateMember'">
-	</c:if>	
-	<br><br>
 
-<!-- 상단바, 로고 -->
-=======
->>>>>>> dec970eba130567941842ee11a7c856d59dbab01
+	<!-- 상단바, 로고 -->
 	<div>
-		<br>
-		<br>
+		<br> <br>
 	</div>
 
 	<div>
@@ -62,7 +37,8 @@
 				<form action="/review/search/main/" id="searchMain">
 					<input type="text" id="query" name="query"
 						style="width: 400px; height: 30px; border-radius: 30px; border-color: #ABF200;">
-					<button style="border-radius: 30px; height: 30px; background-color: #ABF200; color: white;">검색</button>
+					<button
+						style="border-radius: 30px; height: 30px; background-color: #ABF200; color: white;">검색</button>
 				</form>
 			</div>
 			<br>
@@ -112,15 +88,8 @@
 					</tr>
 				</table>
 			</div>
-			<br>
-
-			<!-- 로그인 -->
-			<div>
-				<input type="button" value="로그인"
-					onclick="location.href='/review/mypage/login'"
-					style="width: 100px; height: 30px; border-radius: 30px;"> <br>
-				<br><br>
-			</div>
+			<br> <br>
+			
 		</center>
 	</div>
 </body>
