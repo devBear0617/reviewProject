@@ -10,23 +10,23 @@
 </head>
 <body>
 
-	<div style="background-color: #ABF200; height: 50px;">
+	<div style="background-image:url('resources/image/REMON_bar.png'); width:auto; height: 80px;">
 		<!-- 로그인 -->
 
 		<div style="float: right; margin-top: 10px;">
 			<c:if test="${empty sessionScope.member_id}">
 				<input type="button" value="로그인"
 					onclick="location.href='/review/mypage/login'"
-					style="width: 100px; height: 30px; border-radius: 30px; border-style: none;">
+					style="width: 100px; height: 30px; border-radius: 30px; border-style: none; margin-top: 10px; margin-right: 10px;">
 			</c:if>
 
 			<c:if test="${not empty sessionScope.member_id}">
 				<input type="button" value="로그아웃"
 					onclick="location.href='/review/mypage/logout'"
-					style="width: 100px; height: 30px; border-radius: 30px; border-style: none;">
+					style="width: 100px; height: 30px; border-radius: 30px; border-style: none; margin-top: 10px; margin-right: 10px;">
 				<input type="button" value="정보변경"
 					onclick="location.href='/review/mypage/updateMember'"
-					style="width: 100px; height: 30px; border-radius: 30px; border-style: none;">
+					style="width: 100px; height: 30px; border-radius: 30px; border-style: none; margin-top: 10px; margin-right: 10px;">
 			</c:if>
 
 

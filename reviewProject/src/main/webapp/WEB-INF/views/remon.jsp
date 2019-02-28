@@ -14,6 +14,13 @@
 		});
 	})
 </script>
+<style type="text/css">
+.center {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+</style>
 </head>
 <jsp:include page="share/Main_header.jsp" />
 <body>
@@ -23,74 +30,77 @@
 		<br> <br>
 	</div>
 
-	<div>
-		<center>
-			<!-- 상단바, 로고 -->
-			<div>
-				<a href="movie/detail_bar.jsp"><img alt="REMON_LOGO"
-					src="resources/image/REMON_logo(bigsize).png" style="width: 200px;"></a>
-			</div>
-			<br>
+	<div class="center">
+		<!-- 상단바, 로고 -->
+		<div class="center">
+			<a href="movie/detail_bar.jsp"><img alt="REMON_LOGO"
+				src="resources/image/REMON_logo(bigsize).png" style="width: 200px;"></a>
+		</div>
+		<br>
 
-			<!-- 검색 바 -->
+		<!-- 검색 바 -->
+		<div class="center">
 			<div class='moveBT' data-target="#searchMain">
 				<form action="/review/search/main/" id="searchMain">
 					<input type="text" id="query" name="query"
-						style="width: 400px; height: 30px; border-radius: 30px; border-color: #ABF200;">
-					<button
-						style="border-radius: 30px; height: 30px; background-color: #ABF200; color: white; border-style: none;">검색</button>
+						style="width: 600px; height: 60px; background-image: url('resources/image/REMON_search_bar.png'); border-style: none;">
+					<!-- 				<button
+						style="border-radius: 30px; height: 30px; background-color: #ABF200; color: white; border-style: none;">
+						<img alt="search_btn"
+							src="resources/image/REMON_search_button.png" style="height: 30px;">
+					</button> -->
 				</form>
 			</div>
-			<br>
+		</div>
+		<br>
 
-			<!-- 네비 -->
-			<div>
-				<table>
-					<tr>
-						<td colspan="2"
-							style="background-image: url('resources/image/REMON_mainMovie_BG.png'); width: 500px; height: 220px;">
-							<div class='moveBT' data-target="#movieMain">
-								<form action="/review/movie/main" id="movieMain">
-									<center>
-										<img alt="MOVIE_icon"
-											src="resources/image/REMON_MOVIE_icon(white).png"
-											style="width: 70px; height: 70px;">
-									</center>
-								</form>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="1"
-							style="background-image: url('resources/image/REMON_mainTv_BG.png'); width: 245px; height: 220px;">
-							<div class='moveBT' data-target="#tvMain">
-								<form action="/review/tv/main" id="tvMain">
-									<center>
-										<img alt="TV_icon"
-											src="resources/image/REMON_TV_icon(white).png"
-											style="width: 70px; height: 70px;">
-									</center>
-								</form>
-							</div>
-						</td>
-						<td colspan="1"
-							style="background-image: url('resources/image/REMON_mainGame_BG.png'); width: 245px; height: 220px;">
-							<div class='moveBT' data-target="#gameMain">
-								<form action="/review/game/main" id="gameMain">
-									<center>
-										<img alt="GAME_icon"
-											src="resources/image/REMON_GAME_icon(white).png"
-											style="width: 70px; height: 70px;">
-									</center>
-								</form>
-							</div>
-						</td>
-					</tr>
-				</table>
-			</div>
-			<br> <br>
-			
-		</center>
+		<!-- 네비 -->
+		<div class="center">
+			<table class="center">
+				<tr>
+					<td colspan="2"
+						style="background-image: url('resources/image/REMON_mainMovie_BG.png'); width: 500px; height: 220px;">
+						<div class='moveBT' data-target="#movieMain">
+							<form action="/review/movie/main" id="movieMain">
+								<center>
+									<img alt="MOVIE_icon"
+										src="resources/image/REMON_MOVIE_icon(white).png"
+										style="width: 70px; height: 70px;">
+								</center>
+							</form>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="1"
+						style="background-image: url('resources/image/REMON_mainTv_BG.png'); width: 245px; height: 220px;">
+						<div class='moveBT' data-target="#tvMain">
+							<form action="/review/tv/main" id="tvMain">
+								<center>
+									<img alt="TV_icon"
+										src="resources/image/REMON_TV_icon(white).png"
+										style="width: 70px; height: 70px;">
+								</center>
+							</form>
+						</div>
+					</td>
+					<td colspan="1"
+						style="background-image: url('resources/image/REMON_mainGame_BG.png'); width: 245px; height: 220px;">
+						<div class='moveBT' data-target="#gameMain">
+							<form action="/review/game/main" id="gameMain">
+								<center>
+									<img alt="GAME_icon"
+										src="resources/image/REMON_GAME_icon(white).png"
+										style="width: 70px; height: 70px;">
+								</center>
+							</form>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<br> <br>
+
 	</div>
 </body>
 <jsp:include page="share/footer.jsp" />

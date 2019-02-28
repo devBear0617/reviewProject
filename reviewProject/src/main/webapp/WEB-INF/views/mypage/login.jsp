@@ -5,14 +5,21 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Login_page</title>
+<style type="text/css">
+.center {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+</style>
 </head>
 <jsp:include page="../share/Login_header.jsp" />
 <body>
-	<center>
+	<div class="center">
 		<!-- 테스트 로그인 기능 -->
 		<form action="/review/mypage/login" method="POST" id="loginMember">
 			<br> <br> <br> <br> <br>
-			<table>
+			<table class="center">
 				<tr style="text-align: center;">
 					<td style="width: 90px; height: 30px;">아이디</td>
 					<td style="width: 200px; height: 30px;"><input type="text"
@@ -43,7 +50,7 @@
 			</table>
 			<br> <br> <br> <br> <br>
 		</form>
-	</center>
+	</div>
 </body>
 <jsp:include page="../share/footer.jsp" />
 </html>
