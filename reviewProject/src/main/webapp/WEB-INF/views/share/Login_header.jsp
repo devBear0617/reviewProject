@@ -16,16 +16,13 @@
 </style>
 </head>
 <body>
-
-	<div style="background-image:url('resources/image/REMON_bar.png'); width:auto; height: 80px;">
-		<!-- 로그인 -->
-
+	<!-- 로그인 -->
+	<div class="center"
+		style="background: linear-gradient(to right, #ffe400, #abf200); height: 80px;">
 		<div class="center">
-				<div class="center">
-					<a href="movie/detail_bar.jsp"><img alt="REMON_LOGO"
-						src="resources/image/REMON_logo(white_bigsize).png"
-						style="height: 50px; margin-top: 15px;"></a>
-				</div>
+			<a href="movie/detail_bar.jsp"><img alt="REMON_LOGO"
+				src="resources/image/REMON_logo(white_bigsize).png"
+				style="height: 50px; margin-top: 15px;"></a>
 		</div>
 	</div>
 </body>

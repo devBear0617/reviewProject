@@ -20,6 +20,13 @@
 		<form action="/review/mypage/login" method="POST" id="loginMember">
 			<br> <br> <br> <br> <br>
 			<table class="center">
+				<tr
+					style="text-align: center; background: linear-gradient(to right, #ffe400, #abf200);">
+					<td colspan="2"><h1>로그인 PAGE</h1></td>
+				</tr>
+				<tr>
+					<td colspan="2"><br></td>
+				</tr>
 				<tr style="text-align: center;">
 					<td style="width: 90px; height: 30px;">아이디</td>
 					<td style="width: 200px; height: 30px;"><input type="text"
@@ -48,7 +55,8 @@
 				</tr>
 
 			</table>
-			<br> <br> <br> <br> <br>
+			<br> <br> <br> <br> <br> <br> <br>
+			<br>
 		</form>
 	</div>
 </body>

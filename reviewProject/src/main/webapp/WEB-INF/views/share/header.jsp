@@ -17,7 +17,7 @@
 </head>
 <body>
 	<div class="center"
-		style="background-image: url('resources/image/REMON_bar.png'); width: auto; height: 90px;">
+		style="background: background: -webkit-linear-gradient(to right, #abf200, #ffe400); background: linear-gradient(to right, #abf200, #ffe400);  width: auto; height: 90px;">
 		<!-- 로고 -->
 		<div class="logo"
 			style="float: left; margin-top: 20px; margin-left: 20px;">

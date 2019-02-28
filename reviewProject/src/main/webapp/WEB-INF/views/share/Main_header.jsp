@@ -7,10 +7,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.center {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+</style>
 </head>
 <body>
 
-	<div style="background-image:url('resources/image/REMON_bar.png'); width:auto; height: 80px;">
+	<div class="center"
+		style="background: background: #ffe400; background: -webkit-linear-gradient(to right, #ffe400, #abf200); background: linear-gradient(to right, #ffe400, #abf200); height: 80px;">
 		<!-- 로그인 -->
 
 		<div style="float: right; margin-top: 10px;">
@@ -30,8 +38,7 @@
 			</c:if>
 
 
-			<br>
-			<br>
+			<br> <br>
 		</div>
 	</div>
 </body>
