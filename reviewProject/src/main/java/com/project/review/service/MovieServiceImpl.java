@@ -148,7 +148,14 @@ public class MovieServiceImpl implements MovieService {
 	@Override
 	public void setMovieApi(MovieApiVO movieApiVO) {
 		System.out.println(">>>1");
-		String isMoiveNm = boardDAO.getMovieInfo(movieApiVO.getMovie_nm()).getMovie_nm();
+		String isMoiveNm = null;
+		try {
+			isMoiveNm = boardDAO.getMovieInfo(movieApiVO.getMovie_nm()).getMovie_nm();
+			System.out.println("a : "+isMoiveNm);
+		} catch (Exception e) {
+			System.out.println("isMoiveNm : "+e);
+		}
+		
 		System.out.println(">>>2");
 		System.out.println(isMoiveNm);
 		if (isMoiveNm == null) {
