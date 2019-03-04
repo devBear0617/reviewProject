@@ -15,7 +15,15 @@
 }
 
 .hashtag {
-	
+	height: 20px;
+	width: 100px;
+	background-color: white;
+	border-radius: 5px;
+	text-align: center;
+}
+
+.imgform {
+	width: 40px;
 }
 </style>
 </head>
@@ -29,7 +37,7 @@
 		<jsp:include page="../share/category_bar.jsp" />
 	</div>
 	<!-- 유저프로필, 유저ID, 제목 바 ( O 유저ID | 리뷰 제목              | 날짜 ) -->
-	<div class="center" style="background-color: #F2F2F2">
+	<div class="center" style="background-color: #F2F2F2; height: 50px;">
 		<%-- 
 		<span>${board.memberVO.member_pic}</span> 
 		<span>${board.memberVO.member_name}</span>
@@ -69,7 +77,7 @@
 						</tr>
 					</table>
 				</td>
-				<td>개별점수. <br> ${board.gradeVO.grade_name1} :
+				<td style="border-left: 1px solid gray;">개별점수. <br> ${board.gradeVO.grade_name1} :
 					${board.gradeVO.grade1} <br> ${board.gradeVO.grade_name2} :
 					${board.gradeVO.grade2} <br> ${board.gradeVO.grade_name3} :
 					${board.gradeVO.grade3} <br> ${board.gradeVO.grade_name4} :
@@ -121,25 +129,54 @@
 		</div> --%>
 
 		<!-- 좋아요 , 덧글 수 -->
-		<div style="background-color: #F2F2F2">
-			<h4>좋아요 :</h4>
+		<br>
+		<table class="center">
+			<tr>
+				<td><div style="text-align: left;">
+						<img alt="likeit" src="../resources/image/REMON_like_icon.png"
+							class="imgform"> <span>100</span>
+						<c:forEach items="${board.likeList}" var="like">
+							<span>작성자 : ${like.member_id}, ${like.likeit} </span>
+							<br>
+						</c:forEach>
+						<img alt="reply" src="../resources/image/REMON_comment_icon.png"
+							class="imgform"> <span>7</span>
+					</div></td>
+				<td></td>
+				<td><div style="text-align: right;">
+						<br> <span class="hashtag">#${board.hashtagVO.hashtag1}</span>&nbsp;&nbsp;&nbsp;
+						<span class="hashtag"># ${board.hashtagVO.hashtag2}</span>&nbsp;&nbsp;&nbsp;
+						<span class="hashtag"># ${board.hashtagVO.hashtag3}</span>&nbsp;&nbsp;&nbsp;
+						<span class="hashtag"># ${board.hashtagVO.hashtag4}</span>&nbsp;&nbsp;&nbsp;
+						<span class="hashtag"># ${board.hashtagVO.hashtag5}</span>&nbsp;&nbsp;&nbsp;
+						<span class="hashtag"># ${board.hashtagVO.hashtag6}</span>&nbsp;&nbsp;&nbsp;
+					</div></td>
+			</tr>
+		</table>
+
+
+		<%-- 		<div>
+			<img alt="likeit" src="../resources/image/REMON_like_icon.png"
+				class="imgform"> <span>100</span>
 			<c:forEach items="${board.likeList}" var="like">
 				<span>작성자 : ${like.member_id}, ${like.likeit} </span>
 				<br>
 			</c:forEach>
+			<img alt="reply" src="../resources/image/REMON_comment_icon.png"
+				class="imgform"> <span>7</span>
 		</div>
 
 		<!-- # 최대 6개 -->
-		<div style="color: green;">
-			<br>해시태그<br> <span class="hashtag">#
+		<div>
+			<br>Hashtag<br> <span class="hashtag">#
 				${board.hashtagVO.hashtag1}</span>&nbsp;&nbsp;&nbsp; <span class="hashtag">#
 				${board.hashtagVO.hashtag2}</span>&nbsp;&nbsp;&nbsp; <span class="hashtag">#
 				${board.hashtagVO.hashtag3}</span>&nbsp;&nbsp;&nbsp; <span class="hashtag">#
 				${board.hashtagVO.hashtag4}</span>&nbsp;&nbsp;&nbsp; <span class="hashtag">#
 				${board.hashtagVO.hashtag5}</span>&nbsp;&nbsp;&nbsp; <span class="hashtag">#
-				${board.hashtagVO.hashtag6}</span>
-		</div>
-
+				${board.hashtagVO.hashtag6}</span>&nbsp;&nbsp;&nbsp;
+		</div> --%>
+		<br>
 	</div>
 
 	<!-- 리뷰 content, 영화 간단 정보 -->
