@@ -25,6 +25,7 @@
 		<property name="dataSource" ref="dataSource"/>
 		<property name="typeAliasesPackage" value="com.project.review.vo"/>
 		<property name="mapperLocations" value="classpath:/mapper/*Mapper.xml"/>
+		<!-- <property name="configLocation" value="classpath:/mapper/mybatis-config.xml" /> -->
 	</bean>		
 	
 	<bean id="Mapper" class="org.mybatis.spring.mapper.MapperFactoryBean">

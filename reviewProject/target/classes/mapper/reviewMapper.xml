@@ -63,6 +63,11 @@
 		FROM board
 		WHERE board_num = #{board_num}
 	</select>
+	<select id="getMovieInfo" parameterType="String" resultType="MovieApiVO">
+		SELECT *
+		FROM movie_info
+		WHERE movie_nm = #{movie_nm}
+	</select>
 	
 	
 	<!-- ____게시판 호출______________________________________________________________________ -->
@@ -102,6 +107,10 @@
 	<insert id="insertHashtag" parameterType="HashtagVO">
 		INSERT INTO hashtag(board_num, hashtag1, hashtag2, hashtag3, hashtag4, hashtag5, hashtag6)
 		VALUES(#{board_num}, #{hashtag1}, #{hashtag2}, #{hashtag3}, #{hashtag4}, #{hashtag5}, #{hashtag6})
+	</insert>
+	<insert id="insertMovieInfo" parameterType="MovieApiVO">
+		INSERT INTO movie_info
+		VALUES(#{movie_nm}, to_date(#{open_dt}, 'YYYYMMDD'), #{genre,jdbcType=VARCHAR}, #{nation,jdbcType=VARCHAR}, #{director}, #{actor}, #{poster,jdbcType=VARCHAR})
 	</insert>
 
 	<!-- ____게시글 수정______________________________________________________________________ -->

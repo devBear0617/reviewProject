@@ -1862,6 +1862,7 @@ var ImportManager = function () {
         };
 
         reader.readAsDataURL(blob);
+        console.log(blob);
       });
     }
 
@@ -1879,11 +1880,14 @@ var ImportManager = function () {
       var _this2 = this;
 
       this.eventManager.emit('addImageBlobHook', blob, function (imageUrl, altText) {
-        _this2.eventManager.emit('command', 'AddImage', {
+    	  console.log("_emitAddImageBlobHook"+imageUrl);
+    	  _this2.eventManager.emit('command', 'AddImage', {
           imageUrl: imageUrl,
           altText: altText || blob.name || 'image'
         });
       }, type);
+      console.log("_emitAddImageBlobHook"+imageUrl);
+      console.log("_emitAddImageBlobHook"+altText);
     }
 
     /**
@@ -1960,7 +1964,7 @@ var ImportManager = function () {
 
             var blob = item.name ? item : item.getAsFile(); // Blob or File
             _this3._emitAddImageBlobHook(blob, evData.type);
-
+            console.log("_emitAddImageBlobHook"+blob);
             return false;
           }
 
@@ -2038,7 +2042,7 @@ function dataURItoBlob(dataURI) {
     ia[i] = byteString.charCodeAt(i);
   }
   var blob = new Blob([ab], { type: mimeString });
-
+  console.log("dataURItoBlob : "+blob);
   return blob;
 }
 
@@ -20816,6 +20820,8 @@ var PopupAddImage = function (_LayerPopup) {
         var imageUrl = _this2._$imageUrlInput.val();
         var altText = _this2._$altTextInput.val();
 
+        console.log("okButton : "+imageUrl);
+        
         if (imageUrl) {
           _this2._applyImage(imageUrl, altText);
         } else {
@@ -20831,7 +20837,10 @@ var PopupAddImage = function (_LayerPopup) {
             _this2.eventManager.emit('addImageBlobHook', imageFile, hookCallback, TYPE_UI);
           }
         }
-
+        console.log("okButton2 : "+imageUrl);
+        var fs = new FileReader();
+        console.log("okButton2 imageFile : "+imageFile);
+        console.log("okButton2 imageFileUrl : "+fs.readAsDataURL(imageFile));
         _this2.hide();
       });
 
