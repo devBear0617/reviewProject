@@ -106,6 +106,9 @@
 			--------------------------<br><br>
 			 ${board.board_content}
 			<br><br>--------------------------
+			<br>Thumbnail image
+			<br>${element}
+			<br>---------------------------
 		<br><br>
 			무비 movie_nm: ${board.b_movieVO.movie_nm}
 		<br><br>

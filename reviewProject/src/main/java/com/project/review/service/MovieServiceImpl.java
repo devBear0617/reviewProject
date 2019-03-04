@@ -28,6 +28,13 @@ public class MovieServiceImpl implements MovieService {
 
 	// -- select ---------------------------------------------------------
 	
+	// Jsoup getContent
+	@Override
+	public String getContent(int board_num) {
+		
+		return boardDAO.getContent(board_num);
+	}
+	
 	//게시글 호출
 	@Override
 	public BoardVO getBoardById(int board_num) {

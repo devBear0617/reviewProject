@@ -28,6 +28,8 @@ public interface BoardDAO {
 	
 	/*-------------------------------------------------------*/
 
+	// Jsoup getContent
+	public String getContent(int board_num);
 	
 	// 리플 추가
 	public void insertReply(ReplyVO reply);

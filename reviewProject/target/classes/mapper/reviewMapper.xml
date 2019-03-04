@@ -51,6 +51,13 @@
 		${}				파라미터 값 - 파라미터 변수명과 다르면 인식X, 보안 취약
 	-->
 	
+	<!-- ____Jsoup getContent__________________________________________-->
+	<select id="getContent" parameterType="int" resultType="String">
+		SELECT board_content
+		FROM board
+		WHERE board_num = #{board_num}
+	</select>
+	
 	<!-- ____리플 추가______________________________________________________________________ -->
 	<insert id="insertReply" parameterType="ReplyVO">
 		INSERT INTO reply(board_num, member_id, reply_content)

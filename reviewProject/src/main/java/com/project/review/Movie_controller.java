@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletResponse;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -193,6 +196,15 @@ public class Movie_controller {
 
 		model.addAttribute("board", board_m);
 		model.addAttribute("mApiVO", mApiVO);
+		
+		String content = movieService.getContent(board_num);
+		if (movieService.getContent(board_num) != null) {
+			Document document = Jsoup.parse(content);
+			Element element = document.select("img").first();
+		System.out.println(element);
+				
+			model.addAttribute(element);
+		}
 		
 		return "movie/detail_view";
 	}

@@ -12,6 +12,9 @@ import com.project.review.vo.ReplyVO;
 
 public interface MovieService {
 	
+	// Jsoup getContent
+	public String getContent(int board_num);
+	
 	// insert reply
 	public void insertReply(ReplyVO reply, int board_num, String member_id);
 	
