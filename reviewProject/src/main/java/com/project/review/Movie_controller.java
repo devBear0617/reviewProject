@@ -198,9 +198,9 @@ public class Movie_controller {
 		model.addAttribute("mApiVO", mApiVO);
 		
 		String content = movieService.getContent(board_num);
-		if (content != null) {
-			Document document = Jsoup.parse(content);
-			Element element = document.select("img").first();
+		Document document = Jsoup.parse(content);
+		Element element = document.select("img").first();
+		if (element != null) {
 			String strrrrr = element.attr("src");
 		System.out.println(element);
 		System.out.println(strrrrr);
