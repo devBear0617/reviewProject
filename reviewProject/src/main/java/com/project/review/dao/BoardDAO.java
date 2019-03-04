@@ -16,6 +16,7 @@ public interface BoardDAO {
 	public List<BoardVO> getMovieBoardList();
 	public List<BoardVO> getTvBoardList();
 	public MovieApiVO getMovieInfo(String movie_nm);
+	public int replyCount(int board_num);
 	
 	/*
 		겹치는 내용

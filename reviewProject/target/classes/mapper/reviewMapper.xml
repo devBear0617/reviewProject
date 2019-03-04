@@ -78,6 +78,11 @@
 		FROM movie_info
 		WHERE movie_nm = #{movie_nm}
 	</select>
+	<select id="replyCount" parameterType="int" resultType="int">
+		SELECT COUNT(*)
+		FROM reply
+		WHERE board_num = #{board_num}
+	</select>
 	
 	
 	<!-- ____게시판 호출______________________________________________________________________ -->

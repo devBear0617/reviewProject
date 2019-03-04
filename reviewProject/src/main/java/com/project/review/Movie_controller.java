@@ -212,4 +212,27 @@ public class Movie_controller {
 		
 		return "movie/detail_view";
 	}
+	
+	// ajax 뎃글
+	@RequestMapping(value="/detail_view/{board_num}/reply")
+	public String getReply(@PathVariable int board_num, Model model) {
+		
+		BoardVO board_m = movieService.getBoardById(board_num);
+		model.addAttribute("board", board_m);
+		
+		int replyCount = movieService.replyCount(board_num);
+		model.addAttribute("replyCount", replyCount);
+		
+		return "share/reply";
+	}
+	@RequestMapping(value="/detail_view/{board_num}/reply", method=RequestMethod.POST)
+	public String postReply(@PathVariable int board_num, HttpServletRequest request, Model model) {
+		
+		String reply_content = request.getParameter("reply_content");
+	System.out.print(reply_content);
+		
+		
+		
+		return "redirect:/detail_view/"+board_num+"/reply";
+	}
 }

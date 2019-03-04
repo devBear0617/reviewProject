@@ -60,6 +60,9 @@ function move(e){
 			<div class="items" onclick="move('./detail_view/${board.board_num}')">
 				<table>
 					<tr>
+						<td>${board.board_num}</td>
+					</tr>
+					<tr>
 						<td>${board.board_title}</td>
 					</tr>
 					<tr>

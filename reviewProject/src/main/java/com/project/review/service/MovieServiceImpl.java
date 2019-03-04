@@ -47,6 +47,11 @@ public class MovieServiceImpl implements MovieService {
 		
 		return boardDAO.getBoardById(board_num);
 	}
+	@Override
+	public int replyCount(int board_num) {
+		
+		return boardDAO.replyCount(board_num);
+	}
 	
 	//게시판 호출
 	@Override

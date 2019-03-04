@@ -7,6 +7,24 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
+<script type = "text/javascript" src = "../resources/script/jquery-2.1.1.js"></script>
+<script type = "text/javascript">
+
+$(document).ready(function() {
+	$.ajax({
+		type : "GET",
+		url : "/review/movie/detail_view/${board.board_num}/reply",
+		cache : false,
+		dataType : 'html',
+		success : function(html) {
+			$(".reply").append(html);
+		}
+	})
+});
+
+</script>
+
 </head>
 <body>
 <!-- 유저프로필, 유저ID, 제목 바 ( O 유저ID | 리뷰 제목              | 날짜 ) -->
@@ -129,9 +147,7 @@
 	</div>
 	
 	<!-- 덧글 forEach -->
-	<div style="color: blue;">
-		<br>댓글<br>
-		<jsp:include page="../share/reply.jsp" />
+	<div class="reply">
 	</div>
 	
 	<br><br>
