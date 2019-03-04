@@ -28,6 +28,13 @@ public class MovieServiceImpl implements MovieService {
 
 	// -- select ---------------------------------------------------------
 	
+	// insertThumbnail
+	@Override
+	public void insertThumbnail(String thumbnail) {
+		
+		boardDAO.insertThumbnail(thumbnail);
+	}
+	
 	// Jsoup getContent
 	@Override
 	public String getContent(int board_num) {
@@ -75,16 +82,16 @@ public class MovieServiceImpl implements MovieService {
 	//게시글 추가 (Board & Board_Movie & Garde & Hashtag)
 	@Override
 	public void insertMovie(BoardVO board, Board_MovieVO movie, GradeVO grade, HashtagVO hash, MovieApiVO movieApiVO, String member_id) {
-		System.out.println("1");
+	System.out.println("1");
 		// member 처리
 		board.setMember_id(member_id);
-		System.out.println("2");
+	System.out.println("2");
 		// board테이블 추가
 		boardDAO.insertMovie(board);
-		System.out.println("3");
+	System.out.println("3");
 		// 추가한 board테이블에서 board_num 추출해서 다른 테이블 board_num에 대입
 		movie.setBoard_num(board.getBoard_num());
-		System.out.println("4");
+	System.out.println("4");
 		setMovieApi(movieApiVO);
 		hash.setBoard_num(board.getBoard_num());
 		grade.setBoard_num(board.getBoard_num());

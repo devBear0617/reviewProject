@@ -125,6 +125,16 @@ public class Movie_controller {
 		// 게시글 추가 후 추가한 게시글 확인
 		int board_num = board.getBoard_num();
 		
+		String content = movieService.getContent(board_num);
+		Document document = Jsoup.parse(content);
+		Element element = document.select("img").first();
+		if (element != null) {
+			String thumbnail = element.attr("src");
+		System.out.println(thumbnail);
+				
+			movieService.insertThumbnail(thumbnail);
+		}
+		
 		return "redirect:/movie/detail_view/"+board_num;
 	}
 	// >> 영화 검색----------------------------------
@@ -197,7 +207,7 @@ public class Movie_controller {
 		model.addAttribute("board", board_m);
 		model.addAttribute("mApiVO", mApiVO);
 		
-		String content = movieService.getContent(board_num);
+		/*String content = movieService.getContent(board_num);
 		Document document = Jsoup.parse(content);
 		Element element = document.select("img").first();
 		if (element != null) {
@@ -207,7 +217,7 @@ public class Movie_controller {
 				
 			model.addAttribute("element", element);
 			model.addAttribute("strrrrr", strrrrr);
-		}
+		}*/
 		
 		return "movie/detail_view";
 	}

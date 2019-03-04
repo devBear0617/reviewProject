@@ -28,6 +28,9 @@ public interface BoardDAO {
 	
 	/*-------------------------------------------------------*/
 
+	// insertThumbnail
+	public void insertThumbnail(String thumbnail);
+	
 	// Jsoup getContent
 	public String getContent(int board_num);
 	

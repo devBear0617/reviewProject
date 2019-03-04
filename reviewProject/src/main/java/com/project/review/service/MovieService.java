@@ -12,6 +12,9 @@ import com.project.review.vo.ReplyVO;
 
 public interface MovieService {
 	
+	// insert Thumbnail
+	public void insertThumbnail(String thumbnail);
+	
 	// Jsoup getContent
 	public String getContent(int board_num);
 	
