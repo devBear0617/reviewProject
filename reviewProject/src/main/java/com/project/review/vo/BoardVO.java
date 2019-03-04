@@ -10,26 +10,23 @@ public class BoardVO {
 	private String board_content;
 	private Date board_date;
 	//private Date boardupdate;
-	
 	private String member_id;
 /*	private String member_pw;
 	private String member_name;*/
-	
 	private int lemon_grade;
 	private int recommend;
+	private String thumbnail;
 	
 	private GradeVO gradeVO;
-	
 	private Board_MovieVO b_movieVO;
 	private Board_TvVO b_tvVO;
 	/*private Board_GameVO b_gameVO;*/
-	
 	private MemberVO memberVO;
 	private HashtagVO hashtagVO;
+	
 	private List<LikeItVO> likeList;
 	private List<ReplyVO> replyList;
-	
-	
+	//---------------------------------
 	public int getBoard_num() {
 		return board_num;
 	}
@@ -71,6 +68,12 @@ public class BoardVO {
 	}
 	public void setRecommend(int recommend) {
 		this.recommend = recommend;
+	}
+	public String getThumbnail() {
+		return thumbnail;
+	}
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
 	}
 	public GradeVO getGradeVO() {
 		return gradeVO;
@@ -118,10 +121,9 @@ public class BoardVO {
 	public String toString() {
 		return "BoardVO [board_num=" + board_num + ", board_title=" + board_title + ", board_content=" + board_content
 				+ ", board_date=" + board_date + ", member_id=" + member_id + ", lemon_grade=" + lemon_grade
-				+ ", recommend=" + recommend + ", gradeVO=" + gradeVO + ", b_movieVO=" + b_movieVO + ", b_tvVO="
-				+ b_tvVO + ", memberVO=" + memberVO + ", hashtagVO=" + hashtagVO + ", likeList=" + likeList
-				+ ", replyList=" + replyList + "]";
+				+ ", recommend=" + recommend + ", thumbnail=" + thumbnail + ", gradeVO=" + gradeVO + ", b_movieVO="
+				+ b_movieVO + ", b_tvVO=" + b_tvVO + ", memberVO=" + memberVO + ", hashtagVO=" + hashtagVO
+				+ ", likeList=" + likeList + ", replyList=" + replyList + "]";
 	}
-
-
+	
 }
