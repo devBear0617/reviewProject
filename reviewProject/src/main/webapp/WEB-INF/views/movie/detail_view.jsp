@@ -132,7 +132,7 @@
 		<br>
 		<table class="center">
 			<tr>
-				<td><div style="text-align: left;">
+				<td><div style="text-align: left; padding-left: 10px;">
 						<img alt="likeit" src="../resources/image/REMON_like_icon.png"
 							class="imgform"> <span>100</span>
 						<c:forEach items="${board.likeList}" var="like">
@@ -143,7 +143,7 @@
 							class="imgform"> <span>7</span>
 					</div></td>
 				<td></td>
-				<td><div style="text-align: right;">
+				<td><div style="text-align: right; padding-right: 10px;">
 						<br> <span class="hashtag">#${board.hashtagVO.hashtag1}</span>&nbsp;&nbsp;&nbsp;
 						<span class="hashtag"># ${board.hashtagVO.hashtag2}</span>&nbsp;&nbsp;&nbsp;
 						<span class="hashtag"># ${board.hashtagVO.hashtag3}</span>&nbsp;&nbsp;&nbsp;
