@@ -4,6 +4,9 @@ package com.project.review.service;
 import java.util.Iterator;
 import java.util.List;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,12 +31,7 @@ public class MovieServiceImpl implements MovieService {
 
 	// -- select ---------------------------------------------------------
 	
-	// insertThumbnail
-	@Override
-	public void insertThumbnail(String thumbnail) {
-		
-		boardDAO.insertThumbnail(thumbnail);
-	}
+	
 	
 	// Jsoup getContent
 	@Override
@@ -88,6 +86,21 @@ public class MovieServiceImpl implements MovieService {
 	System.out.println("2");
 		// board테이블 추가
 		boardDAO.insertMovie(board);
+		// 썸네일 추가
+		if (boardDAO.getContent(board.getBoard_num()) != null) {
+			String content = boardDAO.getContent(board.getBoard_num());
+			Document document = Jsoup.parse(content);
+			Element element = document.select("img").first();
+			if (element != null) {
+				String thumbnail = element.attr("src");
+	System.out.println("Thumbnail 이미지 : " + thumbnail);
+				
+				/*board.setBoard_num(board.getBoard_num());*/
+				board.setThumbnail(thumbnail);
+				boardDAO.insertThumbnail(board);
+			}
+		}
+		
 	System.out.println("3");
 		// 추가한 board테이블에서 board_num 추출해서 다른 테이블 board_num에 대입
 		movie.setBoard_num(board.getBoard_num());
@@ -100,6 +113,7 @@ public class MovieServiceImpl implements MovieService {
 		boardDAO.insertGrade(grade);
 		boardDAO.insertB_movie(movie);
 		boardDAO.insertHashtag(hash);
+		
 	}
 	
 	/*@Override

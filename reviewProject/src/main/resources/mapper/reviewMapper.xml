@@ -52,11 +52,7 @@
 		${}				파라미터 값 - 파라미터 변수명과 다르면 인식X, 보안 취약
 	-->
 	
-	<!-- ____insertThumbnail__________________________________________-->
-	<insert id="insertThumbnail" parameterType="String">
-		INSERT INTO board(board_num, thumbnail)
-		VALUES(#{board_num}, #{thumbnail})
-	</insert>
+	
 	
 	<!-- ____Jsoup getContent__________________________________________-->
 	<select id="getContent" parameterType="int" resultType="String">
@@ -126,6 +122,11 @@
 		INSERT INTO movie_info
 		VALUES(#{movie_nm}, to_date(#{open_dt,jdbcType=VARCHAR}, 'YYYYMMDD'), #{genre,jdbcType=VARCHAR}, #{nation,jdbcType=VARCHAR}, #{director}, #{actor}, #{poster,jdbcType=VARCHAR})
 	</insert>
+	<update id="insertThumbnail" parameterType="BoardVO">
+		UPDATE board SET
+			thumbnail = #{thumbnail}
+		WHERE board_num = #{board_num}
+	</update>
 
 	<!-- ____게시글 수정______________________________________________________________________ -->
 	<!-- update -->

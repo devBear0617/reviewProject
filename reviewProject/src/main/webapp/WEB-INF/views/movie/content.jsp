@@ -62,11 +62,14 @@ function move(e){
 					<tr>
 						<td>${board.board_title}</td>
 					</tr>
-					<tr height="120">
+					<tr>
 						<td>${board.member_id}</td>
 					</tr>
 					<tr>
 						<td>${board.board_date}</td>
+					</tr>
+					<tr>
+						<td><img src="${board.thumbnail}"></td>
 					</tr>
 				</table>
 			</div>

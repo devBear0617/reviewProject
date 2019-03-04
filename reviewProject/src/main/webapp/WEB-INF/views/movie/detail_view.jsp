@@ -107,7 +107,7 @@
 			 ${board.board_content}
 			<br><br>--------------------------
 			<br>Thumbnail image
-			<br>${element}
+			<%-- <br>${element} --%>
 			<br><p><img src="${strrrrr}"></p>
 			<br>---------------------------
 		<br><br>

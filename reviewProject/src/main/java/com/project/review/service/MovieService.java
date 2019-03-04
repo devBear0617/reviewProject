@@ -12,8 +12,7 @@ import com.project.review.vo.ReplyVO;
 
 public interface MovieService {
 	
-	// insert Thumbnail
-	public void insertThumbnail(String thumbnail);
+	
 	
 	// Jsoup getContent
 	public String getContent(int board_num);
@@ -29,8 +28,10 @@ public interface MovieService {
 	//insert Board 
 	/*public int addBoard(BoardVO boardVO);*/
 	public void insertMovie(BoardVO board, Board_MovieVO movie, GradeVO grade, HashtagVO hash, MovieApiVO movieApiVO, String member_id);
+	
 	/*update Board*/
 	public void updateMovie(BoardVO board, Board_MovieVO movie, GradeVO grade, HashtagVO hash, MovieApiVO movieApiVO);
+	
 	/*delete Board*/
 	public void deleteMovie(int board_num);
 	

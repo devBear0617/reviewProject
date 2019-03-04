@@ -28,8 +28,7 @@ public interface BoardDAO {
 	
 	/*-------------------------------------------------------*/
 
-	// insertThumbnail
-	public void insertThumbnail(String thumbnail);
+
 	
 	// Jsoup getContent
 	public String getContent(int board_num);
@@ -44,11 +43,14 @@ public interface BoardDAO {
 	public void insertB_movie(Board_MovieVO movie);
 	public void insertHashtag(HashtagVO hash);
 	public void insertMovieInfo(MovieApiVO movieInfo);
+	public void insertThumbnail(BoardVO board);
+	
 	/*update*/
 	public void updateMovie(BoardVO board);
 	public void updateGrade(GradeVO grade);
 	public void updateB_movie(Board_MovieVO movie);
 	public void updateHashtag(HashtagVO hash);
+	
 	/*delete*/
 	public void deleteMovie(int board_num);
 	public void deleteGrade(int board_num);
