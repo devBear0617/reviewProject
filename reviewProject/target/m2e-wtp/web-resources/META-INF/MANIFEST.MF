@@ -1,10 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
 Built-By: user
 Build-Jdk: 1.8.0_171
-=======
-Built-By: kkamdaes
-Build-Jdk: 1.8.0_201
->>>>>>> dec970eba130567941842ee11a7c856d59dbab01
 Created-By: Maven Integration for Eclipse
 

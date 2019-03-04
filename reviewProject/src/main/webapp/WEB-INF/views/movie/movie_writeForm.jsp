@@ -30,7 +30,7 @@
 </STYLE>
 
 <!-- Grade1~4 Star CSS -->
-<link rel="stylesheet" href="resources/script/star.css">
+<link rel="stylesheet" href="resources/css/star.css">
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -75,20 +75,46 @@ $(document).ready(function() {
 	});
 });
 
+//grade_name 미선택시  grade_radio 숨기기
+$(document).ready(function(){	
+	var grade_name1 = $("#grade_name1").val(),
+		grade_name2 = $("#grade_name2").val(),
+		grade_name3 = $("#grade_name3").val(),
+		grade_name4 = $("#grade_name4").val();
+	
+	if(!grade_name1){
+		$("#on_off_grade1").css('visibility','hidden');		
+	}
+	if(!grade_name2){
+		$("#on_off_grade2").css('visibility','hidden');		
+	}
+	if(!grade_name3){
+		$("#on_off_grade3").css('visibility','hidden');		
+	}
+	if(!grade_name4){
+		$("#on_off_grade4").css('visibility','hidden');		
+	}	
+});
+
 // grade_name선택시  grade값 초기화 , grade_name중복불가 
 $(document).ready(function(){	
 	var $select = $("select");
+
 	$select.on("change", function() {
 		
 		//grade 값 초기화 
 		var id = this.id
 		if (id == "grade_name1"){
+			$("#on_off_grade1").css('visibility','visible');
 			$(":radio[name='grade1']").prop("checked", false);
 		}else if(id == "grade_name2"){
+			$("#on_off_grade2").css('visibility','visible');
 			$(":radio[name='grade2']").prop("checked", false);			
 		}else if(id == "grade_name3"){
+			$("#on_off_grade3").css('visibility','visible');
 			$(":radio[name='grade3']").prop("checked", false);			
 		}else{
+			$("#on_off_grade4").css('visibility','visible');
 			$(":radio[name='grade4']").prop("checked", false);			
 		}
 		
@@ -255,6 +281,7 @@ $(document).ready(function() {
 			</optgroup>
 		</select>
 		<div class="rating">
+			<div id = "on_off_grade1">
 			<label> <input type="radio" name="grade1" value="5" /> 
 				<span class="icon">★</span>
 			</label> 
@@ -280,6 +307,7 @@ $(document).ready(function() {
 				<span class="icon">★</span> 
 				<span class="icon">★</span>
 			</label>
+			</div>
 		</div>
 		<br>
 		 개별점수 2. <select name="grade_name2" id="grade_name2" class="select_name">
@@ -311,6 +339,7 @@ $(document).ready(function() {
 		</select>
 		
 		<div class="rating">
+			<div id = "on_off_grade2">
 			<label> <input type="radio" name="grade2" value="5" /> 
 				<span class="icon">★</span>
 			</label>
@@ -336,6 +365,7 @@ $(document).ready(function() {
 				<span class="icon">★</span> 
 				<span class="icon">★</span>
 			</label>
+			</div>
 		</div>
 		<br> 
 		개별점수 3. <select name="grade_name3" id="grade_name3" class="select_name">
@@ -367,6 +397,7 @@ $(document).ready(function() {
 		</select>
 		
 		<div class="rating">
+			<div id = "on_off_grade3">
 			<label> <input type="radio" name="grade3" value="5" /> 
 				<span class="icon">★</span>
 			</label> 
@@ -392,6 +423,7 @@ $(document).ready(function() {
 				<span class="icon">★</span> 
 				<span class="icon">★</span>
 			</label>
+			</div>
 		</div>
 		<br> 
 		개별점수 4. <select name="grade_name4" id="grade_name4" class="select_name">
@@ -423,6 +455,7 @@ $(document).ready(function() {
 		</select>
 		
 		<div class="rating">
+			<div id = "on_off_grade4">
 			<label> <input type="radio" name="grade4" value="5" /> 
 				<span class="icon">★</span>
 			</label> 
@@ -448,7 +481,8 @@ $(document).ready(function() {
 				<span class="icon">★</span> 
 				<span class="icon">★</span>
 			</label>
-		</div>
+			</div>
+		</div>	
 
 		<br>
 		<br> 
