@@ -4,7 +4,7 @@ public class Board_MovieVO {
 	private int b_movie_num;
 	private int board_num;
 	private String movie_nm;
-	
+
 	public int getB_movie_num() {
 		return b_movie_num;
 	}

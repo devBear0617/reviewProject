@@ -119,6 +119,7 @@
 			 	<li>${mApiVO.movie_nm}</li>
 			 	<li>${mApiVO.genre}</li>
 			 	<li>${mApiVO.nation}</li>
+			 	<li><img src="${mApiVO.poster}"> </li>
 			 </ul>
 		</div>
 	</div>

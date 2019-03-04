@@ -36,7 +36,7 @@
 $(document).ready(function() {
 	$("#movie_nm").autocomplete({
 		minLength: 1,
-        delay:50,
+        delay:30,
 		source : function(request, response) {
 			$.ajax({
 				url : "./autocomplete",
@@ -46,14 +46,30 @@ $(document).ready(function() {
 					movie_nm : request.term
                 },
 				success : function(data) {
-					var movieNmObject = data.movieNmObject;
-					response(data.movieNmObject);
+					response(
+						$.map(data, function(item) {
+							item.title = item.title.replace(/<b>/gi,"").replace(/<\/b>/gi,"");
+							return {
+								label: item.title,
+		                		value: item.title,
+		                		director: item.director,
+		                		actor: item.actor,
+		                		poster: item.image
+		                   	};
+		               	})
+	               	)
 				},
 				error : function(data) {
 					console.log("에러");
 				}
 			});
-		}
+		},select : function (event, ui){
+			$("#movie_poster").attr("src",ui.item.poster);
+       		$("#movie_poster").show();
+       		$("#poster").val(ui.item.poster);
+       		$("#director").val(ui.item.director);
+       		$("#actor").val(ui.item.actor);
+       	}
 	});
 });
 
@@ -159,7 +175,6 @@ $(document).ready(function() {
 8 해시테그 1~6
 9 리뷰 영화의 정보 (api)
  -->
-
 	<h1>새글작성.</h1>
 	<form action="/review/movie/movie_write" method="post" id="movie_write">
 		<br> 제목 :  <input type="text" name="board_title"> <br>
@@ -189,9 +204,11 @@ $(document).ready(function() {
 
 		<br>
 		<br> 
-		
 		무비: <input type="text" id="movie_nm" name="movie_nm">
-
+		<input type="hidden" id="director" name="director">
+		<input type="hidden" id="actor" name="actor">
+		<input type="hidden" id="poster" name="poster">
+		<img id="movie_poster" src="#">
 		<br>
 		<br>
 		 
@@ -452,6 +469,7 @@ $(document).ready(function() {
 		// contents.value = editor.getMarkdown(); //markdown 저장
 		contents.value = editor.getHtml(); //html 저장		
 		$("option").prop("disabled" , false);//grade_name disabled 해제
+		
 		alert(contents.value);
 	});
 </script>

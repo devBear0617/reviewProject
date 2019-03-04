@@ -67,18 +67,21 @@ public class MovieServiceImpl implements MovieService {
 	
 	//게시글 추가 (Board & Board_Movie & Garde & Hashtag)
 	@Override
-	public void insertMovie(BoardVO board, Board_MovieVO movie, GradeVO grade, 
-			HashtagVO hash, String member_id) {
-		
+	public void insertMovie(BoardVO board, Board_MovieVO movie, GradeVO grade, HashtagVO hash, MovieApiVO movieApiVO, String member_id) {
+		System.out.println("1");
 		// member 처리
 		board.setMember_id(member_id);
-
+		System.out.println("2");
 		// board테이블 추가
 		boardDAO.insertMovie(board);
+		System.out.println("3");
 		// 추가한 board테이블에서 board_num 추출해서 다른 테이블 board_num에 대입
 		movie.setBoard_num(board.getBoard_num());
+		System.out.println("4");
+		setMovieApi(movieApiVO);
 		hash.setBoard_num(board.getBoard_num());
 		grade.setBoard_num(board.getBoard_num());
+		
 		// 대입한 board_num으로 다른 테이블들도 insert
 		boardDAO.insertGrade(grade);
 		boardDAO.insertB_movie(movie);
@@ -137,17 +140,36 @@ public class MovieServiceImpl implements MovieService {
 	
 	// -- api ---------------------------------------------------------
 	@Override
-	public JsonObject searchMovie(String movie_nm) {
-		JsonArray jsonArray = movieApiDAO.searchMovie(movie_nm);
+	public JsonArray searchMovie(String movie_nm) {
 		
-		return movieApiDAO.getMovieNmLsit(jsonArray);
+		return movieApiDAO.getMovieArray(movie_nm);
+	}
+	
+	@Override
+	public void setMovieApi(MovieApiVO movieApiVO) {
+		System.out.println(">>>1");
+		String isMoiveNm = boardDAO.getMovieInfo(movieApiVO.getMovie_nm()).getMovie_nm();
+		System.out.println(">>>2");
+		System.out.println(isMoiveNm);
+		if (isMoiveNm == null) {
+			System.out.println(">>>3");
+			MovieApiVO movieInfo = movieApiDAO.getMovieApi(movieApiVO);
+			System.out.println(">>>4");
+			if (movieInfo != null) {
+				System.out.println(">>!null");
+				boardDAO.insertMovieInfo(movieInfo);
+			}else {
+				boardDAO.insertMovieInfo(movieApiVO);
+			}
+		}
+		System.out.println(">>>5");
 	}
 	
 	// 영화 기본 정보 호출
 	@Override
 	public MovieApiVO getMovieInfo(String movie_nm) {
-		JsonArray jsonArray = movieApiDAO.searchMovie(movie_nm);
 		
-		return movieApiDAO.getMovie(jsonArray);
+		return boardDAO.getMovieInfo(movie_nm);
 	}
+
 }

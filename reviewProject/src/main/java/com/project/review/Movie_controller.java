@@ -64,11 +64,9 @@ public class Movie_controller {
 			model.addAttribute("user", user);
 		
 			return "movie/main";
-			
-		} else {
-			
-			return "movie/main";	
 		}
+		
+		return "movie/main";	
 	}
 
 	// >> 상세 카테고리----------------------------------
@@ -110,12 +108,16 @@ public class Movie_controller {
 
 //>> 게시글 작성 완료 (상세페이지 이동)----------------------------------
 	@RequestMapping(value="/movie_write", method=RequestMethod.POST)
-	public String movie_write(BoardVO board, Board_MovieVO movie, GradeVO grade, 
-			HashtagVO hash, HttpSession session, Model model) {		
+	public String movie_write(BoardVO board, Board_MovieVO movie, GradeVO grade, HashtagVO hash, MovieApiVO movieApiVO, HttpSession session) {		
+		System.out.println("nm : "+movie.getMovie_nm());
+		System.out.println("api nm : "+movieApiVO.getMovie_nm());
+		System.out.println("api dr : "+movieApiVO.getDirector());
+		System.out.println("api actor : "+movieApiVO.getActor());
+		System.out.println("api poster : "+movieApiVO.getPoster());
 		
 		// 게시글 추가 서비스
 		String member_id = (String)session.getAttribute("member_id");
-		movieService.insertMovie(board, movie, grade, hash, member_id);
+		movieService.insertMovie(board, movie, grade, hash, movieApiVO, member_id);
 		
 		// 게시글 추가 후 추가한 게시글 확인
 		int board_num = board.getBoard_num();
@@ -125,7 +127,7 @@ public class Movie_controller {
 	// >> 영화 검색----------------------------------
 	@RequestMapping("/autocomplete")
 	public void searchBook(String movie_nm, HttpServletResponse response) throws IOException {
-		response.setContentType("text/html;charset=UTF-8"); 
+		response.setContentType("text/html;charset=UTF-8");
 		response.getWriter().print(movieService.searchMovie(movie_nm));
 	}
 

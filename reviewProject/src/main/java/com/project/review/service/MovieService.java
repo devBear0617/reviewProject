@@ -3,7 +3,6 @@ package com.project.review.service;
 import java.util.List;
 
 import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import com.project.review.vo.BoardVO;
 import com.project.review.vo.Board_MovieVO;
 import com.project.review.vo.GradeVO;
@@ -23,15 +22,14 @@ public interface MovieService {
 	
 	//insert Board 
 	/*public int addBoard(BoardVO boardVO);*/
-	public void insertMovie(BoardVO board, Board_MovieVO movie, GradeVO grade, 
-			HashtagVO hash, String member_id);
+	public void insertMovie(BoardVO board, Board_MovieVO movie, GradeVO grade, HashtagVO hash, MovieApiVO movieApiVO, String member_id);
 	/*update Board*/
 	public void updateMovie(BoardVO board, Board_MovieVO movie, GradeVO grade, HashtagVO hash);
 	/*delete Board*/
 	public void deleteMovie(int board_num);
 	
 	//MovieApi
-	public JsonObject searchMovie(String movie_nm);
+	public JsonArray searchMovie(String movie_nm);
+	public void setMovieApi(MovieApiVO movieApiVO);
 	public MovieApiVO getMovieInfo(String movie_nm);
-	
 }

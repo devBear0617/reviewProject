@@ -6,6 +6,7 @@ import com.project.review.vo.BoardVO;
 import com.project.review.vo.Board_MovieVO;
 import com.project.review.vo.GradeVO;
 import com.project.review.vo.HashtagVO;
+import com.project.review.vo.MovieApiVO;
 import com.project.review.vo.ReplyVO;
 
 public interface BoardDAO {
@@ -14,6 +15,7 @@ public interface BoardDAO {
 	public List<BoardVO> getBoardList();
 	public List<BoardVO> getMovieBoardList();
 	public List<BoardVO> getTvBoardList();
+	public MovieApiVO getMovieInfo(String movie_nm);
 	
 	/*
 		겹치는 내용
@@ -36,6 +38,7 @@ public interface BoardDAO {
 	public void insertGrade(GradeVO grade);
 	public void insertB_movie(Board_MovieVO movie);
 	public void insertHashtag(HashtagVO hash);
+	public void insertMovieInfo(MovieApiVO movieInfo);
 	/*update*/
 	public void updateMovie(BoardVO board);
 	public void updateGrade(GradeVO grade);

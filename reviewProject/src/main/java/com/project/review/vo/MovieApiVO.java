@@ -1,31 +1,24 @@
 package com.project.review.vo;
 
-import java.util.Date;
-
 public class MovieApiVO {
-	private int movie_cd;
 	private String movie_nm;
-	private Date open_dt;
+	private String open_dt;
 	private String genre;
 	private String nation;
-	private String people;
+	private String director;
+	private String actor;
+	private String poster;
 	
-	public int getMovie_cd() {
-		return movie_cd;
-	}
-	public void setMovie_cd(int movie_cd) {
-		this.movie_cd = movie_cd;
-	}
 	public String getMovie_nm() {
 		return movie_nm;
 	}
 	public void setMovie_nm(String movie_nm) {
 		this.movie_nm = movie_nm;
 	}
-	public Date getOpen_dt() {
+	public String getOpen_dt() {
 		return open_dt;
 	}
-	public void setOpen_dt(Date open_dt) {
+	public void setOpen_dt(String open_dt) {
 		this.open_dt = open_dt;
 	}
 	public String getGenre() {
@@ -40,16 +33,28 @@ public class MovieApiVO {
 	public void setNation(String nation) {
 		this.nation = nation;
 	}
-	public String getPeople() {
-		return people;
+	public String getDirector() {
+		return director;
 	}
-	public void setPeople(String people) {
-		this.people = people;
+	public void setDirector(String director) {
+		this.director = director;
+	}
+	public String getActor() {
+		return actor;
+	}
+	public void setActor(String actor) {
+		this.actor = actor;
+	}
+	public String getPoster() {
+		return poster;
+	}
+	public void setPoster(String poster) {
+		this.poster = poster;
 	}
 	
 	@Override
 	public String toString() {
-		return "MovieApiVO [movie_cd=" + movie_cd + ", movie_nm=" + movie_nm + ", open_dt=" + open_dt + ", genre="
-				+ genre + ", nation=" + nation + ", people=" + people + "]";
+		return "MovieApiVO [movie_nm=" + movie_nm + ", open_dt=" + open_dt + ", genre=" + genre + ", nation=" + nation
+				+ ", director=" + director + ", actor=" + actor + ", poster=" + poster + "]";
 	}
 }
