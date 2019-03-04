@@ -24,7 +24,7 @@ public interface MovieService {
 	/*public int addBoard(BoardVO boardVO);*/
 	public void insertMovie(BoardVO board, Board_MovieVO movie, GradeVO grade, HashtagVO hash, MovieApiVO movieApiVO, String member_id);
 	/*update Board*/
-	public void updateMovie(BoardVO board, Board_MovieVO movie, GradeVO grade, HashtagVO hash);
+	public void updateMovie(BoardVO board, Board_MovieVO movie, GradeVO grade, HashtagVO hash, MovieApiVO movieApiVO);
 	/*delete Board*/
 	public void deleteMovie(int board_num);
 	

@@ -36,7 +36,7 @@
 $(document).ready(function() {
 	$("#movie_nm").autocomplete({
 		minLength: 1,
-        delay:50,
+        delay:30,
 		source : function(request, response) {
 			$.ajax({
 				url : "../autocomplete",
@@ -46,14 +46,30 @@ $(document).ready(function() {
 					movie_nm : request.term
                 },
 				success : function(data) {
-					var movieNmObject = data.movieNmObject;
-					response(data.movieNmObject);
+					response(
+						$.map(data, function(item) {
+							item.title = item.title.replace(/<b>/gi,"").replace(/<\/b>/gi,"");
+							return {
+								label: item.title,
+		                		value: item.title,
+		                		director: item.director,
+		                		actor: item.actor,
+		                		poster: item.image
+		                   	};
+		               	})
+	               	)
 				},
 				error : function(data) {
 					console.log("에러");
 				}
 			});
-		}
+		},select : function (event, ui){
+			$("#movie_poster").attr("src",ui.item.poster);
+       		$("#movie_poster").show();
+       		$("#poster").val(ui.item.poster);
+       		$("#director").val(ui.item.director);
+       		$("#actor").val(ui.item.actor);
+       	}
 	});
 });
 
@@ -200,8 +216,11 @@ $(document).ready(function() {
 		<br>
 		<br> 
 		
-		무비 : <input type="text" id="movie_nm" name="movie_nm" value="${board.b_movieVO.movie_nm}"> 
-		
+		무비 : <input type="text" id="movie_nm" name="movie_nm" value="${mApiVO.movie_nm}"> 
+		<input type="hidden" id="director" name="director" value="${mApiVO.director}" >
+		<input type="hidden" id="actor" name="actor" value="${mApiVO.actor}" >
+		<input type="hidden" id="poster" name="poster" value="${mApiVO.poster}" >
+		<img id="movie_poster" src="${mApiVO.poster}">
 		<br>
 		<br> 
 		

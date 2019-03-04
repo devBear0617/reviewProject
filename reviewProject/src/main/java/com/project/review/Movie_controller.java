@@ -140,15 +140,18 @@ public class Movie_controller {
 	@RequestMapping(value="/movie_updateForm/{board_num}")
 	public String movie_updateForm(@PathVariable int board_num, Model model) {
 		BoardVO board_m = movieService.getBoardById(board_num);
+		MovieApiVO mApiVO = movieService.getMovieInfo(board_m.getB_movieVO().getMovie_nm());
+		
 		model.addAttribute("board", board_m);
+		model.addAttribute("mApiVO", mApiVO);
 		
 		return "movie/movie_updateForm";
 	}
 	
 	// >> 게시글 수정 완료 (상세페이지 이동)----------------------------------	
 	@RequestMapping(value="/movie_update/{board_num}", method=RequestMethod.POST)
-	public String movie_update(BoardVO board, Board_MovieVO movie, GradeVO grade, HashtagVO hash, Model model) {
-		movieService.updateMovie(board, movie, grade, hash);
+	public String movie_update(BoardVO board, Board_MovieVO movie, GradeVO grade, HashtagVO hash, MovieApiVO movieApiVO, Model model) {
+		movieService.updateMovie(board, movie, grade, hash, movieApiVO);
 		movieService.getMovieInfo(movie.getMovie_nm());
 			
 		int board_num = board.getBoard_num();

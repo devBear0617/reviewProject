@@ -115,7 +115,7 @@ public class MovieServiceImpl implements MovieService {
 
 	//게시글 수정 (Board & Board_Movie & Garde & Hashtag)
 	@Override
-	public void updateMovie(BoardVO board, Board_MovieVO movie, GradeVO grade, HashtagVO hash) {
+	public void updateMovie(BoardVO board, Board_MovieVO movie, GradeVO grade, HashtagVO hash, MovieApiVO movieApiVO) {
 		// 현재 저장되어있는 baord_num을 다른 VO에 대입
 		board.setBoard_num(board.getBoard_num());
 		movie.setBoard_num(board.getBoard_num());
@@ -126,6 +126,7 @@ public class MovieServiceImpl implements MovieService {
 		boardDAO.updateB_movie(movie);
 		boardDAO.updateGrade(grade);
 		boardDAO.updateHashtag(hash);
+		setMovieApi(movieApiVO);
 	}
 
 	@Override
