@@ -63,6 +63,8 @@ $(document).ready(function() {
 					console.log("에러");
 				}
 			});
+		},focus : function (event, ui){
+			return false;
 		},select : function (event, ui){
 			$("#movie_poster").attr("src",ui.item.poster);
        		$("#movie_poster").show();

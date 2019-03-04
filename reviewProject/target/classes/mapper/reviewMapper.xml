@@ -110,7 +110,7 @@
 	</insert>
 	<insert id="insertMovieInfo" parameterType="MovieApiVO">
 		INSERT INTO movie_info
-		VALUES(#{movie_nm}, to_date(#{open_dt}, 'YYYYMMDD'), #{genre,jdbcType=VARCHAR}, #{nation,jdbcType=VARCHAR}, #{director}, #{actor}, #{poster,jdbcType=VARCHAR})
+		VALUES(#{movie_nm}, to_date(#{open_dt,jdbcType=VARCHAR}, 'YYYYMMDD'), #{genre,jdbcType=VARCHAR}, #{nation,jdbcType=VARCHAR}, #{director}, #{actor}, #{poster,jdbcType=VARCHAR})
 	</insert>
 
 	<!-- ____게시글 수정______________________________________________________________________ -->
