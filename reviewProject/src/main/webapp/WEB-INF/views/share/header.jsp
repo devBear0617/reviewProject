@@ -37,7 +37,7 @@
 		</div>
 
 		<!-- 마이페이지 -->
-		<div style="float: right; margin-top: 10px; margin-right: 10px;">
+		<div style="float: right; margin-top: 30px; margin-right: 20px;">
 			<c:if test="${empty sessionScope.member_id}">
 				<input type="button" value="로그인"
 					onclick="location.href='/review/mypage/login'"
