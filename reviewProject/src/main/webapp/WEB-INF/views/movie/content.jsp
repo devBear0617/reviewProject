@@ -15,6 +15,7 @@ function move(e){
 	location.href = e;
 }
 
+
 </script> 
 
 <style type="text/css">
@@ -70,6 +71,17 @@ function move(e){
 					</tr>
 					<tr>
 						<td>${board.board_date}</td>
+					</tr>
+					<tr>
+						<td>댓글count: 
+							<c:forEach items="${board_replyList}" var="reply" varStatus="status">
+								<c:if test="${reply.board_num == board.board_num}">
+									<c:if test="${status.last == true}">
+										${status.count}
+									</c:if>
+								</c:if>
+							</c:forEach>
+						</td>
 					</tr>
 					<tr>
 						<td><img src="${board.thumbnail}"></td>

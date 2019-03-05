@@ -92,8 +92,12 @@ public class Movie_controller {
 	// >> 게시판 출력 ----------------------------------
 	@RequestMapping(value="/contentView")
 	public String contentView(HttpServletRequest request, Model model) {
+		
 		List<BoardVO> board_list = movieService.getMovieBoardList();
 		model.addAttribute("board_list", board_list);
+		
+		List<ReplyVO> board_replyList = movieService.getMovieBoardReplyList();
+		model.addAttribute("board_replyList", board_replyList);
 		
 		return "movie/content";
 	}
@@ -198,6 +202,7 @@ public class Movie_controller {
 		model.addAttribute("board", board_m);
 		model.addAttribute("mApiVO", mApiVO);
 		
+		// 썸네일 확인
 		String content = movieService.getContent(board_num);
 		Document document = Jsoup.parse(content);
 		Element element = document.select("img").first();

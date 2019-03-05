@@ -64,7 +64,11 @@ public class MovieServiceImpl implements MovieService {
 		
 		return boardDAO.getMovieBoardList();
 	}
-
+	@Override
+	public List<ReplyVO> getMovieBoardReplyList() {
+		
+		return boardDAO.getMovieBoardReplyList();
+	}
 	
 	
 	// -- insert ---------------------------------------------------------

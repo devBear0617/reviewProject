@@ -25,6 +25,7 @@ public interface MovieService {
 	public List<BoardVO> getBoardList();
 	public List<BoardVO> getMovieBoardList();
 	public int replyCount(int board_num);
+	public List<ReplyVO> getMovieBoardReplyList();
 	
 	//insert Board 
 	/*public int addBoard(BoardVO boardVO);*/

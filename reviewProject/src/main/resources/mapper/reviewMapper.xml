@@ -39,6 +39,16 @@
 <!-- 		<result property="board_content" column="board_content" /> -->
 		<result property="board_date" column="board_date" />
 		<result property="member_id" column="member_id" />
+		
+		<association property="b_movieVO" column="board_num" select="getB_Movie" />
+	</resultMap>
+	
+	<resultMap id="Movie_Reply" type="ReplyVO">
+		<id property="reply_num" column="reply_num" />
+		<result property="board_num" column="board_num" />
+		<result property="member_id" column="member_id" />
+		<result property="reply_content" column="reply_content" />
+		
 		<association property="b_movieVO" column="board_num" select="getB_Movie" />
 	</resultMap>
 	
@@ -95,6 +105,11 @@
 		FROM board_movie m, board b
 		WHERE m.board_num = b.board_num
 		ORDER BY m.board_num DESC
+	</select>
+	<select id="getMovieBoardReplyList" resultMap="Movie_Reply">
+		SELECT *
+		FROM board_movie m, reply r
+		WHERE m.board_num = r.board_num
 	</select>
 	<select id="getTvBoardList" resultMap="Board">
 		SELECT *
