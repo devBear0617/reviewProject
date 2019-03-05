@@ -22,7 +22,7 @@
 		<div class="logo"
 			style="float: left; margin-top: 20px; margin-left: 20px;">
 			<a href="movie/detail_bar.jsp"><img alt="REMON_LOGO"
-				src="resources/image/REMON_logo(bigsize).png" style="height: 50px;"></a>
+				src="../resources/image/REMON_logo(bigsize).png" style="height: 50px;"></a>
 		</div>
 
 		<!-- 검색 바 -->

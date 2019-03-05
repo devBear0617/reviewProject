@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div style="background-image:url('resources/image/REMON_footer.png'); height:100px;">
+	<div style="background-image:url('../resources/image/REMON_footer.png'); height:100px;">
 	</div>
 </body>
 </html>

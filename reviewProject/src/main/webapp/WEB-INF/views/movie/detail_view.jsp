@@ -14,6 +14,11 @@
 	text-align: center;
 }
 
+.center_txtnon {
+	margin-left: auto;
+	margin-right: auto;
+}
+
 .hashtag {
 	height: 20px;
 	width: 100px;
@@ -77,11 +82,11 @@
 						</tr>
 					</table>
 				</td>
-				<td style="border-left: 1px solid gray;">개별점수. <br> ${board.gradeVO.grade_name1} :
-					${board.gradeVO.grade1} <br> ${board.gradeVO.grade_name2} :
-					${board.gradeVO.grade2} <br> ${board.gradeVO.grade_name3} :
-					${board.gradeVO.grade3} <br> ${board.gradeVO.grade_name4} :
-					${board.gradeVO.grade4} <br></td>
+				<td style="border-left: 1px solid gray;">개별점수. <br>
+					${board.gradeVO.grade_name1} : ${board.gradeVO.grade1} <br>
+					${board.gradeVO.grade_name2} : ${board.gradeVO.grade2} <br>
+					${board.gradeVO.grade_name3} : ${board.gradeVO.grade3} <br>
+					${board.gradeVO.grade_name4} : ${board.gradeVO.grade4} <br></td>
 
 			</tr>
 		</table>
@@ -178,10 +183,39 @@
 		</div> --%>
 		<br>
 	</div>
-
+	<br>
 	<!-- 리뷰 content, 영화 간단 정보 -->
-	<div style="border-color: red;">
-		<!-- 리뷰내용 -->
+	<div class="center">
+
+		<table class="center">
+			<tr>
+				<td colspan="2">
+					<div>
+						<br>
+						<h2>리뷰내용:</h2>
+						<br> --------------------------<br> <br>
+						${board.board_content} <br> <br>--------------------------
+						<br> <br> 무비 movie_nm: ${board.b_movieVO.movie_nm} <br>
+						<br>
+					</div>
+				</td>
+				<td style="border-left: 1px solid #F2F2F2;"><div
+						style="padding-left: 20px;">
+						영화 정보:
+						<ul style="list-style: none;">
+							<li>${mApiVO.movie_nm}</li>
+							<li>${mApiVO.genre}</li>
+							<li>${mApiVO.nation}</li>
+						</ul>
+					</div></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</table>
+		<%-- <!-- 리뷰내용 -->
 		<div>
 			<br>
 			<h2>리뷰내용:</h2>
@@ -189,7 +223,6 @@
 			${board.board_content} <br> <br>--------------------------
 			<br> <br> 무비 movie_nm: ${board.b_movieVO.movie_nm} <br>
 			<br>
-
 		</div>
 
 		<!-- 영화 간단 정보 (영화 제목, 장르, 감독, 개봉일시) -->
@@ -200,34 +233,42 @@
 				<li>${mApiVO.genre}</li>
 				<li>${mApiVO.nation}</li>
 			</ul>
-		</div>
+		</div> --%>
 	</div>
-
+	<br>
+	<hr color="#F2F2F2">
 	<!-- 덧글 forEach -->
-	<div style="color: blue;">
-		<br>댓글<br>
+	<div class="center_txtnon">
+		<h3>&nbsp;&nbsp;댓글 | REPLY</h3>
 		<jsp:include page="../share/reply.jsp" />
 	</div>
 
 	<br>
+	<hr width="400px;">
 	<br>
 
-	<%-- 글번 : ${board.board_num} --%>
+	<div class="center">
+		<%-- 글번 : ${board.board_num} --%>
 
-	<input type="button" value="목록"
-		onclick="location.href='/review/movie/main'">
+		<input type="button" value="목록"
+			onclick="location.href='/review/movie/main'">
+
+		<c:if test="${sessionScope.member_id == board.member_id}">
+
+			<input type="button" value="수정"
+				onclick="location.href='/review/movie/movie_updateForm/${board.board_num}'">
+			<form action="/review/movie/movie_delete/${board.board_num}"
+				method="post" id="movie_delete">
+				<input type="submit" value="삭제">
+			</form>
+
+		</c:if>
+	</div>
+
 	<br>
 
-	<c:if test="${sessionScope.member_id == board.member_id}">
-
-		<input type="button" value="수정"
-			onclick="location.href='/review/movie/movie_updateForm/${board.board_num}'">
-	&nbsp;&nbsp;
-	<form action="/review/movie/movie_delete/${board.board_num}"
-			method="post" id="movie_delete">
-			<input type="submit" value="삭제">
-		</form>
-
-	</c:if>
+	<div>
+		<jsp:include page="../share/footer.jsp" />
+	</div>
 </body>
 </html>
