@@ -18,6 +18,7 @@ import com.project.review.vo.BoardVO;
 import com.project.review.vo.Board_MovieVO;
 import com.project.review.vo.GradeVO;
 import com.project.review.vo.HashtagVO;
+import com.project.review.vo.LikeItVO;
 import com.project.review.vo.MovieApiVO;
 import com.project.review.vo.ReplyVO;
 
@@ -52,6 +53,12 @@ public class MovieServiceImpl implements MovieService {
 		
 		return boardDAO.replyCount(board_num);
 	}
+	@Override
+	public int likeCount(int board_num) {
+		
+		return boardDAO.likeCount(board_num);
+	}
+	
 	
 	//게시판 호출
 	@Override
@@ -69,20 +76,59 @@ public class MovieServiceImpl implements MovieService {
 		
 		return boardDAO.getMovieBoardReplyList();
 	}
+	@Override
+	public List<LikeItVO> getMovieBoardLikeList() {
+		
+		return boardDAO.getMovieBoardLikeList();
+	}
 	
 	
 	// -- insert ---------------------------------------------------------
 	
-	// 리플 추가
+	// likeItMinus
 	@Override
+	public void likeItMinus(LikeItVO likeVO, int board_num, String member_id) {
+			
+		board_num = likeVO.getBoard_num();
+		likeVO.setBoard_num(board_num);
+		likeVO.setMember_id(member_id);
+			
+		boardDAO.likeItMinus(likeVO);
+	}
+	
+	// likeItPlus
+	@Override
+	public void likeItPlus(LikeItVO likeVO, int board_num, String member_id) {
+		
+		board_num = likeVO.getBoard_num();
+		likeVO.setBoard_num(board_num);
+		likeVO.setMember_id(member_id);
+		
+		boardDAO.likeItPlus(likeVO);
+	}
+	
+	// 리플 추가
+	/*@Override
 	public void insertReply(ReplyVO reply, int board_num, String member_id) {
 		
 		// 보드넘 대입
-		/*board_num = reply.getBoard_num();*/
+		board_num = reply.getBoard_num();
 		reply.setBoard_num(board_num);
 		reply.setMember_id(member_id);
 		// 리플 추가
 		boardDAO.insertReply(reply);
+		
+	}*/
+	@Override
+	public void insertReply(ReplyVO replyVO, String reply, int board_num, String member_id) {
+		
+		// 보드넘 대입
+		board_num = replyVO.getBoard_num();
+		replyVO.setBoard_num(board_num);
+		replyVO.setMember_id(member_id);
+		replyVO.setReply_content(reply);
+		// 리플 추가
+		boardDAO.insertReply(replyVO);
 		
 	}
 	

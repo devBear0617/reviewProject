@@ -30,6 +30,7 @@ import com.project.review.vo.BoardVO;
 import com.project.review.vo.Board_MovieVO;
 import com.project.review.vo.GradeVO;
 import com.project.review.vo.HashtagVO;
+import com.project.review.vo.LikeItVO;
 import com.project.review.vo.MemberVO;
 import com.project.review.vo.MovieApiVO;
 import com.project.review.vo.ReplyVO;
@@ -60,9 +61,8 @@ public class Movie_controller {
 	@RequestMapping(value="/main")
 	public String movie(HttpServletRequest request, HttpSession session, Model model) {
 		
-		if ((String)session.getAttribute("member_id") != null) {
-			String user_id = (String)session.getAttribute("member_id");
-		
+		String user_id = (String)session.getAttribute("member_id");
+		if (user_id != null) {
 			MemberVO user = memberService.MemberInfo(user_id);
 			model.addAttribute("user", user);
 		
@@ -98,6 +98,9 @@ public class Movie_controller {
 		
 		List<ReplyVO> board_replyList = movieService.getMovieBoardReplyList();
 		model.addAttribute("board_replyList", board_replyList);
+		
+		List<LikeItVO> board_likeList = movieService.getMovieBoardLikeList();
+		model.addAttribute("board_likeList", board_likeList);
 		
 		return "movie/content";
 	}
@@ -182,7 +185,7 @@ public class Movie_controller {
 	
 	// -- 상세페이지 ---------------------------------------------------------
 	// >> reply 입력 ----------------------------------
-	@RequestMapping(value="/insert_Reply/{board_num}", method=RequestMethod.POST)
+	/*@RequestMapping(value="/insert_Reply/{board_num}", method=RequestMethod.POST)
 	public String insert_Reply(@PathVariable int board_num, HttpSession session, 
 			ReplyVO reply, Model model) {
 		
@@ -191,7 +194,7 @@ public class Movie_controller {
 		
 		return "redirect:/movie/detail_view/"+board_num;
 	}
-	
+	*/
 
 	// >> 게시글 출력 ----------------------------------
 	@RequestMapping(value="/detail_view/{board_num}")
@@ -208,8 +211,8 @@ public class Movie_controller {
 		Element element = document.select("img").first();
 		if (element != null) {
 			String strrrrr = element.attr("src");
-		System.out.println(element);
-		System.out.println(strrrrr);
+		/*System.out.println(element);
+		System.out.println(strrrrr);*/
 				
 			model.addAttribute("element", element);
 			model.addAttribute("strrrrr", strrrrr);
@@ -218,7 +221,7 @@ public class Movie_controller {
 		return "movie/detail_view";
 	}
 	
-	// ajax 뎃글
+	// ajax 댓글
 	@RequestMapping(value="/detail_view/{board_num}/reply")
 	public String getReply(@PathVariable int board_num, Model model) {
 		
@@ -231,13 +234,81 @@ public class Movie_controller {
 		return "share/reply";
 	}
 	@RequestMapping(value="/detail_view/{board_num}/reply", method=RequestMethod.POST)
-	public String postReply(@PathVariable int board_num, HttpServletRequest request, Model model) {
+	public String postReply(@PathVariable int board_num, HttpServletRequest request, 
+			HttpSession session, Model model, ReplyVO replyVO) {
 		
-		String reply_content = request.getParameter("reply_content");
-	System.out.print(reply_content);
+		// ID session
+		String member_id = (String)session.getAttribute("member_id");
 		
+		// reply_content
+		String reply = request.getParameter("reply_content");
 		
+		movieService.insertReply(replyVO, reply, board_num, member_id);
 		
-		return "redirect:/detail_view/"+board_num+"/reply";
+		// 다시 get을 렌더링
+		BoardVO board_m = movieService.getBoardById(board_num);
+		model.addAttribute("board", board_m);
+		
+		int replyCount = movieService.replyCount(board_num);
+		model.addAttribute("replyCount", replyCount);
+		
+		return "share/reply";
 	}
+	// ajax 좋아요
+	@RequestMapping(value="/detail_view/{board_num}/likeIt")
+	public String getLikeit(@PathVariable int board_num, HttpSession session, Model model) {		
+
+		BoardVO board_m = movieService.getBoardById(board_num);
+		model.addAttribute("board", board_m);
+		
+		int likeCount = movieService.likeCount(board_num);
+		model.addAttribute("likeCount", likeCount);
+		
+		/*String member_id = (String)session.getAttribute("member_id");
+		if (member_id != null) {
+			LikeItVO likeCheck = movieService.likeCheck(member_id);
+			model.addAttribute("likeCheck", likeCheck);
+		}*/
+		
+		return "share/likeIt";
+	}
+	// 좋아요+
+	@RequestMapping(value="/detail_view/{board_num}/likeItP", method=RequestMethod.POST)
+	public String postLikeitP(@PathVariable int board_num, HttpServletRequest request, 
+			HttpSession session, Model model, LikeItVO likeVO) {
+		
+		// ID session
+		String member_id = (String)session.getAttribute("member_id");
+		
+		movieService.likeItPlus(likeVO, board_num, member_id);
+		
+		// 다시 get을 렌더링
+		BoardVO board_m = movieService.getBoardById(board_num);
+		model.addAttribute("board", board_m);
+		
+		int likeCount = movieService.likeCount(board_num);
+		model.addAttribute("likeCount", likeCount);
+		
+		return "share/likeIt";
+	}
+	// 좋아요-
+	@RequestMapping(value="/detail_view/{board_num}/likeItM", method=RequestMethod.POST)
+	public String postLikeitM(@PathVariable int board_num, HttpServletRequest request, 
+			HttpSession session, Model model, LikeItVO likeVO) {
+		
+		// ID session
+		String member_id = (String)session.getAttribute("member_id");
+		
+		movieService.likeItMinus(likeVO, board_num, member_id);
+		
+		// 다시 get을 렌더링
+		BoardVO board_m = movieService.getBoardById(board_num);
+		model.addAttribute("board", board_m);
+		
+		int likeCount = movieService.likeCount(board_num);
+		model.addAttribute("likeCount", likeCount);
+		
+		return "share/likeIt";
+	}
+	
 }

@@ -6,6 +6,7 @@ import com.project.review.vo.BoardVO;
 import com.project.review.vo.Board_MovieVO;
 import com.project.review.vo.GradeVO;
 import com.project.review.vo.HashtagVO;
+import com.project.review.vo.LikeItVO;
 import com.project.review.vo.MovieApiVO;
 import com.project.review.vo.ReplyVO;
 
@@ -16,9 +17,14 @@ public interface BoardDAO {
 	public List<BoardVO> getMovieBoardList();
 	public List<BoardVO> getTvBoardList();
 	public MovieApiVO getMovieInfo(String movie_nm);
-	public int replyCount(int board_num);
-	public List<ReplyVO> getMovieBoardReplyList();
-	
+		// reply
+		public int replyCount(int board_num);
+		public List<ReplyVO> getMovieBoardReplyList();
+		// likeit
+		public int likeCount(int board_num);
+		public List<LikeItVO> getMovieBoardLikeList();
+		
+		
 	/*
 		겹치는 내용
 		Board_write = newBoard = setBoard(신규) -> 내용 추가되어 임시로setBoard 사용. 추후 변경 가능 
@@ -29,8 +35,12 @@ public interface BoardDAO {
 	public BoardVO newBoard(String board_title, String board_content, String member_id);
 	
 	/*-------------------------------------------------------*/
-
-
+	
+	// likeItMinus
+	public void likeItMinus(LikeItVO likeVO);
+	
+	// likeItPlus
+	public void likeItPlus(LikeItVO likeVO);
 	
 	// Jsoup getContent
 	public String getContent(int board_num);

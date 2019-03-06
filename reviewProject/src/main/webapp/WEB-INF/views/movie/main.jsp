@@ -28,6 +28,7 @@ $(document).ready(function() {
     	$($(this).attr("data-target")).submit();
     });
 })
+
 </script>
 </head>
 <body>

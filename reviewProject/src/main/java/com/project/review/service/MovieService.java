@@ -7,25 +7,35 @@ import com.project.review.vo.BoardVO;
 import com.project.review.vo.Board_MovieVO;
 import com.project.review.vo.GradeVO;
 import com.project.review.vo.HashtagVO;
+import com.project.review.vo.LikeItVO;
 import com.project.review.vo.MovieApiVO;
 import com.project.review.vo.ReplyVO;
 
 public interface MovieService {
 	
+	// likeItMinus
+	public void likeItMinus(LikeItVO likeVO, int board_num, String member_id);
 	
+	// likeItPlus
+	public void likeItPlus(LikeItVO likeVO, int board_num, String member_id);
 	
 	// Jsoup getContent
 	public String getContent(int board_num);
 	
 	// insert reply
-	public void insertReply(ReplyVO reply, int board_num, String member_id);
+	public void insertReply(ReplyVO replyVO, String reply, int board_num, String member_id);
 	
 	//select Board
 	public BoardVO getBoardById(int board_num);
 	public List<BoardVO> getBoardList();
 	public List<BoardVO> getMovieBoardList();
-	public int replyCount(int board_num);
-	public List<ReplyVO> getMovieBoardReplyList();
+		// reply
+		public int replyCount(int board_num);
+		public List<ReplyVO> getMovieBoardReplyList();
+		// likeit
+		public int likeCount(int board_num);
+		public List<LikeItVO> getMovieBoardLikeList();
+		
 	
 	//insert Board 
 	/*public int addBoard(BoardVO boardVO);*/

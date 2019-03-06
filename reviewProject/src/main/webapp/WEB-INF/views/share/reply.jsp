@@ -8,33 +8,37 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
-<script type = "text/javascript" src = "../resources/script/jquery-2.1.1.js"></script>
+<script type = "text/javascript" src = "/review/resources/script/jquery-2.1.1.js"></script>
 <script type = "text/javascript">
-
-$(function(){
-	
-	$("#btReply").click(function(){
-		reply();
-	});
-	
-});
-
-function reply() {
-	data = $("#reply_content").val(); // 댓글 내용
-	/* var board_num ="${board.board_num}"; // 게시물 번호
-	var param = {"reply_content" : reply_content, "board_num":board_num}; //json형태 */
-	$ajax({
-		type : "POST",
-		url : "/review/movie/detail_view/${board.board_num}/reply",
-		dataType : 'html',
-		data : data,
-		success : function(html){ // 콜백함수
+console.log("exe js");
+$('#btReply').click(function () {
+	console.log("bt clicked!");
+	$.ajax({
+		url: '/review/movie/detail_view/${board.board_num}/reply',
+		type: 'POST',
+		dataType: 'text',
+		data: {
+			reply_content: $('#reply_content').val(),
+		},
+		success: function (html) {
+			console.log('on cb');
+			/* 
+			$.ajax({
+			type : "GET",
+			url : "/review/movie/detail_view/${board.board_num}/reply",
+			cache : false,
+			dataType : 'html',
+			success : function(html) {
+				$(".reply").empty();
+				$(".reply").append(html);
+				}
+			}) */
+			$(".reply").empty();
 			$(".reply").append(html);
-			/* alert("등록 완료"); */
+			
 		}
-	
 	});
-}
+});
 
 </script>
 
@@ -57,7 +61,7 @@ function reply() {
 
 <c:if test="${sessionScope.member_id != null}">
 	<%-- <form action="/review/movie/insert_Reply/${board.board_num}" method="post" id="insert_Reply"> --%>
-		Reply 작성 <textarea name="reply_content" placeholder="댓글 입력"></textarea>
+		Reply 작성 <textarea id="reply_content" name="reply_content" placeholder="댓글 입력"></textarea>
 		<br>
 		<input type="button" id="btReply" name="btReply" value="확인">
 	<!-- </form>  -->

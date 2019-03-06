@@ -61,17 +61,21 @@ function move(e){
 			<div class="items" onclick="move('./detail_view/${board.board_num}')">
 				<table>
 					<tr>
-						<td>${board.board_num}</td>
+						<td>글번호: ${board.board_num}</td>
 					</tr>
+					
 					<tr>
-						<td>${board.board_title}</td>
+						<td>제목: ${board.board_title}</td>
 					</tr>
+					
 					<tr>
-						<td>${board.member_id}</td>
+						<td>작성자: ${board.member_id}</td>
 					</tr>
+					
 					<tr>
-						<td>${board.board_date}</td>
+						<td>작성일자: ${board.board_date}</td>
 					</tr>
+					
 					<tr>
 						<td>댓글count: 
 							<c:forEach items="${board_replyList}" var="reply" varStatus="status">
@@ -83,6 +87,19 @@ function move(e){
 							</c:forEach>
 						</td>
 					</tr>
+					
+					<tr>
+						<td>좋아요count: 
+							<c:forEach items="${board_likeList}" var="like" varStatus="status">
+								<c:if test="${like.board_num == board.board_num}">
+									<c:if test="${status.last == true}">
+										${status.count}
+									</c:if>
+								</c:if>
+							</c:forEach>
+						</td>
+					</tr>
+					
 					<tr>
 						<td><img src="${board.thumbnail}"></td>
 					</tr>

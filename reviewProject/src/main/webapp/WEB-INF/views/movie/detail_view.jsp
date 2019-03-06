@@ -12,6 +12,7 @@
 <script type = "text/javascript">
 
 $(document).ready(function() {
+	
 	$.ajax({
 		type : "GET",
 		url : "/review/movie/detail_view/${board.board_num}/reply",
@@ -21,6 +22,17 @@ $(document).ready(function() {
 			$(".reply").append(html);
 		}
 	})
+	
+	$.ajax({
+		type : "GET",
+		url : "/review/movie/detail_view/${board.board_num}/likeIt",
+		cache : false,
+		dataType : 'html',
+		success : function(html) {
+			$(".likeIt").append(html);
+		}
+	})
+	
 });
 
 
@@ -95,13 +107,13 @@ $(document).ready(function() {
 		</div>
 		
 		<!-- 좋아요 , 덧글 수 -->
-		<div>
-			<h4>좋아요 : </h4>
+		<div class="likeIt">
+		</div>
+			<%-- <h4>좋아요 : </h4>
 			<c:forEach items="${board.likeList}" var="like">
 				<span>작성자 : ${like.member_id}, ${like.likeit} </span>
 				<br>
-			</c:forEach>
-		</div>
+			</c:forEach> --%>
 		
 		<!-- # 최대 6개 -->
 		<div style="color: green;">

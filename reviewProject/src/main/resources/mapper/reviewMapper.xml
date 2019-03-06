@@ -52,6 +52,12 @@
 		<association property="b_movieVO" column="board_num" select="getB_Movie" />
 	</resultMap>
 	
+	<resultMap id="Movie_LikeIt" type="LikeItVO">
+		<result property="board_num" column="board_num" />
+		<result property="member_id" column="member_id" />
+		<result property="likeit" column="liekit" />
+	</resultMap>
+	
 
 	<!-- select	
 		id				명칭
@@ -62,7 +68,18 @@
 		${}				파라미터 값 - 파라미터 변수명과 다르면 인식X, 보안 취약
 	-->
 	
+	<!-- ____likeItMinus______________________________________________________________________ -->
+	<delete id="likeItMinus" parameterType="LikeItVO">
+		DELETE FROM likeit
+		WHERE board_num = #{board_num}
+		AND member_id = #{member_id}
+	</delete>
 	
+	<!-- ____likeItPlus______________________________________________________________________ -->
+	<insert id="likeItPlus" parameterType="LikeItVO">
+		INSERT INTO likeit(board_num, member_id, likeit)
+		VALUES(#{board_num}, #{member_id}, '1')
+	</insert>
 	
 	<!-- ____Jsoup getContent__________________________________________-->
 	<select id="getContent" parameterType="int" resultType="String">
@@ -93,6 +110,12 @@
 		FROM reply
 		WHERE board_num = #{board_num}
 	</select>
+	<select id="likeCount" parameterType="int" resultType="int">
+		SELECT COUNT(*)
+		FROM likeit
+		WHERE board_num = #{board_num}
+	</select>
+
 	
 	
 	<!-- ____게시판 호출______________________________________________________________________ -->
@@ -111,6 +134,12 @@
 		FROM board_movie m, reply r
 		WHERE m.board_num = r.board_num
 	</select>
+	<select id="getMovieBoardLikeList" resultMap="Movie_LikeIt">
+		SELECT *
+		FROM board_movie m, likeit l
+		WHERE m.board_num = l.board_num
+	</select>
+	
 	<select id="getTvBoardList" resultMap="Board">
 		SELECT *
 		FROM board_tv t, board b
