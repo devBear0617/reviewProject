@@ -33,7 +33,7 @@ td {
 			<tr>
 				<td>
 					<div class='moveBT' data-target="#movieMain">
-						<form action="f/review/movie/main" id="movieMain">
+						<form action="/review/movie/main" id="movieMain">
 							<h1>Movie</h1>
 						</form>
 					</div>

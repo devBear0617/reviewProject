@@ -42,21 +42,21 @@
 <body>
 	<!-- 헤더 -->
 	<div>
-		<jsp:include page="../share/header.jsp" />
+		<jsp:include page="/WEB-INF/views/share/header.jsp" />
 	</div>
 	<!-- 카테고리 바 -->
 	<div>
-		<jsp:include page="../share/category_bar.jsp" />
+		<jsp:include page="/WEB-INF/views/share/category_bar.jsp" />
 	</div>
 
 	<!-- 상세 메뉴 바 -->
 	<div>
-		<jsp:include page="detail_bar.jsp" />
+		<jsp:include page="/WEB-INF/views/movie/detail_bar.jsp" />
 	</div>
 
 	<!-- Best content -->
 	<div>
-		<jsp:include page="best_content.jsp" />
+		<jsp:include page="/WEB-INF/views/movie/best_content.jsp" />
 	</div>
 
 	<!-- content -->
@@ -69,7 +69,7 @@
 		<c:if test="${empty sessionScope.member_id}">
 			<form action="/review/mypage/login" id="login">
 				<input type="image"
-					src="../resources/image/REMON_NewWrite_button.png" class='moveBT'
+					src="/review/movie/resources/image/REMON_NewWrite_button.png" class='moveBT'
 					data-target="#Login" style="height: 80px;">
 			</form>
 		</c:if>
@@ -77,7 +77,7 @@
 			<div class='moveBT' data-target="#board_write">
 				<form action="/review/movie/movie_writeForm" id="movie_writeForm">
 					<input type="image"
-						src="../resources/image/REMON_NewWrite_button.png"
+						src="/review/movie/resources/image/REMON_NewWrite_button.png"
 						style="height: 80px;">
 				</form>
 			</div>
