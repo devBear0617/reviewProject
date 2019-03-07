@@ -29,6 +29,7 @@ $(document).ready(function() {
 		cache : false,
 		dataType : 'html',
 		success : function(html) {
+			$(".likeIt").empty();
 			$(".likeIt").append(html);
 		}
 	})

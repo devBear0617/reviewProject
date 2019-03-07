@@ -325,6 +325,15 @@ public class Movie_controller {
 		int likeCount = movieService.likeCount(board_num);
 		model.addAttribute("likeCount", likeCount);
 		
+		if (member_id != null) {
+			int likeCheck;
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("board_num", board_num);
+			map.put("member_id", member_id);
+			likeCheck = movieService.likeCheck(map);
+			model.addAttribute("likeCheck", likeCheck);
+		}
+		
 		return "share/likeIt";
 	}
 	// 좋아요-
@@ -343,6 +352,15 @@ public class Movie_controller {
 		
 		int likeCount = movieService.likeCount(board_num);
 		model.addAttribute("likeCount", likeCount);
+		
+		if (member_id != null) {
+			int likeCheck;
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("board_num", board_num);
+			map.put("member_id", member_id);
+			likeCheck = movieService.likeCheck(map);
+			model.addAttribute("likeCheck", likeCheck);
+		}
 		
 		return "share/likeIt";
 	}

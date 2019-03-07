@@ -66,14 +66,21 @@ $('#likeObt').click(function () {
  	</c:forEach> --%>
  		
  		${likeCheck}
- 	<c:choose>
+ 	<%-- <c:choose>
  		<c:when test="${likeCheck == 1}">
  			<input type="button" id="likeObt" value="좋아요 ♥">
  		</c:when>
  		<c:otherwise>
  			<input type="button" id="likeXbt" value="좋아요 ♡">
  		</c:otherwise>
- 	</c:choose>
+ 	</c:choose> --%>
+ 	
+ 	<c:if test="${likeCheck == 1}">
+ 		<input type="button" id="likeObt" value="좋아요 ♥">
+ 	</c:if>
+ 	<c:if test="${likeCheck != 1}">
+ 		<input type="button" id="likeXbt" value="좋아요 ♡">
+ 	</c:if>
  	
 </c:if>
 
