@@ -10,6 +10,15 @@
 <script type = "text/javascript" src = "/review/resources/script/jquery-2.1.1.js"></script>
 <script type = "text/javascript">
 // 좋아요-
+$('#need_login').click(function(){
+	var login = confirm("좋아요를 표시하려면 로그인이 필요합니다. \n로그인 페이지로 이동하시겠습니까?");
+	if(login){
+		location.href = '/review/mypage/login';
+	}else{	
+		return false;
+	}
+});
+
 $('#likeXbt').click(function () {
 	$.ajax({
 		url: '/review/movie/detail_view/${board.board_num}/likeItP',
@@ -37,52 +46,26 @@ $('#likeObt').click(function () {
 });
 
 </script>
-
 </head>
 <body>
 
-<h4>좋아요</h4>
-좋아요 count : ${likeCount}
-
 <br>
-
 <!-- 로그인 x -->
 <c:if test="${empty sessionScope.member_id}">
-	<form action="/review/mypage/login" id="login">
+	<span id="need_login"> <img alt="likeit" src="../resources/image/REMON_like_icon.png" class="imgform"></span> 	
+	<!-- <form action="/review/mypage/login" id="login">
 		<input type="submit"  value="좋아요 ♡">
-	</form>
+	</form> -->
 </c:if>
 <!-- 로그인 o -->
 <c:if test="${not empty sessionScope.member_id}">
-
-<%-- 	<c:forEach items="${board.likeList}" var="like">
-		<c:if test="${like.member_id == sessionScope.member_id}">
-			<input type="button" id="likeObt" value="좋아요 ♥">
-		</c:if>
-		
-		<c:if test="${like.member_id != sessionScope.member_id}">
-			<input type="button" id="likeXbt" value="좋아요 ♡">
-		</c:if>
- 	</c:forEach> --%>
- 		
- 		${likeCheck}
- 	<%-- <c:choose>
- 		<c:when test="${likeCheck == 1}">
- 			<input type="button" id="likeObt" value="좋아요 ♥">
- 		</c:when>
- 		<c:otherwise>
- 			<input type="button" id="likeXbt" value="좋아요 ♡">
- 		</c:otherwise>
- 	</c:choose> --%>
- 	
  	<c:if test="${likeCheck == 1}">
  		<input type="button" id="likeObt" value="좋아요 ♥">
  	</c:if>
  	<c:if test="${likeCheck != 1}">
- 		<input type="button" id="likeXbt" value="좋아요 ♡">
- 	</c:if>
- 	
+ 		<span id="likeXbt"> <img alt="likeit" src="../resources/image/REMON_like_icon.png" class="imgform"></span> 	
+ 	</c:if> 	
 </c:if>
-
+	<span>${likeCount}</span>
 </body>
 </html>
