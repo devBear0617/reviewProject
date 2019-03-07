@@ -46,7 +46,7 @@ $('#btReply').click(function () {
 
 
 // 댓글 삭제
-$('#deleteReply').click(function () {
+$('.deleteReply').click(function (e) {
 	console.log("bt clicked!");
 	$.ajax({
 		url: '/review/movie/detail_view/${board.board_num}/deleteReply',
@@ -57,18 +57,9 @@ $('#deleteReply').click(function () {
 		},
 		success: function (html) {
 			console.log('on cb');
-			$.ajax({
-				type : "GET",
-				url : "/review/movie/detail_view/${board.board_num}/reply",
-				cache : false,
-				dataType : 'html',
-				success : function(html) {
-					$(".reply").empty();
-					$(".reply").append(html);
-					}
-				}) 
-			/* $(".reply").empty();
-			$(".reply").append(html); */
+			
+			$(".reply").empty();
+			$(".reply").append(html); 
 			
 		}
 	});
@@ -91,9 +82,9 @@ $('#deleteReply').click(function () {
 	<span><fmt:formatDate value="${reply.reply_date}" pattern="yyyy-MM-dd hh:mm"/>&nbsp;&nbsp; |</span>
 	<span>
 		<c:if test="${sessionScope.member_id == reply.member_id}">
-			&nbsp;&nbsp; <input type="hidden" id="reply_num" name="reply_num" value="${reply.reply_num}">${reply.reply_num}
-			&nbsp;&nbsp; <input type="button" id="updateReply" value="수정">
-			&nbsp;&nbsp; <input type="button" id="deleteReply" name="deleteReply" value="삭제">
+			&nbsp;&nbsp; <input type="hidden" class="reply_num" name="reply_num" value="${reply.reply_num}">${reply.reply_num}
+			&nbsp;&nbsp; <input type="button" class="updateReply" value="수정">
+			&nbsp;&nbsp; <input type="button" class="deleteReply" name="deleteReply" value="삭제">
 		</c:if>
 	</span>
 	<br>
