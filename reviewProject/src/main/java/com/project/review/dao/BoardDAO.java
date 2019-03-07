@@ -12,11 +12,11 @@ import com.project.review.vo.MovieApiVO;
 import com.project.review.vo.ReplyVO;
 
 public interface BoardDAO {
+	
 	//select Board
 	public BoardVO getBoardById(int board_num);
 	public List<BoardVO> getBoardList();
 	public List<BoardVO> getMovieBoardList();
-	public List<BoardVO> getTvBoardList();
 	public MovieApiVO getMovieInfo(String movie_nm);
 		// reply
 		public int replyCount(int board_num);
@@ -25,22 +25,11 @@ public interface BoardDAO {
 		public int likeCount(int board_num);
 		public List<LikeItVO> getMovieBoardLikeList();
 		public int likeCheck(Map<String, Object> map);
-		
-		
-	/*
-		겹치는 내용
-		Board_write = newBoard = setBoard(신규) -> 내용 추가되어 임시로setBoard 사용. 추후 변경 가능 
-		searchBoard = getBoardById(초기 생성) -> 제일 처음에 작성한 getBoardById 사용. 다른 메소드와 명칭 통일하기 위해 추후에도 사용 예정. 
-	*/
-	/*public void board_write(BoardVO vo);*/
-	public BoardVO searchBoard(int board_num);
-	public BoardVO newBoard(String board_title, String board_content, String member_id);
 	
 	/*-------------------------------------------------------*/
 	
 	// likeItMinus
 	public void likeItMinus(LikeItVO likeVO);
-	
 	// likeItPlus
 	public void likeItPlus(LikeItVO likeVO);
 	

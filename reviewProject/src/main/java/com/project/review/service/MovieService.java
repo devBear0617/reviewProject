@@ -16,7 +16,6 @@ public interface MovieService {
 	
 	// likeItMinus
 	public void likeItMinus(LikeItVO likeVO, int board_num, String member_id);
-	
 	// likeItPlus
 	public void likeItPlus(LikeItVO likeVO, int board_num, String member_id);
 	
@@ -56,4 +55,5 @@ public interface MovieService {
 	public JsonArray searchMovie(String movie_nm);
 	public void setMovieApi(MovieApiVO movieApiVO);
 	public MovieApiVO getMovieInfo(String movie_nm);
+	
 }

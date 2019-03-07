@@ -7,9 +7,11 @@
 		<result property="board_title" column="board_title" />
 		<result property="board_content" column="board_content" />
 		<result property="board_date" column="board_date" />
-		<!-- <result property="boardupdate" column="boardupdate" /> -->
 		<result property="member_id" column="member_id" />
+		<result property="lemon_grade" column="lemon_grade" />
+		<result property="recommend" column="recommend" />
 		<result property="thumbnail" column="thumbnail"/>
+		<result property="board_up_date" column="board_up_date" />
 		
 		<association property="memberVO" column="member_id" select="getMember" />
 		<association property="b_movieVO" column="board_num" select="getB_Movie" />
@@ -24,7 +26,6 @@
  	<resultMap id="Board_movie" type="BoardVO">
 		<id property="board_num" column="board_num" />
 		<result property="board_title" column="board_title" />
-<!-- 		<result property="board_content" column="board_content" /> -->
 		<result property="board_date" column="board_date" />
 		<result property="member_id" column="member_id" />
 		
@@ -36,6 +37,8 @@
 		<result property="board_num" column="board_num" />
 		<result property="member_id" column="member_id" />
 		<result property="reply_content" column="reply_content" />
+		<result property="reply_date" column="reply_date" />
+		<result property="reply_up_date" column="reply_up_date" />
 		
 		<association property="b_movieVO" column="board_num" select="getB_Movie" />
 	</resultMap>
@@ -266,22 +269,4 @@
 		WHERE board_num = #{board_num}
 	</select>
 
-		
-	<!--겹치는 내용
-		searchBoard = getBoardById(초기 생성) -> 제일 처음에 작성한 getBoardById 사용. 다른 메소드와 명칭 통일하기 위해 추후에도 사용 예정. 
-		board_write = newBoard = addBoard(신규) -> 내용 추가되어 임시로 addBoard 사용. 추후 변경 가능
-	-->	
-	<select id="searchBoard" parameterType="int" resultMap="Board">
-		SELECT *
-		FROM board
-		WHERE board_num = #{board_num}
-	</select>
-	<insert id="board_write" parameterType="BoardVO">
-		INSERT INTO BOARD( board_title,board_content)
-	    VALUES(#{board_title},#{board_content})
-	</insert>
-	<insert id="newBoard" parameterType="String">
-		INSERT INTO board(board_title, board_content, member_id)
-		VALUES('#{board_title}', '#{board_content}', '#{member_id}')
-	</insert>	
 </mapper>

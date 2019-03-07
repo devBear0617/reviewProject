@@ -8,7 +8,7 @@ public class ReplyVO {
 	private String member_id;
 	private String reply_content;
 	private Date reply_date;
-	/*private Date reply_update;*/
+	private Date reply_up_date;
 	
 	private Board_MovieVO b_movieVO;
 	//-------------------------
@@ -53,6 +53,14 @@ public class ReplyVO {
 		this.reply_date = reply_date;
 	}
 
+	public Date getReply_up_date() {
+		return reply_up_date;
+	}
+
+	public void setReply_up_date(Date reply_up_date) {
+		this.reply_up_date = reply_up_date;
+	}
+
 	public Board_MovieVO getB_movieVO() {
 		return b_movieVO;
 	}
@@ -64,8 +72,9 @@ public class ReplyVO {
 	@Override
 	public String toString() {
 		return "ReplyVO [reply_num=" + reply_num + ", board_num=" + board_num + ", member_id=" + member_id
-				+ ", reply_content=" + reply_content + ", reply_date=" + reply_date + ", b_movieVO=" + b_movieVO + "]";
+				+ ", reply_content=" + reply_content + ", reply_date=" + reply_date + ", reply_up_date=" + reply_up_date
+				+ ", b_movieVO=" + b_movieVO + "]";
 	}
-	
+
 	
 }

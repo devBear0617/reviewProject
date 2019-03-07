@@ -242,12 +242,6 @@ public class Movie_controller {
 		int likeCount = movieService.likeCount(board_num);
 		model.addAttribute("likeCount", likeCount);
 		
-		/*String member_id = (String)session.getAttribute("member_id");
-		if (member_id != null) {
-			LikeItVO likeCheck = movieService.likeCheck(member_id);
-			model.addAttribute("likeCheck", likeCheck);
-		}*/
-		
 		String member_id = (String)session.getAttribute("member_id");
 		if (member_id != null) {
 			int likeCheck;

@@ -21,18 +21,7 @@ public class Mypage_controller {
 	@Autowired
 	private MemberService memberService;
 	
-	// 정보변경 오류 해결 필요!
-	/*@RequestMapping(value="/updateMemberForm")
-	public String updateMemberGET(HttpSession session, Model model) {
-		
-		String user_id = (String)session.getAttribute("member_id");
-		
-		MemberVO user = memberService.MemberInfo(user_id);
-		model.addAttribute("user", user);
-		
-		return "mypage/updateMemberForm";
-	}*/
-	
+	// 정보 변경
 	@RequestMapping(value="/updateMember", method=RequestMethod.POST)
 	public String updateMember (MemberVO member, HttpSession session, Model model) {
 		
@@ -61,7 +50,6 @@ public class Mypage_controller {
 		
 		return "mypage/login";
 	}
-	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String loginMember(String member_id, String member_pw, HttpServletRequest request,
 			HttpSession session, Model model) {
@@ -118,8 +106,7 @@ public class Mypage_controller {
 		
 		return "mypage/join";
 	}
-	
-	//@PostMapping(value="/join")
+	// @PostMapping(value="/join")
 	@RequestMapping(value="/join", method=RequestMethod.POST)
 	public String joinMember(MemberVO member, Model model) {
 		

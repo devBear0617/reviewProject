@@ -108,17 +108,6 @@ public class MovieServiceImpl implements MovieService {
 	}
 	
 	// 리플 추가
-	/*@Override
-	public void insertReply(ReplyVO reply, int board_num, String member_id) {
-		
-		// 보드넘 대입
-		board_num = reply.getBoard_num();
-		reply.setBoard_num(board_num);
-		reply.setMember_id(member_id);
-		// 리플 추가
-		boardDAO.insertReply(reply);
-		
-	}*/
 	@Override
 	public void insertReply(ReplyVO replyVO, String reply, int board_num, String member_id) {
 		// 보드넘 대입
@@ -129,7 +118,6 @@ public class MovieServiceImpl implements MovieService {
 		// 리플 추가
 		boardDAO.insertReply(replyVO);
 	}
-	
 	// 리플 삭제
 	@Override
 	public void deleteReply(int reply_num) {
@@ -153,8 +141,6 @@ public class MovieServiceImpl implements MovieService {
 			Element element = document.select("img").first();
 			if (element != null) {
 				String thumbnail = element.attr("src");
-				
-				/*board.setBoard_num(board.getBoard_num());*/
 				board.setThumbnail(thumbnail);
 				boardDAO.insertThumbnail(board);
 			}
