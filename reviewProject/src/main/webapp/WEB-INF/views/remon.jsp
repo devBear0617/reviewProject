@@ -25,10 +25,7 @@
 <jsp:include page="share/Main_header.jsp" />
 <body>
 
-	<!-- 상단바, 로고 -->
-	<div>
-		<br> <br>
-	</div>
+	<div style="height: 100px;"></div>
 
 	<div class="center">
 		<!-- 상단바, 로고 -->
@@ -62,11 +59,11 @@
 						style="background-image: url('resources/image/REMON_mainMovie_BG.png'); width: 500px; height: 220px;">
 						<div class='moveBT' data-target="#movieMain">
 							<form action="/review/movie/main" id="movieMain">
-								<center>
+								<div class="center">
 									<img alt="MOVIE_icon"
 										src="resources/image/REMON_MOVIE_icon(white).png"
 										style="width: 70px; height: 70px;">
-								</center>
+								</div>
 							</form>
 						</div>
 					</td>
@@ -76,11 +73,11 @@
 						style="background-image: url('resources/image/REMON_mainTv_BG.png'); width: 245px; height: 220px;">
 						<div class='moveBT' data-target="#tvMain">
 							<form action="/review/tv/main" id="tvMain">
-								<center>
+								<div class="center">
 									<img alt="TV_icon"
 										src="resources/image/REMON_TV_icon(white).png"
 										style="width: 70px; height: 70px;">
-								</center>
+								</div>
 							</form>
 						</div>
 					</td>
@@ -88,20 +85,21 @@
 						style="background-image: url('resources/image/REMON_mainGame_BG.png'); width: 245px; height: 220px;">
 						<div class='moveBT' data-target="#gameMain">
 							<form action="/review/game/main" id="gameMain">
-								<center>
+								<div class="center">
 									<img alt="GAME_icon"
 										src="resources/image/REMON_GAME_icon(white).png"
 										style="width: 70px; height: 70px;">
-								</center>
+								</div>
 							</form>
 						</div>
 					</td>
 				</tr>
 			</table>
 		</div>
-		<br> <br>
+
+		<div style="height: 100px;"></div>
 
 	</div>
 </body>
-<jsp:include page="share/footer.jsp" />
+<jsp:include page="./share/Main_footer.jsp" />
 </html>

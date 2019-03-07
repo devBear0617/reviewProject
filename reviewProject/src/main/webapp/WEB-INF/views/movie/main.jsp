@@ -62,29 +62,34 @@
 	<div class="center">
 		<div class="content"></div>
 	</div>
-	<br>
-	<br>
+
 	<!-- 새글쓰기 -->
-	<c:if test="${empty sessionScope.member_id}">
-		<div class='moveBT' data-target="#login">
+	<div style="float: right; margin-right: 200px;">
+		<c:if test="${empty sessionScope.member_id}">
 			<form action="/review/mypage/login" id="login">
-				<input type="submit" value="새글작성">
+				<input type="image"
+					src="../resources/image/REMON_NewWrite_button.png" class='moveBT'
+					data-target="#Login" style="height: 80px;">
 			</form>
-		</div>
-	</c:if>
-	<c:if test="${not empty sessionScope.member_id}">
-		<div class='moveBT' data-target="#board_write">
-			<form action="/review/movie/movie_writeForm" id="movie_writeForm">
-				<input type="submit" value="새글작성">
-			</form>
-		</div>
-	</c:if>
+		</c:if>
+		<c:if test="${not empty sessionScope.member_id}">
+			<div class='moveBT' data-target="#board_write">
+				<form action="/review/movie/movie_writeForm" id="movie_writeForm">
+					<input type="image"
+						src="../resources/image/REMON_NewWrite_button.png"
+						style="height: 80px;">
+				</form>
+			</div>
+		</c:if>
+	</div>
+	<div style="height: 20px;"></div>
+
+	<div style="height: 20px;"></div>
+
+
 	<!-- 푸터 -->
 	<div>
 		<jsp:include page="../share/footer.jsp" />
 	</div>
-	<br>
-	<br>
-
 </body>
 </html>
