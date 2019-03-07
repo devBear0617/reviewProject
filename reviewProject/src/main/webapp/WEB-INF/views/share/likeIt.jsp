@@ -53,10 +53,8 @@ $('#likeObt').click(function () {
 <!-- 로그인 x -->
 <c:if test="${empty sessionScope.member_id}">
 	<span id="need_login"> <img alt="likeit" src="../resources/image/REMON_like_icon.png" class="imgform"></span> 	
-	<!-- <form action="/review/mypage/login" id="login">
-		<input type="submit"  value="좋아요 ♡">
-	</form> -->
 </c:if>
+
 <!-- 로그인 o -->
 <c:if test="${not empty sessionScope.member_id}">
  	<c:if test="${likeCheck == 1}">

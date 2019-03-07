@@ -98,7 +98,7 @@ $('.deleteReply').click(function (e) {
 			</c:when>
 			<c:otherwise>
 				<input type="text" placeholder="댓글을 작성하시려면 로그인이 필요합니다." 
-					style="width: 700px; height: 30px; border-radius: 20px; border-style: none;">
+					style="width: 700px; height: 30px; border-radius: 20px; border-style: none;" readonly >
 			</c:otherwise>		
 		</c:choose>
 		<br>
