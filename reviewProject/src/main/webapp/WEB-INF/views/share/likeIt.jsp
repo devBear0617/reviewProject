@@ -9,7 +9,7 @@
 
 <script type = "text/javascript" src = "/review/resources/script/jquery-2.1.1.js"></script>
 <script type = "text/javascript">
-
+// 좋아요-
 $('#likeXbt').click(function () {
 	$.ajax({
 		url: '/review/movie/detail_view/${board.board_num}/likeItP',
@@ -22,7 +22,7 @@ $('#likeXbt').click(function () {
 		}
 	});
 });
-
+// 좋아요+
 $('#likeObt').click(function () {
 	$.ajax({
 		url: '/review/movie/detail_view/${board.board_num}/likeItM',
@@ -54,17 +54,26 @@ $('#likeObt').click(function () {
 </c:if>
 <!-- 로그인 o -->
 <c:if test="${not empty sessionScope.member_id}">
-	
-	<c:forEach items="${board.likeList}" var="like">
+
+<%-- 	<c:forEach items="${board.likeList}" var="like">
 		<c:if test="${like.member_id == sessionScope.member_id}">
 			<input type="button" id="likeObt" value="좋아요 ♥">
 		</c:if>
 		
-		<%-- <c:if test="${like.member_id != sessionScope.member_id}">
+		<c:if test="${like.member_id != sessionScope.member_id}">
 			<input type="button" id="likeXbt" value="좋아요 ♡">
-		</c:if> --%>
- 	</c:forEach>
- 	
+		</c:if>
+ 	</c:forEach> --%>
+ 		
+ 		${likeCheck}
+ 	<c:choose>
+ 		<c:when test="${likeCheck == 1}">
+ 			<input type="button" id="likeObt" value="좋아요 ♥">
+ 		</c:when>
+ 		<c:otherwise>
+ 			<input type="button" id="likeXbt" value="좋아요 ♡">
+ 		</c:otherwise>
+ 	</c:choose>
  	
 </c:if>
 

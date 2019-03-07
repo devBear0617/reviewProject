@@ -1,6 +1,7 @@
 package com.project.review.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.google.gson.JsonArray;
 import com.project.review.vo.BoardVO;
@@ -24,6 +25,9 @@ public interface MovieService {
 	
 	// insert reply
 	public void insertReply(ReplyVO replyVO, String reply, int board_num, String member_id);
+	// update reply
+	// delete reply
+	public void deleteReply(int reply_num);
 	
 	//select Board
 	public BoardVO getBoardById(int board_num);
@@ -35,6 +39,7 @@ public interface MovieService {
 		// likeit
 		public int likeCount(int board_num);
 		public List<LikeItVO> getMovieBoardLikeList();
+		public int likeCheck(Map<String, Object> map);
 		
 	
 	//insert Board 

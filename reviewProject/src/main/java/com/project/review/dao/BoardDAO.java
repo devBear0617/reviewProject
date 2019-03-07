@@ -1,6 +1,7 @@
 package com.project.review.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.project.review.vo.BoardVO;
 import com.project.review.vo.Board_MovieVO;
@@ -23,6 +24,7 @@ public interface BoardDAO {
 		// likeit
 		public int likeCount(int board_num);
 		public List<LikeItVO> getMovieBoardLikeList();
+		public int likeCheck(Map<String, Object> map);
 		
 		
 	/*
@@ -47,7 +49,9 @@ public interface BoardDAO {
 	
 	// 리플 추가
 	public void insertReply(ReplyVO reply);
-	
+	// 리플 수정
+	// 리플 삭제
+	public void deleteReply(int reply_num);
 
 	/*insert*/
 	public void insertMovie(BoardVO board);

@@ -10,7 +10,9 @@
 
 <script type = "text/javascript" src = "/review/resources/script/jquery-2.1.1.js"></script>
 <script type = "text/javascript">
+// 뎃글 작성
 console.log("exe js");
+
 $('#btReply').click(function () {
 	console.log("bt clicked!");
 	$.ajax({
@@ -18,7 +20,7 @@ $('#btReply').click(function () {
 		type: 'POST',
 		dataType: 'text',
 		data: {
-			reply_content: $('#reply_content').val(),
+			reply_content: $('#reply_content').val()
 		},
 		success: function (html) {
 			console.log('on cb');
@@ -40,6 +42,38 @@ $('#btReply').click(function () {
 	});
 });
 
+// 댓글 수정
+
+
+// 댓글 삭제
+$('#deleteReply').click(function () {
+	console.log("bt clicked!");
+	$.ajax({
+		url: '/review/movie/detail_view/${board.board_num}/deleteReply',
+		type: 'POST',
+		dataType: 'text',
+		data: {
+			reply_num: $('#reply_num').val()
+		},
+		success: function (html) {
+			console.log('on cb');
+			$.ajax({
+				type : "GET",
+				url : "/review/movie/detail_view/${board.board_num}/reply",
+				cache : false,
+				dataType : 'html',
+				success : function(html) {
+					$(".reply").empty();
+					$(".reply").append(html);
+					}
+				}) 
+			/* $(".reply").empty();
+			$(".reply").append(html); */
+			
+		}
+	});
+});
+
 </script>
 
 </head>
@@ -55,7 +89,13 @@ $('#btReply').click(function () {
 	&nbsp;&nbsp;&nbsp;&nbsp;
 	<span>${reply.reply_content}&nbsp;&nbsp; |</span>
 	<span><fmt:formatDate value="${reply.reply_date}" pattern="yyyy-MM-dd hh:mm"/>&nbsp;&nbsp; |</span>
-	<span><c:if test="${sessionScope.member_id == board.member_id}">&nbsp;&nbsp; '수정'</c:if></span>
+	<span>
+		<c:if test="${sessionScope.member_id == reply.member_id}">
+			&nbsp;&nbsp; <input type="hidden" id="reply_num" name="reply_num" value="${reply.reply_num}">${reply.reply_num}
+			&nbsp;&nbsp; <input type="button" id="updateReply" value="수정">
+			&nbsp;&nbsp; <input type="button" id="deleteReply" name="deleteReply" value="삭제">
+		</c:if>
+	</span>
 	<br>
 </c:forEach>
 

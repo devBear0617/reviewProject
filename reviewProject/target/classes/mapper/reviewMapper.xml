@@ -68,6 +68,14 @@
 		${}				파라미터 값 - 파라미터 변수명과 다르면 인식X, 보안 취약
 	-->
 	
+	<!-- ____likeCheck______________________________________________________________________ -->
+	<select id="likeCheck" parameterType="map" resultType="int">
+		SELECT NVL(max(likeit), 0)
+		FROM likeit
+		WHERE board_num = #{board_num}
+		AND member_id = #{member_id}
+	</select>
+	
 	<!-- ____likeItMinus______________________________________________________________________ -->
 	<delete id="likeItMinus" parameterType="LikeItVO">
 		DELETE FROM likeit
@@ -92,6 +100,11 @@
 	<insert id="insertReply" parameterType="ReplyVO">
 		INSERT INTO reply(board_num, member_id, reply_content)
 		VALUES(#{board_num}, #{member_id}, #{reply_content})
+	</insert>
+	<!-- ____리플 삭제______________________________________________________________________ -->
+	<insert id="deleteReply" parameterType="ReplyVO">
+		DELETE FROM reply
+		WHERE reply_num = #{reply_num}
 	</insert>
 	
 	<!-- 게시글 호출______________________________________________________________________ -->

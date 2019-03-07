@@ -3,6 +3,7 @@ package com.project.review.service;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -57,6 +58,11 @@ public class MovieServiceImpl implements MovieService {
 	public int likeCount(int board_num) {
 		
 		return boardDAO.likeCount(board_num);
+	}
+	@Override
+	public int likeCheck(Map<String, Object> map) {
+		
+		return boardDAO.likeCheck(map);
 	}
 	
 	
@@ -131,6 +137,14 @@ public class MovieServiceImpl implements MovieService {
 		boardDAO.insertReply(replyVO);
 		
 	}
+	// 리플 삭제
+	@Override
+	public void deleteReply(int reply_num) {
+		
+		boardDAO.deleteReply(reply_num);
+		
+	}
+	
 	
 	//게시글 추가 (Board & Board_Movie & Garde & Hashtag)
 	@Override
@@ -211,7 +225,8 @@ public class MovieServiceImpl implements MovieService {
 		boardDAO.updateHashtag(hash);
 		setMovieApi(movieApiVO);
 	}
-
+	
+	// 게시글 삭제
 	@Override
 	public void deleteMovie(int board_num) {	
 		// 삭제 (board_num으로)
@@ -220,6 +235,8 @@ public class MovieServiceImpl implements MovieService {
 		boardDAO.deleteGrade(board_num);
 		boardDAO.deleteMovie(board_num);
 	}	
+	
+	
 	
 	
 	// -- api ---------------------------------------------------------

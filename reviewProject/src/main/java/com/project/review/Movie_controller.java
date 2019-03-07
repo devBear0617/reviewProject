@@ -1,8 +1,10 @@
 package com.project.review;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -221,7 +223,7 @@ public class Movie_controller {
 		return "movie/detail_view";
 	}
 	
-	// ajax 댓글
+	// ajax 댓글 출력
 	@RequestMapping(value="/detail_view/{board_num}/reply")
 	public String getReply(@PathVariable int board_num, Model model) {
 		
@@ -233,6 +235,7 @@ public class Movie_controller {
 		
 		return "share/reply";
 	}
+	// 댓글 입력
 	@RequestMapping(value="/detail_view/{board_num}/reply", method=RequestMethod.POST)
 	public String postReply(@PathVariable int board_num, HttpServletRequest request, 
 			HttpSession session, Model model, ReplyVO replyVO) {
@@ -254,7 +257,29 @@ public class Movie_controller {
 		
 		return "share/reply";
 	}
-	// ajax 좋아요
+	// 댓글 수정
+	
+	
+	// 댓글 삭제
+	@RequestMapping(value="/detail_view/{board_num}/deleteReply", method=RequestMethod.POST)
+	public String deleteReply(@PathVariable int board_num, HttpServletRequest request, 
+			 Model model, ReplyVO replyVO) {
+		
+		// replyNum
+		int reply_num = Integer.parseInt((String)request.getParameter("reply_num"));
+		
+		movieService.deleteReply(reply_num);
+		
+		BoardVO board_m = movieService.getBoardById(board_num);
+		model.addAttribute("board", board_m);
+		
+		int replyCount = movieService.replyCount(board_num);
+		model.addAttribute("replyCount", replyCount);
+		
+		return "share/reply";
+	}
+	
+	// ajax 좋아요 출력
 	@RequestMapping(value="/detail_view/{board_num}/likeIt")
 	public String getLikeit(@PathVariable int board_num, HttpSession session, Model model) {		
 
@@ -269,6 +294,17 @@ public class Movie_controller {
 			LikeItVO likeCheck = movieService.likeCheck(member_id);
 			model.addAttribute("likeCheck", likeCheck);
 		}*/
+		
+		String member_id = (String)session.getAttribute("member_id");
+		if (member_id != null) {
+			int likeCheck;
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("board_num", board_num);
+			map.put("member_id", member_id);
+			likeCheck = movieService.likeCheck(map);
+			model.addAttribute("likeCheck", likeCheck);
+		}
+		
 		
 		return "share/likeIt";
 	}
