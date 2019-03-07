@@ -22,7 +22,7 @@
 }
 </style>
 </head>
-<jsp:include page="/WEB-INF/views/share/header.jsp" />
+<jsp:include page="/WEB-INF/views/share/Main_header.jsp" />
 <body>
 
 	<div style="height: 100px;"></div>
