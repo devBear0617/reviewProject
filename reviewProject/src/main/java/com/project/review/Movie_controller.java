@@ -161,10 +161,13 @@ public class Movie_controller {
 	@RequestMapping(value="/detail_view/{board_num}")
 	public String detail_view(@PathVariable int board_num, HttpServletRequest request, Model model) {
 		BoardVO board_m = movieService.getBoardById(board_num);
-		MovieApiVO mApiVO = movieService.getMovieInfo(board_m.getB_movieVO().getMovie_nm());
-
 		model.addAttribute("board", board_m);
+		
+		MovieApiVO mApiVO = movieService.getMovieInfo(board_m.getB_movieVO().getMovie_nm());
 		model.addAttribute("mApiVO", mApiVO);
+		
+		int replyCount = movieService.replyCount(board_num);
+		model.addAttribute("replyCount", replyCount);
 		
 		// 썸네일 확인
 		String content = movieService.getContent(board_num);
@@ -180,11 +183,14 @@ public class Movie_controller {
 		return "movie/detail_view";
 	}
 	
-	// ajax 댓글 출력
+	// ajax 댓글 출력------------------------------------------------------
 	@RequestMapping(value="/detail_view/{board_num}/reply")
 	public String getReply(@PathVariable int board_num, Model model) {
 		BoardVO board_m = movieService.getBoardById(board_num);
 		model.addAttribute("board", board_m);
+		
+		List<ReplyVO> replyList = movieService.replyList(board_num);
+		model.addAttribute("replyList", replyList);
 		
 		int replyCount = movieService.replyCount(board_num);
 		model.addAttribute("replyCount", replyCount);
@@ -205,35 +211,38 @@ public class Movie_controller {
 		BoardVO board_m = movieService.getBoardById(board_num);
 		model.addAttribute("board", board_m);
 		
+		List<ReplyVO> replyList = movieService.replyList(board_num);
+		model.addAttribute("replyList", replyList);
+		
 		int replyCount = movieService.replyCount(board_num);
 		model.addAttribute("replyCount", replyCount);
 		
 		return "share/reply";
 	}
-	
 	// 댓글 수정
-	
-	
 	// 댓글 삭제
 	@RequestMapping(value="/detail_view/{board_num}/deleteReply", method=RequestMethod.POST)
 	public String deleteReply(@PathVariable int board_num, HttpServletRequest request, 
 			 Model model, ReplyVO replyVO) {
-		
 		// replyNum
 		int reply_num = Integer.parseInt((String)request.getParameter("reply_num"));
-		
+	System.out.println(reply_num);
 		movieService.deleteReply(reply_num);
 		
 		BoardVO board_m = movieService.getBoardById(board_num);
 		model.addAttribute("board", board_m);
 		
+		List<ReplyVO> replyList = movieService.replyList(board_num);
+		model.addAttribute("replyList", replyList);
+		
 		int replyCount = movieService.replyCount(board_num);
 		model.addAttribute("replyCount", replyCount);
 		
 		return "share/reply";
 	}
+	//-------------------------------------댓글-----------------------------
 	
-	// ajax 좋아요 출력
+	// ajax 좋아요 출력 ------------------------------------------------------
 	@RequestMapping(value="/detail_view/{board_num}/likeIt")
 	public String getLikeit(@PathVariable int board_num, HttpSession session, Model model) {		
 		BoardVO board_m = movieService.getBoardById(board_num);
@@ -253,7 +262,6 @@ public class Movie_controller {
 		}
 		return "share/likeIt";
 	}
-	
 	// 좋아요+
 	@RequestMapping(value="/detail_view/{board_num}/likeItP", method=RequestMethod.POST)
 	public String postLikeitP(@PathVariable int board_num, HttpServletRequest request, HttpSession session, Model model, LikeItVO likeVO) {
@@ -305,4 +313,5 @@ public class Movie_controller {
 		
 		return "share/likeIt";
 	}
+	//-----------------------------------좋아요-------------------------------
 }

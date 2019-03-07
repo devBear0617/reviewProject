@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="resources/script/jquery-2.1.1.js"></script>
+<script type="text/javascript" src="/review/resources/script/jquery-2.1.1.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		data = {
@@ -88,9 +88,11 @@
 	<div style="height: 20px;"></div>
 
 
+</body>
+	
 	<!-- 푸터 -->
 	<div>
-		<jsp:include page="../share/footer.jsp" />
+		<jsp:include page="/WEB-INF/views/share/footer.jsp" />
 	</div>
-</body>
+	
 </html>

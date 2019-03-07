@@ -22,7 +22,7 @@
 		<div class="logo"
 			style="float: left; margin-top: 20px; margin-left: 20px;">
 			<a href="movie/detail_bar.jsp"><img alt="REMON_LOGO"
-				src="../resources/image/REMON_logo(white_bigsize).png"
+				src="/review/movie/resources/image/REMON_logo(white_bigsize).png"
 				style="height: 50px;"></a>
 		</div>
 
@@ -45,7 +45,7 @@
 					onclick="location.href='/review/mypage/login'"
 					style="height: 30px; width: 60px; border-radius: 20px; border-style: none; background-color: yellow;"> -->
 				<a href="/review/mypage/login"><img alt="REMON_LOGO"
-					src="../resources/image/REMON_Login_icon(white).png"
+					src="/review/movie/resources/image/REMON_Login_icon(white).png"
 					style="height: 50px;"></a>
 			</c:if>
 		</div>
@@ -59,7 +59,7 @@
 
 				<div style="float: left; margin-left: 10px;">
 					<a href="/review/mypage/logout"><img alt="REMON_LOGO"
-						src="../resources/image/REMON_Logout_icon(white).png"
+						src="/review/movie/resources/image/REMON_Logout_icon(white).png"
 						style="height: 50px;"></a>
 					<!-- <input type="button" value="로그아웃"
 						onclick="location.href='/review/mypage/logout'"
@@ -67,7 +67,7 @@
 				</div>
 				<div style="float: left; margin-left: 10px;">
 					<a href=/review/mypage/mypageCheck"><img alt="REMON_LOGO"
-						src="../resources/image/REMON_mypage_icon(white).png"
+						src="/review/movie/resources/image/REMON_mypage_icon(white).png"
 						style="height: 50px;"></a>
 					<!-- <input type="button" value="mypage"
 						onclick="location.href='/review/mypage/mypageCheck'"

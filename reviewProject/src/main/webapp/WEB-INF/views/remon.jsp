@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Remon</title>
-<script type="text/javascript" src="resources/script/jquery-2.1.1.js"></script>
+<script type="text/javascript" src="/review/resources/script/jquery-2.1.1.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('.moveBT').click(function() {
@@ -22,7 +22,7 @@
 }
 </style>
 </head>
-<jsp:include page="share/Main_header.jsp" />
+<jsp:include page="/WEB-INF/views/share/header.jsp" />
 <body>
 
 	<div style="height: 100px;"></div>
@@ -101,5 +101,7 @@
 
 	</div>
 </body>
-<jsp:include page="./share/Main_footer.jsp" />
+
+<jsp:include page="/WEB-INF/views/share/footer.jsp" />
+
 </html>

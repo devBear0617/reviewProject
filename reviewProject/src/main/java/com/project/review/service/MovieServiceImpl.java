@@ -51,6 +51,11 @@ public class MovieServiceImpl implements MovieService {
 		return boardDAO.replyCount(board_num);
 	}
 	@Override
+	public List<ReplyVO> replyList(int board_num) {
+		
+		return boardDAO.replyList(board_num);
+	}
+	@Override
 	public int likeCount(int board_num) {
 		
 		return boardDAO.likeCount(board_num);

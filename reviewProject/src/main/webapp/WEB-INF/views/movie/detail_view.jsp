@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type = "text/javascript" src = "../resources/script/jquery-2.1.1.js"></script>
+<script type = "text/javascript" src = "/review/resources/script/jquery-2.1.1.js"></script>
 <script type = "text/javascript">
 $(document).ready(function() {	
 	$.ajax({
@@ -26,7 +26,6 @@ $(document).ready(function() {
 		cache : false,
 		dataType : 'html',
 		success : function(html) {
-			$(".likeIt").empty();
 			$(".likeIt").append(html);
 		}
 	})
@@ -63,18 +62,15 @@ $(document).ready(function() {
 <body>
 	<!-- header -->
 	<div>
-		<jsp:include page="../share/header.jsp" />
+		<jsp:include page="/WEB-INF/views/share/header.jsp" />
 	</div>
 	<!-- category -->
 	<div>
-		<jsp:include page="../share/category_bar.jsp" />
+		<jsp:include page="/WEB-INF/views/share/category_bar.jsp" />
 	</div>
 	<!-- 유저프로필, 유저ID, 제목 바 ( O 유저ID | 리뷰 제목              | 날짜 ) -->
 	<div class="center" style="background-color: #F2F2F2; height: 50px;">
-		<%-- 
-		<span>${board.memberVO.member_pic}</span> 
-		<span>${board.memberVO.member_name}</span>
-		--%>
+		
 		<span>유저ID: ${board.member_id}</span>
 			&nbsp;&nbsp;&nbsp; 
 		<span>|&nbsp;&nbsp;&nbsp;리뷰 제목 : ${board.board_title}</span>
@@ -127,9 +123,9 @@ $(document).ready(function() {
 					<div style="text-align: left; padding-left: 10px;">
 						<span class="likeIt"></span>	
 										
-						<img alt="reply" src="../resources/image/REMON_comment_icon.png" class="imgform">
+						<img alt="reply" src="/review/resources/image/REMON_comment_icon.png" class="imgform">
 						<span>
-							댓글 카운트 값						
+							${replyCount}						
 						</span>
 					</div>
 				</td>
@@ -203,8 +199,10 @@ $(document).ready(function() {
 
 	<br>
 
-	<div>
-		<jsp:include page="../share/footer.jsp" />
-	</div>
 </body>
+	
+	<div>
+		<jsp:include page="/WEB-INF/views/share/footer.jsp" />
+	</div>
+	
 </html>

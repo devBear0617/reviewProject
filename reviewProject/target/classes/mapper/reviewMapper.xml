@@ -105,6 +105,12 @@
 		FROM reply
 		WHERE board_num = #{board_num}
 	</select>
+	<select id="replyList" parameterType="int" resultType="ReplyVO">
+		SELECT *
+		FROM reply
+		WHERE board_num = #{board_num}
+		ORDER BY reply_num ASC
+	</select>
 	<select id="likeCount" parameterType="int" resultType="int">
 		SELECT COUNT(*)
 		FROM likeit

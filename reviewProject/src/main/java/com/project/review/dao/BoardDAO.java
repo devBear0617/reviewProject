@@ -25,6 +25,7 @@ public interface BoardDAO {
 		public int likeCount(int board_num);
 		public List<LikeItVO> getMovieBoardLikeList();
 		public int likeCheck(Map<String, Object> map);
+		public List<ReplyVO> replyList(int board_num);
 	
 	/*-------------------------------------------------------*/
 	

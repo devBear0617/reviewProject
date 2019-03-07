@@ -9,7 +9,8 @@
 
 <script type = "text/javascript" src = "/review/resources/script/jquery-2.1.1.js"></script>
 <script type = "text/javascript">
-// 좋아요-
+
+// 로그인x
 $('#need_login').click(function(){
 	var login = confirm("좋아요를 표시하려면 로그인이 필요합니다. \n로그인 페이지로 이동하시겠습니까?");
 	if(login){
@@ -19,6 +20,7 @@ $('#need_login').click(function(){
 	}
 });
 
+//좋아요-
 $('#likeXbt').click(function () {
 	$.ajax({
 		url: '/review/movie/detail_view/${board.board_num}/likeItP',
@@ -52,16 +54,17 @@ $('#likeObt').click(function () {
 <br>
 <!-- 로그인 x -->
 <c:if test="${empty sessionScope.member_id}">
-	<span id="need_login"> <img alt="likeit" src="../resources/image/REMON_like_icon.png" class="imgform"></span> 	
+	<span id="need_login"> <img alt="likeit" src="/review/movie/resources/image/REMON_like_icon.png" class="imgform"></span> 	
 </c:if>
 
 <!-- 로그인 o -->
 <c:if test="${not empty sessionScope.member_id}">
  	<c:if test="${likeCheck == 1}">
  		<input type="button" id="likeObt" value="좋아요 ♥">
+ 		<!-- <span id="likeObt"> <img alt="likeit" src="/review/movie/resources/image/" class="imgform"></span> -->
  	</c:if>
  	<c:if test="${likeCheck != 1}">
- 		<span id="likeXbt"> <img alt="likeit" src="../resources/image/REMON_like_icon.png" class="imgform"></span> 	
+ 		<span id="likeXbt"> <img alt="likeit" src="/review/movie/resources/image/REMON_like_icon.png" class="imgform"></span> 	
  	</c:if> 	
 </c:if>
 	<span>${likeCount}</span>
