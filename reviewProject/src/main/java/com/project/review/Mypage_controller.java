@@ -1,6 +1,5 @@
 package com.project.review;
 
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.project.review.service.MemberService;
-import com.project.review.vo.BoardVO;
 import com.project.review.vo.MemberVO;
 
 

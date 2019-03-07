@@ -97,9 +97,6 @@ $('.deleteReply').click(function (e) {
 		<input type="button" id="btReply" name="btReply" value="확인">
 	<!-- </form>  -->
 </c:if>
-
-
-
 </body>
 </html>
 

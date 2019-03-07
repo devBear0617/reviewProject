@@ -192,17 +192,6 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
-	<!-- 
-1 유저 id x
-2 제목
-3 날짜(자동)
-4 내용
-5 추천 ox (lemon_grade => 쳌박, 라디오버튼)
-6 전체 평점 (grade_score)
-7 4개의 개별점수 (score_name1~4, score_grade1~4)
-8 해시테그 1~6
-9 리뷰 영화의 정보 (api)
- -->
 	<h1>새글작성.</h1>
 	<form action="/review/movie/movie_write" method="post" id="movie_write">
 		<br> 제목 :  <input type="text" name="board_title"> <br>
