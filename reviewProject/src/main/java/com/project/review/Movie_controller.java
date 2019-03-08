@@ -232,10 +232,10 @@ public class Movie_controller {
 	public String postReply(@PathVariable int board_num, ReplyVO replyVO, HttpSession session) {
 		// ID session
 		String member_id = (String)session.getAttribute("member_id");
-		System.out.println(replyVO.toString());
+	System.out.println(replyVO.toString());
 		movieService.insertReply(replyVO, member_id);
 		
-		return "redirect:/movie//detail_view/"+board_num+"/reply";
+		return "redirect:/movie/detail_view/"+board_num+"/reply";
 	}
 	/*
 	// 댓글 입력
@@ -270,7 +270,7 @@ public class Movie_controller {
 		
 		movieService.deleteReply(reply_num);
 		
-		return "redirect:/movie//detail_view/"+board_num+"/reply";
+		return "redirect:/movie/detail_view/"+board_num+"/reply";
 	}
 	/*
 	// 댓글 삭제
