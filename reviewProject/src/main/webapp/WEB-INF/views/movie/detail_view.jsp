@@ -7,30 +7,31 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type = "text/javascript" src = "/review/resources/script/jquery-2.1.1.js"></script>
-<script type = "text/javascript">
-$(document).ready(function() {	
-	$.ajax({
-		type : "GET",
-		url : "/review/movie/detail_view/${board.board_num}/reply",
-		cache : false,
-		dataType : 'html',
-		success : function(html) {
-			$(".reply").append(html);
-		}
-	})
-	
-	$.ajax({
-		type : "GET",
-		url : "/review/movie/detail_view/${board.board_num}/likeIt",
-		cache : false,
-		dataType : 'html',
-		success : function(html) {
-			$(".likeIt").append(html);
-		}
-	})
-	
-});
+<script type="text/javascript"
+	src="/review/resources/script/jquery-2.1.1.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$.ajax({
+			type : "GET",
+			url : "/review/movie/detail_view/${board.board_num}/reply",
+			cache : false,
+			dataType : 'html',
+			success : function(html) {
+				$(".reply").append(html);
+			}
+		})
+
+		$.ajax({
+			type : "GET",
+			url : "/review/movie/detail_view/${board.board_num}/likeIt",
+			cache : false,
+			dataType : 'html',
+			success : function(html) {
+				$(".likeIt").append(html);
+			}
+		})
+
+	});
 </script>
 
 <style type="text/css">
@@ -70,12 +71,12 @@ $(document).ready(function() {
 	</div>
 	<!-- 유저프로필, 유저ID, 제목 바 ( O 유저ID | 리뷰 제목              | 날짜 ) -->
 	<div class="center" style="background-color: #F2F2F2; height: 50px;">
-		
-		<span>유저ID: ${board.member_id}</span>
-			&nbsp;&nbsp;&nbsp; 
-		<span>|&nbsp;&nbsp;&nbsp;리뷰 제목 : ${board.board_title}</span>
-			&nbsp;&nbsp;&nbsp; 
-		<span>|&nbsp;&nbsp;&nbsp;날짜 : <fmt:formatDate value="${board.board_date}" pattern="yyyy-MM-dd hh:mm" /></span>
+
+		<span>유저ID: ${board.member_id}</span> &nbsp;&nbsp;&nbsp; <span>|&nbsp;&nbsp;&nbsp;리뷰
+			제목 : ${board.board_title}</span> &nbsp;&nbsp;&nbsp; <span>|&nbsp;&nbsp;&nbsp;날짜
+			: <fmt:formatDate value="${board.board_date}"
+				pattern="yyyy-MM-dd hh:mm" />
+		</span>
 	</div>
 
 	<!-- 이미지, 평점(추천합니다/안합니다), 상세별점, 리뷰의 좋아요, #  -->
@@ -83,9 +84,12 @@ $(document).ready(function() {
 
 		<table class="center">
 			<tr style="height: 300px;">
-				<td style="background-color: #FFFF00;">
-<!-- >>==============================▶ 삽입 이미지 크기 조정 필요 -->
-					<div>이미지<img src="${board.thumbnail}"></div></td>
+				<td style="background: background: -webkit-linear-gradient(to right, #abf200, #ffe400); background: linear-gradient(to right, #abf200, #ffe400);">
+					<!-- >>==============================▶ 삽입 이미지 크기 조정 필요 -->
+					<div>
+						<img src="${board.thumbnail}" style="height: 300px;">
+					</div>
+				</td>
 				<td>
 					<table>
 						<tr>
@@ -121,18 +125,14 @@ $(document).ready(function() {
 			<tr>
 				<td>
 					<div style="text-align: left; padding-left: 10px;">
-						<span class="likeIt"></span>	
-										
-						<img alt="reply" src="/review/resources/image/REMON_comment_icon.png" class="imgform">
-						<span>
-							${replyCount}						
-						</span>
+						<span class="likeIt"></span> <img alt="reply"
+							src="/review/resources/image/REMON_comment_icon.png"
+							class="imgform"> <span> ${replyCount} </span>
 					</div>
 				</td>
 				<td></td>
 				<td><div style="text-align: right; padding-right: 10px;">
-						<br> 
-						<span class="hashtag">#${board.hashtagVO.hashtag1}</span>&nbsp;&nbsp;&nbsp;
+						<br> <span class="hashtag">#${board.hashtagVO.hashtag1}</span>&nbsp;&nbsp;&nbsp;
 						<span class="hashtag"># ${board.hashtagVO.hashtag2}</span>&nbsp;&nbsp;&nbsp;
 						<span class="hashtag"># ${board.hashtagVO.hashtag3}</span>&nbsp;&nbsp;&nbsp;
 						<span class="hashtag"># ${board.hashtagVO.hashtag4}</span>&nbsp;&nbsp;&nbsp;
@@ -152,10 +152,10 @@ $(document).ready(function() {
 				<td colspan="2">
 					<div>
 						<br>
-						<h2>리뷰내용:</h2>
-						<br> --------------------------<br> <br>
-						${board.board_content} <br> <br>--------------------------
-						<br> <br> <br>
+						<h2>review contents</h2>
+						<br>
+						<br> <br> ${board.board_content} <br> <br> <br>
+						<br> <br>
 					</div>
 				</td>
 				<td style="border-left: 1px solid #F2F2F2;"><div
@@ -187,11 +187,14 @@ $(document).ready(function() {
 	<br>
 
 	<div class="center">
-		<input type="button" value="목록" onclick="location.href='/review/movie/main'">
+		<input type="button" value="목록"
+			onclick="location.href='/review/movie/main'">
 
 		<c:if test="${sessionScope.member_id == board.member_id}">
-			<input type="button" value="수정" onclick="location.href='/review/movie/movie_updateForm/${board.board_num}'">
-			<form action="/review/movie/movie_delete/${board.board_num}" method="post" id="movie_delete">
+			<input type="button" value="수정"
+				onclick="location.href='/review/movie/movie_updateForm/${board.board_num}'">
+			<form action="/review/movie/movie_delete/${board.board_num}"
+				method="post" id="movie_delete">
 				<input type="submit" value="삭제">
 			</form>
 		</c:if>
@@ -200,9 +203,9 @@ $(document).ready(function() {
 	<br>
 
 </body>
-	
-	<div>
-		<jsp:include page="/WEB-INF/views/share/footer.jsp" />
-	</div>
-	
+
+<div>
+	<jsp:include page="/WEB-INF/views/share/footer.jsp" />
+</div>
+
 </html>
