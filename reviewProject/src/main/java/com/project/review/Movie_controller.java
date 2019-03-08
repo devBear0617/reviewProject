@@ -194,7 +194,7 @@ public class Movie_controller {
 		int replyCount = movieService.replyCount(board_num);
 		
 		model.addAttribute("replyList", replyList);
-		model.addAttribute("board_num", replyList.get(0).getBoard_num());
+		model.addAttribute("board_num", board_num);
 		model.addAttribute("replyCount", replyCount);
 		
 		return "share/reply";
