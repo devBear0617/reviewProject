@@ -23,7 +23,8 @@ public interface MovieService {
 	public String getContent(int board_num);
 	
 	// insert reply
-	public void insertReply(ReplyVO replyVO, String reply, int board_num, String member_id);
+	public void insertReply(ReplyVO replyVO, String member_id);
+	//public void insertReply(ReplyVO replyVO, String reply, int board_num, String member_id);
 	// update reply
 	// delete reply
 	public void deleteReply(int reply_num);
