@@ -13,8 +13,14 @@
 
 console.log("reply script");
 
+/*수정 내용
+1. btReply : class -> id (이유 : class로 해도 상관없지만 댓글 등록버튼은 유일하여 id 사용하는 것이 더 좋음) 
+2. 수정/삭제 : 선택자.click -> 함수  
+(이유 : id로 할 경우 이전 선택자.click이 제대로 작동하지만 class로 할 경우 $(e).선택자().val() 식으로 접근 해야하므로 가독성 떨어짐
+	  함수로 사용할 경우 확장성에 좋음 & reply_num 전달에 용이함)
+*/
 // 댓글 작성
-$('.btReply').click(function () {
+$('#btReply').click(function () {
 	console.log("insert bt");
 	$.ajax({
 		url: '/review/movie/detail_view/${board.board_num}/reply',
@@ -32,25 +38,37 @@ $('.btReply').click(function () {
 });
 
 // 댓글 수정
-
-
-// 댓글 삭제
-$('.deleteReply').click(function (e) {
-	console.log("delete bt");
+function updateReply (reply_num) {
 	$.ajax({
 		url: '/review/movie/detail_view/${board.board_num}/deleteReply',
 		type: 'POST',
 		dataType: 'text',
 		data: {
-			reply_num: $('.reply_num').val()
+			reply_num: reply_num
 		},
 		success: function (html) {
-			console.log('success');
 			$(".reply").empty();
 			$(".reply").append(html); 
 		}
 	});
-});
+};
+
+
+// 댓글 삭제
+function deleteReply (reply_num) {
+	$.ajax({
+		url: '/review/movie/detail_view/${board.board_num}/deleteReply',
+		type: 'POST',
+		dataType: 'text',
+		data: {
+			reply_num: reply_num
+		},
+		success: function (html) {
+			$(".reply").empty();
+			$(".reply").append(html); 
+		}
+	});
+};
 
 </script>
 </head>
@@ -67,8 +85,8 @@ $('.deleteReply').click(function (e) {
 			<span>
 				<c:if test="${sessionScope.member_id == reply.member_id}">
 				&nbsp;&nbsp; <input type="hidden" class="reply_num" value="${reply.reply_num}">${reply.reply_num}
-				&nbsp;&nbsp; <input type="button" class="updateReply" value="수정">
-				&nbsp;&nbsp; <input type="button" class="deleteReply" value="삭제">
+				&nbsp;&nbsp; <input type="button" class="updateReply" onclick="updateReply(${reply.reply_num})" value="수정">
+				&nbsp;&nbsp; <input type="button" class="deleteReply" onclick="deleteReply(${reply.reply_num})" value="삭제">
 				</c:if>
 			</span>
 			<br>
@@ -80,7 +98,7 @@ $('.deleteReply').click(function (e) {
 			<c:when test="${sessionScope.member_id != null}">
 				<input type="text" class="reply_content" placeholder="댓글 입력" 
 						style="width: 700px; height: 30px; border-radius: 20px; border-style: none;"> &nbsp; &nbsp;
-				<input type="button" class="btReply" value="확인">
+				<input type="button" id="btReply" value="확인">
 			</c:when>
 			<c:otherwise>
 				<input type="text" placeholder="댓글을 작성하시려면 로그인이 필요합니다." 
