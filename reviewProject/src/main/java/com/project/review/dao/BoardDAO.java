@@ -40,6 +40,7 @@ public interface BoardDAO {
 	// 리플 추가
 	public void insertReply(ReplyVO reply);
 	// 리플 수정
+	public void updateReply(ReplyVO reply);
 	// 리플 삭제
 	public void deleteReply(int reply_num);
 

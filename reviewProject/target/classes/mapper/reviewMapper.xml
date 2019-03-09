@@ -83,11 +83,17 @@
 		INSERT INTO reply(board_num, member_id, reply_content)
 		VALUES(#{board_num}, #{member_id}, #{reply_content})
 	</insert>
+	<!-- ____리플 수정______________________________________________________________________ -->
+	<update id="updateReply" parameterType="ReplyVO">
+		UPDATE reply SET
+			reply_content = #{reply_content}
+		WHERE reply_num = #{reply_num}
+	</update>
 	<!-- ____리플 삭제______________________________________________________________________ -->
-	<insert id="deleteReply" parameterType="ReplyVO">
+	<delete id="deleteReply" parameterType="int">
 		DELETE FROM reply
 		WHERE reply_num = #{reply_num}
-	</insert>
+	</delete>
 	
 	<!-- 게시글 호출______________________________________________________________________ -->
 	<select id="getBoardById" parameterType="int" resultMap="Board">

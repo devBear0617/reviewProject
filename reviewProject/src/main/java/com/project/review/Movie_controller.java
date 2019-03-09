@@ -200,23 +200,6 @@ public class Movie_controller {
 		return "share/reply";
 	}
 	/*
-	// ajax 댓글 출력------------------------------------------------------
-	@RequestMapping(value="/detail_view/{board_num}/reply")
-	public String getReply(@PathVariable int board_num, Model model) {
-		BoardVO board_m = movieService.getBoardById(board_num);
-		model.addAttribute("board", board_m);
-		
-		List<ReplyVO> replyList = movieService.replyList(board_num);
-		model.addAttribute("replyList", replyList);
-		
-		int replyCount = movieService.replyCount(board_num);
-		model.addAttribute("replyCount", replyCount);
-		
-		return "share/reply";
-	}
-	*/
-	
-	
 	/* 입력 수정, 삭제 수정 
 	 	1. 다시 get을 렌더링 -> 삭제 및 redirect:/movie//detail_view/"+board_num+"/reply"
 	 	(이유: 다시 작성 할 필요 없이 이미 작성되어 있는 출력함수 활용 => 코드 간소화)
@@ -232,37 +215,21 @@ public class Movie_controller {
 	public String postReply(@PathVariable int board_num, ReplyVO replyVO, HttpSession session) {
 		// ID session
 		String member_id = (String)session.getAttribute("member_id");
-	System.out.println(replyVO.toString());
+	System.out.println("insert Reply - "+replyVO.toString());
 		movieService.insertReply(replyVO, member_id);
 		
 		return "redirect:/movie/detail_view/"+board_num+"/reply";
 	}
-	/*
-	// 댓글 입력
-	@RequestMapping(value="/detail_view/{board_num}/reply", method=RequestMethod.POST)
-	public String postReply(@PathVariable int board_num, HttpServletRequest request, HttpSession session, Model model, ReplyVO replyVO) {
-		// ID session
-		String member_id = (String)session.getAttribute("member_id");
-		// reply_content
-		String reply = request.getParameter("reply_content");
-		
-		movieService.insertReply(replyVO, reply, board_num, member_id);
-		
-		// 다시 get을 렌더링
-		BoardVO board_m = movieService.getBoardById(board_num);
-		model.addAttribute("board", board_m);
-		
-		List<ReplyVO> replyList = movieService.replyList(board_num);
-		model.addAttribute("replyList", replyList);
-		
-		int replyCount = movieService.replyCount(board_num);
-		model.addAttribute("replyCount", replyCount);
-		
-		return "share/reply";
-	}
-	*/
-	
 	// 댓글 수정
+	@RequestMapping(value="/detail_view/{board_num}/updateReply", method=RequestMethod.POST)
+	public String updateReply(@PathVariable int board_num, ReplyVO replyVO) {
+		
+		String reply_content = "수정됨ㅇㅇㅋㅋ";
+
+		movieService.updateReply(replyVO, reply_content);
+		
+		return "redirect:/movie/detail_view/"+board_num+"/reply";
+	}
 	// 댓글 삭제
 	@RequestMapping(value="/detail_view/{board_num}/deleteReply", method=RequestMethod.POST)
 	public String deleteReply(@PathVariable int board_num, ReplyVO replyVO) {
@@ -272,29 +239,6 @@ public class Movie_controller {
 		
 		return "redirect:/movie/detail_view/"+board_num+"/reply";
 	}
-	/*
-	// 댓글 삭제
-	@RequestMapping(value="/detail_view/{board_num}/deleteReply", method=RequestMethod.POST)
-	public String deleteReply(@PathVariable int board_num, HttpServletRequest request, 
-			 Model model, ReplyVO replyVO) {
-		// replyNum
-		int reply_num = Integer.parseInt((String)request.getParameter("reply_num"));
-	System.out.println(reply_num);
-		movieService.deleteReply(reply_num);
-		
-		BoardVO board_m = movieService.getBoardById(board_num);
-		model.addAttribute("board", board_m);
-		
-		List<ReplyVO> replyList = movieService.replyList(board_num);
-		model.addAttribute("replyList", replyList);
-		
-		int replyCount = movieService.replyCount(board_num);
-		model.addAttribute("replyCount", replyCount);
-		
-		return "share/reply";
-	}
-	*/
-	
 	//-------------------------------------댓글-----------------------------
 	
 	// ajax 좋아요 출력 ------------------------------------------------------

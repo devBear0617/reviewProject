@@ -49,7 +49,7 @@ function insertReply () {
 };
 
 // 댓글 수정
-function updateReply (reply_num) {
+function getUpdateReply (reply_num) {
 	$.ajax({
 		url: url +'/updateReply',
 		type: 'POST',
@@ -90,12 +90,23 @@ function deleteReply (reply_num) {
 		<c:forEach items="${replyList}" var="reply">
 			<span>작성자 : ${reply.member_id} &nbsp;&nbsp;&nbsp;&nbsp; |</span> &nbsp;&nbsp;&nbsp;&nbsp;
 			<span>${reply.reply_content}&nbsp;&nbsp; |</span>
-			<span> <fmt:formatDate value="${reply.reply_date}" pattern="yyyy-MM-dd hh:mm" /></span>
+			<span> 
+				<c:if test="${empty reply.reply_up_date}">
+					<fmt:formatDate value="${reply.reply_date}" pattern="yyyy-MM-dd hh:mm" />
+				</c:if>
+				<c:if test="${not empty reply.reply_up_date}">
+					<fmt:formatDate value="${reply.reply_up_date}" pattern="yyyy-MM-dd hh:mm" />
+				</c:if>
+			</span>
 			<span>
 				<c:if test="${sessionScope.member_id == reply.member_id}">
 				&nbsp;&nbsp; <input type="hidden" class="reply_num" value="${reply.reply_num}">${reply.reply_num}
-				&nbsp;&nbsp; <input type="button" class="updateReply" onclick="updateReply(${reply.reply_num})" value="수정">
+				&nbsp;&nbsp; <input type="button" class="getUpdateReply" onclick="getUpdateReply(${reply.reply_num})" value="수정">
 				&nbsp;&nbsp; <input type="button" class="deleteReply" onclick="deleteReply(${reply.reply_num})" value="삭제">
+				
+				<br>
+				
+
 				</c:if>
 			</span>
 			<br>

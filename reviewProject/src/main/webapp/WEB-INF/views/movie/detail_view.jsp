@@ -35,7 +35,7 @@ function getLikeIt () {
 
 $(document).ready(function() {
 	getReplyList();
-	getLikeIt()
+	getLikeIt();
 });
 </script>
 
@@ -187,6 +187,7 @@ $(document).ready(function() {
 	<div class="center_txtnon">
 		<h3>&nbsp;&nbsp;댓글 | REPLY</h3>
 		<div class="reply"></div>
+		
 	</div>
 	<br>
 	<hr width="400px;">
