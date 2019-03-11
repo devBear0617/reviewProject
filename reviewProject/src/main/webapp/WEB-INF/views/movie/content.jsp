@@ -7,7 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
-<script type="text/javascript" src="/review/resources/script/jquery-2.1.1.js"></script>
+<script type="text/javascript"
+	src="/review/resources/script/jquery-2.1.1.js"></script>
 <script type="text/javascript">
 
 function move(e){	
@@ -48,6 +49,10 @@ function move(e){
 	margin-left: auto;
 	margin-right: auto;
 }
+
+.td_class1 {
+	width: 400px;
+}
 </style>
 </head>
 <body>
@@ -62,9 +67,9 @@ function move(e){
 		</ul> -->
 		<table class="center" style="font-size: small;">
 			<tr>
-				<td>최신순</td>
-				<td>좋아요순</td>
-				<td>별점순</td>
+				<td class="td_class1">최신순</td>
+				<td class="td_class1">좋아요순</td>
+				<td class="td_class1">별점순</td>
 			</tr>
 		</table>
 	</div>
@@ -73,9 +78,9 @@ function move(e){
 
 	<div class="wrapper">
 		<c:forEach items="${board_list}" var="board">
-			<div class="items" onclick="move('./detail_view/${board.board_num}')"  
-				 style="background-image:URL(${board.thumbnail});">
-<!--  
+			<div class="items" onclick="move('./detail_view/${board.board_num}')"
+				style="background-image:URL(${board.thumbnail});">
+				<!--  
 	썸네일 임시로 div 배경으로 설정함 디자인상 변경필요하면  변경 ㄱㄱ   <img src="${board.thumbnail}"> 	
 -->
 				<table>
@@ -87,12 +92,11 @@ function move(e){
 					</tr>
 					<tr>
 						<td colspan="2"><hr></td>
-					</tr>	
+					</tr>
 					<tr>
-						<td style="font-size: small; padding-right: 30px;">
-							<img alt="likeit" src="../resources/image/REMON_like_icon.png"
-								style="width: 20px; margin-left: -20px;">
-						</td>
+						<td style="font-size: small; padding-right: 30px;"><img
+							alt="likeit" src="../resources/image/REMON_like_icon.png"
+							style="width: 20px; margin-left: -20px;"></td>
 						<td style="font-size: x-small;">${board.board_date}</td>
 					</tr>
 				</table>

@@ -57,6 +57,10 @@
 .imgform {
 	width: 40px;
 }
+
+.td_class1 {
+	width: 400px;
+}
 </style>
 </head>
 
@@ -84,13 +88,14 @@
 
 		<table class="center">
 			<tr style="height: 300px;">
-				<td style="background: background: -webkit-linear-gradient(to right, #abf200, #ffe400); background: linear-gradient(to right, #abf200, #ffe400);">
+				<td class="td_class1"
+					style="background: background: -webkit-linear-gradient(to right, #abf200, #ffe400); background: linear-gradient(to right, #abf200, #ffe400);">
 					<!-- >>==============================▶ 삽입 이미지 크기 조정 필요 -->
 					<div>
 						<img src="${board.thumbnail}" style="height: 300px;">
 					</div>
 				</td>
-				<td>
+				<td class="td_class1">
 					<table>
 						<tr>
 							<td>평점. <br> ${board.lemon_grade}% 의 <br> <c:choose>
@@ -112,26 +117,28 @@
 						</tr>
 					</table>
 				</td>
-				<td style="border-left: 1px solid gray;">개별점수. <br>
-					${board.gradeVO.grade_name1} : ${board.gradeVO.grade1} <br>
+				<td style="border-left: 1px solid gray;" class="td_class1">개별점수.
+					<br> ${board.gradeVO.grade_name1} : ${board.gradeVO.grade1} <br>
 					${board.gradeVO.grade_name2} : ${board.gradeVO.grade2} <br>
 					${board.gradeVO.grade_name3} : ${board.gradeVO.grade3} <br>
-					${board.gradeVO.grade_name4} : ${board.gradeVO.grade4} <br></td>
+					${board.gradeVO.grade_name4} : ${board.gradeVO.grade4} <br>
+				</td>
 
 			</tr>
 		</table>
 		<br>
 		<table class="center">
 			<tr>
-				<td>
+				<td class="td_class1">
 					<div style="text-align: left; padding-left: 10px;">
 						<span class="likeIt"></span> <img alt="reply"
 							src="/review/resources/image/REMON_comment_icon.png"
 							class="imgform"> <span> ${replyCount} </span>
 					</div>
 				</td>
-				<td></td>
-				<td><div style="text-align: right; padding-right: 10px;">
+				<td class="td_class1"></td>
+				<td class="td_class1"><div
+						style="text-align: right; padding-right: 10px;">
 						<br> <span class="hashtag">#${board.hashtagVO.hashtag1}</span>&nbsp;&nbsp;&nbsp;
 						<span class="hashtag"># ${board.hashtagVO.hashtag2}</span>&nbsp;&nbsp;&nbsp;
 						<span class="hashtag"># ${board.hashtagVO.hashtag3}</span>&nbsp;&nbsp;&nbsp;
@@ -149,16 +156,15 @@
 
 		<table class="center">
 			<tr>
-				<td colspan="2">
-					<div>
-						<br>
+				<td class="td_class1" colspan="2">
+					<div class="center">
 						<h2>review contents</h2>
-						<br>
-						<br> <br> ${board.board_content} <br> <br> <br>
-						<br> <br>
+					</div>
+					<div style="width: 800px;">
+						<br> ${board.board_content}
 					</div>
 				</td>
-				<td style="border-left: 1px solid #F2F2F2;"><div
+				<td class="td_class1" style="border-left: 1px solid #F2F2F2;"><div
 						style="padding-left: 20px;">
 						영화 정보:
 						<ul style="list-style: none;">
@@ -169,9 +175,9 @@
 					</div></td>
 			</tr>
 			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td class="td_class1"></td>
+				<td class="td_class1"></td>
+				<td class="td_class1"></td>
 			</tr>
 		</table>
 	</div>

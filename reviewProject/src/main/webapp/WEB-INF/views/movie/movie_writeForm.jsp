@@ -405,24 +405,24 @@ table {
 										<option value="bad캐스팅">bad캐스팅</option>
 									</optgroup>
 								</select>
-							</div>
-							<div class="rating">
-								<div id="on_off_grade1">
-									<label> <input type="radio" name="grade1" value="5" />
-										<span class="icon">★</span>
-									</label> <label> <input type="radio" name="grade1" value="10" />
-										<span class="icon">★</span> <span class="icon">★</span>
-									</label> <label> <input type="radio" name="grade1" value="15" />
-										<span class="icon">★</span> <span class="icon">★</span> <span
-										class="icon">★</span>
-									</label> <label> <input type="radio" name="grade1" value="20" />
-										<span class="icon">★</span> <span class="icon">★</span> <span
-										class="icon">★</span> <span class="icon">★</span>
-									</label> <label> <input type="radio" name="grade1" value="25" />
-										<span class="icon">★</span> <span class="icon">★</span> <span
-										class="icon">★</span> <span class="icon">★</span> <span
-										class="icon">★</span>
-									</label>
+								<div class="rating">
+									<div id="on_off_grade1">
+										<label> <input type="radio" name="grade1" value="5" />
+											<span class="icon">★</span>
+										</label> <label> <input type="radio" name="grade1" value="10" />
+											<span class="icon">★</span> <span class="icon">★</span>
+										</label> <label> <input type="radio" name="grade1" value="15" />
+											<span class="icon">★</span> <span class="icon">★</span> <span
+											class="icon">★</span>
+										</label> <label> <input type="radio" name="grade1" value="20" />
+											<span class="icon">★</span> <span class="icon">★</span> <span
+											class="icon">★</span> <span class="icon">★</span>
+										</label> <label> <input type="radio" name="grade1" value="25" />
+											<span class="icon">★</span> <span class="icon">★</span> <span
+											class="icon">★</span> <span class="icon">★</span> <span
+											class="icon">★</span>
+										</label>
+									</div>
 								</div>
 							</div>
 							<br>
@@ -455,24 +455,24 @@ table {
 										<option value="bad캐스팅">bad캐스팅</option>
 									</optgroup>
 								</select>
-							</div>
-							<div class="rating">
-								<div id="on_off_grade2">
-									<label> <input type="radio" name="grade2" value="5" />
-										<span class="icon">★</span>
-									</label> <label> <input type="radio" name="grade2" value="10" />
-										<span class="icon">★</span> <span class="icon">★</span>
-									</label> <label> <input type="radio" name="grade2" value="15" />
-										<span class="icon">★</span> <span class="icon">★</span> <span
-										class="icon">★</span>
-									</label> <label> <input type="radio" name="grade2" value="20" />
-										<span class="icon">★</span> <span class="icon">★</span> <span
-										class="icon">★</span> <span class="icon">★</span>
-									</label> <label> <input type="radio" name="grade2" value="25" />
-										<span class="icon">★</span> <span class="icon">★</span> <span
-										class="icon">★</span> <span class="icon">★</span> <span
-										class="icon">★</span>
-									</label>
+								<div class="rating">
+									<div id="on_off_grade2">
+										<label> <input type="radio" name="grade2" value="5" />
+											<span class="icon">★</span>
+										</label> <label> <input type="radio" name="grade2" value="10" />
+											<span class="icon">★</span> <span class="icon">★</span>
+										</label> <label> <input type="radio" name="grade2" value="15" />
+											<span class="icon">★</span> <span class="icon">★</span> <span
+											class="icon">★</span>
+										</label> <label> <input type="radio" name="grade2" value="20" />
+											<span class="icon">★</span> <span class="icon">★</span> <span
+											class="icon">★</span> <span class="icon">★</span>
+										</label> <label> <input type="radio" name="grade2" value="25" />
+											<span class="icon">★</span> <span class="icon">★</span> <span
+											class="icon">★</span> <span class="icon">★</span> <span
+											class="icon">★</span>
+										</label>
+									</div>
 								</div>
 							</div>
 							<br>
@@ -505,24 +505,24 @@ table {
 										<option value="bad캐스팅">bad캐스팅</option>
 									</optgroup>
 								</select>
-							</div>
-							<div class="rating">
-								<div id="on_off_grade3">
-									<label> <input type="radio" name="grade3" value="5" />
-										<span class="icon">★</span>
-									</label> <label> <input type="radio" name="grade3" value="10" />
-										<span class="icon">★</span> <span class="icon">★</span>
-									</label> <label> <input type="radio" name="grade3" value="15" />
-										<span class="icon">★</span> <span class="icon">★</span> <span
-										class="icon">★</span>
-									</label> <label> <input type="radio" name="grade3" value="20" />
-										<span class="icon">★</span> <span class="icon">★</span> <span
-										class="icon">★</span> <span class="icon">★</span>
-									</label> <label> <input type="radio" name="grade3" value="25" />
-										<span class="icon">★</span> <span class="icon">★</span> <span
-										class="icon">★</span> <span class="icon">★</span> <span
-										class="icon">★</span>
-									</label>
+								<div class="rating">
+									<div id="on_off_grade3">
+										<label> <input type="radio" name="grade3" value="5" />
+											<span class="icon">★</span>
+										</label> <label> <input type="radio" name="grade3" value="10" />
+											<span class="icon">★</span> <span class="icon">★</span>
+										</label> <label> <input type="radio" name="grade3" value="15" />
+											<span class="icon">★</span> <span class="icon">★</span> <span
+											class="icon">★</span>
+										</label> <label> <input type="radio" name="grade3" value="20" />
+											<span class="icon">★</span> <span class="icon">★</span> <span
+											class="icon">★</span> <span class="icon">★</span>
+										</label> <label> <input type="radio" name="grade3" value="25" />
+											<span class="icon">★</span> <span class="icon">★</span> <span
+											class="icon">★</span> <span class="icon">★</span> <span
+											class="icon">★</span>
+										</label>
+									</div>
 								</div>
 							</div>
 							<br>
@@ -555,24 +555,24 @@ table {
 										<option value="bad캐스팅">bad캐스팅</option>
 									</optgroup>
 								</select>
-							</div>
-							<div class="rating">
-								<div id="on_off_grade4">
-									<label> <input type="radio" name="grade4" value="5" />
-										<span class="icon">★</span>
-									</label> <label> <input type="radio" name="grade4" value="10" />
-										<span class="icon">★</span> <span class="icon">★</span>
-									</label> <label> <input type="radio" name="grade4" value="15" />
-										<span class="icon">★</span> <span class="icon">★</span> <span
-										class="icon">★</span>
-									</label> <label> <input type="radio" name="grade4" value="20" />
-										<span class="icon">★</span> <span class="icon">★</span> <span
-										class="icon">★</span> <span class="icon">★</span>
-									</label> <label> <input type="radio" name="grade4" value="25" />
-										<span class="icon">★</span> <span class="icon">★</span> <span
-										class="icon">★</span> <span class="icon">★</span> <span
-										class="icon">★</span>
-									</label>
+								<div class="rating">
+									<div id="on_off_grade4">
+										<label> <input type="radio" name="grade4" value="5" />
+											<span class="icon">★</span>
+										</label> <label> <input type="radio" name="grade4" value="10" />
+											<span class="icon">★</span> <span class="icon">★</span>
+										</label> <label> <input type="radio" name="grade4" value="15" />
+											<span class="icon">★</span> <span class="icon">★</span> <span
+											class="icon">★</span>
+										</label> <label> <input type="radio" name="grade4" value="20" />
+											<span class="icon">★</span> <span class="icon">★</span> <span
+											class="icon">★</span> <span class="icon">★</span>
+										</label> <label> <input type="radio" name="grade4" value="25" />
+											<span class="icon">★</span> <span class="icon">★</span> <span
+											class="icon">★</span> <span class="icon">★</span> <span
+											class="icon">★</span>
+										</label>
+									</div>
 								</div>
 							</div>
 						</div>
