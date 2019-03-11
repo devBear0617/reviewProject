@@ -231,20 +231,35 @@ public class Movie_controller {
 		return "redirect:/movie/detail_view/"+board_num+"/reply";
 	}
 	// 댓글 수정
-	@RequestMapping(value="/detail_view/{board_num}/updateReplyForm", method=RequestMethod.POST)
-	public String updateReplyForm(@PathVariable int board_num, ReplyVO replyVO) {
+	/*@RequestMapping(value="/detail_view/{board_num}/UpdateReplyFrom", method=RequestMethod.POST)
+	public String UpdateReplyFrom(@PathVariable int board_num, ReplyVO replyVO, Model model) {
+		int reply_num = replyVO.getReply_num();
+		model.addAttribute("reply_num", reply_num);
 		
-		return "share/updateReplyForm";
-	}
+		return "share/UpdateReplyFrom";
+	}*/
 	
-	@RequestMapping(value="/detail_view/{board_num}/updateReply", method=RequestMethod.POST)
-	public String updateReply(@PathVariable int board_num, ReplyVO replyVO) {
+	@RequestMapping(value="/detail_view/{board_num}/updateReplyForm", method=RequestMethod.POST)
+	public String updateReplyForm(@PathVariable int board_num, ReplyVO replyVO, Model model) {
+		/*int reply_num = replyVO.getReply_num();
 		
 		String reply_content = "수정됨ㅇㅇㅋㅋ";
 
 		movieService.updateReply(replyVO, reply_content);
 		
-		return "redirect:/movie/detail_view/"+board_num+"/reply";
+		return "redirect:/movie/detail_view/"+board_num+"/reply";*/
+		
+		int rnum = replyVO.getReply_num();
+		model.addAttribute("rnum", rnum);
+		
+		List<ReplyVO> replyList = movieService.replyList(board_num);
+		int replyCount = movieService.replyCount(board_num);
+		
+		model.addAttribute("replyList", replyList);
+		model.addAttribute("board_num", board_num);
+		model.addAttribute("replyCount", replyCount);
+		
+		return "share/reply";
 	}
 	// 댓글 삭제
 	@RequestMapping(value="/detail_view/{board_num}/deleteReply", method=RequestMethod.POST)

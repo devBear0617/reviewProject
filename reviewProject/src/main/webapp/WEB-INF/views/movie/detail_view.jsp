@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 <script type = "text/javascript" src = "/review/resources/script/jquery-2.1.1.js"></script>
 <script type = "text/javascript">
+
 function getReplyList () {
 	$.ajax({
 		type : "GET",
@@ -36,6 +37,7 @@ function getLikeIt () {
 $(document).ready(function() {
 	getReplyList();
 	getLikeIt();
+	
 });
 </script>
 
@@ -187,6 +189,7 @@ $(document).ready(function() {
 	<div class="center_txtnon">
 		<h3>&nbsp;&nbsp;댓글 | REPLY</h3>
 		<div class="reply"></div>
+<!-- 		<div class="updateReply"></div> -->
 		
 	</div>
 	<br>

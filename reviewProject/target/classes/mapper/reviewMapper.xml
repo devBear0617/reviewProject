@@ -5,7 +5,7 @@
 	<resultMap id="Board" type="BoardVO">
 		<id property="board_num" column="board_num" />
 		<result property="board_title" column="board_title" />
-		<result property="board_content" column="board_content" />
+		<result property="board_content" jdbcType="CLOB" column="board_content" />
 		<result property="board_date" column="board_date" />
 		<result property="member_id" column="member_id" />
 		<result property="lemon_grade" column="lemon_grade" />
