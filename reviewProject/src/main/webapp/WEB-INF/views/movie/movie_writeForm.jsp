@@ -590,7 +590,8 @@ table {
 						<div style="height: 30px;">
 							#해쉬태그
 							<hr>
-						</div> <br>
+						</div>
+						<div style="height: 10px;"></div>
 						<div>
 							#<input type="text" name="hashtag1" class="hashtag_st"><br>
 							#<input type="text" name="hashtag2" class="hashtag_st"><br>
@@ -599,6 +600,7 @@ table {
 							#<input type="text" name="hashtag5" class="hashtag_st"><br>
 							#<input type="text" name="hashtag6" class="hashtag_st"><br>
 						</div>
+						<div style="height: 20px;"></div>
 					</td>
 				</tr>
 			</table>

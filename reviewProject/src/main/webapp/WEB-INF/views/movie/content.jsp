@@ -118,8 +118,11 @@ function move(e){
 			</div>
 		</c:forEach>
 	</div>
+	<div style="height: 20px;"></div>
 	<c:if test="${end_content < movieBoardCount}">
-		<div id = moreList > <h4>더보기</h4> </div>
+		<div id = moreList ><img alt="REMON_LOGO"
+					src="/review/movie/resources/image/REMON_more.png"
+					style="height: 20px;"></div>
 	</c:if>
 </body>
 </html>

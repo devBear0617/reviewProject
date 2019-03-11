@@ -30,7 +30,7 @@
 				<td class="no_background">
 					<!-- 로고 -->
 					<div class="logo"
-						style="float: left; margin-top:10px; margin-left: 20px;">
+						style="float: left; margin-top: 10px; margin-left: 20px;">
 						<a href="movie/detail_bar.jsp"><img alt="REMON_LOGO"
 							src="/review/movie/resources/image/REMON_logo(white_bigsize).png"
 							style="height: 50px;"></a>
@@ -51,7 +51,9 @@
 					<!-- 마이페이지 --> <!-- 로그인 필요 시 -->
 					<div style="float: right; margin-top: 10px; margin-right: 20px;">
 						<c:if test="${empty sessionScope.member_id}">
-
+							<a href="/review/mypage/join"><img alt="REMON_LOGO"
+								src="/review/movie/resources/image/REMON_Join_icon(white).png"
+								style="height: 50px;"></a>
 							<a href="/review/mypage/login"><img alt="REMON_LOGO"
 								src="/review/movie/resources/image/REMON_Login_icon(white).png"
 								style="height: 50px;"></a>

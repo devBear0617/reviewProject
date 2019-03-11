@@ -23,7 +23,9 @@
 		<!-- 로그인 필요 시 -->
 		<div style="float: right; margin-top: 20px; margin-right: 30px;">
 			<c:if test="${empty sessionScope.member_id}">
-				<a href="/review/mypage/join">회원가입</a>
+				<a href="/review/mypage/join"><img alt="REMON_LOGO"
+					src="/review/movie/resources/image/REMON_Join_icon(white).png"
+					style="height: 50px;"></a>
 				<a href="/review/mypage/login"><img alt="REMON_LOGO"
 					src="/review/movie/resources/image/REMON_Login_icon(white).png"
 					style="height: 50px;"></a>

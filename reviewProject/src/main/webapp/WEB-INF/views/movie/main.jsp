@@ -36,7 +36,7 @@ $(document).ready(function() {
 
  var stmnLEFT = 20; // 오른쪽 여백 
  var stmnGAP1 = 0; // 위쪽 여백 
- var stmnGAP2 = 600; // 스크롤시 브라우저 위쪽과 떨어지는 거리 
+ var stmnGAP2 = 500; // 스크롤시 브라우저 위쪽과 떨어지는 거리 
  var stmnBASE = 600; // 스크롤 시작위치 
  var stmnActivateSpeed = 10; //스크롤을 인식하는 딜레이 (숫자가 클수록 느리게 인식)
  var stmnScrollSpeed = 10; //스크롤 속도 (클수록 느림)
