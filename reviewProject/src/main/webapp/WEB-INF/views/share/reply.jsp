@@ -63,6 +63,21 @@ function updateReplyForm (reply_num) {
 		}
 	});
 };
+function updateReply (reply_num) {
+	$.ajax({
+		url: url +'/updateReply',
+		type: 'POST',
+		dataType: 'text',
+		data: {
+			reply_num: reply_num,
+			reply_UpdateContent: $('.reply_UpdateContent').val()
+		},
+		success: function (html) {
+			$(".reply").empty();
+			$(".reply").append(html);
+		}
+	});
+};
 
 // 댓글 삭제
 function deleteReply (reply_num) {
@@ -109,7 +124,9 @@ function deleteReply (reply_num) {
 			</span>
 			<br>
 			<c:if test="${reply.reply_num == rnum}">
-				수정! : <input type="text">
+				<input type="hidden" class="reply_num" value="${reply.reply_num}">${reply.reply_num}
+				수정! : <input type="text" class="reply_UpdateContent" value="${reply.reply_content}">
+				 &nbsp; &nbsp;<input type="button" id="btUpdateReply" onclick="updateReply()" value="수정!">
 				<br><br>
 			</c:if>
 		</c:forEach>
@@ -118,7 +135,7 @@ function deleteReply (reply_num) {
 		<br>&nbsp;&nbsp;댓글 작성 &nbsp;
 		<c:choose>
 			<c:when test="${sessionScope.member_id != null}">
-				<input type="text" class="reply_content btn" placeholder="댓글 입력" > &nbsp; &nbsp;
+				<input type="text" class="reply_content" placeholder="댓글 입력" > &nbsp; &nbsp;
 				<input type="button" id="btReply" onclick="insertReply()" value="확인">
 			</c:when>
 			<c:otherwise>

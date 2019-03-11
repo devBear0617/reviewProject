@@ -231,14 +231,6 @@ public class Movie_controller {
 		return "redirect:/movie/detail_view/"+board_num+"/reply";
 	}
 	// 댓글 수정
-	/*@RequestMapping(value="/detail_view/{board_num}/UpdateReplyFrom", method=RequestMethod.POST)
-	public String UpdateReplyFrom(@PathVariable int board_num, ReplyVO replyVO, Model model) {
-		int reply_num = replyVO.getReply_num();
-		model.addAttribute("reply_num", reply_num);
-		
-		return "share/UpdateReplyFrom";
-	}*/
-	
 	@RequestMapping(value="/detail_view/{board_num}/updateReplyForm", method=RequestMethod.POST)
 	public String updateReplyForm(@PathVariable int board_num, ReplyVO replyVO, Model model) {
 		/*int reply_num = replyVO.getReply_num();
@@ -261,6 +253,17 @@ public class Movie_controller {
 		
 		return "share/reply";
 	}
+	@RequestMapping(value="/detail_view/{board_num}/updateReply", method=RequestMethod.POST)
+	public String updateReplyForm(@PathVariable int board_num, ReplyVO replyVO, HttpServletRequest request, Model model) {
+		int reply_num = replyVO.getReply_num();
+		
+		String reply_content = request.getParameter("reply_UpdateContent");
+	System.out.println(reply_content);
+		movieService.updateReply(replyVO, reply_num, reply_content);
+		
+		return "redirect:/movie/detail_view/"+board_num+"/reply";
+	}
+	
 	// 댓글 삭제
 	@RequestMapping(value="/detail_view/{board_num}/deleteReply", method=RequestMethod.POST)
 	public String deleteReply(@PathVariable int board_num, ReplyVO replyVO) {

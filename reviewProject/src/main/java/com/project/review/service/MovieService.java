@@ -26,7 +26,7 @@ public interface MovieService {
 	public void insertReply(ReplyVO replyVO, String member_id);
 	//public void insertReply(ReplyVO replyVO, String reply, int board_num, String member_id);
 	// update reply
-	public void updateReply(ReplyVO replyVO, String reply_content);
+	public void updateReply(ReplyVO replyVO, int reply_num, String reply_content);
 	// delete reply
 	public void deleteReply(int reply_num);
 	
