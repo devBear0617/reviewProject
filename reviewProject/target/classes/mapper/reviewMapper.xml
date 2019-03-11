@@ -86,7 +86,8 @@
 	<!-- ____리플 수정______________________________________________________________________ -->
 	<update id="updateReply" parameterType="ReplyVO">
 		UPDATE reply SET
-			reply_content = #{reply_content}
+			reply_content = #{reply_content},
+			reply_up_date = sysdate
 		WHERE reply_num = #{reply_num}
 	</update>
 	<!-- ____리플 삭제______________________________________________________________________ -->

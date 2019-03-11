@@ -10,7 +10,7 @@
 	
 	<h1>가입.</h1>
 	
-<form action="/review/mypage/join" method="POST" id="joinMember">
+<form action="/review/mypage/join" method="POST" id="joinMember" enctype="multipart/form-data">
 <table border="1">
 	<tr>
 		<td>ID</td>
@@ -25,6 +25,16 @@
 	<tr>
 		<td>NAME</td>
 		<td><input type="text" name="member_name"></td>
+	</tr>
+	
+	<tr>
+		<td>EMAIL</td>
+		<td><input type="text" name="member_email"></td>
+	</tr>
+	
+	<tr>
+		<td>Picture</td>
+		<td><input type="file" name="member_pic"></td>
 	</tr>
 	
 	<tr>

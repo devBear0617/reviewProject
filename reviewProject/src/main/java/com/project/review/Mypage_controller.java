@@ -75,7 +75,9 @@ public class Mypage_controller {
 						MemberVO user = memberService.MemberInfo(user_id);
 						model.addAttribute("user", user);
 						
-						return "mypage/loginCheck";
+						String referer = request.getHeader("Referer");
+						
+						return "redirect:"+referer;
 						
 					} else {
 						// 비번 불일치
@@ -92,7 +94,8 @@ public class Mypage_controller {
 	
 	// 로그아웃
 	@RequestMapping(value="/logout")
-	public String logout(HttpSession session) {
+	public String logout(HttpSession session, Model model) {
+		model.addAttribute("message", "로그아웃 합니다.");
 		// 로그아웃 세션끊기.
 		session.invalidate();
 		

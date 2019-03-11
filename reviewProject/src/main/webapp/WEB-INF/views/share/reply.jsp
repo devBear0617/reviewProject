@@ -49,7 +49,8 @@ function insertReply () {
 };
 
 // 댓글 수정
-function getUpdateReply (reply_num) {
+
+function UpdateReply (reply_num) {
 	$.ajax({
 		url: url +'/updateReply',
 		type: 'POST',
@@ -100,13 +101,11 @@ function deleteReply (reply_num) {
 			</span>
 			<span>
 				<c:if test="${sessionScope.member_id == reply.member_id}">
-				&nbsp;&nbsp; <input type="hidden" class="reply_num" value="${reply.reply_num}">${reply.reply_num}
-				&nbsp;&nbsp; <input type="button" class="getUpdateReply" onclick="getUpdateReply(${reply.reply_num})" value="수정">
-				&nbsp;&nbsp; <input type="button" class="deleteReply" onclick="deleteReply(${reply.reply_num})" value="삭제">
+					&nbsp;&nbsp; <input type="hidden" class="reply_num" value="${reply.reply_num}">${reply.reply_num}
+					&nbsp;&nbsp; <input type="button" class="UpdateReply" onclick="UpdateReply(${reply.reply_num})" value="수정">
+					&nbsp;&nbsp; <input type="button" class="deleteReply" onclick="deleteReply(${reply.reply_num})" value="삭제">
+					<br>
 				
-				<br>
-				
-
 				</c:if>
 			</span>
 			<br>
