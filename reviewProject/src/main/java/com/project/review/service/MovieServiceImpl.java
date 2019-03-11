@@ -127,11 +127,10 @@ public class MovieServiceImpl implements MovieService {
 	}
 	// 리플 수정
 	@Override
-	public void updateReply(ReplyVO replyVO, int reply_num, String reply_content) {
-		
-		replyVO.setReply_num(reply_num);
+	public void updateReply(ReplyVO replyVO, String reply_content) {
+
 		replyVO.setReply_content(reply_content);
-		
+	/*System.out.println(replyVO);*/
 		boardDAO.updateReply(replyVO);
 	}
 	// 리플 삭제

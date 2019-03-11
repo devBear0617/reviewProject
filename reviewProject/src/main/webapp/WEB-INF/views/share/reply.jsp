@@ -73,6 +73,7 @@ function updateReply (reply_num) {
 			reply_UpdateContent: $('.reply_UpdateContent').val()
 		},
 		success: function (html) {
+			/* console.log(reply_num); */
 			$(".reply").empty();
 			$(".reply").append(html);
 		}
@@ -126,7 +127,7 @@ function deleteReply (reply_num) {
 			<c:if test="${reply.reply_num == rnum}">
 				<input type="hidden" class="reply_num" value="${reply.reply_num}">${reply.reply_num}
 				수정! : <input type="text" class="reply_UpdateContent" value="${reply.reply_content}">
-				 &nbsp; &nbsp;<input type="button" id="btUpdateReply" onclick="updateReply()" value="수정!">
+				 &nbsp; &nbsp;<input type="button" id="btUpdateReply" onclick="updateReply(${reply.reply_num})" value="수정!">
 				<br><br>
 			</c:if>
 		</c:forEach>

@@ -233,14 +233,7 @@ public class Movie_controller {
 	// 댓글 수정
 	@RequestMapping(value="/detail_view/{board_num}/updateReplyForm", method=RequestMethod.POST)
 	public String updateReplyForm(@PathVariable int board_num, ReplyVO replyVO, Model model) {
-		/*int reply_num = replyVO.getReply_num();
-		
-		String reply_content = "수정됨ㅇㅇㅋㅋ";
 
-		movieService.updateReply(replyVO, reply_content);
-		
-		return "redirect:/movie/detail_view/"+board_num+"/reply";*/
-		
 		int rnum = replyVO.getReply_num();
 		model.addAttribute("rnum", rnum);
 		
@@ -254,12 +247,12 @@ public class Movie_controller {
 		return "share/reply";
 	}
 	@RequestMapping(value="/detail_view/{board_num}/updateReply", method=RequestMethod.POST)
-	public String updateReplyForm(@PathVariable int board_num, ReplyVO replyVO, HttpServletRequest request, Model model) {
-		int reply_num = replyVO.getReply_num();
+	public String updateReply(@PathVariable int board_num, ReplyVO replyVO, HttpServletRequest request, Model model) {
+		/*int reply_num = replyVO.getReply_num();*/
 		
 		String reply_content = request.getParameter("reply_UpdateContent");
-	System.out.println(reply_content);
-		movieService.updateReply(replyVO, reply_num, reply_content);
+	/*System.out.println(reply_content);*/
+		movieService.updateReply(replyVO, reply_content);
 		
 		return "redirect:/movie/detail_view/"+board_num+"/reply";
 	}
