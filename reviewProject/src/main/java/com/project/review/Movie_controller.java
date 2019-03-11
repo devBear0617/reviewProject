@@ -221,6 +221,12 @@ public class Movie_controller {
 		return "redirect:/movie/detail_view/"+board_num+"/reply";
 	}
 	// 댓글 수정
+	@RequestMapping(value="/detail_view/{board_num}/updateReplyForm", method=RequestMethod.POST)
+	public String updateReplyForm(@PathVariable int board_num, ReplyVO replyVO) {
+		
+		return "share/updateReplyForm";
+	}
+	
 	@RequestMapping(value="/detail_view/{board_num}/updateReply", method=RequestMethod.POST)
 	public String updateReply(@PathVariable int board_num, ReplyVO replyVO) {
 		

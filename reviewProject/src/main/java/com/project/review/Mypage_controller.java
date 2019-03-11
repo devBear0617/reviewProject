@@ -75,9 +75,9 @@ public class Mypage_controller {
 						MemberVO user = memberService.MemberInfo(user_id);
 						model.addAttribute("user", user);
 						
-						String referer = request.getHeader("Referer");
 						
-						return "redirect:"+referer;
+						
+						return "mypage/loginCheck";
 						
 					} else {
 						// 비번 불일치

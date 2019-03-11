@@ -49,6 +49,22 @@ function insertReply () {
 };
 
 // 댓글 수정
+function UpdateReplyForm (reply_num) {
+	console.log("go");
+	$.ajax({
+		url: url + '/updateReplyForm',
+		type: 'POST',
+		dataType: 'text',
+		data: {
+			reply_num: reply_num
+		},
+		success: function (html) {
+			console.log("rr");
+			$(".reply").empty();
+			/* $(".replyForm").append(html); */
+		}
+	});
+};
 
 function UpdateReply (reply_num) {
 	$.ajax({
@@ -60,7 +76,7 @@ function UpdateReply (reply_num) {
 		},
 		success: function (html) {
 			$(".reply").empty();
-			$(".reply").append(html); 
+			$(".reply").append(html);
 		}
 	});
 };
@@ -102,7 +118,7 @@ function deleteReply (reply_num) {
 			<span>
 				<c:if test="${sessionScope.member_id == reply.member_id}">
 					&nbsp;&nbsp; <input type="hidden" class="reply_num" value="${reply.reply_num}">${reply.reply_num}
-					&nbsp;&nbsp; <input type="button" class="UpdateReply" onclick="UpdateReply(${reply.reply_num})" value="수정">
+					&nbsp;&nbsp; <input type="button" class="UpdateReplyForm" onclick="UpdateReplyFrom(${reply.reply_num})" value="수정">
 					&nbsp;&nbsp; <input type="button" class="deleteReply" onclick="deleteReply(${reply.reply_num})" value="삭제">
 					<br>
 				
