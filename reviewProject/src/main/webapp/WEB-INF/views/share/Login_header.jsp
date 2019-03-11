@@ -18,7 +18,7 @@
 <body>
 	<!-- 로그인 -->
 	<div class="center"
-		style="background: linear-gradient(to right, #ffe400, #abf200); height: 80px;">
+		style="background: linear-gradient(to right, #ffe400, #abf200); height: 80px; width: 1200px;">
 		<div class="center">
 			<a href="movie/detail_bar.jsp"><img alt="REMON_LOGO"
 				src="/review/movie/resources/image/REMON_logo(white_bigsize).png"
