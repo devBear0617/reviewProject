@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 <script type = "text/javascript" src = "/review/resources/script/jquery-2.1.1.js"></script>
 <script type = "text/javascript">
-$(document).ready(function() {	
+function getReplyList () {
 	$.ajax({
 		type : "GET",
 		url : "/review/movie/detail_view/${board.board_num}/reply",
@@ -19,7 +19,9 @@ $(document).ready(function() {
 			$(".reply").append(html);
 		}
 	})
-	
+}
+
+function getLikeIt () {
 	$.ajax({
 		type : "GET",
 		url : "/review/movie/detail_view/${board.board_num}/likeIt",
@@ -29,7 +31,11 @@ $(document).ready(function() {
 			$(".likeIt").append(html);
 		}
 	})
-	
+}
+
+$(document).ready(function() {
+	getReplyList();
+	getLikeIt();
 });
 </script>
 
@@ -181,6 +187,7 @@ $(document).ready(function() {
 	<div class="center_txtnon">
 		<h3>&nbsp;&nbsp;댓글 | REPLY</h3>
 		<div class="reply"></div>
+		
 	</div>
 	<br>
 	<hr width="400px;">

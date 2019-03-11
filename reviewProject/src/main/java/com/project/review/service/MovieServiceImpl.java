@@ -116,23 +116,28 @@ public class MovieServiceImpl implements MovieService {
 		boardDAO.likeItPlus(likeVO);
 	}
 	
-	// 리플 추가
+	// 리플 추가 
 	@Override
-	public void insertReply(ReplyVO replyVO, String reply, int board_num, String member_id) {
+	public void insertReply(ReplyVO replyVO, String member_id) {
 		// 보드넘 대입
-		board_num = replyVO.getBoard_num();
-		replyVO.setBoard_num(board_num);
 		replyVO.setMember_id(member_id);
-		replyVO.setReply_content(reply);
+		
 		// 리플 추가
 		boardDAO.insertReply(replyVO);
+	}
+	// 리플 수정
+	@Override
+	public void updateReply(ReplyVO replyVO, String reply_content) {
+		
+		replyVO.setReply_content(reply_content);
+		
+		boardDAO.updateReply(replyVO);
 	}
 	// 리플 삭제
 	@Override
 	public void deleteReply(int reply_num) {
 		
 		boardDAO.deleteReply(reply_num);
-		
 	}
 	
 	//게시글 추가 (Board & Board_Movie & Garde & Hashtag)
