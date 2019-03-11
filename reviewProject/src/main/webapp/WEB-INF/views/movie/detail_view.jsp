@@ -160,7 +160,7 @@
 					<div class="center">
 						<h2>review contents</h2>
 					</div>
-					<div style="width: 800px;">
+					<div style="width: 800px;" >
 						<br> ${board.board_content}
 					</div>
 				</td>
