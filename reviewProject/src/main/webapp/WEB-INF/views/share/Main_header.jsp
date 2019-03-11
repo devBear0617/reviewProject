@@ -23,9 +23,7 @@
 		<!-- 로그인 필요 시 -->
 		<div style="float: right; margin-top: 20px; margin-right: 30px;">
 			<c:if test="${empty sessionScope.member_id}">
-				<!-- <input type="button" value="로그인"
-					onclick="location.href='/review/mypage/login'"
-					style="height: 30px; width: 60px; border-radius: 20px; border-style: none; background-color: yellow;"> -->
+				<a href="/review/mypage/join">회원가입</a>
 				<a href="/review/mypage/login"><img alt="REMON_LOGO"
 					src="/review/movie/resources/image/REMON_Login_icon(white).png"
 					style="height: 50px;"></a>

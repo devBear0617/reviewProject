@@ -37,4 +37,6 @@
 		<property name="mapperInterface" value="com.project.review.dao.MemberDAO" />
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>
+	
+	
 </beans>
