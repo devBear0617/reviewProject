@@ -31,7 +31,8 @@ public interface MovieService {
 	//select Board
 	public BoardVO getBoardById(int board_num);
 	public List<BoardVO> getBoardList();
-	public List<BoardVO> getMovieBoardList();
+	public List<BoardVO> getMovieBoardList(Map<String, Object> map);
+	public int getMovieBoardCount();
 		// reply
 		public int replyCount(int board_num);
 		public List<ReplyVO> getMovieBoardReplyList();

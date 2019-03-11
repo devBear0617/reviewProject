@@ -73,10 +73,14 @@ public class MovieServiceImpl implements MovieService {
 		return boardDAO.getBoardList();
 	}
 	@Override
-	public List<BoardVO> getMovieBoardList() {
+	public List<BoardVO> getMovieBoardList(Map<String, Object> map) {
 		// movie/tv/game -> 해당하는 board값 호출하는 함수 작성,
 		
-		return boardDAO.getMovieBoardList();
+		return boardDAO.getMovieBoardList(map);
+	}
+	@Override
+	public int getMovieBoardCount() {
+		return boardDAO.getMovieBoardCount();
 	}
 	@Override
 	public List<ReplyVO> getMovieBoardReplyList() {
@@ -222,4 +226,6 @@ public class MovieServiceImpl implements MovieService {
 		
 		return boardDAO.getMovieInfo(movie_nm);
 	}
+
+	
 }

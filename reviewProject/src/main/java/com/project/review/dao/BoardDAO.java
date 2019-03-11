@@ -16,7 +16,8 @@ public interface BoardDAO {
 	//select Board
 	public BoardVO getBoardById(int board_num);
 	public List<BoardVO> getBoardList();
-	public List<BoardVO> getMovieBoardList();
+	public List<BoardVO> getMovieBoardList(Map<String, Object> map);
+	public int getMovieBoardCount();
 	public MovieApiVO getMovieInfo(String movie_nm);
 		// reply
 		public int replyCount(int board_num);

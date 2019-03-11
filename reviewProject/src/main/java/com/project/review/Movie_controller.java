@@ -74,15 +74,25 @@ public class Movie_controller {
 	@RequestMapping(value="/contentView")
 	public String contentView(HttpServletRequest request, Model model) {
 		
-		List<BoardVO> board_list = movieService.getMovieBoardList();
+		int start_content = Integer.parseInt(request.getParameter("start_content"));
+		model.addAttribute("start_content", start_content);
+		
+		int end_content = Integer.parseInt(request.getParameter("end_content"));
+		model.addAttribute("end_content", end_content);
+		
+		//System.out.println("Start : "+start_content+" // end : "+end_content);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("start_content", start_content);
+		map.put("end_content", end_content);			
+		
+		List<BoardVO> board_list = movieService.getMovieBoardList(map);
 		model.addAttribute("board_list", board_list);
 		
-		List<ReplyVO> board_replyList = movieService.getMovieBoardReplyList();
-		model.addAttribute("board_replyList", board_replyList);
+		int movieBoardCount = movieService.getMovieBoardCount();
+		model.addAttribute("movieBoardCount", movieBoardCount);
 		
-		List<LikeItVO> board_likeList = movieService.getMovieBoardLikeList();
-		model.addAttribute("board_likeList", board_likeList);
-		
+			
 		return "movie/content";
 	}
 

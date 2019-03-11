@@ -158,8 +158,8 @@ $(document).ready(function() {
 						<br> <br> <br>
 					</div>
 				</td>
-				<td style="border-left: 1px solid #F2F2F2;"><div
-						style="padding-left: 20px;">
+				<td style="border-left: 1px solid #F2F2F2;">
+					<div style="padding-left: 20px;">
 						영화 정보:
 						<ul style="list-style: none;">
 							<li>${mApiVO.movie_nm}</li>
