@@ -5,7 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/review/resources/script/jquery-2.1.1.js"></script>
+<script type="text/javascript"
+	src="/review/resources/script/jquery-2.1.1.js"></script>
 <script type="text/javascript">
 	function moreCategory(e) {
 		//상세한 내용은 상의 후 결정해야 함 - 테스트용
@@ -32,7 +33,7 @@
 </script>
 <style type="text/css">
 td {
-	width: 300px;
+	width: 240px;
 }
 
 .center {
@@ -43,11 +44,10 @@ td {
 </style>
 </head>
 <body>
-	<div class="category_1"
-		style="height: 70px; background-color: #EAEAEA">
+	<div class="category_1">
 		<!-- 이미지로 변경 필요  / 아래는 테스트용-->
 		<div class="center">
-			<table class="center">
+			<table class="center" style="height: 70px; background-color: #EAEAEA">
 				<tr>
 					<td>
 						<div>

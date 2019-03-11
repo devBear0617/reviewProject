@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
@@ -7,15 +8,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
- .btn{
- 	width: 700px; 
- 	height: 30px; 
- 	border-radius: 20px; 
- 	border-style: none;
- }
+.btn {
+	width: 700px;
+	height: 30px;
+	border-radius: 20px;
+	border-style: none;
+}
 </style>
-<script type = "text/javascript" src = "/review/resources/script/jquery-2.1.1.js"></script>
-<script type = "text/javascript">
+<script type="text/javascript"
+	src="/review/resources/script/jquery-2.1.1.js"></script>
+<script type="text/javascript">
 
 /*수정 내용
 1. btReply : class -> id (이유 : class로 해도 상관없지만 댓글 등록버튼은 유일하여 id 사용하는 것이 더 좋음) 
@@ -99,49 +101,59 @@ function deleteReply (reply_num) {
 </script>
 </head>
 <body>
-<img alt="reply" src="/review/resources/image/REMON_comment_icon.png" class="imgform">
-<span>${replyCount}</span> 
-<br>
-<div class="center">
+	<div>
+		&nbsp;&nbsp;<span style="font-size: large; font-weight: bold;">댓글
+			| REPLY</span>&nbsp;<span style="margin-left: 1000px;"> <img
+			alt="reply" src="/review/resources/image/REMON_comment_icon.png"
+			class="imgform" style="height: 30px; width: auto; margin-top: 30px;">
+		</span> <span>${replyCount}</span>
+	</div>
+	<br>
 	<div class="center">
-		<c:forEach items="${replyList}" var="reply">
-			<span>작성자 : ${reply.member_id} &nbsp;&nbsp;&nbsp;&nbsp; |</span> &nbsp;&nbsp;&nbsp;&nbsp;
+		<div class="center">
+			<hr>
+			<c:forEach items="${replyList}" var="reply">
+				<span>작성자 : ${reply.member_id} &nbsp;&nbsp;&nbsp;&nbsp; |</span> &nbsp;&nbsp;&nbsp;&nbsp;
 			<span>${reply.reply_content}&nbsp;&nbsp; |</span>
-			<span> 
-				<c:if test="${empty reply.reply_up_date}">
-					<fmt:formatDate value="${reply.reply_date}" pattern="yyyy-MM-dd hh:mm" />
-				</c:if>
-				<c:if test="${not empty reply.reply_up_date}">
-					<fmt:formatDate value="${reply.reply_up_date}" pattern="yyyy-MM-dd hh:mm" />
-				</c:if>
-			</span>
-			<span>
-				<c:if test="${sessionScope.member_id == reply.member_id}">
-					&nbsp;&nbsp; <input type="hidden" class="reply_num" value="${reply.reply_num}">${reply.reply_num}
-					&nbsp;&nbsp; <input type="button" class="UpdateReplyForm" onclick="UpdateReplyFrom(${reply.reply_num})" value="수정">
-					&nbsp;&nbsp; <input type="button" class="deleteReply" onclick="deleteReply(${reply.reply_num})" value="삭제">
-					<br>
-				
-				</c:if>
-			</span>
-			<br>
-		</c:forEach>
-	</div>
-	<div style="background-color: #F2F2F2;">
-		<br>&nbsp;&nbsp;댓글 작성 &nbsp;
-		<c:choose>
-			<c:when test="${sessionScope.member_id != null}">
-				<input type="text" class="reply_content btn" placeholder="댓글 입력" > &nbsp; &nbsp;
+				<span> <c:if test="${empty reply.reply_up_date}">
+						<fmt:formatDate value="${reply.reply_date}"
+							pattern="yyyy-MM-dd hh:mm" />
+					</c:if> <c:if test="${not empty reply.reply_up_date}">
+						<fmt:formatDate value="${reply.reply_up_date}"
+							pattern="yyyy-MM-dd hh:mm" />
+					</c:if>
+				</span>
+				<span> <c:if
+						test="${sessionScope.member_id == reply.member_id}">
+					&nbsp;&nbsp; <input type="hidden" class="reply_num"
+							value="${reply.reply_num}">${reply.reply_num}
+					&nbsp;&nbsp; <input type="button" class="UpdateReplyForm"
+							onclick="UpdateReplyFrom(${reply.reply_num})" value="수정">
+					&nbsp;&nbsp; <input type="button" class="deleteReply"
+							onclick="deleteReply(${reply.reply_num})" value="삭제">
+						<br>
+
+					</c:if>
+				</span>
+				<br>
+			</c:forEach>
+		</div>
+		<div style="height: 20px;"></div>
+		<div style="background-color: #F2F2F2;">
+			<br>&nbsp;&nbsp;댓글 작성 &nbsp;
+			<c:choose>
+				<c:when test="${sessionScope.member_id != null}">
+					<input type="text" class="reply_content btn" placeholder="댓글 입력"> &nbsp; &nbsp;
 				<input type="button" id="btReply" onclick="insertReply()" value="확인">
-			</c:when>
-			<c:otherwise>
-				<input type="text" class="btn" placeholder="댓글을 작성하시려면 로그인이 필요합니다." readonly>
-			</c:otherwise>		
-		</c:choose>
-		<br>
-		<br>
+				</c:when>
+				<c:otherwise>
+					<input type="text" class="btn" placeholder="댓글을 작성하시려면 로그인이 필요합니다."
+						readonly>
+				</c:otherwise>
+			</c:choose>
+			<br> <br>
+		</div>
 	</div>
-</div>
 </body>
 </html>
 
