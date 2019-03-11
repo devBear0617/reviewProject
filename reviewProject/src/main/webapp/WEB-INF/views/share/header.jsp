@@ -31,7 +31,7 @@
 					<!-- 로고 -->
 					<div class="logo"
 						style="float: left; margin-top: 10px; margin-left: 20px;">
-						<a href="movie/detail_bar.jsp"><img alt="REMON_LOGO"
+						<a href="/review"><img alt="REMON_LOGO"
 							src="/review/movie/resources/image/REMON_logo(white_bigsize).png"
 							style="height: 50px;"></a>
 					</div>
