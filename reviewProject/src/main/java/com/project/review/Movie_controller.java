@@ -231,21 +231,33 @@ public class Movie_controller {
 		return "redirect:/movie/detail_view/"+board_num+"/reply";
 	}
 	// 댓글 수정
-	@RequestMapping(value="/detail_view/{board_num}/updateReplyForm", method=RequestMethod.POST)
-	public String updateReplyForm(@PathVariable int board_num, ReplyVO replyVO) {
-		
-		return "share/updateReplyForm";
-	}
-	
-	@RequestMapping(value="/detail_view/{board_num}/updateReply", method=RequestMethod.POST)
-	public String updateReply(@PathVariable int board_num, ReplyVO replyVO) {
-		
-		String reply_content = "수정됨ㅇㅇㅋㅋ";
+		@RequestMapping(value="/detail_view/{board_num}/updateReplyForm", method=RequestMethod.POST)
+		public String updateReplyForm(@PathVariable int board_num, ReplyVO replyVO, Model model) {
 
-		movieService.updateReply(replyVO, reply_content);
-		
-		return "redirect:/movie/detail_view/"+board_num+"/reply";
-	}
+			int rnum = replyVO.getReply_num();
+			model.addAttribute("rnum", rnum);
+			
+			List<ReplyVO> replyList = movieService.replyList(board_num);
+			int replyCount = movieService.replyCount(board_num);
+			
+			model.addAttribute("replyList", replyList);
+			model.addAttribute("board_num", board_num);
+			model.addAttribute("replyCount", replyCount);
+			
+			return "share/reply";
+		}
+		@RequestMapping(value="/detail_view/{board_num}/updateReply", method=RequestMethod.POST)
+		public String updateReply(@PathVariable int board_num, ReplyVO replyVO, HttpServletRequest request, Model model) {
+			/*int reply_num = replyVO.getReply_num();*/
+			
+			String reply_content = request.getParameter("reply_UpdateContent");
+		/*System.out.println(reply_content);*/
+			movieService.updateReply(replyVO, reply_content);
+			
+			return "redirect:/movie/detail_view/"+board_num+"/reply";
+		}
+
+
 	// 댓글 삭제
 	@RequestMapping(value="/detail_view/{board_num}/deleteReply", method=RequestMethod.POST)
 	public String deleteReply(@PathVariable int board_num, ReplyVO replyVO) {

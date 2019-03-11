@@ -50,33 +50,32 @@ function insertReply () {
 	});
 };
 
-// 댓글 수정
-function UpdateReplyForm (reply_num) {
-	console.log("go");
+//댓글 수정
+function updateReplyForm (reply_num) {
 	$.ajax({
-		url: url + '/updateReplyForm',
+		url: url +'/updateReplyForm',
 		type: 'POST',
 		dataType: 'text',
 		data: {
 			reply_num: reply_num
 		},
 		success: function (html) {
-			console.log("rr");
 			$(".reply").empty();
-			/* $(".replyForm").append(html); */
+			$(".reply").append(html);
 		}
 	});
 };
-
-function UpdateReply (reply_num) {
+function updateReply (reply_num) {
 	$.ajax({
 		url: url +'/updateReply',
 		type: 'POST',
 		dataType: 'text',
 		data: {
-			reply_num: reply_num
+			reply_num: reply_num,
+			reply_UpdateContent: $('.reply_UpdateContent').val()
 		},
 		success: function (html) {
+			/* console.log(reply_num); */
 			$(".reply").empty();
 			$(".reply").append(html);
 		}
@@ -127,14 +126,18 @@ function deleteReply (reply_num) {
 						test="${sessionScope.member_id == reply.member_id}">
 					&nbsp;&nbsp; <input type="hidden" class="reply_num"
 							value="${reply.reply_num}">${reply.reply_num}
-					&nbsp;&nbsp; <input type="button" class="UpdateReplyForm"
-							onclick="UpdateReplyFrom(${reply.reply_num})" value="수정">
+					&nbsp;&nbsp; <input type="button" class="updateReplyForm" 
+							onclick="updateReplyForm(${reply.reply_num})" value="수정">
 					&nbsp;&nbsp; <input type="button" class="deleteReply"
 							onclick="deleteReply(${reply.reply_num})" value="삭제">
 						<br>
-
 					</c:if>
 				</span>
+				<span><c:if test="${reply.reply_num == rnum}">
+					수정! : <input type="text" class="reply_UpdateContent" value="${reply.reply_content}">
+				 	&nbsp; &nbsp;<input type="button" id="btUpdateReply" onclick="updateReply(${reply.reply_num})" value="수정!">
+					<br>
+				</c:if></span>
 				<br>
 			</c:forEach>
 		</div>
