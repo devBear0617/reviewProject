@@ -2,6 +2,7 @@ package com.project.review;
 
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,13 +47,16 @@ public class Mypage_controller {
 	
 	// 로그인
 	@RequestMapping(value="/login", method=RequestMethod.GET)
-	public String loginForm() {
+	public String loginForm(HttpServletRequest request, Model model) {
+		
+		String referer = request.getHeader("Referer");
+		model.addAttribute("address", referer);
 		
 		return "mypage/login";
 	}
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String loginMember(String member_id, String member_pw, HttpServletRequest request,
-			HttpSession session, Model model) {
+			 HttpSession session, Model model) {
 
 		member_id = request.getParameter("member_id");
 		member_pw = request.getParameter("member_pw");
@@ -75,9 +79,9 @@ public class Mypage_controller {
 						MemberVO user = memberService.MemberInfo(user_id);
 						model.addAttribute("user", user);
 						
-						
-						
-						return "mypage/loginCheck";
+						String address = request.getParameter("address");
+			
+						return "redirect:"+address;
 						
 					} else {
 						// 비번 불일치
@@ -94,12 +98,12 @@ public class Mypage_controller {
 	
 	// 로그아웃
 	@RequestMapping(value="/logout")
-	public String logout(HttpSession session, Model model) {
-		model.addAttribute("message", "로그아웃 합니다.");
+	public String logout(HttpServletRequest request, HttpSession session, Model model) {
+		String referer = request.getHeader("Referer");
 		// 로그아웃 세션끊기.
 		session.invalidate();
 		
-		return "remon";
+		return "redirect:"+referer;
 	}
 	
 	// 가입

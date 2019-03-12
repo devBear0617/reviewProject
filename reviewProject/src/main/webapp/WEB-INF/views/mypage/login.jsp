@@ -55,6 +55,8 @@
 				</tr>
 
 			</table>
+			<!-- 전페이지 저장 -->
+			<input type="hidden" name="address" value="${address}"><%-- ${address} --%>
 			<br> <br> <br> <br> <br> <br> <br>
 			<br>
 		</form>

@@ -19,6 +19,7 @@
 				onclick="location.href='/review/'">
 <input type="button" value="mypage"
 				onclick="location.href='/review/mypage/mypageCheck'">
+				
 
 </body>
 </html>
