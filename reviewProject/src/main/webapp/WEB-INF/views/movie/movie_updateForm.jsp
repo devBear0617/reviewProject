@@ -348,38 +348,34 @@ table {
 				<tr style="height: 700px;">
 					<td colspan="2">
 						<div>
-							<div>
-								<!-- tui-editor input -->
-								<input type="text" name="board_content" id="board_content"
-									hidden>
-							</div>
+							<!-- tui-editor input -->
+							<input type="text" name="board_content" id="board_content" hidden>
 							<!-- tui-editor view -->
 							<div class="code-html">
 								<script
-									src="resources/tui-editor/tui-color-picker/dist/tui-color-picker.js"></script>
+									src="../resources/tui-editor/tui-color-picker/dist/tui-color-picker.js"></script>
 								<script
-									src="resources/tui-editor/tui-editor/dist/tui-editor-Editor.js"></script>
+									src="../resources/tui-editor/tui-editor/dist/tui-editor-Editor.js"></script>
 								<script
-									src="resources/tui-editor/tui-editor/dist/tui-editor-extColorSyntax.js"></script>
+									src="../resources/tui-editor/tui-editor/dist/tui-editor-extColorSyntax.js"></script>
 								<link rel="stylesheet"
-									href="resources/tui-editor/tui-editor/dist/tui-editor.css">
+									href="../resources/tui-editor/tui-editor/dist/tui-editor.css">
 								<link rel="stylesheet"
-									href="resources/tui-editor/tui-editor/dist/tui-editor-contents.css">
+									href="../resources/tui-editor/tui-editor/dist/tui-editor-contents.css">
 								<link rel="stylesheet"
-									href="resources/tui-editor/tui-color-picker/dist/tui-color-picker.css">
+									href="../resources/tui-editor/tui-color-picker/dist/tui-color-picker.css">
 
 								<div id="editSection">${board.board_content}</div>
 							</div>
 							<script class="code-js">
-								var editor = new tui.Editor(
-										{
-											el : document
-													.querySelector('#editSection'),
-											initialEditType : 'wysiwyg',
-											height : '700px',
-											exts : [ 'colorSyntax' ]
-										});
-							</script>
+									var editor = new tui.Editor({
+										el : document
+												.querySelector('#editSection'),
+										initialEditType : 'wysiwyg',
+										height : '700px',
+										exts : [ 'colorSyntax' ]
+									});
+								</script>
 						</div>
 					</td>
 					<td>
@@ -655,5 +651,10 @@ table {
 			alert(contents.value);
 		});
 	</script>
+	<div style="height: 20px;"></div>
+	<!-- 푸터 -->
+	<div>
+		<jsp:include page="/WEB-INF/views/share/footer.jsp" />
+	</div>
 </body>
 </html>
