@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -34,7 +33,7 @@
 </script>
 <style type="text/css">
 td {
-	width: 240px;
+	width: 235px;
 }
 
 .center {
