@@ -14,6 +14,27 @@
 	border-radius: 20px;
 	border-style: none;
 }
+
+.btn_st {
+	width: 50px;
+	height: 30px;
+	border-radius: 20px;
+	border-style: none;
+}
+
+.updateReplyForm {
+	width: 50px;
+	height: 30px;
+	border-radius: 20px;
+	border-style: none;
+}
+
+.deleteReply {
+	width: 50px;
+	height: 30px;
+	border-radius: 20px;
+	border-style: none;
+}
 </style>
 <script type="text/javascript"
 	src="/review/resources/script/jquery-2.1.1.js"></script>
@@ -112,7 +133,49 @@ function deleteReply (reply_num) {
 		<div class="center">
 			<hr>
 			<c:forEach items="${replyList}" var="reply">
-				<span>작성자 : ${reply.member_id} &nbsp;&nbsp;&nbsp;&nbsp; |</span> &nbsp;&nbsp;&nbsp;&nbsp;
+
+				<table class="center">
+					<tr>
+						<td style="width: 150px; border-right: 1px solid gray;">${reply.member_id}</td>
+						<td style="width: 600px; border-right: 1px solid gray;"><div
+								style="width: 600px; height: auto;">${reply.reply_content}</div></td>
+						<td style="width: 200px; border-right: 1px solid gray;"><c:if
+								test="${empty reply.reply_up_date}">
+								<fmt:formatDate value="${reply.reply_date}"
+									pattern="yyyy-MM-dd hh:mm" />
+							</c:if> <c:if test="${not empty reply.reply_up_date}">
+								<fmt:formatDate value="${reply.reply_up_date}"
+									pattern="yyyy-MM-dd hh:mm" />
+							</c:if></td>
+						<td style="width: 200px;"><c:if
+								test="${sessionScope.member_id == reply.member_id}">
+								<input type="hidden" class="reply_num"
+									value="${reply.reply_num}">
+					&nbsp;&nbsp;&nbsp; <input type="button" class="updateReplyForm"
+									onclick="updateReplyForm(${reply.reply_num})" value="수정">
+					&nbsp;&nbsp;&nbsp; <input type="button" class="deleteReply"
+									onclick="deleteReply(${reply.reply_num})" value="삭제">
+							</c:if></td>
+						<td style="width: 50px;"></td>
+					</tr>
+					<c:if test="${reply.reply_num == rnum}">
+						<tr style="background-color: #F2F2F2;">
+							<td
+								style="width: 150px; height: 40px; border-right: 1px solid white; font-size: small;">댓글
+								수정</td>
+							<td colspan="4" style="width: 1050px; text-align: left;">&nbsp;&nbsp;
+								<input type="text" class="reply_UpdateContent"
+								value="${reply.reply_content}"
+								style="width: 800px; height: 20px; border-style: none;">
+								&nbsp;&nbsp;<input type="button" id="btUpdateReply"
+								class="btn_st" onclick="updateReply(${reply.reply_num})"
+								value="수정">
+							</td>
+						</tr>
+					</c:if>
+				</table>
+
+				<%-- <span>작성자 : ${reply.member_id} &nbsp;&nbsp;&nbsp;&nbsp; |</span> &nbsp;&nbsp;&nbsp;&nbsp;
 			<span>${reply.reply_content}&nbsp;&nbsp; |</span>
 				<span> <c:if test="${empty reply.reply_up_date}">
 						<fmt:formatDate value="${reply.reply_date}"
@@ -126,7 +189,7 @@ function deleteReply (reply_num) {
 						test="${sessionScope.member_id == reply.member_id}">
 					&nbsp;&nbsp; <input type="hidden" class="reply_num"
 							value="${reply.reply_num}">${reply.reply_num}
-					&nbsp;&nbsp; <input type="button" class="updateReplyForm" 
+					&nbsp;&nbsp; <input type="button" class="updateReplyForm"
 							onclick="updateReplyForm(${reply.reply_num})" value="수정">
 					&nbsp;&nbsp; <input type="button" class="deleteReply"
 							onclick="deleteReply(${reply.reply_num})" value="삭제">
@@ -134,11 +197,13 @@ function deleteReply (reply_num) {
 					</c:if>
 				</span>
 				<span><c:if test="${reply.reply_num == rnum}">
-					수정! : <input type="text" class="reply_UpdateContent" value="${reply.reply_content}">
-				 	&nbsp; &nbsp;<input type="button" id="btUpdateReply" onclick="updateReply(${reply.reply_num})" value="수정!">
-					<br>
-				</c:if></span>
-				<br>
+					수정! : <input type="text" class="reply_UpdateContent"
+							value="${reply.reply_content}">
+				 	&nbsp; &nbsp;<input type="button" id="btUpdateReply"
+							onclick="updateReply(${reply.reply_num})" value="수정!">
+						<br>
+					</c:if></span>
+				<br> --%>
 			</c:forEach>
 		</div>
 		<div style="height: 20px;"></div>
@@ -146,8 +211,9 @@ function deleteReply (reply_num) {
 			<br>&nbsp;&nbsp;댓글 작성 &nbsp;
 			<c:choose>
 				<c:when test="${sessionScope.member_id != null}">
-					<input type="text" class="reply_content btn" placeholder="댓글 입력"> &nbsp; &nbsp;
-				<input type="button" id="btReply" onclick="insertReply()" value="확인">
+					<input type="text" class="reply_content btn" placeholder="댓글 입력"> &nbsp;&nbsp;&nbsp; 
+				<input type="button" id="btReply" class="btn_st"
+						onclick="insertReply()" value="확인">
 				</c:when>
 				<c:otherwise>
 					<input type="text" class="btn" placeholder="댓글을 작성하시려면 로그인이 필요합니다."

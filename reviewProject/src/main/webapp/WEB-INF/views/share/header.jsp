@@ -25,7 +25,7 @@
 	<div class="center">
 
 		<table class="center"
-			style="background: background: -webkit-linear-gradient(to right, #abf200, #ffe400); background: linear-gradient(to right, #abf200, #ffe400); width: auto; height: 90px;">
+			style="background: background: -webkit-linear-gradient(to right, #abf200, #ffe400); background: linear-gradient(to right, #abf200, #ffe400); width: 1200px; height: 90px;">
 			<tr>
 				<td class="no_background">
 					<!-- 로고 -->
@@ -78,4 +78,5 @@
 		</table>
 	</div>
 </body>
+>>>>>>> CSS
 </html>

@@ -34,7 +34,7 @@
 </script>
 <style type="text/css">
 td {
-	width: 240px;
+	width: 235px;
 }
 
 .center {

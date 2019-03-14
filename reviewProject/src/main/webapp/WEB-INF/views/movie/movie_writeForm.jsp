@@ -624,6 +624,10 @@ table {
 			alert(contents.value);
 		});
 	</script>
-
+	<div style="height: 20px;"></div>
+	<!-- 푸터 -->
+	<div>
+		<jsp:include page="/WEB-INF/views/share/footer.jsp" />
+	</div>
 </body>
 </html>
