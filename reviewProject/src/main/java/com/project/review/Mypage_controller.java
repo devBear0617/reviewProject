@@ -22,6 +22,15 @@ public class Mypage_controller {
 	private MemberService memberService;
 	
 	// 정보 변경
+	@RequestMapping(value="/updateMemberForm")
+	public String updateMemberForm (MemberVO member, HttpSession session, Model model) {
+		String user_id = (String)session.getAttribute("member_id");
+		
+		MemberVO user = memberService.MemberInfo(user_id);
+		model.addAttribute("user", user);
+		
+		return "mypage/updateMemberForm";
+	}
 	@RequestMapping(value="/updateMember", method=RequestMethod.POST)
 	public String updateMember (MemberVO member, HttpSession session, Model model) {
 		

@@ -15,6 +15,9 @@
 ID : ${user.member_id}<input type="hidden" name="member_id" value="${user.member_id}"><br>
 PW : <input type="password" name="member_pw"><br>
 NAME : ${user.member_name}<input type="hidden" name="member_name" value="${user.member_name}"><br>
+EMAIL : ${user.member_email}
+
+<br>
 
 <input type="submit" value="확인">
 <input type="reset" value="리셋">
