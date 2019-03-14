@@ -9,12 +9,13 @@
 <title>Insert title here</title>
 <script type = "text/javascript" src = "/review/resources/script/jquery-2.1.1.js"></script>
 <script type = "text/javascript">
+console.log(">>>"+'${board.board_num}');
 function getReplyList () {
+	console.log(" : "+'${board.board_num}');
 	$.ajax({
 		type : "GET",
 		url : "/review/movie/detail_view/${board.board_num}/reply",
 		cache : false,
-		dataType : 'html',
 		success : function(html) {
 			$(".reply").append(html);
 		}
@@ -26,7 +27,6 @@ function getLikeIt () {
 		type : "GET",
 		url : "/review/movie/detail_view/${board.board_num}/likeIt",
 		cache : false,
-		dataType : 'html',
 		success : function(html) {
 			$(".likeIt").append(html);
 		}

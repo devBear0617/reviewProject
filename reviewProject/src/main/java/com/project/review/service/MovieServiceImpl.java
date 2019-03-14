@@ -1,6 +1,13 @@
 package com.project.review.service;
 
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -229,5 +236,89 @@ public class MovieServiceImpl implements MovieService {
 	public MovieApiVO getMovieInfo(String movie_nm) {
 		
 		return boardDAO.getMovieInfo(movie_nm);
+	}
+
+	//Category
+	@Override
+	public Map<String, Object> getCategory(String category_type) {
+		System.out.println(category_type);
+		if (!category_type.equals(null)) 
+			category_type = category_type.split("cg_img_")[1];
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("ca_type", category_type);
+		List<String> cd = new ArrayList<>();
+		List<String> dCategoryNm = new ArrayList<>();
+		
+		switch (category_type) {
+			/*case "genre":
+				String[] genre = {"드라마", "판타지", "서부", "공포", "로맨스", "모험", "스릴러", "느와르", "컬트", "다큐멘터리",
+				               	"코미디", "가족", "미스터리", "전쟁", "애니메이션", "범죄", "뮤지컬", "SF", "액션", "무협",
+				               	"에로", "서스펜스", "서사", "블랙코미디"};
+				map = (Map<String, Object>) (dCategoryNm = Arrays.asList(genre));
+				
+				for (int i=1; i<=genre.length; i++) {
+					cd.add(Integer.toString(i));
+				}
+				break;*/
+				
+			case "dt":
+				// 중간 카테고리 X
+				String date = LocalDate.now().minusWeeks(1).format(DateTimeFormatter.BASIC_ISO_DATE);
+				map = movieApiDAO.getMap(date);
+				return map;
+				
+			case "actor":
+				break;
+			case "director":
+				break;
+			case "openDt":
+				String[] dtCd = new String[20];
+				String[] dtNm = new String[20];
+				dtCd[0] = "2000";
+				dtNm[0] = "2000년 이전";
+				for (int i=1; i<dtCd.length; i++) {
+					if (i<10) {
+						dtCd[i] = "200"+i;
+						dtNm[i] = "200"+i+"년";
+					}else {
+						dtCd[i] = "20"+i;
+						dtNm[i] = "20"+i+"년";
+					}
+				}
+				cd = Arrays.asList(dtCd);
+				dCategoryNm = Arrays.asList(dtNm);
+				break;
+			case "movieType":
+				String[] typeCd = {"220101", "220102", "220103", "220109"};  
+				String[] typeNm = {"장편", "단편", "옴니버스", "기타"};
+				
+				cd = Arrays.asList(typeCd);
+				dCategoryNm = Arrays.asList(typeNm);
+				break;
+			case "nation":
+				String[] nationCd = {"22041011", "22042002", "22044010", "22044017", "22041009", "22041008", "22041001", "22041007"};  
+				String[] nationNm = {"한국", "미국", "영국", "프랑스", "중국", "일본", "대만", "인도"};
+				
+				cd = Arrays.asList(nationCd);
+				dCategoryNm = Arrays.asList(nationNm);
+				break;
+			default:
+				break;
+		}
+		map.put("cd", cd);
+		map.put("nm", dCategoryNm);
+		
+		return map;
+	}
+
+	@Override
+	public Map<String, Object> getCaMovieList(String de_category_type, int pnum) {
+		String ca_type = de_category_type.split(" ")[1];
+		String cd = de_category_type.split(" ")[2];
+
+		System.out.println(cd+" , "+ca_type);
+		
+		return movieApiDAO.getCaMovieArray(ca_type, cd, pnum);
 	}
 }
