@@ -1,25 +1,60 @@
 package com.project.review;
 
 
+import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.project.review.service.MemberService;
 import com.project.review.vo.MemberVO;
+import com.project.review.vo.UploadFileVO;
 
 
 @Controller
 @RequestMapping(value="/mypage")
 public class Mypage_controller {
+	static final Logger logger = Logger.getLogger(Mypage_controller.class);
 	
 	@Autowired
 	private MemberService memberService;
+	
+	// upload
+	@RequestMapping(value="/upload/new", method=RequestMethod.POST)
+	public String uploadNew (@RequestParam MultipartFile file, 
+			RedirectAttributes redirectAttrs, Model model) throws IOException {
+		
+		logger.info(file.getOriginalFilename());
+		
+		if (file != null && !file.isEmpty()) {
+			UploadFileVO newFile = new UploadFileVO();
+			newFile.setFile_name(file.getOriginalFilename());
+			newFile.setFileData(file.getBytes());
+			
+			memberService.uploadFile(newFile);
+		}
+		
+		List<UploadFileVO> files = memberService.getFile();
+		model.addAttribute("files", files);
+		
+		return "mypage/gallery";
+	}
+	@RequestMapping(value="/uploadForm")
+	public String uploadForm () {
+		
+		return "mypage/uploadForm";
+	}
 	
 	// 정보 변경
 	@RequestMapping(value="/updateMemberForm")

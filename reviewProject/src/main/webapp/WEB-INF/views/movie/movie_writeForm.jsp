@@ -608,9 +608,12 @@ table {
 			<br>
 
 			<div>
-				<input type="submit" id="form-submit" value="확인"> <input
-					type="reset" value="취소">
+				<input type="submit" id="form-submit" value="확인"> 
+				<input type="reset" value="취소">
 			</div>
+		</form>
+		<form action="/review/back" method="post" id="back">
+			<input type="submit" value="이전">
 		</form>
 	</div>
 	<script>

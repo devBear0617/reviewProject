@@ -9,6 +9,22 @@
 		<result property="member_name" column="member_name" />
 	</resultMap>
 	
+	<resultMap id="uploadFile" type="UploadFielVO">
+		<id property="file_num" column="file_num" />
+		<result property="directoryname" column="directoryname" />
+		<result property="file_name" column="file_name" />
+		<result property="file_data" column="file_data" />
+	</resultMap>	
+	
+	<!-- file -->
+	<!-- <select id="getFile" resultMap="UploadFielVO">
+		
+	</select> -->
+	<!-- <insert id="uploadFile" parameterType="UploadFileVO">
+		INSERT INTO upload_file(file_name, file_data)
+		VALUES (#{file_name}, #{file_data})
+	</insert> -->
+	
 	<!-- 정보 수정 -->
 	<update id="updateMember" parameterType="MemberVO">
 		UPDATE member SET

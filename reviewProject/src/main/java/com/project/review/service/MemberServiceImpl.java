@@ -7,12 +7,24 @@ import org.springframework.stereotype.Service;
 
 import com.project.review.dao.MemberDAO;
 import com.project.review.vo.MemberVO;
+import com.project.review.vo.UploadFileVO;
 
 @Service
 public class MemberServiceImpl implements MemberService {
 	
 	@Autowired
 	private MemberDAO memberDAO;
+	
+	// file
+	public List<UploadFileVO> getFile() {
+		
+		return memberDAO.getFile();
+	}
+	public void uploadFile(UploadFileVO file) {
+		
+		memberDAO.uploadFile(file);
+		
+	}
 	
 	// 수정
 	public void updateMember(MemberVO member) {

@@ -100,6 +100,13 @@
 		<div style="height: 100px;"></div>
 
 	</div>
+	
+	<p>
+		<a href="<c:url value='/review/mypage/uploadForm'/>">upload</a>
+		<br>
+		<a href="<c:url value='/review/mypage/gallery'/>">gallery</a>
+	</p>
+	
 </body>
 
 <jsp:include page="/WEB-INF/views/share/footer.jsp" />
