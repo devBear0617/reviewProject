@@ -20,6 +20,10 @@
 		<form action="/review/mypage/login" method="POST" id="loginMember">
 			<br> <br> <br> <br> <br>
 			<table class="center">
+				<tr>
+					<td>${loginFail}</td>
+				</tr>
+				
 				<tr
 					style="text-align: center; background: linear-gradient(to right, #ffe400, #abf200);">
 					<td colspan="2"><h1>로그인 PAGE</h1></td>

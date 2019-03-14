@@ -25,8 +25,8 @@
 
 	<!-- 가입 -->
 	<insert id="joinMember" parameterType="MemberVO" >
-		INSERT INTO member (member_id, member_pw, member_name)
-		VALUES (#{member_id}, #{member_pw}, #{member_name})
+		INSERT INTO member (member_id, member_pw, member_name, member_email)
+		VALUES (#{member_id}, #{member_pw}, #{member_name}, #{member_email})
 	</insert>	
 	
 	<!-- 로그인 -->

@@ -9,6 +9,11 @@
 <body>
 
 <h1>환영.</h1>
+
+${JJ}
+
+<br><br>
+
 <input type="button" value="홈"
 				onclick="location.href='/review/'">
 

@@ -10,6 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.project.review.service.MemberService;
 import com.project.review.vo.MemberVO;
@@ -29,7 +32,6 @@ public class Mypage_controller {
 		memberService.updateMember(member);
 	System.out.println(member);
 
-		
 		return "redirect:/mypage/mypageCheck";
 	}
 	
@@ -50,6 +52,7 @@ public class Mypage_controller {
 	public String loginForm(HttpServletRequest request, Model model) {
 		
 		String referer = request.getHeader("Referer");
+	System.out.println(referer);
 		model.addAttribute("address", referer);
 		
 		return "mypage/login";
@@ -63,11 +66,16 @@ public class Mypage_controller {
 		
 		MemberVO member = memberService.selectMember(member_id);
 		
+		String loginFail = "잘못된 아이디 및 비밀번호";
+		
 		if (member != null) {
 			String pw = member.getMember_pw();
 				if(pw == null) {
-					// 아이디가 없음
-					model.addAttribute("message", "등록된 아이디가 없음.");
+					// 잘못된 아이디
+					model.addAttribute("loginFail", loginFail);
+					
+					return "mypage/login";
+					
 				} else {
 					// 아이디가 있음
 					if(pw.equals(member_pw)) {
@@ -80,18 +88,24 @@ public class Mypage_controller {
 						model.addAttribute("user", user);
 						
 						String address = request.getParameter("address");
+					System.out.println(address);
 			
 						return "redirect:"+address;
 						
 					} else {
 						// 비번 불일치
-						model.addAttribute("message", "잘못된 패스워드.");
+						model.addAttribute("loginFail", loginFail);
+						
+						return "mypage/login";
 					}
+					
 				}
-		} else {
-			model.addAttribute("message", "잘못된 아이디.");
 		}
+		// 노아이디
 		session.invalidate();
+		
+		String noID = "아이디를 입력해주세요";
+		model.addAttribute("loginFail", noID);
 		
 		return "mypage/login";
 	}
@@ -100,6 +114,7 @@ public class Mypage_controller {
 	@RequestMapping(value="/logout")
 	public String logout(HttpServletRequest request, HttpSession session, Model model) {
 		String referer = request.getHeader("Referer");
+	System.out.println(referer);
 		// 로그아웃 세션끊기.
 		session.invalidate();
 		
@@ -115,9 +130,11 @@ public class Mypage_controller {
 	}
 	// @PostMapping(value="/join")
 	@RequestMapping(value="/join", method=RequestMethod.POST)
-	public String joinMember(MemberVO member, Model model) {
-		
+	public String joinMember(MemberVO member, Model model, MultipartHttpServletRequest request) {
+		MultipartFile JJ = request.getFile("member_pic");
+	System.out.println(JJ);
 		memberService.joinMember(member);
+		
 		
 		return "mypage/check";
 	}
