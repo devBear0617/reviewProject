@@ -51,7 +51,7 @@
 
 	<!-- 상세 메뉴 바 -->
 	<div>
-		<jsp:include page="/WEB-INF/views/movie/detail_bar.jsp" />
+		<jsp:include page="/WEB-INF/views/movie/detail_category.jsp" />
 	</div>
 
 	<!-- Best content -->

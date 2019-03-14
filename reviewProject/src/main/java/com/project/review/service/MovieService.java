@@ -51,10 +51,15 @@ public interface MovieService {
 	
 	/*delete Board*/
 	public void deleteMovie(int board_num);
+
 	
 	//MovieApi
 	public JsonArray searchMovie(String movie_nm);
 	public void setMovieApi(MovieApiVO movieApiVO);
 	public MovieApiVO getMovieInfo(String movie_nm);
 	
+	//Category
+	public Map<String, Object> getCategory(String category_type);
+	public Map<String, Object> getCaMovieList(String de_category_type, int pnum);
+	//public Map<String, Object> getCategory2(String category_type);
 }
