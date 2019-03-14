@@ -612,6 +612,12 @@ table {
 					type="reset" value="취소">
 			</div>
 		</form>
+		
+		<form action="/review/back" method="post" id="back">
+         <input type="hidden" name="address" value="${address}">
+         <input type="submit" value="이전">
+      </form>
+		
 	</div>
 	<script>
 		var formSubmitButton = document.querySelector("#form-submit");
