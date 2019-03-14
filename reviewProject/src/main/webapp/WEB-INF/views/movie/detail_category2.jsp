@@ -4,21 +4,20 @@
 <script type="text/javascript">
 var pnum = 0;	
 function moreCaMovie(e) {
-	pnum = pnum+1;
-	console.log(pnum);
-	var data = {
-		'de_category_type' : $(e).attr('class'),
-		'pnum' : pnum
-	};
-		
+	var de_category_type = $(e).attr('class');
+
 	$.ajax({
 		type : 'POST',
 		url : "./moreCaMovie",
 		cache : false,
-		data : data,
+		data : {
+			'de_category_type' : de_category_type,
+			'pnum' : 1
+		},
 		success : function(html) {
 			$('.detail2_category').empty();
 			$('.detail2_category').append(html);
+			$('.detail2_category').find('.de_ca_type').attr('id',de_category_type);
 		},
 		error : function(error) {
 			console.log(error);

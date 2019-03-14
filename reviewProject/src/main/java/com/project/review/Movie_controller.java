@@ -1,11 +1,7 @@
 package com.project.review;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,8 +20,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.google.gson.JsonArray;
-import com.project.review.dao.MovieApiDAO;
 import com.project.review.service.MemberService;
 import com.project.review.service.MovieService;
 import com.project.review.vo.BoardVO;
@@ -35,7 +29,9 @@ import com.project.review.vo.HashtagVO;
 import com.project.review.vo.LikeItVO;
 import com.project.review.vo.MemberVO;
 import com.project.review.vo.MovieApiVO;
+import com.project.review.vo.Pagination;
 import com.project.review.vo.ReplyVO;
+
 
 @Controller
 @RequestMapping(value="/movie")
@@ -44,11 +40,9 @@ public class Movie_controller {
 	private MovieService movieService;
 	@Autowired
 	private MemberService memberService;
-	@Autowired
-	private MovieApiDAO m;
 	
 	private Map<String, Object> moiveMap;
-	
+    
 	// -- 메인페이지 ----------------------------------------------------------------------------
 	
 	// >> 메인  ----------------------------------
@@ -77,16 +71,23 @@ public class Movie_controller {
 	// 상세 카테고리 - 영화 리스트
 	@RequestMapping(value="/moreCaMovie")
 	public String moreCaMovie(String de_category_type, int pnum, Model model) {
+		Pagination pagination = new Pagination();
+		pagination.setCurPage(pnum);
+		int displayIdx = pagination.getDisplayIdx();
+		
 		if (pnum%5==1) {
-			moiveMap = movieService.getCaMovieList(de_category_type, 1);
+			moiveMap = movieService.getCaMovieList(de_category_type, pnum/5+1);
 		}
 		List<String> movieCd = new ArrayList<String>();
 		List<String> movieNm= new ArrayList<String>();
- 		movieCd = ((List<String>) moiveMap.get("cd")).subList(pnum*10, pnum*20);
- 		movieNm = ((List<String>) moiveMap.get("nm")).subList(pnum*10, pnum*20);
-		
+ 		movieCd = ((List<String>) moiveMap.get("cd")).subList(displayIdx, displayIdx+10);
+ 		movieNm = ((List<String>) moiveMap.get("nm")).subList(displayIdx, displayIdx+10);
+ 		
+ 		
 		model.addAttribute("movieCd",movieCd);
 		model.addAttribute("movieNm",movieNm);
+		model.addAttribute("pagination", pagination);
+		
 		return "movie/detail_category3";
 	}
 /*	@RequestMapping(value="/moreCategory")
