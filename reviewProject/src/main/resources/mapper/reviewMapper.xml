@@ -83,11 +83,18 @@
 		INSERT INTO reply(board_num, member_id, reply_content)
 		VALUES(#{board_num}, #{member_id}, #{reply_content})
 	</insert>
+	<!-- ____리플 수정______________________________________________________________________ -->
+	<update id="updateReply" parameterType="ReplyVO">
+		UPDATE reply SET
+			reply_content = #{reply_content},
+			reply_up_date = sysdate
+		WHERE reply_num = #{reply_num}
+	</update>
 	<!-- ____리플 삭제______________________________________________________________________ -->
-	<insert id="deleteReply" parameterType="ReplyVO">
+	<delete id="deleteReply" parameterType="int">
 		DELETE FROM reply
 		WHERE reply_num = #{reply_num}
-	</insert>
+	</delete>
 	
 	<!-- 게시글 호출______________________________________________________________________ -->
 	<select id="getBoardById" parameterType="int" resultMap="Board">
@@ -123,13 +130,32 @@
 	<select id="getBoardList" resultMap="Board">
 		SELECT *
 		FROM board
-	</select>
-	<select id="getMovieBoardList" resultMap="Board_movie">
+	</select>	
+	
+	<!-- <select id="getMovieBoardList" resultMap="Board_movie">
 		SELECT *
 		FROM board_movie m, board b
 		WHERE m.board_num = b.board_num
 		ORDER BY m.board_num DESC
+	</select> -->
+	
+	<select id="getMovieBoardList" parameterType="map" resultMap="Board_movie">
+		SELECT aa.*
+		FROM (
+			SELECT ROW_NUMBER() OVER (ORDER BY m.board_num DESC) rnum, 
+				   b.board_num, b.board_title, b.board_content, b.board_date, b.member_id, 
+				   b.lemon_grade, b.recommend, b.thumbnail, b.board_up_date, m.movie_nm, m.b_movie_num
+     		FROM board_movie m, board b
+      		WHERE m.board_num = b.board_num		
+  		    ) aa
+		WHERE rnum between #{start_content} AND #{end_content}
+    </select>
+    <select id="getMovieBoardCount" resultType="int">
+		SELECT COUNT(*)
+		FROM board_movie
 	</select>
+
+	
 	<select id="getMovieBoardReplyList" resultMap="Movie_Reply">
 		SELECT *
 		FROM board_movie m, reply r

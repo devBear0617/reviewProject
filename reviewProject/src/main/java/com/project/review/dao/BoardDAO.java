@@ -16,7 +16,8 @@ public interface BoardDAO {
 	//select Board
 	public BoardVO getBoardById(int board_num);
 	public List<BoardVO> getBoardList();
-	public List<BoardVO> getMovieBoardList();
+	public List<BoardVO> getMovieBoardList(Map<String, Object> map);
+	public int getMovieBoardCount();
 	public MovieApiVO getMovieInfo(String movie_nm);
 		// reply
 		public int replyCount(int board_num);
@@ -40,6 +41,7 @@ public interface BoardDAO {
 	// 리플 추가
 	public void insertReply(ReplyVO reply);
 	// 리플 수정
+	public void updateReply(ReplyVO reply);
 	// 리플 삭제
 	public void deleteReply(int reply_num);
 

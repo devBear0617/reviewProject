@@ -30,7 +30,7 @@
 	<div class="center">
 		<!-- 상단바, 로고 -->
 		<div class="center">
-			<a href="movie/detail_bar.jsp"><img alt="REMON_LOGO"
+			<a href="/review"><img alt="REMON_LOGO"
 				src="resources/image/REMON_logo(bigsize).png" style="width: 200px;"></a>
 		</div>
 		<br>

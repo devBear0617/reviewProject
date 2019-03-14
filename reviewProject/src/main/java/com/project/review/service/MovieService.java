@@ -26,13 +26,15 @@ public interface MovieService {
 	public void insertReply(ReplyVO replyVO, String member_id);
 	//public void insertReply(ReplyVO replyVO, String reply, int board_num, String member_id);
 	// update reply
+	public void updateReply(ReplyVO replyVO, String reply_content);
 	// delete reply
 	public void deleteReply(int reply_num);
 	
 	//select Board
 	public BoardVO getBoardById(int board_num);
 	public List<BoardVO> getBoardList();
-	public List<BoardVO> getMovieBoardList();
+	public List<BoardVO> getMovieBoardList(Map<String, Object> map);
+	public int getMovieBoardCount();
 		// reply
 		public int replyCount(int board_num);
 		public List<ReplyVO> getMovieBoardReplyList();

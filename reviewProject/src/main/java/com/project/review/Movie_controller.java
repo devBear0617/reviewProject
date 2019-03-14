@@ -110,15 +110,25 @@ public class Movie_controller {
 	@RequestMapping(value="/contentView")
 	public String contentView(HttpServletRequest request, Model model) {
 		
-		List<BoardVO> board_list = movieService.getMovieBoardList();
+		int start_content = Integer.parseInt(request.getParameter("start_content"));
+		model.addAttribute("start_content", start_content);
+		
+		int end_content = Integer.parseInt(request.getParameter("end_content"));
+		model.addAttribute("end_content", end_content);
+		
+		//System.out.println("Start : "+start_content+" // end : "+end_content);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("start_content", start_content);
+		map.put("end_content", end_content);			
+		
+		List<BoardVO> board_list = movieService.getMovieBoardList(map);
 		model.addAttribute("board_list", board_list);
 		
-		List<ReplyVO> board_replyList = movieService.getMovieBoardReplyList();
-		model.addAttribute("board_replyList", board_replyList);
+		int movieBoardCount = movieService.getMovieBoardCount();
+		model.addAttribute("movieBoardCount", movieBoardCount);
 		
-		List<LikeItVO> board_likeList = movieService.getMovieBoardLikeList();
-		model.addAttribute("board_likeList", board_likeList);
-		
+			
 		return "movie/content";
 	}
 
@@ -136,8 +146,6 @@ public class Movie_controller {
 	@RequestMapping(value="/movie_write", method=RequestMethod.POST)
 	public String movie_write(BoardVO board, Board_MovieVO movie, GradeVO grade, HashtagVO hash, MovieApiVO movieApiVO, HttpSession session) {		
 		// 게시글 추가 서비스
-		
-		System.out.println(">>"+board.getBoard_content());
 		String member_id = (String)session.getAttribute("member_id");
 		movieService.insertMovie(board, movie, grade, hash, movieApiVO, member_id);
 		
@@ -219,7 +227,11 @@ public class Movie_controller {
 		return "movie/detail_view";
 	}
 	
-	// 댓글 출력------------------------------------------------------
+	/* 출력 수정
+	 	1. BoardVO, model(BoardVO~) -> 삭제 및 model(board_num)
+	 	(이유: board 전체를 보낼 필요 없이 board_num만 보내기 -> jsp에서 board_num만 활용) 
+	 */
+	// ajax 댓글 출력------------------------------------------------------
 	@RequestMapping(value="/detail_view/{board_num}/reply")
 	public String getReply(@PathVariable int board_num, Model model) {
 		List<ReplyVO> replyList = movieService.replyList(board_num);
@@ -233,6 +245,18 @@ public class Movie_controller {
 	}
 	
 	// 댓글 입력------------------------------------------------------
+	/*
+	/* 입력 수정, 삭제 수정 
+	 	1. 다시 get을 렌더링 -> 삭제 및 redirect:/movie//detail_view/"+board_num+"/reply"
+	 	(이유: 다시 작성 할 필요 없이 이미 작성되어 있는 출력함수 활용 => 코드 간소화)
+	 	2. 파라미터 :   HttpServletRequest, Model -> 삭제
+	 	(이유: model은 위와 같은 이유.
+	 		request로 받는 reply_content의 경우  replyVO자체에 삽입되어 전달 받기 때문에 필요 없음)
+	 	3. movieService.insertReply 파라미터  : reply, board_num -> 삭제
+	 	(이유 : reply 위와 동일한 이유
+	 		board_num은 @PathVariable으로 직접적으로 받으면서 자동으로 replyVO자체에 삽입되기 때문에 필요 없음 )
+	*/
+	// 댓글 입력
 	@RequestMapping(value="/detail_view/{board_num}/reply", method=RequestMethod.POST)
 	public String postReply(@PathVariable int board_num, ReplyVO replyVO, HttpSession session) {
 		// ID session
@@ -243,9 +267,36 @@ public class Movie_controller {
 		return "redirect:/movie/detail_view/"+board_num+"/reply";
 	}
 	
-	// 댓글 수정------------------------------------------------------
 	
-	// 댓글 삭제------------------------------------------------------
+	// 댓글 수정
+		@RequestMapping(value="/detail_view/{board_num}/updateReplyForm", method=RequestMethod.POST)
+		public String updateReplyForm(@PathVariable int board_num, ReplyVO replyVO, Model model) {
+
+			int rnum = replyVO.getReply_num();
+			model.addAttribute("rnum", rnum);
+			
+			List<ReplyVO> replyList = movieService.replyList(board_num);
+			int replyCount = movieService.replyCount(board_num);
+			
+			model.addAttribute("replyList", replyList);
+			model.addAttribute("board_num", board_num);
+			model.addAttribute("replyCount", replyCount);
+			
+			return "share/reply";
+		}
+		@RequestMapping(value="/detail_view/{board_num}/updateReply", method=RequestMethod.POST)
+		public String updateReply(@PathVariable int board_num, ReplyVO replyVO, HttpServletRequest request, Model model) {
+			/*int reply_num = replyVO.getReply_num();*/
+			
+			String reply_content = request.getParameter("reply_UpdateContent");
+		/*System.out.println(reply_content);*/
+			movieService.updateReply(replyVO, reply_content);
+			
+			return "redirect:/movie/detail_view/"+board_num+"/reply";
+		}
+
+
+	// 댓글 삭제
 	@RequestMapping(value="/detail_view/{board_num}/deleteReply", method=RequestMethod.POST)
 	public String deleteReply(@PathVariable int board_num, ReplyVO replyVO) {
 		int reply_num = replyVO.getReply_num();
@@ -254,7 +305,6 @@ public class Movie_controller {
 		
 		return "redirect:/movie/detail_view/"+board_num+"/reply";
 	}
-	
 	// 좋아요 출력 ------------------------------------------------------
 	@RequestMapping(value="/detail_view/{board_num}/likeIt")
 	public String getLikeit(@PathVariable int board_num, HttpSession session, Model model) {		
