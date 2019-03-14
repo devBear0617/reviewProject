@@ -13,7 +13,7 @@
 }
 </style>
 </head>
-<jsp:include page="../share/Login_header.jsp" />
+<jsp:include page="/WEB-INF/views/share/Login_header.jsp" />
 <body>
 	<div class="center">
 		<!-- 테스트 로그인 기능 -->
@@ -55,10 +55,12 @@
 				</tr>
 
 			</table>
+			<!-- 전페이지 저장 -->
+			<input type="hidden" name="address" value="${address}"><%-- ${address} --%>
 			<br> <br> <br> <br> <br> <br> <br>
 			<br>
 		</form>
 	</div>
 </body>
-<jsp:include page="../share/footer.jsp" />
+<jsp:include page="/WEB-INF/views/share/footer.jsp" />
 </html>

@@ -67,7 +67,7 @@
 									style="height: 50px;"></a>
 							</div>
 							<div style="float: left; margin-left: 10px;">
-								<a href=/review/mypage/mypageCheck"><img alt="REMON_LOGO"
+								<a href="/review/mypage/mypageCheck"><img alt="REMON_LOGO"
 									src="/review/movie/resources/image/REMON_mypage_icon(white).png"
 									style="height: 50px;"></a>
 							</div>

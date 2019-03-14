@@ -35,25 +35,15 @@
 		<!-- 로그인 했을 때 -->
 		<c:if test="${not empty sessionScope.member_id}">
 			<div style="float: right; margin-right: 10px; margin-top: 20px;">
-				<%-- <div
-					style="float: left; margin-left: 10px; margin-top: 10px; font-size: large;">${user.member_name}
-					(${user.member_id})님</div> --%>
-
 				<div style="float: left; margin-left: 10px;">
 					<a href="/review/mypage/logout"><img alt="REMON_LOGO"
 						src="/review/movie/resources/image/REMON_Logout_icon(white).png"
 						style="height: 50px;"></a>
-					<!-- <input type="button" value="로그아웃"
-						onclick="location.href='/review/mypage/logout'"
-						style="height: 30px; width: 60px; border-radius: 20px; border-style: none; background-image: url('../resources/image/REMON_Logout_icon(white).png');"> -->
 				</div>
 				<div style="float: left; margin-left: 10px;">
-					<a href=/review/mypage/mypageCheck"><img alt="REMON_LOGO"
+					<a href="/review/mypage/mypageCheck"><img alt="REMON_LOGO"
 						src="/review/movie/resources/image/REMON_mypage_icon(white).png"
 						style="height: 50px;"></a>
-					<!-- <input type="button" value="mypage"
-						onclick="location.href='/review/mypage/mypageCheck'"
-						style="height: 30px; width: 60px; border-radius: 20px; border-style: none; background-image: url('../resources/image/REMON_mypage_icon(white).png');"> -->
 				</div>
 			</div>
 		</c:if>
