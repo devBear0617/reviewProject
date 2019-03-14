@@ -102,7 +102,7 @@ $(document).ready(function() {
 					style="background: background: -webkit-linear-gradient(to right, #abf200, #ffe400); background: linear-gradient(to right, #abf200, #ffe400);">
 					<!-- >>==============================▶ 삽입 이미지 크기 조정 필요 -->
 					<div>
-						<img src="${board.thumbnail}" style="height: 300px; width: 400px;">
+						<img src="${board.thumbnail}" style="height: 300px; width: auto;">
 					</div>
 				</td>
 				<td class="td_class1">
