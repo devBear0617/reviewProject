@@ -56,13 +56,9 @@
 				</tr>
 
 			</table>
-<<<<<<< HEAD
 			<!-- 전페이지 저장 -->
-			<input type="hidden" name="address" value="${address}"><%-- ${address} --%>
-			<br> <br> <br> <br> <br> <br> <br>
-			<br>
-=======
->>>>>>> CSS_merge
+			<input type="hidden" name="address" value="${address}">
+			<%-- ${address} --%>
 		</form>
 	</div>
 	<div style="height: 200px;"></div>
