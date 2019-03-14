@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.google.gson.JsonArray;
 import com.project.review.dao.MovieApiDAO;
 import com.project.review.service.MemberService;
 import com.project.review.service.MovieService;
@@ -110,24 +109,40 @@ public class Movie_controller {
 	@RequestMapping(value="/contentView")
 	public String contentView(HttpServletRequest request, Model model) {
 		
+		//보여줄 content rnum기준 시작 번호 
 		int start_content = Integer.parseInt(request.getParameter("start_content"));
 		model.addAttribute("start_content", start_content);
 		
+		//보여줄 content rnum기준 끝 번호
 		int end_content = Integer.parseInt(request.getParameter("end_content"));
 		model.addAttribute("end_content", end_content);
 		
-		//System.out.println("Start : "+start_content+" // end : "+end_content);
+		//보여줄때 정렬 방식, default = board_num 정렬
+		String sort_id = request.getParameter("sort_id");
+		System.out.println("null이전 sort_id: " +sort_id);
+		
+		if(sort_id == null) {
+			sort_id = "sort_time";			
+		}
+		System.out.println("null보정 sort_id: " +sort_id);
+		model.addAttribute("sort_id", sort_id);				
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("start_content", start_content);
-		map.put("end_content", end_content);			
+		map.put("end_content", end_content);
 		
-		List<BoardVO> board_list = movieService.getMovieBoardList(map);
+		List<BoardVO> board_list;		
+		if (sort_id.equals("sort_time")) {
+			board_list = movieService.getMovieBoardList_sort_time(map);
+		}else if(sort_id.equals("sort_likeit")) {
+			board_list = movieService.getMovieBoardList_sort_likeit(map);			
+		}else {
+			board_list = movieService.getMovieBoardList_sort_grade(map);			
+		}		
 		model.addAttribute("board_list", board_list);
-		
+				
 		int movieBoardCount = movieService.getMovieBoardCount();
-		model.addAttribute("movieBoardCount", movieBoardCount);
-		
+		model.addAttribute("movieBoardCount", movieBoardCount);		
 			
 		return "movie/content";
 	}

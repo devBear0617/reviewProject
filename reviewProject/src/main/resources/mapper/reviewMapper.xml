@@ -139,10 +139,39 @@
 		ORDER BY m.board_num DESC
 	</select> -->
 	
-	<select id="getMovieBoardList" parameterType="map" resultMap="Board_movie">
+	<select id="getMovieBoardList_sort_time" parameterType="map" resultMap="Board_movie">
 		SELECT aa.*
 		FROM (
 			SELECT ROW_NUMBER() OVER (ORDER BY m.board_num DESC) rnum, 
+				   b.board_num, b.board_title, b.board_content, b.board_date, b.member_id, 
+				   b.lemon_grade, b.recommend, b.thumbnail, b.board_up_date, m.movie_nm, m.b_movie_num
+     		FROM board_movie m, board b
+      		WHERE m.board_num = b.board_num		
+  		    ) aa
+		WHERE rnum between #{start_content} AND #{end_content}
+    </select>
+    
+	<select id="getMovieBoardList_sort_grade" parameterType="map" resultMap="Board_movie">
+		SELECT aa.*
+		FROM (
+			SELECT ROW_NUMBER() OVER (ORDER BY b.lemon_grade, m.board_num DESC) rnum, 
+				   b.board_num, b.board_title, b.board_content, b.board_date, b.member_id, 
+				   b.lemon_grade, b.recommend, b.thumbnail, b.board_up_date, m.movie_nm, m.b_movie_num
+     		FROM board_movie m, board b
+      		WHERE m.board_num = b.board_num		
+  		    ) aa
+		WHERE rnum between #{start_content} AND #{end_content}
+    </select>
+    
+	<select id="getMovieBoardList_sort_likeit" parameterType="map" resultMap="Board_movie">
+		SELECT aa.*
+		FROM (
+			SELECT ROW_NUMBER() OVER(ORDER BY(
+											SELECT COUNT(*)
+                                      		FROM likeit
+                                     		WHERE board_num = b.board_num                                           
+                                    		) DESC, b.board_num DESC 
+                                    ) rnum, 			 
 				   b.board_num, b.board_title, b.board_content, b.board_date, b.member_id, 
 				   b.lemon_grade, b.recommend, b.thumbnail, b.board_up_date, m.movie_nm, m.b_movie_num
      		FROM board_movie m, board b

@@ -80,10 +80,22 @@ public class MovieServiceImpl implements MovieService {
 		return boardDAO.getBoardList();
 	}
 	@Override
-	public List<BoardVO> getMovieBoardList(Map<String, Object> map) {
+	public List<BoardVO> getMovieBoardList_sort_time(Map<String, Object> map) {
 		// movie/tv/game -> 해당하는 board값 호출하는 함수 작성,
 		
-		return boardDAO.getMovieBoardList(map);
+		return boardDAO.getMovieBoardList_sort_time(map);
+	}
+	@Override
+	public List<BoardVO> getMovieBoardList_sort_grade(Map<String, Object> map) {
+		// movie/tv/game -> 해당하는 board값 호출하는 함수 작성,
+		
+		return boardDAO.getMovieBoardList_sort_grade(map);
+	}
+	@Override
+	public List<BoardVO> getMovieBoardList_sort_likeit(Map<String, Object> map) {
+		// movie/tv/game -> 해당하는 board값 호출하는 함수 작성,
+		
+		return boardDAO.getMovieBoardList_sort_likeit(map);
 	}
 	@Override
 	public int getMovieBoardCount() {

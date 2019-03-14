@@ -16,7 +16,11 @@ public interface BoardDAO {
 	//select Board
 	public BoardVO getBoardById(int board_num);
 	public List<BoardVO> getBoardList();
-	public List<BoardVO> getMovieBoardList(Map<String, Object> map);
+	
+	public List<BoardVO> getMovieBoardList_sort_time(Map<String, Object> map);
+	public List<BoardVO> getMovieBoardList_sort_grade(Map<String, Object> map);
+	public List<BoardVO> getMovieBoardList_sort_likeit(Map<String, Object> map);
+	
 	public int getMovieBoardCount();
 	public MovieApiVO getMovieInfo(String movie_nm);
 		// reply

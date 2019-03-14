@@ -11,9 +11,32 @@
 	src="/review/resources/script/jquery-2.1.1.js"></script>
 <script type="text/javascript">
 
-$('#moreList').click(function () {
-	console.log("insert bt");
+$('.sort').click(function () {
+	console.log("sort bt");
+
 	var data = {
+			"sort_id" : $(this).attr('id'),
+			"start_content" : ${start_content},
+			"end_content" : ${end_content}
+	}
+	$.ajax({
+		type : "POST",
+		url : "./contentView",
+		cache : false,
+		dataType : 'html',
+		data : data,
+		success : function(html) {			
+		    console.log('success');
+			$(".content").empty();
+			$(".content").append(html);
+		}
+	}); 
+});
+
+$('#moreList').click(function () {
+	console.log("moreList bt");	
+	var data = {
+			"sort_id" : ${sort_id},
 			"start_content" : ${start_content},
 			"end_content" : ${end_content+9}
 	}
@@ -30,7 +53,6 @@ $('#moreList').click(function () {
 		}
 	});
 });
-
 
 function move(e){	
 	location.href = e;
@@ -71,7 +93,7 @@ function move(e){
 	margin-right: auto;
 }
 
-.td_class1 {
+.td_class1{
 	width: 400px;
 }
 </style>
@@ -82,9 +104,9 @@ function move(e){
 	<div class="center">
 		<table class="center" style="font-size: small;">
 			<tr>
-				<td class="td_class1">최신순</td>
-				<td class="td_class1">좋아요순</td>
-				<td class="td_class1">별점순</td>
+				<td class="td_class1"><span class="sort" id="sort_time">최신순</span></td>
+				<td class="td_class1"><span class="sort" id="sort_likeit">좋아요순</span></td>
+				<td class="td_class1"><span class="sort" id="sort_grade">별점순</span></td>
 			</tr>
 		</table>
 	</div>
@@ -109,9 +131,9 @@ function move(e){
 						<td colspan="2"><hr></td>
 					</tr>
 					<tr>
-						<td style="font-size: small; padding-right: 30px;"><img
-							alt="likeit" src="../resources/image/REMON_like_icon.png"
-							style="width: 20px; margin-left: -20px;"></td>
+						<td style="font-size: small; padding-right: 30px;">
+						<img alt="likeit" src="../resources/image/REMON_like_icon.png" 
+								style="width: 20px; margin-left: -20px;"></td>
 						<td style="font-size: x-small;">${board.board_date}</td>
 					</tr>
 				</table>
@@ -120,9 +142,9 @@ function move(e){
 	</div>
 	<div style="height: 20px;"></div>
 	<c:if test="${end_content < movieBoardCount}">
-		<div id = moreList ><img alt="REMON_LOGO"
-					src="/review/movie/resources/image/REMON_more.png"
-					style="height: 20px;"></div>
+		<div  id = "moreList" >
+			<img alt="REMON_LOGO" src="/review/movie/resources/image/REMON_more.png" style="height: 20px;">
+		</div>
 	</c:if>
 </body>
 </html>
