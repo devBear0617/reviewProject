@@ -13,28 +13,8 @@
 <form action="/review/mypage/join" method="POST" id="joinMember" enctype="multipart/form-data">
 <table border="1">
 	<tr>
-		<td>ID</td>
-		<td><input type="text" name="member_id"></td>
-	</tr>
-	
-	<tr>
-		<td>PW</td>
-		<td><input type="password" name="member_pw"></td>
-	</tr>
-	
-	<tr>
-		<td>NAME</td>
-		<td><input type="text" name="member_name"></td>
-	</tr>
-	
-	<tr>
-		<td>EMAIL</td>
-		<td><input type="text" name="member_email"></td>
-	</tr>
-	
-	<tr>
 		<td>Picture</td>
-		<td><input type="file" name="member_pic"></td>
+		<td><input type="file" name="file"></td>
 	</tr>
 	
 	<tr>

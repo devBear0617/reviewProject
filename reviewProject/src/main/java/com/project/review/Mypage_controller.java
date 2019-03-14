@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.project.review.service.MemberService;
 import com.project.review.vo.MemberVO;
+import com.project.review.vo.itemBean;
 
 
 @Controller
@@ -129,16 +130,23 @@ public class Mypage_controller {
 		return "mypage/join";
 	}
 	// @PostMapping(value="/join")
-	@RequestMapping(value="/join", method=RequestMethod.POST)
+	/*@RequestMapping(value="/join", method=RequestMethod.POST)
 	public String joinMember(MemberVO member, Model model, MultipartHttpServletRequest request) {
 		MultipartFile JJ = request.getFile("member_pic");
 	System.out.println(JJ);
 		memberService.joinMember(member);
+		model.addAttribute("JJ", JJ);
 		
 		
 		return "mypage/check";
+	}*/
+	@RequestMapping(value="/join", method=RequestMethod.POST)
+	public String joinMember(MemberVO member, Model model, itemBean itemBean, 
+			@RequestParam("file")MultipartFile file) {
+		model.addAttribute("file", file);
+		
+		return "mypage/check";
 	}
-	
 
 	
 }

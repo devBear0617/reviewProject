@@ -42,13 +42,6 @@
 	<beans:bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<beans:property name="dataSource" ref="dataSource"/>
 	</beans:bean>
-	
-	<!-- multipartResolver Bean -->
-	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<!-- <beans:property name="maxUploadSize">
-			<beans:value>50000000</beans:value>
-		</beans:property> -->
-	</beans:bean>
 
 	<tx:annotation-driven transaction-manager="transactionManager" /> 
 	
