@@ -46,24 +46,33 @@ public class Mypage_controller {
 	
 	// 로그인
 	@RequestMapping(value="/login", method=RequestMethod.GET)
-	public String loginForm() {
+	public String loginForm(HttpServletRequest request, Model model) {
+		
+		String referer = request.getHeader("Referer");
+	System.out.println(referer);
+		model.addAttribute("address", referer);
 		
 		return "mypage/login";
 	}
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String loginMember(String member_id, String member_pw, HttpServletRequest request,
-			HttpSession session, Model model) {
+			 HttpSession session, Model model) {
 
 		member_id = request.getParameter("member_id");
 		member_pw = request.getParameter("member_pw");
 		
 		MemberVO member = memberService.selectMember(member_id);
 		
+		String loginFail = "잘못된 아이디 및 비밀번호";
+		
 		if (member != null) {
 			String pw = member.getMember_pw();
 				if(pw == null) {
-					// 아이디가 없음
-					model.addAttribute("message", "등록된 아이디가 없음.");
+					// 잘못된 아이디
+					model.addAttribute("loginFail", loginFail);
+					
+					return "mypage/login";
+					
 				} else {
 					// 아이디가 있음
 					if(pw.equals(member_pw)) {
@@ -75,31 +84,38 @@ public class Mypage_controller {
 						MemberVO user = memberService.MemberInfo(user_id);
 						model.addAttribute("user", user);
 						
-						
-						
-						return "mypage/loginCheck";
+						String address = request.getParameter("address");
+					System.out.println(address);
+			
+						return "redirect:"+address;
 						
 					} else {
 						// 비번 불일치
-						model.addAttribute("message", "잘못된 패스워드.");
+						model.addAttribute("loginFail", loginFail);
+						
+						return "mypage/login";
 					}
+					
 				}
-		} else {
-			model.addAttribute("message", "잘못된 아이디.");
 		}
+		// 노아이디
 		session.invalidate();
+		
+		String noID = "아이디를 입력해주세요";
+		model.addAttribute("loginFail", noID);
 		
 		return "mypage/login";
 	}
 	
 	// 로그아웃
 	@RequestMapping(value="/logout")
-	public String logout(HttpSession session, Model model) {
-		model.addAttribute("message", "로그아웃 합니다.");
+	public String logout(HttpServletRequest request, HttpSession session, Model model) {
+		String referer = request.getHeader("Referer");
+	System.out.println(referer);
 		// 로그아웃 세션끊기.
 		session.invalidate();
 		
-		return "remon";
+		return "redirect:"+referer;
 	}
 	
 	// 가입
