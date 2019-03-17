@@ -50,6 +50,7 @@
 	
 	<!-- uploadPath -->
 	<beans:bean id="uploadPath" class="java.lang.String">
+		<!-- 천웅 -->
 		<beans:constructor-arg 
 			value="C:\Users\user\git\reviewProject\reviewProject\src\main\webapp\resources\memberImage" />
 	</beans:bean>

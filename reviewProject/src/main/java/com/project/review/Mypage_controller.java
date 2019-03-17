@@ -47,17 +47,27 @@ public class Mypage_controller {
 	public String profileUploadPOST(HttpServletRequest request, MemberVO member,
 			MultipartFile file, ModelAndView mav) throws IOException {
 		
+		/*이클립스의 window-preference 에 들어가서 general-workspace 에 보면
+		refresh using native hooks or polling 과 save automatically before build 이 두 항목을 체크해주면
+		빌드 되기전에 리프레시를 먼저 하여 파일을 인식할 수 있게 된다.*/
+		
 		System.out.println("File name : " + file.getOriginalFilename());
 		System.out.println("File size : " + file.getSize());
 		System.out.println("Content type : " + file.getContentType());
 		
-		String member_id = request.getParameter("member_id");
-		String member_pic = "";
-		if (file.getOriginalFilename() != null) {			
-			member_pic = member_id + "_" + file.getOriginalFilename();
-		} else if (file.getOriginalFilename() == null) {
-			member_pic = "";
+		String pic = file.getOriginalFilename();
+	System.out.println("pic : " + pic);
+		if (pic.equals(null)) {
+			System.out.println("success");
 		}
+		String member_id = request.getParameter("member_id");
+		String member_pic = pic;
+		/*String member_pic = "";
+		if (pic != null) {			
+			member_pic = member_id + "_" + pic;
+		} else if (pic.equals("")) {
+			member_pic = "";
+		}*/
 	System.out.println(member_pic);
 		memberService.updateProfile(member, member_id, member_pic);
 		File target = new File(uploadPath, member_pic);

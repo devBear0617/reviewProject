@@ -56,7 +56,7 @@ function profileUploadCancel() {
 <h4>PW : ${user.member_pw}</h4>
 <h4>NAME : ${user.member_name}</h4>
 <h4>Email : ${user.member_email}</h4>
-
+${user.member_pic}
 <c:if test="${empty user.member_pic}">
 	<img src="/review/movie/resources/memberImage/DefaultPerson.png">
 </c:if>
