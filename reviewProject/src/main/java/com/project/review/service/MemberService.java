@@ -6,6 +6,9 @@ import com.project.review.vo.MemberVO;
 
 public interface MemberService {
 	
+	// updateProfile
+	public void updateProfile(MemberVO member, String member_id, String member_pic);
+	
 	// 수정
 	public void updateMember(MemberVO member);
 	
