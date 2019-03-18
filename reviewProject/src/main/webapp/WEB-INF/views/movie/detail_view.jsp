@@ -74,7 +74,7 @@
 }
 
 .td_class3 {
-	width: 200px;
+	width: 180px;
 	border-right: 1px solid gray;
 	text-align: left;
 }
@@ -86,17 +86,27 @@
 }
 
 .td_class5 {
-	width: 200px;
+	width: 150px;
 	text-align: center;
 }
 
 .user {
-	font-size: large;
+	font-weight: bold;
+	padding-top: 20px;
 	margin-left: auto;
 	margin-right: auto;
 	background-color: #F2F2F2;
-	height: 80px;
+	height: 70px;
 	width: 1200px;
+	font-size: large;
+}
+
+.user_form {
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #F2F2F2;
+	width: 1200px;
+	height: 90px;
 }
 </style>
 </head>
@@ -111,11 +121,13 @@
 		<jsp:include page="/WEB-INF/views/share/category_bar.jsp" />
 	</div>
 	<!-- 유저프로필, 유저ID, 제목 바 ( O 유저ID | 리뷰 제목              | 날짜 ) -->
-	<div class="user">
+	<div class="user_form">
 		<table class="user">
 			<tr>
-				<td class="td_class3">&nbsp;&nbsp;&nbsp;${board.member_id}</td>
-				<td class="td_class4">&nbsp;&nbsp;&nbsp;${board.board_title}</td>
+				<td style="width: 50px; padding-left: 20px;"><img
+					alt="user_img" src="../resources/image/REMON_user_button.png" style="margin-left: auto; margin-right: auto;"></td>
+				<td class="td_class3">&nbsp;${board.member_id}</td>
+				<td class="td_class4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${board.board_title}</td>
 				<td class="td_class5"><fmt:formatDate
 						value="${board.board_date}" pattern="yyyy-MM-dd" /></td>
 			</tr>
@@ -219,7 +231,7 @@
 		</table>
 	</div>
 	<br>
-	<hr color="#F2F2F2">
+	<hr color="#F2F2F2" width="1200px">
 	<!-- 덧글 forEach -->
 	<div class="center_txtnon">
 		<div class="reply"></div>
