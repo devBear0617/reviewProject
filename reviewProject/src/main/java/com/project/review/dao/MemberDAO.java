@@ -6,6 +6,9 @@ import com.project.review.vo.MemberVO;
 
 public interface MemberDAO {
 	
+	// updateProfile
+	public void updateProfile(MemberVO member_pic);
+	
 	// 수정
 	public void updateMember(MemberVO member);
 	

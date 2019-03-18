@@ -14,6 +14,14 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private MemberDAO memberDAO;
 	
+	// updateProfile
+	public void updateProfile(MemberVO member, String member_id, String member_pic) {
+		
+		member.setMember_id(member_id);
+		member.setMember_pic(member_pic);
+		memberDAO.updateProfile(member);
+	}
+	
 	// 수정
 	public void updateMember(MemberVO member) {
 		

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
@@ -7,15 +6,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type = "text/javascript" src = "/review/resources/script/jquery-2.1.1.js"></script>
+<script type = "text/javascript" src = "/review/resources/script/jquery-3.3.1.min.js"></script>
 <script type = "text/javascript">
-console.log(">>>"+'${board.board_num}');
 function getReplyList () {
-	console.log(" : "+'${board.board_num}');
 	$.ajax({
 		type : "GET",
 		url : "/review/movie/detail_view/${board.board_num}/reply",
-		cache : false,
 		success : function(html) {
 			$(".reply").append(html);
 		}
@@ -26,7 +22,6 @@ function getLikeIt () {
 	$.ajax({
 		type : "GET",
 		url : "/review/movie/detail_view/${board.board_num}/likeIt",
-		cache : false,
 		success : function(html) {
 			$(".likeIt").append(html);
 		}
@@ -103,6 +98,9 @@ $(document).ready(function() {
 					<!-- >>==============================▶ 삽입 이미지 크기 조정 필요 -->
 					<div>
 						<img src="${board.thumbnail}" style="height: 300px; width: auto;">
+						<c:if test="${board.thumbnail == null}">
+							<img src="${mApiVO.poster}">
+						</c:if>
 					</div>
 				</td>
 				<td class="td_class1">
@@ -178,6 +176,9 @@ $(document).ready(function() {
 							<li>${mApiVO.movie_nm}</li>
 							<li>${mApiVO.genre}</li>
 							<li>${mApiVO.nation}</li>
+							<li>${mApiVO.director}</li>
+							<li>${mApiVO.actor}</li>
+							<li><img src="${mApiVO.poster}"></li>
 						</ul>
 					</div>
 				</td>

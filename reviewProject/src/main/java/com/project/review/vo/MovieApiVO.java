@@ -1,6 +1,7 @@
 package com.project.review.vo;
 
 public class MovieApiVO {
+	private String movie_cd;
 	private String movie_nm;
 	private String open_dt;
 	private String genre;
@@ -9,6 +10,12 @@ public class MovieApiVO {
 	private String actor;
 	private String poster;
 	
+	public String getMovie_cd() {
+		return movie_cd;
+	}
+	public void setMovie_cd(String movie_cd) {
+		this.movie_cd = movie_cd;
+	}
 	public String getMovie_nm() {
 		return movie_nm;
 	}
@@ -51,10 +58,11 @@ public class MovieApiVO {
 	public void setPoster(String poster) {
 		this.poster = poster;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "MovieApiVO [movie_nm=" + movie_nm + ", open_dt=" + open_dt + ", genre=" + genre + ", nation=" + nation
-				+ ", director=" + director + ", actor=" + actor + ", poster=" + poster + "]";
+		return "MovieApiVO [movie_cd=" + movie_cd + ", movie_nm=" + movie_nm + ", open_dt=" + open_dt + ", genre="
+				+ genre + ", nation=" + nation + ", director=" + director + ", actor=" + actor + ", poster=" + poster
+				+ "]";
 	}
 }

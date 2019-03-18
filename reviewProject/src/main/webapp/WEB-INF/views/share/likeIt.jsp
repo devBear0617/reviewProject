@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
-<script type = "text/javascript" src = "/review/resources/script/jquery-2.1.1.js"></script>
+<script type = "text/javascript" src = "/review/resources/script/jquery-3.3.1.min.js"></script>
 <script type = "text/javascript">
 
 // 로그인x
@@ -60,7 +60,9 @@ $('#likeObt').click(function () {
 <!-- 로그인 o -->
 <c:if test="${not empty sessionScope.member_id}">
  	<c:if test="${likeCheck == 1}">
+<!--  		<input type="button" id="likeObt" value="좋아요 ♥"> -->
  		<span id="likeObt"> <img alt="likeit" src="/review/movie/resources/image/REMON_like_icon_full.png" class="imgform"></span> 
+ 		<!-- <span id="likeObt"> <img alt="likeit" src="/review/movie/resources/image/" class="imgform"></span> -->
  	</c:if>
  	<c:if test="${likeCheck != 1}">
  		<span id="likeXbt"> <img alt="likeit" src="/review/movie/resources/image/REMON_like_icon.png" class="imgform"></span> 	

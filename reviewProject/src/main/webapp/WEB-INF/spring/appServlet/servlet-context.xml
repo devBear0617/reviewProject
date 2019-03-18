@@ -40,7 +40,43 @@
 	<beans:bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<beans:property name="dataSource" ref="dataSource"/>
 	</beans:bean>
-
+	
+	<!-- multipartResolver -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="52428800" />
+		<beans:property name="maxInMemorySize" value="1000000" />
+		<beans:property name="defaultEncoding" value="UTF-8" />
+	</beans:bean>
+	
+	<!-- uploadPath -->
+	<!-- 천웅
+	<beans:bean id="uploadPath" class="java.lang.String">
+		주석 value="C:\Users\user\git\reviewProject\reviewProject\src\main\webapp\resources\memberImage" 주석
+		<beans:constructor-arg 
+			value="C:\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\reviewProject\resources\memberImage" />
+	</beans:bean> -->
+	
+	<!-- 민근 -->
+	<!-- <beans:bean id="uploadPath" class="java.lang.String">
+		주석 value="C:\Java_Class\ProjectWorkspace\reviewProject\src\main\webapp\resources\memberImage" 주석
+		<beans:constructor-arg 
+			value="C:\Java_Class\ProjectWorkspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\reviewProject\resources\memberImage" />
+	</beans:bean> -->
+	
+	<!-- 대환 -->
+	<!-- <beans:bean id="uploadPath" class="java.lang.String">
+		주석 value="C:\Users\rlaka\git\reviewProject\reviewProject\src\main\webapp\resources\memberImage" 주석
+		<beans:constructor-arg 
+			value="C:\JAVA\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\reviewProject\resources\memberImage" />
+	</beans:bean> -->
+	
+	<!-- 유미 -->
+	<!-- <beans:bean id="uploadPath" class="java.lang.String">
+		주석 value="C:\Users\yuuuu\git\reviewProject\reviewProject\src\main\webapp\resources\memberImage" 주석
+		<beans:constructor-arg 
+			value="C:\Users\yuuuu\edwith\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\reviewProject\resources" />
+	</beans:bean> -->
+	
 	<tx:annotation-driven transaction-manager="transactionManager" /> 
 	
 	
