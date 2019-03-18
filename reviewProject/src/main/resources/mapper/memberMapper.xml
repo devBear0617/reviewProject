@@ -7,7 +7,16 @@
 		<id property="member_id" column="member_id" />
 		<result property="member_pw" column="member_pw" />
 		<result property="member_name" column="member_name" />
+		<result property="member_email" column="member_email" />
+		<result property="member_pic" column="member_pic" />
 	</resultMap>
+	
+	<!-- updateProfile -->
+	<update id="updateProfile" parameterType="MemberVO">
+		UPDATE member SET
+			member_pic = #{member_pic}
+		WHERE member_id = #{member_id}
+	</update>
 	
 	<!-- 정보 수정 -->
 	<update id="updateMember" parameterType="MemberVO">
@@ -25,8 +34,8 @@
 
 	<!-- 가입 -->
 	<insert id="joinMember" parameterType="MemberVO" >
-		INSERT INTO member (member_id, member_pw, member_name)
-		VALUES (#{member_id}, #{member_pw}, #{member_name})
+		INSERT INTO member (member_id, member_pw, member_name, member_email)
+		VALUES (#{member_id}, #{member_pw}, #{member_name}, #{member_email})
 	</insert>	
 	
 	<!-- 로그인 -->

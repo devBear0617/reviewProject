@@ -1,14 +1,23 @@
 package com.project.review;
 
 
+import java.io.File;
+import java.io.IOException;
+
+import javax.annotation.Resource;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.project.review.service.MemberService;
 import com.project.review.vo.MemberVO;
@@ -18,8 +27,84 @@ import com.project.review.vo.MemberVO;
 @RequestMapping(value="/mypage")
 public class Mypage_controller {
 	
+	@Resource(name="uploadPath")
+	String uploadPath;
+	
 	@Autowired
 	private MemberService memberService;
+	
+	/*upload*/
+	@RequestMapping(value="/profileUpload_BT")
+	public String profileUpload_BT () {
+		
+		return "mypage/profileUpload_BT";
+	}
+	
+	@RequestMapping(value="/profileUpload")
+	public String profileUploadGET () {
+		
+		return "mypage/profileUpload";
+	}
+	@RequestMapping(value="/profileUpload", method=RequestMethod.POST)
+	public String profileUploadPOST(HttpServletRequest request, MemberVO member,
+			MultipartFile file, ModelAndView mav, HttpSession session) throws IOException {
+		
+		/*이클립스의 window-preference 에 들어가서 general-workspace 에 보면
+		refresh using native hooks or polling 과 save automatically before build 이 두 항목을 체크해주면
+		빌드 되기전에 리프레시를 먼저 하여 파일을 인식할 수 있게 된다.*/
+		
+		System.out.println("File name : " + file.getOriginalFilename());
+		System.out.println("File size : " + file.getSize());
+		System.out.println("Content type : " + file.getContentType());
+		
+		String path = session.getServletContext().getRealPath("/");
+		System.out.println("path : " + path);
+		
+		String pic = file.getOriginalFilename();
+/*	System.out.println("pic : " + pic);
+		if (pic.equals(null)) {
+			System.out.println("success");
+		}*/
+		String member_id = request.getParameter("member_id");
+		String member_pic = pic;
+		/*String member_pic = "";
+		if (pic != null) {			
+			member_pic = member_id + "_" + pic;
+		} else if (pic.equals("")) {
+			member_pic = "";
+		}*/
+	System.out.println(member_pic);
+		File target = new File(uploadPath, member_pic);
+		memberService.updateProfile(member, member_id, member_pic);
+		// 임시디렉토리에 저장된 업로드된 파일을 지정된 디렉토리로 복사
+		// FileCopyUtils.cpoy(바이트배열, 파일객체)
+		FileCopyUtils.copy(file.getBytes(), target);
+		
+		return "redirect:/mypage/mypageCheck";
+	}
+	
+	/*@RequestMapping(value="/profileUpload", method=RequestMethod.POST)
+	public ModelAndView profileUploadPOST(HttpServletRequest request, 
+			MultipartFile file, ModelAndView mav) throws IOException {
+		
+		
+		
+		System.out.println("File name : " + file.getOriginalFilename());
+		System.out.println("File size : " + file.getSize());
+		System.out.println("Content type : " + file.getContentType());
+		
+		String saveName = file.getOriginalFilename();
+		File target = new File(uploadPath, saveName);
+		
+		// 임시디렉토리에 저장된 업로드된 파일을 지정된 디렉토리로 복사
+		// FileCopyUtils.cpoy(바이트배열, 파일객체)
+		FileCopyUtils.copy(file.getBytes(), target);
+		
+		mav.setViewName("mypage/uploadCheck"); // 뷰의 이름
+	    mav.addObject("saveName", saveName); // 뷰로 보낼 데이터 값
+		
+		return mav;
+	}*/
 	
 	// 정보 변경
 	@RequestMapping(value="/updateMemberForm")
@@ -36,7 +121,6 @@ public class Mypage_controller {
 		
 		memberService.updateMember(member);
 	System.out.println(member);
-
 		
 		return "redirect:/mypage/mypageCheck";
 	}

@@ -98,6 +98,9 @@ $(document).ready(function() {
 					<!-- >>==============================▶ 삽입 이미지 크기 조정 필요 -->
 					<div>
 						<img src="${board.thumbnail}" style="height: 300px; width: auto;">
+						<c:if test="${board.thumbnail == null}">
+							<img src="${mApiVO.poster}">
+						</c:if>
 					</div>
 				</td>
 				<td class="td_class1">
@@ -173,6 +176,9 @@ $(document).ready(function() {
 							<li>${mApiVO.movie_nm}</li>
 							<li>${mApiVO.genre}</li>
 							<li>${mApiVO.nation}</li>
+							<li>${mApiVO.director}</li>
+							<li>${mApiVO.actor}</li>
+							<li><img src="${mApiVO.poster}"></li>
 						</ul>
 					</div>
 				</td>

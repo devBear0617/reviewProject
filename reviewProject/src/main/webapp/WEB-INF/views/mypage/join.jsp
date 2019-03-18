@@ -89,11 +89,6 @@
 					<td class="td_st2"><input type="text" name="member_email"
 						class="text_st1"></td>
 				</tr>
-
-				<tr>
-					<td class="td_st1">Picture</td>
-					<td class="td_st2"><input type="file" name="member_pic" ></td>
-				</tr>
 				<tr>
 					<td colspan="2"><hr></td>
 				</tr>
