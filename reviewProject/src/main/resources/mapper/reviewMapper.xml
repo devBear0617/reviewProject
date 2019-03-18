@@ -20,7 +20,7 @@
 		<association property="hashtagVO" column="board_num" select="getHashtag" />
 		
 		<collection property="likeList" column="board_num" select="getLike" />
-		<collection property="replyList" column="board_num" select="getReply" />
+		<collection property="replyList" column="board_num" select="getReply" />	
 	</resultMap>
 	
  	<resultMap id="Board_movie" type="BoardVO">
@@ -30,6 +30,7 @@
 		<result property="member_id" column="member_id" />
 		
 		<association property="b_movieVO" column="board_num" select="getB_Movie" />
+		
 	</resultMap>
 	
 	<resultMap id="Movie_Reply" type="ReplyVO">
@@ -142,7 +143,9 @@
 	<select id="getMovieBoardList_sort_time" parameterType="map" resultMap="Board_movie">
 		SELECT aa.*
 		FROM (
-			SELECT ROW_NUMBER() OVER (ORDER BY m.board_num DESC) rnum, 
+			SELECT ROW_NUMBER() OVER (ORDER BY m.board_num DESC) rnum, 			
+				   (SELECT COUNT(*) FROM likeit WHERE board_num = b.board_num) as likeit_count,
+                   (SELECT COUNT(*) FROM reply WHERE board_num = b.board_num) as reply_count,
 				   b.board_num, b.board_title, b.board_content, b.board_date, b.member_id, 
 				   b.lemon_grade, b.recommend, b.thumbnail, b.board_up_date, m.movie_nm, m.b_movie_num
      		FROM board_movie m, board b
@@ -154,7 +157,9 @@
 	<select id="getMovieBoardList_sort_grade" parameterType="map" resultMap="Board_movie">
 		SELECT aa.*
 		FROM (
-			SELECT ROW_NUMBER() OVER (ORDER BY b.lemon_grade, m.board_num DESC) rnum, 
+			SELECT ROW_NUMBER() OVER (ORDER BY b.lemon_grade DESC, m.board_num DESC) rnum,
+				   (SELECT COUNT(*) FROM likeit WHERE board_num = b.board_num) as likeit_count,
+                   (SELECT COUNT(*) FROM reply WHERE board_num = b.board_num) as reply_count, 
 				   b.board_num, b.board_title, b.board_content, b.board_date, b.member_id, 
 				   b.lemon_grade, b.recommend, b.thumbnail, b.board_up_date, m.movie_nm, m.b_movie_num
      		FROM board_movie m, board b
@@ -171,7 +176,9 @@
                                       		FROM likeit
                                      		WHERE board_num = b.board_num                                           
                                     		) DESC, b.board_num DESC 
-                                    ) rnum, 			 
+                                    ) rnum, 	
+                   (SELECT COUNT(*) FROM likeit WHERE board_num = b.board_num) as likeit_count,
+                   (SELECT COUNT(*) FROM reply WHERE board_num = b.board_num) as reply_count,		 
 				   b.board_num, b.board_title, b.board_content, b.board_date, b.member_id, 
 				   b.lemon_grade, b.recommend, b.thumbnail, b.board_up_date, m.movie_nm, m.b_movie_num
      		FROM board_movie m, board b
@@ -329,5 +336,6 @@
 		FROM likeit
 		WHERE board_num = #{board_num}
 	</select>
+
 
 </mapper>

@@ -17,7 +17,7 @@ $('.sort').click(function () {
 	var data = {
 			"sort_id" : $(this).attr('id'),
 			"start_content" : ${start_content},
-			"end_content" : ${end_content}
+			"end_content" : 9
 	}
 	$.ajax({
 		type : "POST",
@@ -36,7 +36,7 @@ $('.sort').click(function () {
 $('#moreList').click(function () {
 	console.log("moreList bt");	
 	var data = {
-			"sort_id" : ${sort_id},
+			"sort_id" : $('#sort_id').val(),
 			"start_content" : ${start_content},
 			"end_content" : ${end_content+9}
 	}
@@ -102,6 +102,7 @@ function move(e){
 	<br>
 	<!-- 최신순, 좋아요순, 별점순 바 -->
 	<div class="center">
+		<input type= "hidden" id = "sort_id" value = "${sort_id}">
 		<table class="center" style="font-size: small;">
 			<tr>
 				<td class="td_class1"><span class="sort" id="sort_time">최신순</span></td>
@@ -127,13 +128,25 @@ function move(e){
 					<tr>
 						<td style="height: 100px;" colspan="2">${board.board_title}</td>
 					</tr>
+					
 					<tr>
 						<td colspan="2"><hr></td>
 					</tr>
 					<tr>
 						<td style="font-size: small; padding-right: 30px;">
-						<img alt="likeit" src="../resources/image/REMON_like_icon.png" 
-								style="width: 20px; margin-left: -20px;"></td>
+							<span><img alt="likeit" src="/review/resources/image/REMON_like_icon.png" 
+								style="width: 20px; margin-left: -20px;">
+							${board.likeit_count}</span>
+						</td>
+						
+						<td style="font-size: small; padding-right: 30px;">
+							<span><img alt="likeit" src="/review/resources/image/REMON_comment_icon.png" 
+								style="width: 20px; margin-left: -20px;">
+							${board.reply_count}</span>
+						</td>
+						
+						<td style="font-size: small;">점수: ${board.lemon_grade}</td>
+															
 						<td style="font-size: x-small;">${board.board_date}</td>
 					</tr>
 				</table>

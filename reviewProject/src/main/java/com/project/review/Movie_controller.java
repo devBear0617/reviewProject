@@ -119,12 +119,12 @@ public class Movie_controller {
 		
 		//보여줄때 정렬 방식, default = board_num 정렬
 		String sort_id = request.getParameter("sort_id");
-		System.out.println("null이전 sort_id: " +sort_id);
+		//System.out.println("null이전 sort_id: " +sort_id);
 		
 		if(sort_id == null) {
 			sort_id = "sort_time";			
 		}
-		System.out.println("null보정 sort_id: " +sort_id);
+		//System.out.println("null보정 sort_id: " +sort_id);
 		model.addAttribute("sort_id", sort_id);				
 		
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -140,7 +140,7 @@ public class Movie_controller {
 			board_list = movieService.getMovieBoardList_sort_grade(map);			
 		}		
 		model.addAttribute("board_list", board_list);
-				
+		
 		int movieBoardCount = movieService.getMovieBoardCount();
 		model.addAttribute("movieBoardCount", movieBoardCount);		
 			

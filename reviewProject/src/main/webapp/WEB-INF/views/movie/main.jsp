@@ -53,6 +53,7 @@ $(document).ready(function() {
 	   								( ( stmnEndPoint<stmnStartPoint ) ? -stmnScrollAmount : stmnScrollAmount ) + 'px'; 
    stmnRefreshTimer = stmnScrollSpeed; 
    }
+  //setTimeout 비효율적 나중에 수정 
   stmnTimer = setTimeout("RefreshStaticMenu();", stmnActivateSpeed); 
   } 
  function InitializeStaticMenu() {
