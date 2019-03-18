@@ -7,36 +7,37 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type = "text/javascript" src = "/review/resources/script/jquery-2.1.1.js"></script>
-<script type = "text/javascript">
-console.log(">>>"+'${board.board_num}');
-function getReplyList () {
-	console.log(" : "+'${board.board_num}');
-	$.ajax({
-		type : "GET",
-		url : "/review/movie/detail_view/${board.board_num}/reply",
-		cache : false,
-		success : function(html) {
-			$(".reply").append(html);
-		}
-	})
-}
+<script type="text/javascript"
+	src="/review/resources/script/jquery-2.1.1.js"></script>
+<script type="text/javascript">
+	console.log(">>>" + '${board.board_num}');
+	function getReplyList() {
+		console.log(" : " + '${board.board_num}');
+		$.ajax({
+			type : "GET",
+			url : "/review/movie/detail_view/${board.board_num}/reply",
+			cache : false,
+			success : function(html) {
+				$(".reply").append(html);
+			}
+		})
+	}
 
-function getLikeIt () {
-	$.ajax({
-		type : "GET",
-		url : "/review/movie/detail_view/${board.board_num}/likeIt",
-		cache : false,
-		success : function(html) {
-			$(".likeIt").append(html);
-		}
-	})
-}
+	function getLikeIt() {
+		$.ajax({
+			type : "GET",
+			url : "/review/movie/detail_view/${board.board_num}/likeIt",
+			cache : false,
+			success : function(html) {
+				$(".likeIt").append(html);
+			}
+		})
+	}
 
-$(document).ready(function() {
-	getReplyList();
-	getLikeIt()
-});
+	$(document).ready(function() {
+		getReplyList();
+		getLikeIt()
+	});
 </script>
 
 <style type="text/css">
@@ -71,6 +72,32 @@ $(document).ready(function() {
 .td_class2 {
 	width: 800px;
 }
+
+.td_class3 {
+	width: 200px;
+	border-right: 1px solid gray;
+	text-align: left;
+}
+
+.td_class4 {
+	width: 800px;
+	border-right: 1px solid gray;
+	text-align: left;
+}
+
+.td_class5 {
+	width: 200px;
+	text-align: center;
+}
+
+.user {
+	font-size: large;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #F2F2F2;
+	height: 80px;
+	width: 1200px;
+}
 </style>
 </head>
 
@@ -84,13 +111,15 @@ $(document).ready(function() {
 		<jsp:include page="/WEB-INF/views/share/category_bar.jsp" />
 	</div>
 	<!-- 유저프로필, 유저ID, 제목 바 ( O 유저ID | 리뷰 제목              | 날짜 ) -->
-	<div class="center" style="background-color: #F2F2F2; height: 50px; width: 1200px;">
-
-		<span>유저ID: ${board.member_id}</span> &nbsp;&nbsp;&nbsp; <span>|&nbsp;&nbsp;&nbsp;리뷰
-			제목 : ${board.board_title}</span> &nbsp;&nbsp;&nbsp; <span>|&nbsp;&nbsp;&nbsp;날짜
-			: <fmt:formatDate value="${board.board_date}"
-				pattern="yyyy-MM-dd hh:mm" />
-		</span>
+	<div class="user">
+		<table class="user">
+			<tr>
+				<td class="td_class3">&nbsp;&nbsp;&nbsp;${board.member_id}</td>
+				<td class="td_class4">&nbsp;&nbsp;&nbsp;${board.board_title}</td>
+				<td class="td_class5"><fmt:formatDate
+						value="${board.board_date}" pattern="yyyy-MM-dd" /></td>
+			</tr>
+		</table>
 	</div>
 
 	<!-- 이미지, 평점(추천합니다/안합니다), 상세별점, 리뷰의 좋아요, #  -->

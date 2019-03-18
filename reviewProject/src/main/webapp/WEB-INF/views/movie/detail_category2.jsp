@@ -30,13 +30,32 @@
 </script>
 <style type="text/css">
 .de_ca {
-	background-color: gray;
-	width: 300px;
+	width: 200px;
+	padding-top: 10px;
+	padding-bottom: 20px;
 	float: left;
 }
+
+.de_ca_st {
+	margin-left: auto;
+	margin-right: auto;
+	width: 1200px;
+	display: inline-block;
+	background: linear-gradient(to right, #BCE55C,#E5D85C);
+}
+
+.center {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
 </style>
-<c:forEach var="dcNm" items="${nm}" varStatus="status">
-	<div class="de_ca ${ca_type} ${cd[status.index]}"
-		onclick="moreCaMovie(this)">${dcNm}</div>
-</c:forEach>
-<div class="detail2_category"></div>
+<div class="center">
+	<div class="de_ca_st">
+		<c:forEach var="dcNm" items="${nm}" varStatus="status">
+			<div class="de_ca ${ca_type} ${cd[status.index]}"
+				onclick="moreCaMovie(this)">${dcNm}</div>
+		</c:forEach>
+		<div class="detail2_category"></div>
+	</div>
+</div>

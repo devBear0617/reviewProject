@@ -41,8 +41,8 @@ function move(e){
 /* 그리드 레이아웃 자료 : https://www.youtube.com/watch?v=jDD2uMJ_xNg */
 .wrapper {
 	display: grid;
-	grid-template-columns: 200px 200px 200px;
-	grid-template-rows: 200px 200px 200px;
+	grid-template-columns: 300px 300px 300px;
+	grid-template-rows: 300px 300px 300px;
 	grid-column-gap: 5px;
 	grid-row-gap: 5px;
 	justify-content: center;
@@ -100,10 +100,10 @@ function move(e){
 -->
 				<table>
 					<tr>
-						<td style="font-size: small; text-align: left;" colspan="2">${board.member_id}</td>
+						<td style="text-align: left;" colspan="2">${board.member_id}</td>
 					</tr>
 					<tr>
-						<td style="height: 100px;" colspan="2">${board.board_title}</td>
+						<td style="height: 200px;" colspan="2">${board.board_title}</td>
 					</tr>
 					<tr>
 						<td colspan="2"><hr></td>
@@ -111,8 +111,8 @@ function move(e){
 					<tr>
 						<td style="font-size: small; padding-right: 30px;"><img
 							alt="likeit" src="../resources/image/REMON_like_icon.png"
-							style="width: 20px; margin-left: -20px;"></td>
-						<td style="font-size: x-small;">${board.board_date}</td>
+							style="width: 20px; margin-left: -60px;"></td>
+						<td style="font-size: small;">${board.board_date}</td>
 					</tr>
 				</table>
 			</div>
@@ -120,9 +120,11 @@ function move(e){
 	</div>
 	<div style="height: 20px;"></div>
 	<c:if test="${end_content < movieBoardCount}">
-		<div id = moreList ><img alt="REMON_LOGO"
-					src="/review/movie/resources/image/REMON_more.png"
-					style="height: 20px;"></div>
+		<div id=moreList>
+			<img alt="REMON_LOGO"
+				src="/review/movie/resources/image/REMON_more.png"
+				style="height: 20px;">
+		</div>
 	</c:if>
 </body>
 </html>
