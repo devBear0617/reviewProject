@@ -16,16 +16,20 @@ public class Pagination {
 		this.curPage = curPage;
 
 		int pScale = 5;
-		int sp = curPage-curPage%pScale+1;
+		int sp = 0;
+		if (curPage%5==0)
+			sp = curPage-(curPage-1)%pScale;
+		else
+			sp = curPage-curPage%pScale+1;
 		
 		setDisplayIdx(((curPage-1)%5)*10);
 		setStartPage(sp);
 		setEndPage(sp+pScale-1);
-		setNextPage(sp-pScale);
+		setNextPage(sp+pScale);
 		if (sp==1)
 			setPrevPage(0);
 		else
-			setPrevPage(sp+pScale);
+			setPrevPage(sp-pScale);
 	}
 	public int getStartPage() {
 		return startPage;
@@ -62,5 +66,11 @@ public class Pagination {
 	}
 	public void setDisplayIdx(int displayIdx) {
 		this.displayIdx = displayIdx;
+	}
+	
+	@Override
+	public String toString() {
+		return "Pagination [curPage=" + curPage + ", startPage=" + startPage + ", endPage=" + endPage + ", prevPage="
+				+ prevPage + ", nextPage=" + nextPage + ", pageCnt=" + pageCnt + ", displayIdx=" + displayIdx + "]";
 	}
 }

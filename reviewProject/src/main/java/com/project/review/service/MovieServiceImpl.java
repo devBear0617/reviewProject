@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.project.review.dao.BoardDAO;
 import com.project.review.dao.MovieApiDAO;
 import com.project.review.vo.BoardVO;
@@ -217,13 +218,13 @@ public class MovieServiceImpl implements MovieService {
 	public void setMovieApi(MovieApiVO movieApiVO) {
 		String isMoiveNm = null;
 		try {
-			isMoiveNm = boardDAO.getMovieInfo(movieApiVO.getMovie_nm()).getMovie_nm();
+			isMoiveNm = getMovieInfo(movieApiVO.getMovie_nm()).getMovie_nm();
 		} catch (Exception e) {
 			System.out.println("isMoiveNm : "+e);
 		}
 		
 		if (isMoiveNm == null) {
-			MovieApiVO movieInfo = movieApiDAO.getMovieApi(movieApiVO);
+			MovieApiVO movieInfo = movieApiDAO.getMovieApi(movieApiVO, true);
 			if (movieInfo != null)
 				boardDAO.insertMovieInfo(movieInfo);
 			else 
@@ -237,18 +238,50 @@ public class MovieServiceImpl implements MovieService {
 		
 		return boardDAO.getMovieInfo(movie_nm);
 	}
+	
+	@Override
+	public MovieApiVO getMovie(MovieApiVO movieApiVO) {
+		String isMoiveNm = null;
+		
+		try {
+			isMoiveNm = getMovieInfo(movieApiVO.getMovie_nm()).getMovie_nm();
+		} catch (Exception e) {
+			System.out.println("isMoiveNm : "+e);
+			isMoiveNm = null;
+		}
+
+		if (isMoiveNm == null) {
+			movieApiVO = movieApiDAO.getMovieApi(movieApiVO, false);
+			System.out.println(">> 3 : "+movieApiVO.toString());
+			JsonArray jsonArray = searchMovie(movieApiVO.getMovie_nm());
+			
+			if (jsonArray.size() != 0) {
+				JsonObject object = (JsonObject) jsonArray.get(0);
+				movieApiVO.setDirector(object.get("director").getAsString());
+				movieApiVO.setActor(object.get("actor").getAsString());
+				movieApiVO.setPoster(object.get("image").getAsString());
+				System.out.println(">> 4 : "+movieApiVO.toString());
+			}
+		}
+		else
+			movieApiVO = getMovieInfo(movieApiVO.getMovie_nm());
+		
+		System.out.println(">> 5 : "+movieApiVO.toString());
+		boardDAO.insertMovieInfo(movieApiVO);
+		
+		return movieApiVO;
+	}
 
 	//Category
 	@Override
 	public Map<String, Object> getCategory(String category_type) {
-		System.out.println(category_type);
 		if (!category_type.equals(null)) 
 			category_type = category_type.split("cg_img_")[1];
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("ca_type", category_type);
 		List<String> cd = new ArrayList<>();
-		List<String> dCategoryNm = new ArrayList<>();
+		List<String> dCategoryNm = new ArrayList<String>();
 		
 		switch (category_type) {
 			/*case "genre":
@@ -313,11 +346,7 @@ public class MovieServiceImpl implements MovieService {
 	}
 
 	@Override
-	public Map<String, Object> getCaMovieList(String de_category_type, int pnum) {
-		String ca_type = de_category_type.split(" ")[1];
-		String cd = de_category_type.split(" ")[2];
-
-		System.out.println(cd+" , "+ca_type);
+	public Map<String, Object> getCaMovieList(String ca_type, String cd, int pnum) {
 		
 		return movieApiDAO.getCaMovieArray(ca_type, cd, pnum);
 	}

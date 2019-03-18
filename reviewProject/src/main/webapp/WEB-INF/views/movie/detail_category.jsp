@@ -1,7 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<script type="text/javascript"
-	src="/review/resources/script/jquery-2.1.1.js"></script>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<script type="text/javascript" src="/review/resources/script/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 	function moreCategory(e) {
 		var data = {
@@ -11,7 +9,6 @@
 		$.ajax({
 			type : 'POST',
 			url : "./moreCategory",
-			cache : false,
 			data : data,
 			success : function(html) {
 				$('.detail_category').empty();

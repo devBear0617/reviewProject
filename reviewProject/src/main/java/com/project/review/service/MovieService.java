@@ -13,7 +13,6 @@ import com.project.review.vo.MovieApiVO;
 import com.project.review.vo.ReplyVO;
 
 public interface MovieService {
-	
 	// likeItMinus
 	public void likeItMinus(LikeItVO likeVO, int board_num, String member_id);
 	// likeItPlus
@@ -24,7 +23,6 @@ public interface MovieService {
 	
 	// insert reply
 	public void insertReply(ReplyVO replyVO, String member_id);
-	//public void insertReply(ReplyVO replyVO, String reply, int board_num, String member_id);
 	// update reply
 	public void updateReply(ReplyVO replyVO, String reply_content);
 	// delete reply
@@ -45,7 +43,6 @@ public interface MovieService {
 		public List<ReplyVO> replyList(int board_num);
 	
 	//insert Board 
-	/*public int addBoard(BoardVO boardVO);*/
 	public void insertMovie(BoardVO board, Board_MovieVO movie, GradeVO grade, HashtagVO hash, MovieApiVO movieApiVO, String member_id);
 	
 	/*update Board*/
@@ -54,14 +51,14 @@ public interface MovieService {
 	/*delete Board*/
 	public void deleteMovie(int board_num);
 
-	
 	//MovieApi
 	public JsonArray searchMovie(String movie_nm);
 	public void setMovieApi(MovieApiVO movieApiVO);
 	public MovieApiVO getMovieInfo(String movie_nm);
+	public MovieApiVO getMovie(MovieApiVO movieApiVO);
 	
 	//Category
-	public Map<String, Object> getCategory(String category_type);
-	public Map<String, Object> getCaMovieList(String de_category_type, int pnum);
+	public Map<String, Object> getCategory(String ca_type);
+	public Map<String, Object> getCaMovieList(String ca_type, String cd, int pnum);
 	//public Map<String, Object> getCategory2(String category_type);
 }
