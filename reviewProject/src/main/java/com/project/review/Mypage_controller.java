@@ -27,8 +27,8 @@ import com.project.review.vo.MemberVO;
 @RequestMapping(value="/mypage")
 public class Mypage_controller {
 	
-	@Resource(name="uploadPath")
-	String uploadPath;
+	@Resource(name="uploadPath1")
+	String uploadPath1;
 	
 	@Autowired
 	private MemberService memberService;
@@ -74,7 +74,7 @@ public class Mypage_controller {
 			member_pic = "";
 		}*/
 	System.out.println(member_pic);
-		File target = new File(uploadPath, member_pic);
+		File target = new File(uploadPath1, member_pic);
 		memberService.updateProfile(member, member_id, member_pic);
 		// 임시디렉토리에 저장된 업로드된 파일을 지정된 디렉토리로 복사
 		// FileCopyUtils.cpoy(바이트배열, 파일객체)

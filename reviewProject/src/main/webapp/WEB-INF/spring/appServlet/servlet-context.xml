@@ -49,12 +49,12 @@
 	</beans:bean>
 	
 	<!-- uploadPath -->
-	<!-- 천웅
-	<beans:bean id="uploadPath" class="java.lang.String">
-		주석 value="C:\Users\user\git\reviewProject\reviewProject\src\main\webapp\resources\memberImage" 주석
+	<!-- 천웅 -->
+	<beans:bean id="uploadPath1" class="java.lang.String">
+		<!-- 주석 value="C:\Users\user\git\reviewProject\reviewProject\src\main\webapp\resources\memberImage" 주석 -->
 		<beans:constructor-arg 
 			value="C:\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\reviewProject\resources\memberImage" />
-	</beans:bean> -->
+	</beans:bean>
 	
 	<!-- 민근 -->
 	<!-- <beans:bean id="uploadPath" class="java.lang.String">
