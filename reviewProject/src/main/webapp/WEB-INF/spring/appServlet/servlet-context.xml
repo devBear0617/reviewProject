@@ -51,8 +51,9 @@
 	<!-- uploadPath -->
 	<beans:bean id="uploadPath" class="java.lang.String">
 		<!-- 천웅 -->
+		<!-- value="C:\Users\user\git\reviewProject\reviewProject\src\main\webapp\resources\memberImage" -->
 		<beans:constructor-arg 
-			value="C:\Users\user\git\reviewProject\reviewProject\src\main\webapp\resources\memberImage" />
+			value="C:\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\reviewProject\resources\memberImage" />
 	</beans:bean>
 	
 	<tx:annotation-driven transaction-manager="transactionManager" /> 

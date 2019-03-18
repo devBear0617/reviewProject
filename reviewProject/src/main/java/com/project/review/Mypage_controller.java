@@ -5,8 +5,10 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.annotation.Resource;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -45,7 +47,7 @@ public class Mypage_controller {
 	}
 	@RequestMapping(value="/profileUpload", method=RequestMethod.POST)
 	public String profileUploadPOST(HttpServletRequest request, MemberVO member,
-			MultipartFile file, ModelAndView mav) throws IOException {
+			MultipartFile file, ModelAndView mav, HttpSession session) throws IOException {
 		
 		/*이클립스의 window-preference 에 들어가서 general-workspace 에 보면
 		refresh using native hooks or polling 과 save automatically before build 이 두 항목을 체크해주면
@@ -55,11 +57,14 @@ public class Mypage_controller {
 		System.out.println("File size : " + file.getSize());
 		System.out.println("Content type : " + file.getContentType());
 		
+		String path = session.getServletContext().getRealPath("/");
+		System.out.println("path : " + path);
+		
 		String pic = file.getOriginalFilename();
-	System.out.println("pic : " + pic);
+/*	System.out.println("pic : " + pic);
 		if (pic.equals(null)) {
 			System.out.println("success");
-		}
+		}*/
 		String member_id = request.getParameter("member_id");
 		String member_pic = pic;
 		/*String member_pic = "";
@@ -69,8 +74,8 @@ public class Mypage_controller {
 			member_pic = "";
 		}*/
 	System.out.println(member_pic);
-		memberService.updateProfile(member, member_id, member_pic);
 		File target = new File(uploadPath, member_pic);
+		memberService.updateProfile(member, member_id, member_pic);
 		// 임시디렉토리에 저장된 업로드된 파일을 지정된 디렉토리로 복사
 		// FileCopyUtils.cpoy(바이트배열, 파일객체)
 		FileCopyUtils.copy(file.getBytes(), target);
