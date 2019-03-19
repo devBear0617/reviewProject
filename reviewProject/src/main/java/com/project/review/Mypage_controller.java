@@ -3,6 +3,7 @@ package com.project.review;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -20,7 +21,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.review.service.MemberService;
+import com.project.review.vo.BoardVO;
+import com.project.review.vo.LikeItVO;
 import com.project.review.vo.MemberVO;
+import com.project.review.vo.ReplyVO;
 
 
 @Controller
@@ -34,6 +38,31 @@ public class Mypage_controller {
 	
 	@Autowired
 	private MemberService memberService;
+	
+	/*alreadyWrittenBoard*/
+	@RequestMapping(value="/alreadyWrittenBoard")
+	public String GETalreadyWrittenBoard(HttpSession session, HttpServletRequest request, Model model) {
+		
+		String user_id = (String)session.getAttribute("member_id");
+		
+		MemberVO user = memberService.MemberInfo(user_id);
+	System.out.println("MemberVO user = " + user);
+		model.addAttribute("user", user);
+		
+		List<BoardVO> myBoard = memberService.myBoard(user_id);
+	System.out.println("myBoard list : " + myBoard);
+		model.addAttribute("myBoard", myBoard);
+		
+		List<ReplyVO> myReply = memberService.myReply(user_id);
+	System.out.println("myReply list : " + myReply);
+		model.addAttribute("myReply", myReply);
+		
+		List<LikeItVO> myLike = memberService.myLike(user_id);
+	System.out.println("myLike list : " + myLike);
+		model.addAttribute("myLike", myLike);
+		
+		return "mypage/alreadyWrittenBoard";
+	}
 	
 	/*upload*/
 	@RequestMapping(value="/profileUpload_BT")

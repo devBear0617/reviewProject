@@ -78,7 +78,13 @@ function profileUploadCancel() {
 
 <br><br>
 
-<input type="button" value="내가 쓴 글">
+<input type="button" value="내가 쓴 글"
+	onclick="location.href='/review/mypage/alreadyWrittenBoard'">
+	
+<br><br>
+
+<input type="button" value="홈"
+	onclick="location.href='/review'">
 
 </body>
 </html>
