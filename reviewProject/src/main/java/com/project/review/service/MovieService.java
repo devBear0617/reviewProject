@@ -29,6 +29,8 @@ public interface MovieService {
 	public void deleteReply(int reply_num);
 	
 	//select Board
+	/*plusReadCount*/
+	public void plusReadCount(int board_num);
 	public BoardVO getBoardById(int board_num);
 	public List<BoardVO> getBoardList();
 	

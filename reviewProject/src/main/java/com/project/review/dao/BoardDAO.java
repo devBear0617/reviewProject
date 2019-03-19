@@ -14,6 +14,8 @@ import com.project.review.vo.ReplyVO;
 public interface BoardDAO {
 	
 	//select Board
+	/*plusReadCount*/
+	public void plusReadCount(int board_num);
 	public BoardVO getBoardById(int board_num);
 	public List<BoardVO> getBoardList();
 	

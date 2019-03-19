@@ -110,6 +110,12 @@ public class MovieServiceImpl implements MovieService {
 		
 		return boardDAO.getMovieBoardLikeList();
 	}
+	/*plusReadCount*/
+	@Override
+	public void plusReadCount(int board_num) {
+		
+		boardDAO.plusReadCount(board_num);
+	}
 	
 	
 	// -- insert ---------------------------------------------------------

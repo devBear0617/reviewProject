@@ -14,6 +14,7 @@ public class BoardVO {
 	private int recommend;
 	private String thumbnail;
 	private Date board_up_date;
+	private int board_readcount;
 	
 	private GradeVO gradeVO;
 	private Board_MovieVO b_movieVO;
@@ -82,6 +83,12 @@ public class BoardVO {
 	public void setBoard_up_date(Date board_up_date) {
 		this.board_up_date = board_up_date;
 	}
+	public int getBoard_readcount() {
+		return board_readcount;
+	}
+	public void setBoard_readcount(int board_readcount) {
+		this.board_readcount = board_readcount;
+	}
 	public GradeVO getGradeVO() {
 		return gradeVO;
 	}
@@ -141,9 +148,10 @@ public class BoardVO {
 		return "BoardVO [board_num=" + board_num + ", board_title=" + board_title + ", board_content=" + board_content
 				+ ", board_date=" + board_date + ", member_id=" + member_id + ", lemon_grade=" + lemon_grade
 				+ ", recommend=" + recommend + ", thumbnail=" + thumbnail + ", board_up_date=" + board_up_date
-				+ ", gradeVO=" + gradeVO + ", b_movieVO=" + b_movieVO + ", b_tvVO=" + b_tvVO + ", memberVO=" + memberVO
-				+ ", hashtagVO=" + hashtagVO + ", reply_count=" + reply_count + ", likeit_count=" + likeit_count
-				+ ", likeList=" + likeList + ", replyList=" + replyList + "]";
+				+ ", board_readcount=" + board_readcount + ", gradeVO=" + gradeVO + ", b_movieVO=" + b_movieVO
+				+ ", b_tvVO=" + b_tvVO + ", memberVO=" + memberVO + ", hashtagVO=" + hashtagVO + ", reply_count="
+				+ reply_count + ", likeit_count=" + likeit_count + ", likeList=" + likeList + ", replyList=" + replyList
+				+ "]";
 	}
 	
 	

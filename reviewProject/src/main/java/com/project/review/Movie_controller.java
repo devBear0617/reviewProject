@@ -243,7 +243,10 @@ public class Movie_controller {
 
 		int replyCount = movieService.replyCount(board_num);
 		model.addAttribute("replyCount", replyCount);
-
+		
+		// +readCount
+		movieService.plusReadCount(board_num);
+		
 		// 썸네일 확인
 		String content = movieService.getContent(board_num);
 		Document document = Jsoup.parse(content);

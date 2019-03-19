@@ -12,6 +12,7 @@
 		<result property="recommend" column="recommend" />
 		<result property="thumbnail" column="thumbnail"/>
 		<result property="board_up_date" column="board_up_date" />
+		<result property="board_readcount" column="board_readcount" />
 		
 		<association property="memberVO" column="member_id" select="getMember" />
 		<association property="b_movieVO" column="board_num" select="getB_Movie" />
@@ -124,7 +125,12 @@
 		FROM likeit
 		WHERE board_num = #{board_num}
 	</select>
-
+	<!-- plusReadCount -->
+	<update id="plusReadCount" parameterType="int">
+		UPDATE board SET
+			board_readcount = board_readcount + 1
+		WHERE board_num = #{board_num}
+	</update>
 	
 	
 	<!-- ____게시판 호출______________________________________________________________________ -->
@@ -147,7 +153,8 @@
 				   (SELECT COUNT(*) FROM likeit WHERE board_num = b.board_num) as likeit_count,
                    (SELECT COUNT(*) FROM reply WHERE board_num = b.board_num) as reply_count,
 				   b.board_num, b.board_title, b.board_content, b.board_date, b.member_id, 
-				   b.lemon_grade, b.recommend, b.thumbnail, b.board_up_date, m.movie_nm, m.b_movie_num
+				   b.lemon_grade, b.recommend, b.thumbnail, b.board_up_date, b.board_readcount, 
+				   m.movie_nm, m.b_movie_num
      		FROM board_movie m, board b
       		WHERE m.board_num = b.board_num		
   		    ) aa
@@ -161,7 +168,8 @@
 				   (SELECT COUNT(*) FROM likeit WHERE board_num = b.board_num) as likeit_count,
                    (SELECT COUNT(*) FROM reply WHERE board_num = b.board_num) as reply_count, 
 				   b.board_num, b.board_title, b.board_content, b.board_date, b.member_id, 
-				   b.lemon_grade, b.recommend, b.thumbnail, b.board_up_date, m.movie_nm, m.b_movie_num
+				   b.lemon_grade, b.recommend, b.thumbnail, b.board_up_date, b.board_readcount, 
+				   m.movie_nm, m.b_movie_num
      		FROM board_movie m, board b
       		WHERE m.board_num = b.board_num		
   		    ) aa
@@ -180,7 +188,8 @@
                    (SELECT COUNT(*) FROM likeit WHERE board_num = b.board_num) as likeit_count,
                    (SELECT COUNT(*) FROM reply WHERE board_num = b.board_num) as reply_count,		 
 				   b.board_num, b.board_title, b.board_content, b.board_date, b.member_id, 
-				   b.lemon_grade, b.recommend, b.thumbnail, b.board_up_date, m.movie_nm, m.b_movie_num
+				   b.lemon_grade, b.recommend, b.thumbnail, b.board_up_date, b.board_readcount,
+				   m.movie_nm, m.b_movie_num
      		FROM board_movie m, board b
       		WHERE m.board_num = b.board_num		
   		    ) aa

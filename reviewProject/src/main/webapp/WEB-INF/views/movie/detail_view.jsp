@@ -86,6 +86,11 @@ $(document).ready(function() {
 			: <fmt:formatDate value="${board.board_date}"
 				pattern="yyyy-MM-dd hh:mm" />
 		</span>
+		
+		<!-- readCount -->
+		<span>조회수 : ${board.board_readcount + 1}</span>
+		
+		
 	</div>
 
 	<!-- 이미지, 평점(추천합니다/안합니다), 상세별점, 리뷰의 좋아요, #  -->

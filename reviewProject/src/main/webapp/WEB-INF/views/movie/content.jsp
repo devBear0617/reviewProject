@@ -111,7 +111,7 @@ function move(e){
 
 	<div class="wrapper">
 		<c:forEach items="${board_list}" var="board">
-			<div class="items" onclick="move('./detail_view/${board.board_num}')"
+			<div class="items" onclick="move('/review/movie/detail_view/${board.board_num}')"
 				style="background-image:URL(${board.thumbnail});">
 				<!--  
 	썸네일 임시로 div 배경으로 설정함 디자인상 변경필요하면  변경 ㄱㄱ   <img src="${board.thumbnail}"> 	
@@ -122,6 +122,11 @@ function move(e){
 					</tr>
 					<tr>
 						<td style="height: 100px;" colspan="2">${board.board_title}</td>
+						
+						<!-- readCount -->
+						<br>
+						<td>조회수 : ${board.board_readcount}</td>
+					
 					</tr>
 					
 					<tr>
@@ -143,6 +148,7 @@ function move(e){
 						<td style="font-size: small;">점수: ${board.lemon_grade}</td>
 															
 						<td style="font-size: x-small;">${board.board_date}</td>
+						
 					</tr>
 				</table>
 			</div>
