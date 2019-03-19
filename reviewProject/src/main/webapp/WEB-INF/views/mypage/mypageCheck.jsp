@@ -56,7 +56,7 @@ function profileUploadCancel() {
 <h4>PW : ${user.member_pw}</h4>
 <h4>NAME : ${user.member_name}</h4>
 <h4>Email : ${user.member_email}</h4>
-${user.member_pic}
+
 <c:if test="${empty user.member_pic}">
 	<img src="/review/movie/resources/memberImage/DefaultPerson.png">
 </c:if>
@@ -72,9 +72,13 @@ ${user.member_pic}
 <br><br>
 
 <input type="button" value="로그아웃" 
-	onclick="location.href='/review/mypage/logout'">
+	onclick="location.href='/review/mypage/mypageLogout'">
 <input type="button" value="정보변경"
 	onclick="location.href='/review/mypage/updateMemberForm'">
+
+<br><br>
+
+<input type="button" value="내가 쓴 글">
 
 </body>
 </html>

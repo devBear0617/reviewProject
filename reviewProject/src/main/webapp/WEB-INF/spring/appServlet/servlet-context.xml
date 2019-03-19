@@ -49,32 +49,44 @@
 	</beans:bean>
 	
 	<!-- uploadPath -->
-	<!-- 천웅
-	<beans:bean id="uploadPath" class="java.lang.String">
-		주석 value="C:\Users\user\git\reviewProject\reviewProject\src\main\webapp\resources\memberImage" 주석
+	<!-- 천웅 -->
+	<beans:bean id="uploadPathS" class="java.lang.String">
 		<beans:constructor-arg 
 			value="C:\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\reviewProject\resources\memberImage" />
-	</beans:bean> -->
+	</beans:bean>
+	<beans:bean id="uploadPathE" class="java.lang.String">
+		<beans:constructor-arg 
+			value="C:\Users\user\git\reviewProject\reviewProject\src\main\webapp\resources\memberImage" />
+	</beans:bean>
 	
 	<!-- 민근 -->
-	<!-- <beans:bean id="uploadPath" class="java.lang.String">
-		주석 value="C:\Java_Class\ProjectWorkspace\reviewProject\src\main\webapp\resources\memberImage" 주석
+	<!-- <beans:bean id="uploadPathS" class="java.lang.String">
 		<beans:constructor-arg 
 			value="C:\Java_Class\ProjectWorkspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\reviewProject\resources\memberImage" />
+	</beans:bean>
+	<beans:bean id="uploadPathE" class="java.lang.String">
+		<beans:constructor-arg 
+			value="C:\Java_Class\ProjectWorkspace\reviewProject\src\main\webapp\resources\memberImage" />
 	</beans:bean> -->
 	
 	<!-- 대환 -->
-	<!-- <beans:bean id="uploadPath" class="java.lang.String">
-		주석 value="C:\Users\rlaka\git\reviewProject\reviewProject\src\main\webapp\resources\memberImage" 주석
+	<!-- <beans:bean id="uploadPathS" class="java.lang.String">
 		<beans:constructor-arg 
 			value="C:\JAVA\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\reviewProject\resources\memberImage" />
+	</beans:bean>
+	<beans:bean id="uploadPathE" class="java.lang.String">
+		<beans:constructor-arg 
+			value="C:\Users\rlaka\git\reviewProject\reviewProject\src\main\webapp\resources\memberImage" />
 	</beans:bean> -->
 	
 	<!-- 유미 -->
-	<!-- <beans:bean id="uploadPath" class="java.lang.String">
-		주석 value="C:\Users\yuuuu\git\reviewProject\reviewProject\src\main\webapp\resources\memberImage" 주석
+	<!-- <beans:bean id="uploadPathS" class="java.lang.String">
 		<beans:constructor-arg 
-			value="C:\Users\yuuuu\edwith\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\reviewProject\resources" />
+			value="C:\Users\yuuuu\edwith\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\reviewProject\resources\memberImage" />
+	</beans:bean>
+	<beans:bean id="uploadPathE" class="java.lang.String">
+		<beans:constructor-arg 
+			value="C:\Users\yuuuu\git\reviewProject\reviewProject\src\main\webapp\resources\memberImage" />
 	</beans:bean> -->
 	
 	<tx:annotation-driven transaction-manager="transactionManager" /> 
