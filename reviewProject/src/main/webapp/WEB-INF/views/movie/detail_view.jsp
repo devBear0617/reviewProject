@@ -216,29 +216,28 @@
 				<td class="td_class1" colspan="2">
 					<div class="center">
 						<h2>review contents</h2>
-					</div>
-					<div style="width: 800px;">
-						<br> ${board.board_content}
-					</div>
+					</div> <br>
+					<div style="width: 800px;">${board.board_content}</div>
 				</td>
-				<td style="border-left: 1px solid #F2F2F2;">
-					<div style="padding-left: 20px;">
+				<td style="border-left: 1px solid #F2F2F2;"><img
+					src="${mApiVO.poster}">
+					<div
+						style="width: 360px; padding-left: 20px; padding-right: 20px; text-align: left;">
+						<hr color="#F2F2F2">
 						<ul style="list-style: none;">
-							<li>${mApiVO.movie_nm}</li>
-							<li>${mApiVO.genre}</li>
-							<li>${mApiVO.nation}</li>
-							<li>${mApiVO.director}</li>
-							<li>${mApiVO.actor}</li>
-							<li><img src="${mApiVO.poster}"></li>
+							<li>>영화 이름 : ${mApiVO.movie_nm}</li>
+							<li>>영화 장르 : ${mApiVO.genre}</li>
+							<li>>국가 : ${mApiVO.nation}</li>
+							<li>>감독 : ${mApiVO.director}</li>
+							<li>>배우 : ${mApiVO.actor}</li>
 						</ul>
-					</div>
-				</td>
+					</div></td>
 			</tr>
-			<tr>
+			<!-- 			<tr>
 				<td class="td_class1"></td>
 				<td class="td_class1"></td>
 				<td class="td_class1"></td>
-			</tr>
+			</tr> -->
 		</table>
 	</div>
 	<br>
@@ -252,24 +251,26 @@
 	<br>
 
 	<div class="center">
-		<input type="button" value="목록"
-			onclick="location.href='/review/movie/main'">
-
-		<c:if test="${sessionScope.member_id == board.member_id}">
-			<input type="button" value="수정"
-				onclick="location.href='/review/movie/movie_updateForm/${board.board_num}'">
-			<form action="/review/movie/movie_delete/${board.board_num}"
-				method="post" id="movie_delete">
-				<input type="submit" value="삭제">
-			</form>
-		</c:if>
+		<table class="center">
+			<tr>
+				<td><input type="button" value="목록"
+					onclick="location.href='/review/movie/main'"></td>
+				<td><c:if test="${sessionScope.member_id == board.member_id}">
+						<input type="button" value="수정"
+							onclick="location.href='/review/movie/movie_updateForm/${board.board_num}'">
+					</c:if></td>
+				<td><c:if test="${sessionScope.member_id == board.member_id}">
+						<form action="/review/movie/movie_delete/${board.board_num}"
+							method="post" id="movie_delete">
+							<input type="submit" value="삭제">
+						</form>
+					</c:if></td>
+			</tr>
+		</table>
 	</div>
-
 	<br>
+	<div>
+		<jsp:include page="/WEB-INF/views/share/footer.jsp" />
+	</div>
 </body>
-
-<div>
-	<jsp:include page="/WEB-INF/views/share/footer.jsp" />
-</div>
-
 </html>
