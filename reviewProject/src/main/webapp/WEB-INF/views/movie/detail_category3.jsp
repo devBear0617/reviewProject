@@ -78,7 +78,7 @@
 }
 </style>
 <div class="de_ca_3">
-	<input type="hidden" class="de_ca_type">
+	<input type="hidden" id="de_ca_type" class="">
 	<c:forEach var="mNm" items="${movieNm}" varStatus="status">
 		<div class="de_caM ${movieCd[status.index]}"
 			onclick="moreCaMovie(this)">${mNm}</div>
