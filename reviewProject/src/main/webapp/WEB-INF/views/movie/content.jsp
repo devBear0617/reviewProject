@@ -125,7 +125,7 @@ function move(e){
 						
 						<!-- readCount -->
 						<br>
-						<td>조회수 : ${board.board_readcount}</td>
+						<td>${board.board_readcount}</td>
 					
 					</tr>
 					

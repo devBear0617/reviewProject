@@ -11,8 +11,30 @@
 		<result property="member_pic" column="member_pic" />
 	</resultMap>
 	
+	<!-- myReply -->
+	<resultMap id="myReply" type="ReplyVO">
+		<id property="reply_num" column="reply_num" />
+		<result property="board_num" column="board_num" />
+		<result property="member_id" column="member_id" />
+		<result property="reply_content" column="reply_content" />
+		<result property="reply_date" column="reply_date" />
+		<result property="reply_up_date" column="reply_up_date" />
+		
+		<association property="boardVO" column="board_num" select="getBoardInfo" />
+	</resultMap>
 	<!-- myLike -->
-	<select id="myLike" parameterType="String" resultType="LikeItVO">
+	<resultMap id="myLike" type="LikeItVO">
+		<result property="board_num" column="board_num" />
+		<result property="member_id" column="member_id" />
+		<result property="likeit" column="likeit" />
+		
+		<association property="boardVO" column="board_num" select="getBoardInfo" />
+	</resultMap>
+	
+
+	
+	<!-- myLike -->
+	<select id="myLike" parameterType="String" resultMap="myLike">
 		SELECT *
 		FROM likeit
 		WHERE member_id = #{member_id}
@@ -25,7 +47,7 @@
 	</select>
 	
 	<!-- myReply -->
-	<select id="myReply" parameterType="String" resultType="ReplyVO">
+	<select id="myReply" parameterType="String" resultMap="myReply">
 		SELECT *
 		FROM reply
 		WHERE member_id = #{member_id}
@@ -37,7 +59,7 @@
 		SELECT *
 		FROM board
 		WHERE member_id = #{member_id}
-		ORDER BY board_date DESC
+		ORDER BY board_num DESC
 	</select>
 	
 	<!-- updateProfile -->
@@ -72,6 +94,13 @@
 		SELECT *
 		FROM member
 		WHERE member_id = #{member_id}
+	</select>
+	
+	<!-- resultJoin -->
+	<select id="getBoardInfo" parameterType="int" resultType="BoardVO">
+		SELECT *
+		FROM board
+		WHERE board_num = #{board_num}
 	</select>
 
 </mapper>
