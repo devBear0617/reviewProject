@@ -8,7 +8,7 @@ public class MemberVO {
 	private String member_pw;
 	private String member_name;
 	private String member_email;
-	private byte[] member_pic;
+	private String member_pic;
 	
 	private List<BoardVO> boardList;
 	private List<ReplyVO> replyList;
@@ -38,10 +38,10 @@ public class MemberVO {
 	public void setMember_email(String member_email) {
 		this.member_email = member_email;
 	}
-	public byte[] getMember_pic() {
+	public String getMember_pic() {
 		return member_pic;
 	}
-	public void setMember_pic(byte[] member_pic) {
+	public void setMember_pic(String member_pic) {
 		this.member_pic = member_pic;
 	}
 	public List<BoardVO> getBoardList() {
@@ -65,9 +65,10 @@ public class MemberVO {
 	@Override
 	public String toString() {
 		return "MemberVO [member_id=" + member_id + ", member_pw=" + member_pw + ", member_name=" + member_name
-				+ ", member_email=" + member_email + ", member_pic=" + Arrays.toString(member_pic) + ", boardList="
-				+ boardList + ", replyList=" + replyList + ", likeList=" + likeList + "]";
+				+ ", member_email=" + member_email + ", member_pic=" + member_pic + ", boardList=" + boardList
+				+ ", replyList=" + replyList + ", likeList=" + likeList + "]";
 	}
+	
 	
 	
 }

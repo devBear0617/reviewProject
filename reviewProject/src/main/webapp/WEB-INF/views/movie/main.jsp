@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript"
-	src="/review/resources/script/jquery-2.1.1.js"></script>
+	src="/review/resources/script/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		var data = {
@@ -17,15 +17,12 @@
 		$.ajax({
 			type : "POST",
 			url : "./contentView",
-			cache : false,
 			dataType : 'html',
 			data : data,
 			success : function(html) {
 				$(".content").append(html);
 			}
 		})
-	});
-	$(document).ready(function() {
 
 		$('.moveBT').click(function() {
 			$($(this).attr("data-target")).submit();
@@ -61,6 +58,8 @@
 			stmnRefreshTimer = stmnScrollSpeed;
 		}
 		stmnTimer = setTimeout("RefreshStaticMenu();", stmnActivateSpeed);
+		// setTimeout 또는 setInterval을 사용 시 콜백이 프레임에서 특정 시점(종료 시)에 실행되고, 종종 프레임이 누락되어 버벅거림 현상이 발생할 수 있음
+		//stmnTimer = requestAnimationFrame(RefreshStaticMenu);
 	}
 	function InitializeStaticMenu() {
 		document.getElementById('STATICMENU').style.right = stmnLEFT + 'px'; //처음에 오른쪽에 위치. left로 바꿔도.
@@ -95,8 +94,6 @@
 	<div>
 		<jsp:include page="/WEB-INF/views/share/category_bar.jsp" />
 	</div>
-
-	<!-- 상세 메뉴 바 -->
 	<div>
 		<jsp:include page="/WEB-INF/views/movie/detail_category.jsp" />
 	</div>
@@ -105,7 +102,6 @@
 	<div>
 		<jsp:include page="/WEB-INF/views/movie/best_content.jsp" />
 	</div>
-
 	<!-- content -->
 	<div class="center">
 		<div class="content"></div>

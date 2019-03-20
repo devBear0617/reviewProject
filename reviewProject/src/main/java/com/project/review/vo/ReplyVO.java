@@ -1,6 +1,6 @@
 package com.project.review.vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class ReplyVO {
 	private int reply_num;

@@ -37,21 +37,9 @@
 }
 </style>
 <script type="text/javascript"
-	src="/review/resources/script/jquery-2.1.1.js"></script>
+	src="/review/resources/script/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 
-/*수정 내용
-1. btReply : class -> id (이유 : class로 해도 상관없지만 댓글 등록버튼은 유일하여 id 사용하는 것이 더 좋음) 
-2. 수정/삭제 : 선택자.click -> 함수  
-(이유 : id로 할 경우 이전 선택자.click이 제대로 작동하지만 class로 할 경우 $(e).선택자().val() 식으로 접근 해야하므로 가독성 떨어짐
-	  함수로 사용할 경우 확장성에 좋음 & reply_num 전달에 용이함)
-	  
--추가
-3. 작성 : 선택자.click -> 함수  (이유 : 위와 동일)
-4. board_num, url : 변수로 설정 (이유 : 코드 간소화)
-5. reply_content(확인버튼), 댓글을 작성하시려면 로그인이 필요합니다(로그인 요청 text)) : class - btn 추가 후 css로 분리 
-(이유 : 코드 가독성 높이기 위함 & 코드 간소화)
-*/
 // 댓글 작성
 var board_num = ${board_num};
 var url = '/review/movie/detail_view/'+board_num;
@@ -96,7 +84,6 @@ function updateReply (reply_num) {
 			reply_UpdateContent: $('.reply_UpdateContent').val()
 		},
 		success: function (html) {
-			/* console.log(reply_num); */
 			$(".reply").empty();
 			$(".reply").append(html);
 		}

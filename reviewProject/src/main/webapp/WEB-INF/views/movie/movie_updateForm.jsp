@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -11,15 +10,13 @@
 <script src="../resources/tui-editor/jquery/dist/jquery.js"></script>
 <script src='../resources/tui-editor/markdown-it/dist/markdown-it.js'></script>
 <script src="../resources/tui-editor/to-mark/dist/to-mark.js"></script>
-<script
-	src="../resources/tui-editor/tui-code-snippet/dist/tui-code-snippet.js"></script>
+<script src="../resources/tui-editor/tui-code-snippet/dist/tui-code-snippet.js"></script>
 <script src="../resources/tui-editor/codemirror/lib/codemirror.js"></script>
 <script src="../resources/tui-editor/highlightjs/highlight.pack.js"></script>
 <script src="../resources/tui-editor/squire-rte/build/squire-raw.js"></script>
-<link rel="stylesheet"
-	href="../resources/tui-editor/codemirror/lib/codemirror.css">
-<link rel="stylesheet"
-	href="../resources/tui-editor/highlightjs/styles/github.css">
+
+<link rel="stylesheet" href="../resources/tui-editor/codemirror/lib/codemirror.css">
+<link rel="stylesheet" href="../resources/tui-editor/highlightjs/styles/github.css">
 
 <!-- autoComplete -->
 <script

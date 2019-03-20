@@ -2,21 +2,48 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript"
-	src="/review/resources/script/jquery-2.1.1.js"></script>
+	src="/review/resources/script/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
-	var de_category_type = $('.de_ca_type').attr('id');
 	function fn_paging(pnum) {
+		var de_category_type = $('#de_ca_type').attr('class').split(" ");
+		var de_ca_type = de_category_type[0];
+		var cd = de_category_type[1];
+		$
+				.ajax({
+					type : 'POST',
+					url : "./moreCaMovie",
+					data : {
+						'de_ca_type' : de_ca_type,
+						'cd' : cd,
+						'pnum' : pnum
+					},
+					success : function(html) {
+						$('.detail2_category').empty();
+						$('.detail2_category').append(html);
+						$('.detail2_category').find('#de_ca_type').addClass(
+								de_ca_type);
+						$('.detail2_category').find('#de_ca_type').addClass(cd);
+					},
+					error : function(error) {
+						console.log(error);
+					}
+				})
+	}
+	function getMRList(e) {
+		//console.log($(e).attr('class'));
+		var movie_cd = $(e).attr('class').split(" ")[1];
+		var movie_nm = $(e).html();
+
 		$.ajax({
 			type : 'POST',
-			url : "./moreCaMovie",
-			cache : false,
+			url : "./oneContentView",
 			data : {
-				'de_category_type' : de_category_type,
-				'pnum' : pnum
+				'movie_cd' : movie_cd,
+				'movie_nm' : movie_nm
 			},
 			success : function(html) {
-				$('.detail2_category').empty();
-				$('.detail2_category').append(html);
+				$('.movieInfo').empty();
+				$('.movieInfo').append(html);
 			},
 			error : function(error) {
 				console.log(error);
@@ -36,7 +63,8 @@
 .paging {
 	margin-left: auto;
 	margin-right: auto;
-	text-decoration: none; font-size : large;
+	text-decoration: none;
+	font-size: large;
 	width: 1100px;
 	padding: 10px;
 	font-size: large;
@@ -48,7 +76,6 @@
 	display: inline-block;
 	margin-left: auto;
 	margin-right: auto;
-}
 }
 </style>
 <div class="de_ca_3">
@@ -66,18 +93,20 @@
 			end="${pagination.endPage}">
 			<c:choose>
 				<c:when test="${pnum eq  pagination.curPage}">
-					<a href="#" onClick="fn_paging('${pnum}')"> <span
-						style="font-weight: bold; text-decoration: none;">${pnum}</span></a>
+					<a href="#" onClick="fn_paging('${pnum}')"><span
+						style="font-weight: bold;">${pnum}</span></a>
 				</c:when>
 				<c:otherwise>
 					<a href="#" onClick="fn_paging('${pnum}')">${pnum}</a>
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
-		<a href="#" onClick="fn_paging('${pagination.nextPage}')">▶</a>
-		<%-- <c:if test="${pagination.curPage ne pagination.pageCnt && pagination.pageCnt > 0}">
-	</c:if> --%>
+		<c:if
+			test="${pagination.curPage ne pagination.pageCnt && pagination.pageCnt > 0}">
+			<a href="#" onClick="fn_paging('${pagination.nextPage}')">▶</a>
+		</c:if>
+		<br>
 	</div>
-	<br>
-
 </div>
+<div class="movieInfo"></div>
+

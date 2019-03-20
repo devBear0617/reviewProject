@@ -79,8 +79,7 @@ table {
 <script type="text/javascript">
 	$(document).ready(
 			function() {
-				$("#movie_nm").autocomplete(
-						{
+				$("#movie_nm").autocomplete({
 							minLength : 1,
 							delay : 30,
 							source : function(request, response) {
@@ -149,10 +148,7 @@ table {
 			function() {
 				var $select = $("select");
 
-				$select
-						.on("change",
-								function() {
-
+				$select.on("change", function() {
 									//grade 값 초기화 
 									var id = this.id
 									if (id == "grade_name1") {
@@ -199,8 +195,7 @@ table {
 										grade1 = 25 - grade1;
 									}
 
-									var selected2 = $("option:selected",
-											$("#grade_name2"));
+									var selected2 = $("option:selected", $("#grade_name2"));
 									if (selected2.parent()[0].id == "bad2") {
 										grade2 = 25 - grade2;
 									}
@@ -217,8 +212,7 @@ table {
 										grade4 = 25 - grade4;
 									}
 
-									$("#lemon_grade").val(
-											grade1 + grade2 + grade3 + grade4);
+									$("#lemon_grade").val(grade1 + grade2 + grade3 + grade4);
 									var value = $("#lemon_grade").val();
 									$('.total_value').html(value);
 									//----- lemon_grade 재계산 끝, select 중복방지 처리 시작 

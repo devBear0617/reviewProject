@@ -8,15 +8,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript"
-	src="/review/resources/script/jquery-2.1.1.js"></script>
+	src="/review/resources/script/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
-	console.log(">>>" + '${board.board_num}');
 	function getReplyList() {
-		console.log(" : " + '${board.board_num}');
 		$.ajax({
 			type : "GET",
 			url : "/review/movie/detail_view/${board.board_num}/reply",
-			cache : false,
 			success : function(html) {
 				$(".reply").append(html);
 			}
@@ -27,7 +24,6 @@
 		$.ajax({
 			type : "GET",
 			url : "/review/movie/detail_view/${board.board_num}/likeIt",
-			cache : false,
 			success : function(html) {
 				$(".likeIt").append(html);
 			}
@@ -66,27 +62,35 @@
 }
 
 .td_class1 {
+	height: 70px;
 	width: 400px;
 }
 
 .td_class2 {
+	height: 70px;
 	width: 800px;
 }
 
 .td_class3 {
-	width: 180px;
+	width: 160px;
 	border-right: 1px solid gray;
 	text-align: left;
 }
 
 .td_class4 {
-	width: 800px;
+	width: 700px;
 	border-right: 1px solid gray;
 	text-align: left;
 }
 
 .td_class5 {
 	width: 150px;
+	border-right: 1px solid gray;
+	text-align: center;
+}
+
+.td_class6 {
+	width: 140px;
 	text-align: center;
 }
 
@@ -125,15 +129,16 @@
 		<table class="user">
 			<tr>
 				<td style="width: 50px; padding-left: 20px;"><img
-					alt="user_img" src="../resources/image/REMON_user_button.png" style="margin-left: auto; margin-right: auto;"></td>
+					alt="user_img" src="../resources/image/REMON_user_button.png"
+					style="margin-left: auto; margin-right: auto;"></td>
 				<td class="td_class3">&nbsp;${board.member_id}</td>
 				<td class="td_class4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${board.board_title}</td>
 				<td class="td_class5"><fmt:formatDate
 						value="${board.board_date}" pattern="yyyy-MM-dd" /></td>
+				<td class="td_class6">조회수 : ${board.board_readcount + 1}</td>
 			</tr>
 		</table>
 	</div>
-
 	<!-- 이미지, 평점(추천합니다/안합니다), 상세별점, 리뷰의 좋아요, #  -->
 	<div class="center" style="background-color: #F2F2F2; width: 1200px;">
 
@@ -144,6 +149,9 @@
 					<!-- >>==============================▶ 삽입 이미지 크기 조정 필요 -->
 					<div>
 						<img src="${board.thumbnail}" style="height: 300px; width: auto;">
+						<c:if test="${board.thumbnail == null}">
+							<img src="${mApiVO.poster}">
+						</c:if>
 					</div>
 				</td>
 				<td class="td_class1">
@@ -176,12 +184,12 @@
 				</td>
 			</tr>
 		</table>
-		<br>
 		<table class="center">
 			<tr>
 				<td class="td_class1">
-					<div style="text-align: left; padding-left: 10px;">
-						<span class="likeIt"></span> <img alt="reply"
+					<div
+						style="text-align: left; padding-left: 20px; padding-top: 5px;">
+						<span class="likeIt"></span> &nbsp;<img alt="reply"
 							src="/review/resources/image/REMON_comment_icon.png"
 							class="imgform"> <span> ${replyCount} </span>
 					</div>
@@ -219,6 +227,9 @@
 							<li>${mApiVO.movie_nm}</li>
 							<li>${mApiVO.genre}</li>
 							<li>${mApiVO.nation}</li>
+							<li>${mApiVO.director}</li>
+							<li>${mApiVO.actor}</li>
+							<li><img src="${mApiVO.poster}"></li>
 						</ul>
 					</div>
 				</td>
@@ -255,7 +266,6 @@
 	</div>
 
 	<br>
-
 </body>
 
 <div>

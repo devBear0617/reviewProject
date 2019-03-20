@@ -6,16 +6,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-
 <script type="text/javascript"
-	src="/review/resources/script/jquery-2.1.1.js"></script>
+	src="/review/resources/script/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 
-$('#moreList').click(function () {
-	console.log("insert bt");
+$('.sort').click(function () {
+	console.log("sort bt");
+
 	var data = {
+			"sort_id" : $(this).attr('id'),
 			"start_content" : ${start_content},
-			"end_content" : ${end_content+9}
+			"end_content" : 9
 	}
 	$.ajax({
 		type : "POST",
@@ -23,14 +24,32 @@ $('#moreList').click(function () {
 		cache : false,
 		dataType : 'html',
 		data : data,
+		success : function(html) {			
+		    console.log('success');
+			$(".content").empty();
+			$(".content").append(html);
+		}
+	}); 
+});
+
+$('#moreList').click(function () {
+	console.log("moreList bt");	
+	var data = {
+			"sort_id" : $('#sort_id').val(),
+			"start_content" : ${start_content},
+			"end_content" : ${end_content+9}
+	}
+	$.ajax({
+		type : "POST",
+		url : "./contentView",
+		dataType : 'html',
+		data : data,
 		success : function(html) {
-			console.log('success');
 			$(".content").empty();
 			$(".content").append(html);
 		}
 	});
 });
-
 
 function move(e){	
 	location.href = e;
@@ -57,13 +76,13 @@ function move(e){
 	padding: 10px;
 	background-color: white;
 	background-size: 100%;
-	border: 1px solid gray;
+	border: 1px solid #F2F2F2;
 }
 
 .items:nth-child(odd) {
-	background-color: gray;
+	background-color: #F2F2F2;
 	background-size: 100%;
-	border: 1px solid white;
+	border: 1px solid #F4F4F4;
 }
 
 .center {
@@ -80,11 +99,12 @@ function move(e){
 	<br>
 	<!-- 최신순, 좋아요순, 별점순 바 -->
 	<div class="center">
+		<input type="hidden" id="sort_id" value="${sort_id}">
 		<table class="center" style="font-size: small;">
 			<tr>
-				<td class="td_class1">최신순</td>
-				<td class="td_class1">좋아요순</td>
-				<td class="td_class1">별점순</td>
+				<td class="td_class1"><span class="sort" id="sort_time">최신순</span></td>
+				<td class="td_class1"><span class="sort" id="sort_likeit">좋아요순</span></td>
+				<td class="td_class1"><span class="sort" id="sort_grade">별점순</span></td>
 			</tr>
 		</table>
 	</div>
@@ -93,26 +113,45 @@ function move(e){
 
 	<div class="wrapper">
 		<c:forEach items="${board_list}" var="board">
-			<div class="items" onclick="move('./detail_view/${board.board_num}')"
+			<div class="items"
+				onclick="move('/review/movie/detail_view/${board.board_num}')"
 				style="background-image:URL(${board.thumbnail});">
 				<!--  
 	썸네일 임시로 div 배경으로 설정함 디자인상 변경필요하면  변경 ㄱㄱ   <img src="${board.thumbnail}"> 	
 -->
 				<table>
 					<tr>
-						<td style="text-align: left;" colspan="2">${board.member_id}</td>
+						<td style="text-align: left; padding-left: 10px;" colspan="2">${board.member_id}</td>
+						<td style="font-size: small; text-align: right;" colspan="1">조회수 :
+							${board.board_readcount}</td>
 					</tr>
 					<tr>
-						<td style="height: 200px;" colspan="2">${board.board_title}</td>
+						<td style="height: 180px;" colspan="3">${board.board_title}</td>
 					</tr>
 					<tr>
-						<td colspan="2"><hr></td>
+						<td style="font-size: small; text-align: right;" colspan="3">점수:
+							${board.lemon_grade}</td>
 					</tr>
 					<tr>
-						<td style="font-size: small; padding-right: 30px;"><img
-							alt="likeit" src="../resources/image/REMON_like_icon.png"
-							style="width: 20px; margin-left: -60px;"></td>
-						<td style="font-size: small;">${board.board_date}</td>
+						<td colspan="3"><hr></td>
+					</tr>
+					<tr>
+						<td style="font-size: small; padding-right: 30px;"><div
+								style="display: inline-block; padding-top: 5px;">
+								<div style="float: left;">
+									<img alt="likeit"
+										src="/review/resources/image/REMON_like_icon.png"
+										style="width: 20px; margin-left: -20px;">
+									${board.likeit_count}
+								</div>
+								<div style="float: left; margin-left: 30px;">
+									<img alt="likeit"
+										src="/review/resources/image/REMON_comment_icon.png"
+										style="width: 20px; margin-left: -20px;">
+									${board.reply_count}
+								</div>
+							</div></td>
+						<td style="font-size: x-small; text-align: right;" colspan="2">${board.board_date}</td>
 					</tr>
 				</table>
 			</div>

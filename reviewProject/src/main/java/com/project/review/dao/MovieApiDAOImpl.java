@@ -80,6 +80,7 @@ public class MovieApiDAOImpl implements MovieApiDAO{
 			
 			JsonObject jsonObj = commonContent(apiURL, true);
 			jsonArray = (JsonArray) jsonObj.get("items");
+			
 		} catch (Exception e) {
 			System.out.println("getJson"+e);
 		}
@@ -87,24 +88,30 @@ public class MovieApiDAOImpl implements MovieApiDAO{
 	}
 	
 	@Override
-	public MovieApiVO getMovieApi(MovieApiVO movieApiVO) {
-		//naver api 연동 오류 처리
-		String director = movieApiVO.getDirector().split("|")[0];
+	public MovieApiVO getMovieApi(MovieApiVO movieApiVO, Boolean isDirector) {
 		String movieNm = movieApiVO.getMovie_nm();
-		if (movieNm.contains(" - ")) {
-			String movieNm1 = movieNm.split(" - ")[0];
-			String movieNm2 = movieNm.split(" - ")[1].split("부")[0];
-			movieNm = movieNm1+movieNm2;
-		}
+		String apiDirecorURL = "";
 		
 		try {
+			if (isDirector) {
+				//naver api 연동 오류 처리
+				String director = movieApiVO.getDirector().split("|")[0];
+				if (movieNm.contains(" - ")) {
+					String movieNm1 = movieNm.split(" - ")[0];
+					String movieNm2 = movieNm.split(" - ")[1].split("부")[0];
+					movieNm = movieNm1+movieNm2;
+					
+					String queryDirector = URLEncoder.encode(director, "UTF-8");
+					apiDirecorURL = "&directorNm="+queryDirector;
+				}
+			}
 			String queryMovieNm = URLEncoder.encode(movieNm, "UTF-8");
-			String queryDirector = URLEncoder.encode(director, "UTF-8");
-			String apiURL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json?key="+key+"&movieNm="+queryMovieNm+"&directorNm="+queryDirector;
+			String apiURL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json?key="+key+"&movieNm="+queryMovieNm+apiDirecorURL;
 			
 			JsonObject jsonObj = commonContent(apiURL, false);
 			if (!jsonObj.has("movieListResult"))
 				return null;
+			
 			jsonObj = (JsonObject) jsonObj.get("movieListResult");
 			JsonArray jsonArray = (JsonArray) jsonObj.get("movieList");
 			JsonObject object = (JsonObject) jsonArray.get(0);
@@ -117,6 +124,19 @@ public class MovieApiDAOImpl implements MovieApiDAO{
 		}
 		return movieApiVO;
 	}
+	
+/*	@Override
+	public MovieApiVO setMovieApi(MovieApiVO movieApiVO, JsonObject jsonObj) {
+		jsonObj = (JsonObject) jsonObj.get("movieListResult");
+		JsonArray jsonArray = (JsonArray) jsonObj.get("movieList");
+		JsonObject object = (JsonObject) jsonArray.get(0);
+		
+		movieApiVO.setOpen_dt(object.get("openDt").getAsString());
+		movieApiVO.setGenre(object.get("genreAlt").getAsString());
+		movieApiVO.setNation(object.get("repNationNm").getAsString());
+		
+		return movieApiVO;
+	}*/
 	
 	@Override
 	public Map<String, Object> setMap(JsonArray jsonArray) {
@@ -132,16 +152,6 @@ public class MovieApiDAOImpl implements MovieApiDAO{
 			}
 			map.put("cd", movieCd);
 			map.put("nm", movieNm);
-			
-			Iterator<String> i = movieCd.iterator();
-			while (i.hasNext()) {
-				System.out.print(i.next()+" ");
-			}
-			System.out.println();
-			i = movieCd.iterator();
-			while (i.hasNext()) {
-				System.out.print(i.next()+" ");
-			}
 		} catch (Exception e) {
 			System.out.println("setMap : "+e);
 		}
@@ -172,7 +182,7 @@ public class MovieApiDAOImpl implements MovieApiDAO{
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
 			String queryCategory = URLEncoder.encode(cd, "UTF-8");
-			String apiURL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json?key="+key+"&itemPerPage=50&curPage"+pnum;
+			String apiURL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json?key="+key+"&itemPerPage=50&curPage="+pnum;
 			switch (ca_type) {
 				/*case "genre":
 					break;*/
@@ -204,52 +214,4 @@ public class MovieApiDAOImpl implements MovieApiDAO{
 		} 
 		return map;
 	}
-
 }	
-/*	@Override
-	public Map<String, Object> getMap(String category) {
-		StringBuffer response = new StringBuffer();
-		Map<String, Object> map = new HashMap<String, Object>();
-		
-		try {
-			String queryCategory = URLEncoder.encode(category, "UTF-8");
-			String apiURL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/code/searchCodeList.json?key="+key+"&comCode="+queryCategory;
-			URL url = new URL(apiURL);
-			HttpURLConnection con = (HttpURLConnection)url.openConnection();
-			con.setRequestMethod("GET");
-			int responseCode = con.getResponseCode();
-			BufferedReader br;
-			if(responseCode==200) {
-				br = new BufferedReader(new InputStreamReader(con.getInputStream(),"UTF-8"));
-			} else {
-				br = new BufferedReader(new InputStreamReader(con.getErrorStream(),"UTF-8"));
-			}
-			
-			String inputLine;
-			while ((inputLine = br.readLine()) != null) {
-				response.append(inputLine);
-			}
-			br.close();
-			
-			JsonParser Parser = new JsonParser();
-			JsonObject jsonObj = (JsonObject) Parser.parse(response.toString());
-			if (!jsonObj.has("codes"))
-				return null;
-			
-			JsonArray jsonArray = (JsonArray) jsonObj.get("codes");
-			List<String> cd = null;
-			List<String> dCategoryNm = null;
-			System.out.println(jsonArray.toString());
-			for (int i=0; i<jsonArray.size(); i++) {
-				JsonObject jobj = (JsonObject) jsonArray.get(i);
-				cd.add(jobj.get("fullCd").getAsString());
-				dCategoryNm.add(jobj.get("korNm").getAsString());
-			}
-			map.put("cd", cd);
-			map.put("dCategoryNm", dCategoryNm);
-		} catch (Exception e) {
-			System.out.println("getArray : "+e);
-		}
-		return map;
-	}
-*/
