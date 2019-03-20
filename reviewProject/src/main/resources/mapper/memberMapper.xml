@@ -31,7 +31,12 @@
 		<association property="boardVO" column="board_num" select="getBoardInfo" />
 	</resultMap>
 	
-
+	<!-- getMember_pic -->
+	<select id="getMember_pic" parameterType="String" resultType="String">
+		SELECT member_pic
+		FROM member
+		WHERE member_id = #{member_id}
+	</select>
 	
 	<!-- myLike -->
 	<select id="myLike" parameterType="String" resultMap="myLike">
@@ -39,11 +44,6 @@
 		FROM likeit
 		WHERE member_id = #{member_id}
 		ORDER BY board_num DESC
-		<!-- SELECT *
-		FROM likeit L, board B
-		WHERE L.board_num = B.board_num
-		AND L.member_id = #{member_id}
-		ORDER BY L.board_num DESC -->
 	</select>
 	
 	<!-- myReply -->

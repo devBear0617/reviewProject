@@ -45,7 +45,20 @@ public class Movie_controller {
 
 	// -- 메인페이지
 	// ----------------------------------------------------------------------------
-
+	
+	// >> Header
+	@RequestMapping(value="/header")
+	public String movie_header(HttpSession session, Model model) {
+		
+		String user_id = (String) session.getAttribute("member_id");
+		if (user_id != null) {
+			MemberVO user = memberService.MemberInfo(user_id);
+			model.addAttribute("user", user);
+		}
+		
+		return "share/header";
+	}
+	
 	// >> 메인 ----------------------------------
 	@RequestMapping(value = "/main")
 	public String movie(HttpServletRequest request, HttpSession session, Model model) {
@@ -54,8 +67,9 @@ public class Movie_controller {
 			MemberVO user = memberService.MemberInfo(user_id);
 			model.addAttribute("user", user);
 
-			return "movie/main";
+			/*return "movie/main";*/
 		}
+		
 		return "movie/main";
 	}
 
@@ -157,7 +171,14 @@ public class Movie_controller {
 
 	// >> 게시글 작성 폼 (진입)----------------------------------
 	@RequestMapping(value = "/movie_writeForm")
-	public String movie_writeFrom(Model model, HttpServletRequest request) {
+	public String movie_writeFrom(Model model, HttpSession session, HttpServletRequest request) {
+		
+		/*String user_id = (String) session.getAttribute("member_id");
+		if (user_id != null) {
+			MemberVO user = memberService.MemberInfo(user_id);
+			model.addAttribute("user", user);
+		}*/
+		
 		String referer = request.getHeader("Referer");
 		System.out.println(referer);
 		model.addAttribute("address", referer);
@@ -192,7 +213,15 @@ public class Movie_controller {
 
 	// >> 게시글 수정 (진입)----------------------------------
 	@RequestMapping(value = "/movie_updateForm/{board_num}")
-	public String movie_updateForm(@PathVariable int board_num, Model model, HttpServletRequest request) {
+	public String movie_updateForm(@PathVariable int board_num, Model model, HttpSession session, 
+			HttpServletRequest request) {
+		
+		/*String user_id = (String) session.getAttribute("member_id");
+		if (user_id != null) {
+			MemberVO user = memberService.MemberInfo(user_id);
+			model.addAttribute("user", user);
+		}*/
+		
 		BoardVO board_m = movieService.getBoardById(board_num);
 		MovieApiVO mApiVO = movieService.getMovieInfo(board_m.getB_movieVO().getMovie_nm());
 		String referer = request.getHeader("Referer");
@@ -234,7 +263,15 @@ public class Movie_controller {
 
 	// >> 게시글 출력 ----------------------------------
 	@RequestMapping(value = "/detail_view/{board_num}")
-	public String detail_view(@PathVariable int board_num, HttpServletRequest request, Model model) {
+	public String detail_view(@PathVariable int board_num, HttpServletRequest request,
+			HttpSession session, Model model) {
+		
+		/*String user_id = (String) session.getAttribute("member_id");
+		if (user_id != null) {
+			MemberVO user = memberService.MemberInfo(user_id);
+			model.addAttribute("user", user);
+		}*/
+		
 		BoardVO board_m = movieService.getBoardById(board_num);
 		model.addAttribute("board", board_m);
 

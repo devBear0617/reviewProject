@@ -9,6 +9,9 @@ import com.project.review.vo.ReplyVO;
 
 public interface MemberService {
 	
+	// getMember_pic
+	public String getMember_pic(String member_id);
+	
 	// myLike
 	public List<LikeItVO> myLike(String member_id);
 	

@@ -72,7 +72,8 @@ $(document).ready(function() {
 <body>
 	<!-- header -->
 	<div>
-		<jsp:include page="/WEB-INF/views/share/header.jsp" />
+		<%-- <jsp:include page="/WEB-INF/views/share/header.jsp" /> --%>
+		<c:import url="./header" />
 	</div>
 	<!-- category -->
 	<div>

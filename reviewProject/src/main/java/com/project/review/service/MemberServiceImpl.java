@@ -17,25 +17,36 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private MemberDAO memberDAO;
 	
+	// getMember_pic
+	@Override
+	public String getMember_pic(String member_id) {
+		
+		return memberDAO.getMember_pic(member_id);
+	}
+	
 	// myLike
+	@Override
 	public List<LikeItVO> myLike(String member_id) {
 		
 		return memberDAO.myLike(member_id);
 	}
 	
 	// myReply
+	@Override
 	public List<ReplyVO> myReply(String member_id) {
 		
 		return memberDAO.myReply(member_id);
 	}
 	
 	// alreadyBoard
+	@Override
 	public List<BoardVO> myBoard(String member_id) {
 		
 		return memberDAO.myBoard(member_id);
 	}
 	
 	// updateProfile
+	@Override
 	public void updateProfile(MemberVO member, String member_id, String member_pic) {
 		
 		member.setMember_id(member_id);
@@ -44,6 +55,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	// 수정
+	@Override
 	public void updateMember(MemberVO member) {
 		
 		memberDAO.updateMember(member);
@@ -64,6 +76,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	// 로그인
+	@Override
 	public MemberVO selectMember(String member_id) {
 		
 		return memberDAO.selectMember(member_id);

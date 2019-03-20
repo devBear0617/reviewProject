@@ -9,9 +9,18 @@
 </head>
 <body>
 
+<h1>준비중...</h1>
+<br>
+<a href="/review">홈</a>
+<br><br>
+<form action="/review/back" method="post" id="back">
+	<input type="hidden" name="address" value="${address}"> 
+	<input type="submit" value="이전">
+</form>
+
 <!-- 테스트 게시판 -->
 
-<table border="1">
+<%-- <table border="1">
    <tr>
       <td>리얼번호</td>
       <td>번호</td>
@@ -36,7 +45,7 @@
 
 <br>
 
-<input type="button" value="home" onclick="location.href='/review/'">
+<input type="button" value="home" onclick="location.href='/review/'"> --%>
 
 </body>
 </html>

@@ -48,7 +48,8 @@
 					</div>
 				</td>
 				<td class="no_background">
-					<!-- 마이페이지 --> <!-- 로그인 필요 시 -->
+					<!-- 마이페이지 --> 
+					<!-- 로그인 필요 시 -->
 					<div style="float: right; margin-top: 10px; margin-right: 20px;">
 						<c:if test="${empty sessionScope.member_id}">
 							<a href="/review/mypage/join"><img alt="REMON_LOGO"
@@ -58,7 +59,9 @@
 								src="/review/movie/resources/image/REMON_Login_icon(white).png"
 								style="height: 50px;"></a>
 						</c:if>
-					</div> <!-- 로그인 했을 때 --> <c:if test="${not empty sessionScope.member_id}">
+					</div> 
+					<!-- 로그인 했을 때 --> 
+					<c:if test="${not empty sessionScope.member_id}">
 						<div style="float: right; margin-right: 10px; margin-top: 10px;">
 
 							<div style="float: left; margin-left: 10px;">
@@ -67,9 +70,16 @@
 									style="height: 50px;"></a>
 							</div>
 							<div style="float: left; margin-left: 10px;">
-								<a href="/review/mypage/mypageCheck"><img alt="REMON_LOGO"
-									src="/review/movie/resources/image/REMON_mypage_icon(white).png"
-									style="height: 50px;"></a>
+								<c:if test="${empty user.member_pic}">
+									<a href="/review/mypage/mypageCheck"><img alt="REMON_LOGO"
+										src="/review/movie/resources/image/REMON_mypage_icon(white).png"
+										style="height: 50px;"></a>
+								</c:if>
+								<c:if test="${not empty user.member_pic}">
+									<a href="/review/mypage/mypageCheck"><img alt="REMON_LOGO"
+										src="/review/movie/resources/memberImage/${user.member_pic}"
+										style="height: 50px;"></a>
+								</c:if>
 							</div>
 						</div>
 					</c:if>
