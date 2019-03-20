@@ -8,8 +8,7 @@
 		var de_category_type = $('#de_ca_type').attr('class').split(" ");
 		var de_ca_type = de_category_type[0];
 		var cd = de_category_type[1];
-		$
-				.ajax({
+		$.ajax({
 					type : 'POST',
 					url : "./moreCaMovie",
 					data : {
@@ -84,8 +83,8 @@
 		<div class="de_caM ${movieCd[status.index]}"
 			onclick="moreCaMovie(this)">${mNm}</div>
 	</c:forEach>
+	<hr width="1100px">
 	<div class="paging">
-		<hr>
 		<c:if test="${pagination.prevPage ne 0}">
 			<a href="#" onClick="fn_paging('${pagination.prevPage}')">◀</a>
 		</c:if>
@@ -93,20 +92,15 @@
 			end="${pagination.endPage}">
 			<c:choose>
 				<c:when test="${pnum eq  pagination.curPage}">
-					<a href="#" onClick="fn_paging('${pnum}')"><span
-						style="font-weight: bold;">${pnum}</span></a>
+					<span style="font-weight: bold;"><a href="#"
+						onClick="fn_paging('${pnum}')">${pnum}</a></span>
 				</c:when>
 				<c:otherwise>
 					<a href="#" onClick="fn_paging('${pnum}')">${pnum}</a>
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
-		<c:if
-			test="${pagination.curPage ne pagination.pageCnt && pagination.pageCnt > 0}">
-			<a href="#" onClick="fn_paging('${pagination.nextPage}')">▶</a>
-		</c:if>
-		<br>
+		<a href="#" onClick="fn_paging('${pagination.nextPage}')">▶</a>
 	</div>
 </div>
 <div class="movieInfo"></div>
-
