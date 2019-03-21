@@ -79,12 +79,12 @@
 			<h1>마이페이지</h1>
 			<hr width="1100px;">
 		</div>
-		<div style="height: 30px;"></div>
+		<div style="height: 50px;"></div>
 		<table class="center">
 			<tr>
 				<td class="td_mypage3"><c:if test="${empty user.member_pic}">
 						<img src="/review/movie/resources/memberImage/DefaultPerson.png"
-							style="height: 120px; width: 120px; border-radius: 120px; ">
+							style="height: 120px; width: 120px; border-radius: 120px; border: 3px solid #F2F2F2;">
 					</c:if> <c:if test="${not empty user.member_pic}">
 						<img src="/review/movie/resources/memberImage/${user.member_pic}"
 							style="height: 120px; width: auto; border-radius: 120px;">
@@ -110,17 +110,16 @@
 			</tr>
 		</table>
 
+		<div style="height: 20px;"></div>
+		<hr width="400px;">
+		<div style="height: 20px;"></div>
 	</div>
 
 
 
-	<br>
-
 	<div class="uploadProfile_BT"></div>
 	<div class="uploadProfile"></div>
 
-	<br>
-	<br>
 	<div class="center">
 		<table class="center">
 			<tr>
