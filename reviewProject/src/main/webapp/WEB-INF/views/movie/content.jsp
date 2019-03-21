@@ -16,8 +16,8 @@ $('.sort').click(function () {
 		data : data,
 		success : function(html) {			
 		    console.log('success');
-			$(".content").empty();
-			$(".content").append(html);
+			$(".contentList").empty();
+			$(".contentList").append(html);
 		}
 	}); 
 });
@@ -35,8 +35,8 @@ $('#moreList').click(function () {
 		dataType : 'html',
 		data : data,
 		success : function(html) {
-			$(".content").empty();
-			$(".content").append(html);
+			$(".contentList").empty();
+			$(".contentList").append(html);
 		}
 	});
 });
