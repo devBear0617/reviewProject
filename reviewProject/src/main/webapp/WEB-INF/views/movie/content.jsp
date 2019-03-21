@@ -109,7 +109,7 @@ function move(e){
 -->
 				<table>
 					<tr>
-						<td style="text-align: left; padding-left: 10px;" colspan="2">${board.member_id}</td>
+						<td style="text-align: left; padding-left: 10px;" colspan="2"> ${board.member_id}</td>
 						<td style="font-size: small; text-align: right;" colspan="1">조회수 :
 							${board.board_readcount}</td>
 					</tr>

@@ -193,6 +193,10 @@ public class MovieServiceImpl implements MovieService {
 				String thumbnail = element.attr("src");
 				board.setThumbnail(thumbnail);
 				boardDAO.insertThumbnail(board);
+			} else if (element == null) {
+				String thumbnail = movieApiVO.getPoster();
+				board.setThumbnail(thumbnail);
+				boardDAO.insertThumbnail(board);
 			}
 		}
 		
