@@ -1,11 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/review/resources/script/jquery-3.3.1.min.js"></script>
+<script type="text/javascript"
+	src="/review/resources/script/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		var data = {
@@ -21,7 +23,7 @@
 				$(".contentList").append(html);
 			}
 		})
-		
+
 		$('.moveBT').click(function() {
 			$($(this).attr("data-target")).submit();
 		});
@@ -89,6 +91,9 @@
 		<jsp:include page="/WEB-INF/views/share/header.jsp" />
 	</div>
 	<!-- 카테고리 바 -->
+	<div>
+		<jsp:include page="/WEB-INF/views/share/category_bar.jsp" />
+	</div>
 	<div>
 		<jsp:include page="/WEB-INF/views/movie/detail_category.jsp" />
 	</div>

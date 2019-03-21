@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
@@ -6,32 +7,33 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type = "text/javascript" src = "/review/resources/script/jquery-3.3.1.min.js"></script>
-<script type = "text/javascript">
-function getReplyList () {
-	$.ajax({
-		type : "GET",
-		url : "/review/movie/detail_view/${board.board_num}/reply",
-		success : function(html) {
-			$(".reply").append(html);
-		}
-	})
-}
+<script type="text/javascript"
+	src="/review/resources/script/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+	function getReplyList() {
+		$.ajax({
+			type : "GET",
+			url : "/review/movie/detail_view/${board.board_num}/reply",
+			success : function(html) {
+				$(".reply").append(html);
+			}
+		})
+	}
 
-function getLikeIt () {
-	$.ajax({
-		type : "GET",
-		url : "/review/movie/detail_view/${board.board_num}/likeIt",
-		success : function(html) {
-			$(".likeIt").append(html);
-		}
-	})
-}
+	function getLikeIt() {
+		$.ajax({
+			type : "GET",
+			url : "/review/movie/detail_view/${board.board_num}/likeIt",
+			success : function(html) {
+				$(".likeIt").append(html);
+			}
+		})
+	}
 
-$(document).ready(function() {
-	getReplyList();
-	getLikeIt()
-});
+	$(document).ready(function() {
+		getReplyList();
+		getLikeIt()
+	});
 </script>
 
 <style type="text/css">
@@ -60,11 +62,55 @@ $(document).ready(function() {
 }
 
 .td_class1 {
+	height: 70px;
 	width: 400px;
 }
 
 .td_class2 {
+	height: 70px;
 	width: 800px;
+}
+
+.td_class3 {
+	width: 160px;
+	border-right: 1px solid gray;
+	text-align: left;
+}
+
+.td_class4 {
+	width: 700px;
+	border-right: 1px solid gray;
+	text-align: left;
+}
+
+.td_class5 {
+	width: 150px;
+	border-right: 1px solid gray;
+	text-align: center;
+}
+
+.td_class6 {
+	width: 140px;
+	text-align: center;
+}
+
+.user {
+	font-weight: bold;
+	padding-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #F2F2F2;
+	height: 70px;
+	width: 1200px;
+	font-size: large;
+}
+
+.user_form {
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #F2F2F2;
+	width: 1200px;
+	height: 90px;
 }
 </style>
 </head>
@@ -79,20 +125,20 @@ $(document).ready(function() {
 		<jsp:include page="/WEB-INF/views/share/category_bar.jsp" />
 	</div>
 	<!-- 유저프로필, 유저ID, 제목 바 ( O 유저ID | 리뷰 제목              | 날짜 ) -->
-	<div class="center" style="background-color: #F2F2F2; height: 50px; width: 1200px;">
-
-		<span>유저ID: ${board.member_id}</span> &nbsp;&nbsp;&nbsp; <span>|&nbsp;&nbsp;&nbsp;리뷰
-			제목 : ${board.board_title}</span> &nbsp;&nbsp;&nbsp; <span>|&nbsp;&nbsp;&nbsp;날짜
-			: <fmt:formatDate value="${board.board_date}"
-				pattern="yyyy-MM-dd hh:mm" />
-		</span>
-		
-		<!-- readCount -->
-		<span>조회수 : ${board.board_readcount + 1}</span>
-		
-		
+	<div class="user_form">
+		<table class="user">
+			<tr>
+				<td style="width: 50px; padding-left: 20px;"><img
+					alt="user_img" src="../resources/image/REMON_user_button.png"
+					style="margin-left: auto; margin-right: auto;"></td>
+				<td class="td_class3">&nbsp;${board.member_id}</td>
+				<td class="td_class4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${board.board_title}</td>
+				<td class="td_class5"><fmt:formatDate
+						value="${board.board_date}" pattern="yyyy-MM-dd" /></td>
+				<td class="td_class6">조회수 : ${board.board_readcount + 1}</td>
+			</tr>
+		</table>
 	</div>
-
 	<!-- 이미지, 평점(추천합니다/안합니다), 상세별점, 리뷰의 좋아요, #  -->
 	<div class="center" style="background-color: #F2F2F2; width: 1200px;">
 
@@ -138,12 +184,12 @@ $(document).ready(function() {
 				</td>
 			</tr>
 		</table>
-		<br>
 		<table class="center">
 			<tr>
 				<td class="td_class1">
-					<div style="text-align: left; padding-left: 10px;">
-						<span class="likeIt"></span> <img alt="reply"
+					<div
+						style="text-align: left; padding-left: 20px; padding-top: 5px;">
+						<span class="likeIt"></span> &nbsp;<img alt="reply"
 							src="/review/resources/image/REMON_comment_icon.png"
 							class="imgform"> <span> ${replyCount} </span>
 					</div>
@@ -170,33 +216,32 @@ $(document).ready(function() {
 				<td class="td_class1" colspan="2">
 					<div class="center">
 						<h2>review contents</h2>
-					</div>
-					<div style="width: 800px;">
-						<br> ${board.board_content}
-					</div>
+					</div> <br>
+					<div style="width: 800px;">${board.board_content}</div>
 				</td>
-				<td style="border-left: 1px solid #F2F2F2;">
-					<div style="padding-left: 20px;">
+				<td style="border-left: 1px solid #F2F2F2;"><img
+					src="${mApiVO.poster}">
+					<div
+						style="width: 360px; padding-left: 20px; padding-right: 20px; text-align: left;">
+						<hr color="#F2F2F2">
 						<ul style="list-style: none;">
-							<li>${mApiVO.movie_nm}</li>
-							<li>${mApiVO.genre}</li>
-							<li>${mApiVO.nation}</li>
-							<li>${mApiVO.director}</li>
-							<li>${mApiVO.actor}</li>
-							<li><img src="${mApiVO.poster}"></li>
+							<li>>영화 이름 : ${mApiVO.movie_nm}</li>
+							<li>>영화 장르 : ${mApiVO.genre}</li>
+							<li>>국가 : ${mApiVO.nation}</li>
+							<li>>감독 : ${mApiVO.director}</li>
+							<li>>배우 : ${mApiVO.actor}</li>
 						</ul>
-					</div>
-				</td>
+					</div></td>
 			</tr>
-			<tr>
+			<!-- 			<tr>
 				<td class="td_class1"></td>
 				<td class="td_class1"></td>
 				<td class="td_class1"></td>
-			</tr>
+			</tr> -->
 		</table>
 	</div>
 	<br>
-	<hr color="#F2F2F2">
+	<hr color="#F2F2F2" width="1200px">
 	<!-- 덧글 forEach -->
 	<div class="center_txtnon">
 		<div class="reply"></div>
@@ -206,25 +251,26 @@ $(document).ready(function() {
 	<br>
 
 	<div class="center">
-		<input type="button" value="목록"
-			onclick="location.href='/review/movie/main'">
-
-		<c:if test="${sessionScope.member_id == board.member_id}">
-			<input type="button" value="수정"
-				onclick="location.href='/review/movie/movie_updateForm/${board.board_num}'">
-			<form action="/review/movie/movie_delete/${board.board_num}"
-				method="post" id="movie_delete">
-				<input type="submit" value="삭제">
-			</form>
-		</c:if>
+		<table class="center">
+			<tr>
+				<td><input type="button" value="목록"
+					onclick="location.href='/review/movie/main'"></td>
+				<td><c:if test="${sessionScope.member_id == board.member_id}">
+						<input type="button" value="수정"
+							onclick="location.href='/review/movie/movie_updateForm/${board.board_num}'">
+					</c:if></td>
+				<td><c:if test="${sessionScope.member_id == board.member_id}">
+						<form action="/review/movie/movie_delete/${board.board_num}"
+							method="post" id="movie_delete">
+							<input type="submit" value="삭제">
+						</form>
+					</c:if></td>
+			</tr>
+		</table>
 	</div>
-
 	<br>
-
+	<div>
+		<jsp:include page="/WEB-INF/views/share/footer.jsp" />
+	</div>
 </body>
-
-<div>
-	<jsp:include page="/WEB-INF/views/share/footer.jsp" />
-</div>
-
 </html>

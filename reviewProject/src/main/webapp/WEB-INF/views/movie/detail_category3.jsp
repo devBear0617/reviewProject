@@ -69,12 +69,31 @@ $( document ).ready(function() {
 })
 </script>
 <style type="text/css">
-.de_caM{
-	float:left; 
-	width: 300px;
+.de_caM {
+	width: 220px;
+	height: 60px;
+	padding: 10px;
+	float: left;
+	text-align: center;
+}
+.paging {
+	margin-left: auto;
+	margin-right: auto;
+	text-decoration: none;
+	font-size: large;
+	width: 1100px;
+	padding: 10px;
+	font-size: large;
+}
+.de_ca_3 {
+	background: linear-gradient(to right, #E4F7BA, #FAF4C0);
+	width: 1200px;
+	display: inline-block;
+	margin-left: auto;
+	margin-right: auto;
 }
 </style>
-<div>
+<div class="de_ca_3">
 	<input type="hidden" id="de_ca_type" class="">
 	<c:forEach var="mNm" items="${movieNm}" varStatus="status">
 		<div class="de_caM ${movieCd[status.index]}" onclick="getMRList(this)">${mNm}</div>
