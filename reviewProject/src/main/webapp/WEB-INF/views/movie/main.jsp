@@ -18,7 +18,7 @@
 			dataType : 'html',
 			data : data,
 			success : function(html) {
-				$(".content").append(html);
+				$(".contentList").append(html);
 			}
 		})
 		
@@ -99,7 +99,8 @@
 	</div>
 	<!-- content -->
 	<div class="center">
-		<div class="content"></div>
+		<div class="movie_info"></div>
+		<div class="contentList"></div>
 	</div>
 
 	<!-- 새글쓰기 -->

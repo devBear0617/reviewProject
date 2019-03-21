@@ -1,6 +1,5 @@
 package com.project.review.vo;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class MemberVO {

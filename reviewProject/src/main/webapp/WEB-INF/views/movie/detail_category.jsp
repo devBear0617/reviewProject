@@ -6,6 +6,7 @@
 			'category_type' : $(e).attr('class')
 		};
 
+		console.log($(e).attr('class'));
 		$.ajax({
 			type : 'POST',
 			url : "./moreCategory",
@@ -19,6 +20,11 @@
 			}
 		});
 	}
+	
+$( document ).ready(function() {
+	var idx0 = $('.cg_img_nation');
+	moreCategory(idx0);
+})
 </script>
 <style type="text/css">
 td {

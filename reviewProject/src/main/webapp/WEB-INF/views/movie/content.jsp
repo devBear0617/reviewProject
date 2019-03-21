@@ -1,16 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
 <script type="text/javascript" src="/review/resources/script/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
-
 $('.sort').click(function () {
-	console.log("sort bt");
-
 	var data = {
 			"sort_id" : $(this).attr('id'),
 			"start_content" : ${start_content},
@@ -92,8 +84,6 @@ function move(e){
 	width: 400px;
 }
 </style>
-</head>
-<body>
 	<br>
 	<!-- 최신순, 좋아요순, 별점순 바 -->
 	<div class="center">
@@ -160,5 +150,3 @@ function move(e){
 			<img alt="REMON_LOGO" src="/review/movie/resources/image/REMON_more.png" style="height: 20px;">
 		</div>
 	</c:if>
-</body>
-</html>

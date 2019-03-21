@@ -7,7 +7,6 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -16,7 +15,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.project.review.vo.MovieApiVO;
 
-import oracle.net.aso.f;
 
 public class MovieApiDAOImpl implements MovieApiDAO{
 	//영화진흥원 Api 

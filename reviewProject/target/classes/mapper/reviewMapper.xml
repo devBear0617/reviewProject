@@ -31,7 +31,6 @@
 		<result property="member_id" column="member_id" />
 		
 		<association property="b_movieVO" column="board_num" select="getB_Movie" />
-		
 	</resultMap>
 	
 	<resultMap id="Movie_Reply" type="ReplyVO">
@@ -146,6 +145,57 @@
 		ORDER BY m.board_num DESC
 	</select> -->
 	
+	<select id="getMovieBoardList_time" parameterType="Board_MovieVO" resultMap="Board_movie">
+		SELECT aa.*
+		FROM (
+			SELECT ROW_NUMBER() OVER (ORDER BY m.board_num DESC) rnum, 			
+				   (SELECT COUNT(*) FROM likeit WHERE board_num = b.board_num) as likeit_count,
+                   (SELECT COUNT(*) FROM reply WHERE board_num = b.board_num) as reply_count,
+				   b.board_num, b.board_title, b.board_content, b.board_date, b.member_id, 
+				   b.lemon_grade, b.recommend, b.thumbnail, b.board_up_date, b.board_readcount, 
+				   m.movie_nm, m.b_movie_num
+     		FROM board_movie m, board b
+      		WHERE m.board_num = b.board_num	AND m.movie_nm = #{movie_nm}	
+  		    ) aa
+  		WHERE rnum between #{pnum} AND #{pnum}+2
+    </select>
+    
+	<select id="getMovieBoardList_grade" parameterType="Board_MovieVO" resultMap="Board_movie">
+		SELECT aa.*
+		FROM (
+			SELECT ROW_NUMBER() OVER (ORDER BY b.lemon_grade DESC, m.board_num DESC) rnum,
+				   (SELECT COUNT(*) FROM likeit WHERE board_num = b.board_num) as likeit_count,
+                   (SELECT COUNT(*) FROM reply WHERE board_num = b.board_num) as reply_count, 
+				   b.board_num, b.board_title, b.board_content, b.board_date, b.member_id, 
+				   b.lemon_grade, b.recommend, b.thumbnail, b.board_up_date, b.board_readcount, 
+				   m.movie_nm, m.b_movie_num
+     		FROM board_movie m, board b
+      		WHERE m.board_num = b.board_num	AND m.movie_nm = #{movie_nm}	
+  		    ) aa
+    </select>
+    
+	<select id="getMovieBoardList_likeit" parameterType="Board_MovieVO" resultMap="Board_movie">
+		SELECT aa.*
+		FROM (
+			SELECT ROW_NUMBER() OVER(ORDER BY(
+											SELECT COUNT(*)
+                                      		FROM likeit
+                                     		WHERE board_num = b.board_num                                           
+                                    		) DESC, b.board_num DESC 
+                                    ) rnum, 	
+                   (SELECT COUNT(*) FROM likeit WHERE board_num = b.board_num) as likeit_count,
+                   (SELECT COUNT(*) FROM reply WHERE board_num = b.board_num) as reply_count,		 
+				   b.board_num, b.board_title, b.board_content, b.board_date, b.member_id, 
+				   b.lemon_grade, b.recommend, b.thumbnail, b.board_up_date, b.board_readcount,
+				   m.movie_nm, m.b_movie_num
+     		FROM board_movie m, board b
+      		WHERE m.board_num = b.board_num	AND m.movie_nm = #{movie_nm}	
+  		    ) aa
+    </select>
+    
+    
+    
+    
 	<select id="getMovieBoardList_sort_time" parameterType="map" resultMap="Board_movie">
 		SELECT aa.*
 		FROM (
@@ -241,7 +291,7 @@
 	</insert>
 	<insert id="insertMovieInfo" parameterType="MovieApiVO">
 		INSERT INTO movie_info
-		VALUES(#{movie_nm}, to_date(#{open_dt,jdbcType=VARCHAR}, 'YYYYMMDD'), #{genre,jdbcType=VARCHAR}, #{nation,jdbcType=VARCHAR}, #{director}, #{actor}, #{poster,jdbcType=VARCHAR})
+		VALUES(#{movie_nm}, to_date(#{open_dt,jdbcType=VARCHAR}, 'YYYYMMDD'), #{genre,jdbcType=VARCHAR}, #{nation,jdbcType=VARCHAR}, #{director,jdbcType=VARCHAR}, #{actor,jdbcType=VARCHAR}, #{poster,jdbcType=VARCHAR})
 	</insert>
 	<update id="insertThumbnail" parameterType="BoardVO">
 		UPDATE board SET

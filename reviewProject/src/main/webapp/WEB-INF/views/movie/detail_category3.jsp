@@ -26,26 +26,47 @@ function fn_paging(pnum) {
 	})
 }
 function getMRList(e){
-	//console.log($(e).attr('class'));
 	var movie_cd = $(e).attr('class').split(" ")[1];
 	var movie_nm = $(e).html();
 	
 	$.ajax({
 		type : 'POST',
-		url : "./oneContentView",
+		url : "./movieInfoView",
 		data : {
 			'movie_cd' : movie_cd,
 			'movie_nm' : movie_nm
 		},
 		success : function(html) {
-			$('.movieInfo').empty();
-			$('.movieInfo').append(html);
+			$('.movie_info').empty();
+			$('.movie_info').append(html);
+			
+			$.ajax({
+				type : 'POST',
+				url : "./oneContentView",
+				data : {
+					"sort_id" : "sort_time",
+					'movie_nm' : movie_nm,
+					'pnum' : 1
+				},
+				success : function(html) {
+					$('.contentList').empty();
+					$('.contentList').append(html);
+				},
+				error : function(error) {
+					console.log(error);
+				}
+			})
 		},
 		error : function(error) {
 			console.log(error);
 		}
 	})
 }
+
+$( document ).ready(function() {
+	var idx0 = $('.de_caM').first();
+	getMRList(idx0);
+})
 </script>
 <style type="text/css">
 .de_caM{
@@ -77,4 +98,3 @@ function getMRList(e){
 	<%-- <c:if test="${pagination.curPage ne pagination.pageCnt && pagination.pageCnt > 0}">
 	</c:if> --%>
 </div>
-<div class="movieInfo"></div>
