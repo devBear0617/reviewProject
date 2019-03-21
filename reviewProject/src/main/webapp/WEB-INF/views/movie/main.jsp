@@ -86,8 +86,7 @@
 <body onload="InitializeStaticMenu();">
 	<!-- 헤더 -->
 	<div>
-		<%-- <jsp:include page="/WEB-INF/views/share/header.jsp" /> --%>
-		<c:import url="./../header" />
+		<jsp:include page="/WEB-INF/views/share/header.jsp" />
 	</div>
 	<!-- 카테고리 바 -->
 	<div>

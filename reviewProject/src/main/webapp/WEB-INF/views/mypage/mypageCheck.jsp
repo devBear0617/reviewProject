@@ -7,8 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
-<script type="text/javascript"
-	src="/review/resources/script/jquery-2.1.1.js"></script>
+<script type="text/javascript" src="/review/resources/script/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 
 var url = '/review/mypage';
@@ -57,12 +56,12 @@ function profileUploadCancel() {
 <h4>NAME : ${user.member_name}</h4>
 <h4>Email : ${user.member_email}</h4>
 
-<c:if test="${empty user.member_pic}">
+<%-- <c:if test="${empty user.member_pic}">
 	<img src="/review/movie/resources/memberImage/DefaultPerson.png">
 </c:if>
-<c:if test="${not empty user.member_pic}">
+<c:if test="${not empty user.member_pic}"> --%>
 	<img src="/review/movie/resources/memberImage/${user.member_pic}">
-</c:if>
+<%-- </c:if> --%>
 
 <br>
 

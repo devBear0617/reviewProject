@@ -29,21 +29,14 @@ public class Main_controller {
 		return "redirect:" + backAdd;
 	}
 	
-	// header
-	@RequestMapping(value="/Main_header")
-	public String Main_header(HttpSession session, Model model) {
+	@RequestMapping(value="/")
+	public String remon(HttpSession session, Model model) {
 		
 		String member_id = (String) session.getAttribute("member_id");
 		if (member_id != null) {
 			String member_pic = memberService.getMember_pic(member_id);
 			model.addAttribute("member_pic", member_pic);
 		}
-		
-		return "share/Main_header";
-	}
-	
-	@RequestMapping(value="/")
-	public String remon() {
 		
 		return "remon";
 	}

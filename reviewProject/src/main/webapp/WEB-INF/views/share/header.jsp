@@ -70,16 +70,16 @@
 									style="height: 50px;"></a>
 							</div>
 							<div style="float: left; margin-left: 10px;">
-								<c:if test="${empty user.member_pic}">
+								<%-- <c:if test="${empty user.member_pic}">
 									<a href="/review/mypage/mypageCheck"><img alt="REMON_LOGO"
 										src="/review/movie/resources/image/REMON_mypage_icon(white).png"
 										style="height: 50px;"></a>
 								</c:if>
-								<c:if test="${not empty user.member_pic}">
+								<c:if test="${not empty user.member_pic}"> --%>
 									<a href="/review/mypage/mypageCheck"><img alt="REMON_LOGO"
 										src="/review/movie/resources/memberImage/${user.member_pic}"
 										style="height: 50px;"></a>
-								</c:if>
+								<%-- </c:if> --%>
 							</div>
 						</div>
 					</c:if>

@@ -23,8 +23,8 @@
 }
 </style>
 
-<%-- <jsp:include page="/WEB-INF/views/share/Main_header.jsp" /> --%>
-<c:import url="/Main_header" />
+<jsp:include page="/WEB-INF/views/share/Main_header.jsp" />
+
 
 </head>
 <body>
