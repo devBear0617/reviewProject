@@ -22,7 +22,7 @@ public class Pagination {
 		else
 			sp = curPage-curPage%pScale+1;
 		
-		setDisplayIdx(((curPage-1)%pScale)*3);
+		setDisplayIdx(((curPage-1)%pScale)*10);
 		setStartPage(sp);
 		setEndPage(sp+pScale-1);
 		setNextPage(sp+pScale);

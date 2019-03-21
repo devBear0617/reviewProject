@@ -2,10 +2,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript" src="/review/resources/script/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
-function fn_paging(pnum) {
+function fn_ca_paging(pnum) {
 	var de_category_type = $('#de_ca_type').attr('class').split(" ");
 	var de_ca_type = de_category_type[0];
 	var cd = de_category_type[1];
+	console.log(de_ca_type);
+	console.log(cd);
+	console.log(pnum);
+	
 	$.ajax({
 		type : 'POST',
 		url : "./moreCaMovie",
@@ -101,19 +105,19 @@ $( document ).ready(function() {
 </div>
 <div class="paging">
 	<c:if test="${pagination.prevPage ne 0}">
-		<a href="#" onClick="fn_paging('${pagination.prevPage}')">[이전]</a> 
+		<a href="#" onClick="fn_ca_paging('${pagination.prevPage}')">[이전]</a> 
 	</c:if>
 	<c:forEach var="pnum" begin="${pagination.startPage}" end="${pagination.endPage}">
 		<c:choose>
 			<c:when test="${pnum eq  pagination.curPage}">
-				<span style="font-weight: bold;"><a href="#" onClick="fn_paging('${pnum}')">${pnum}</a></span> 
+				<span style="font-weight: bold;"><a href="#" onClick="fn_ca_paging('${pnum}')">${pnum}</a></span> 
 			</c:when>
 			<c:otherwise>
-				<a href="#" onClick="fn_paging('${pnum}')">${pnum}</a> 
+				<a href="#" onClick="fn_ca_paging('${pnum}')">${pnum}</a> 
 			</c:otherwise>
 		</c:choose>
 	</c:forEach>
-	<a href="#" onClick="fn_paging('${pagination.nextPage}')">[다음]</a> 
+	<a href="#" onClick="fn_ca_paging('${pagination.nextPage}')">[다음]</a> 
 	<%-- <c:if test="${pagination.curPage ne pagination.pageCnt && pagination.pageCnt > 0}">
 	</c:if> --%>
 </div>

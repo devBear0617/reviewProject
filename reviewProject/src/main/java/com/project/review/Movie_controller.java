@@ -71,9 +71,11 @@ public class Movie_controller {
 	// 상세 카테고리 - 영화 리스트
 	@RequestMapping(value = "/moreCaMovie")
 	public String moreCaMovie(String de_ca_type, String cd, int pnum, Model model) {
+		System.out.println("___"+pnum);
 		Pagination pagination = new Pagination();
 		pagination.setCurPage(pnum);
 		int displayIdx = pagination.getDisplayIdx();
+		
 		
 		if (pnum % 5 == 1) 
 			moiveMap = movieService.getCaMovieList(de_ca_type, cd, pnum/5+1);
@@ -83,6 +85,7 @@ public class Movie_controller {
 		movieCd = ((List<String>) moiveMap.get("cd")).subList(displayIdx, displayIdx + 10);
 		movieNm = ((List<String>) moiveMap.get("nm")).subList(displayIdx, displayIdx + 10);
 
+		System.out.println("___"+pagination.toString());
 		model.addAttribute("movieCd", movieCd);
 		model.addAttribute("movieNm", movieNm);
 		model.addAttribute("pagination", pagination);
