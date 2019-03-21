@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.project.review.dao.MovieApiDAO;
 import com.project.review.service.MemberService;
 import com.project.review.service.MovieService;
 import com.project.review.vo.BoardVO;
@@ -50,11 +49,15 @@ public class Movie_controller {
 	@RequestMapping(value = "/main")
 	public String movie(HttpServletRequest request, HttpSession session, Model model) {
 		String user_id = (String) session.getAttribute("member_id");
+		
 		if (user_id != null) {
 			MemberVO user = memberService.MemberInfo(user_id);
 			model.addAttribute("user", user);
+<<<<<<< HEAD
 
 			/*return "movie/main";*/
+=======
+>>>>>>> master
 		}
 		
 		return "movie/main";
@@ -74,9 +77,11 @@ public class Movie_controller {
 	// 상세 카테고리 - 영화 리스트
 	@RequestMapping(value = "/moreCaMovie")
 	public String moreCaMovie(String de_ca_type, String cd, int pnum, Model model) {
+		System.out.println("___"+pnum);
 		Pagination pagination = new Pagination();
 		pagination.setCurPage(pnum);
 		int displayIdx = pagination.getDisplayIdx();
+		
 		
 		if (pnum % 5 == 1) 
 			moiveMap = movieService.getCaMovieList(de_ca_type, cd, pnum/5+1);
@@ -86,6 +91,7 @@ public class Movie_controller {
 		movieCd = ((List<String>) moiveMap.get("cd")).subList(displayIdx, displayIdx + 10);
 		movieNm = ((List<String>) moiveMap.get("nm")).subList(displayIdx, displayIdx + 10);
 
+		System.out.println("___"+pagination.toString());
 		model.addAttribute("movieCd", movieCd);
 		model.addAttribute("movieNm", movieNm);
 		model.addAttribute("pagination", pagination);
@@ -93,16 +99,40 @@ public class Movie_controller {
 		return "movie/detail_category3";
 	}
 
-	@RequestMapping(value = "/oneContentView")
-	public String oneContentView(MovieApiVO movieApiVO, Model model) {
-		// movie 검색 호출, 게시글 호출, 출력
-		movieApiVO = movieService.getMovie(movieApiVO);
-		System.out.println("*** : "+movieApiVO.toString());
+/*	@RequestMapping(value = "/oneContentView")
+	public String oneContentView(MovieApiVO movieApiVO, Board_MovieVO b_movieVO, Model model) {
+		System.out.println(movieApiVO.getMovie_nm());
 		
+		movieApiVO = movieService.getMovie(movieApiVO);
+		List<BoardVO> board_list = movieService.getBoardList(b_movieVO, 1);
+		
+		model.addAttribute("movie", movieApiVO);
+		model.addAttribute("board_list", board_list);
+		
+		return "movie/movieInfo";
+	}*/
+	@RequestMapping(value = "/movieInfoView")
+	public String movieInfoView(MovieApiVO movieApiVO, Model model) {
+		movieApiVO = movieService.getMovie(movieApiVO);
+
 		model.addAttribute("movie", movieApiVO);
 		
 		return "movie/movieInfo";
 	}
+	
+	@RequestMapping(value = "/oneContentView")
+	public String oneContentView(Board_MovieVO b_movieVO, Model model) {
+		List<BoardVO> board_list = movieService.getBoardList(b_movieVO);
+		Pagination pagination = new Pagination();
+		pagination.setCurPage(b_movieVO.getPnum());
+		
+		
+		model.addAttribute("board_list", board_list);
+		model.addAttribute("pagination", pagination);
+		
+		return "movie/contentList";
+	}
+	
 	
 	// >> 베스트 게시글 출력 ----------------------------------
 	@RequestMapping(value = "/bestContent")
@@ -114,6 +144,7 @@ public class Movie_controller {
 
 	// >> 게시판 출력 ----------------------------------
 	@RequestMapping(value = "/contentView")
+<<<<<<< HEAD
 	public String contentView(HttpServletRequest request, HttpSession session, Model model) {
 		
 		String member_id = (String) session.getAttribute("member_id");
@@ -122,6 +153,9 @@ public class Movie_controller {
 			model.addAttribute("member_pic", member_pic);
 		}
 		
+=======
+	public String contentView(HttpServletRequest request, Model model) {
+>>>>>>> master
 		//보여줄 content rnum기준 시작 번호 
 		int start_content = Integer.parseInt(request.getParameter("start_content"));
 		model.addAttribute("start_content", start_content);

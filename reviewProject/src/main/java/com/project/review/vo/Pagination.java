@@ -17,12 +17,12 @@ public class Pagination {
 
 		int pScale = 5;
 		int sp = 0;
-		if (curPage%5==0)
+		if (curPage%pScale==0)
 			sp = curPage-(curPage-1)%pScale;
 		else
 			sp = curPage-curPage%pScale+1;
 		
-		setDisplayIdx(((curPage-1)%5)*10);
+		setDisplayIdx(((curPage-1)%pScale)*10);
 		setStartPage(sp);
 		setEndPage(sp+pScale-1);
 		setNextPage(sp+pScale);

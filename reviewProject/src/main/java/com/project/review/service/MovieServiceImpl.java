@@ -75,8 +75,17 @@ public class MovieServiceImpl implements MovieService {
 	
 	//게시판 호출
 	@Override
-	public List<BoardVO> getBoardList() {
-		return boardDAO.getBoardList();
+	public List<BoardVO> getBoardList(Board_MovieVO b_MovieVO) {
+		String sort_id = b_MovieVO.getSort_id();
+		System.out.println(b_MovieVO.getPnum());
+		try {
+			if (sort_id.equals("sort_likeit")) 
+				return boardDAO.getMovieBoardList_likeit(b_MovieVO);
+			if (sort_id.equals("sort_grade")) 
+				return boardDAO.getMovieBoardList_grade(b_MovieVO);
+		} catch (Exception e) {
+		}
+		return boardDAO.getMovieBoardList_time(b_MovieVO);
 	}
 	@Override
 	public List<BoardVO> getMovieBoardList_sort_time(Map<String, Object> map) {
@@ -263,6 +272,7 @@ public class MovieServiceImpl implements MovieService {
 		
 		try {
 			isMoiveNm = getMovieInfo(movieApiVO.getMovie_nm()).getMovie_nm();
+			System.out.println("isMoiveNm :"+isMoiveNm);
 		} catch (Exception e) {
 			System.out.println("isMoiveNm : "+e);
 			isMoiveNm = null;
@@ -280,12 +290,12 @@ public class MovieServiceImpl implements MovieService {
 				movieApiVO.setPoster(object.get("image").getAsString());
 				System.out.println(">> 4 : "+movieApiVO.toString());
 			}
+			boardDAO.insertMovieInfo(movieApiVO);
 		}
 		else
 			movieApiVO = getMovieInfo(movieApiVO.getMovie_nm());
 		
 		System.out.println(">> 5 : "+movieApiVO.toString());
-		boardDAO.insertMovieInfo(movieApiVO);
 		
 		return movieApiVO;
 	}

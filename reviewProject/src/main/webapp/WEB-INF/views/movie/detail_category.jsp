@@ -6,6 +6,7 @@
 			'category_type' : $(e).attr('class')
 		};
 
+		console.log($(e).attr('class'));
 		$.ajax({
 			type : 'POST',
 			url : "./moreCategory",
@@ -19,10 +20,15 @@
 			}
 		});
 	}
+	
+$( document ).ready(function() {
+	var idx0 = $('.cg_img_nation');
+	moreCategory(idx0);
+})
 </script>
 <style type="text/css">
 td {
-	width: 200px;
+	width: 150px;
 }
 
 .center {
@@ -32,8 +38,12 @@ td {
 }
 
 .category {
-	height: 150px;
-	background-color: #EAEAEA;
+	height: 200px;
+	width: 1200px;
+	background: linear-gradient(to right, #abf200, #ffe400);
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
 }
 
 img[class^="cg_img"] {
@@ -44,15 +54,16 @@ img[class^="cg_img"] {
 	clear: both;
 }
 
-.category center {
+.table_st {
 	margin-left: auto;
 	margin-right: auto;
+	width: 1000px;
 	text-align: center;
-	width: 1200px;
+	padding-top: 20px;
 }
 </style>
-<div class="category center">
-	<table class="center">
+<div class="category">
+	<table class="table_st">
 		<tr>
 			<td><img class="cg_img_genre"
 				src="/review/resources/image/test.png" onclick="moreCategory(this)">

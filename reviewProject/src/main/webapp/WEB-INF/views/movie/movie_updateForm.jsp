@@ -346,7 +346,7 @@ table {
 					<td colspan="2">
 						<div>
 							<!-- tui-editor input -->
-							<input type="text" name="board_content" id="board_content" hidden>
+							<input type="hidden" name="board_content" id="board_content" >
 							<!-- tui-editor view -->
 							<div class="code-html">
 								<script

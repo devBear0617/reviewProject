@@ -1,11 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/review/resources/script/jquery-3.3.1.min.js"></script>
+<script type="text/javascript"
+	src="/review/resources/script/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		var data = {
@@ -18,10 +20,10 @@
 			dataType : 'html',
 			data : data,
 			success : function(html) {
-				$(".content").append(html);
+				$(".contentList").append(html);
 			}
 		})
-		
+
 		$('.moveBT').click(function() {
 			$($(this).attr("data-target")).submit();
 		});
@@ -90,6 +92,9 @@
 	</div>
 	<!-- 카테고리 바 -->
 	<div>
+		<jsp:include page="/WEB-INF/views/share/category_bar.jsp" />
+	</div>
+	<div>
 		<jsp:include page="/WEB-INF/views/movie/detail_category.jsp" />
 	</div>
 
@@ -99,7 +104,8 @@
 	</div>
 	<!-- content -->
 	<div class="center">
-		<div class="content"></div>
+		<div class="movie_info"></div>
+		<div class="contentList"></div>
 	</div>
 
 	<!-- 새글쓰기 -->
