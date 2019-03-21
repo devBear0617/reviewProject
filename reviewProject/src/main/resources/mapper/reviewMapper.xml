@@ -306,7 +306,8 @@
 			board_title = #{board_title},
 			board_content = #{board_content,jdbcType=CLOB},
 			lemon_grade = #{lemon_grade},
-			recommend = #{recommend}
+			recommend = #{recommend},
+			board_up_date = sysdate
 		WHERE board_num = #{board_num}
 	</update>
 	<update id="updateGrade" parameterType="GradeVO">

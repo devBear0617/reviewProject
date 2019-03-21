@@ -8,5 +8,10 @@
 </head>
 <body>
 
+<form action="/review/search/searchResult" method="POST" id="searchTitle">
+	<input type="text" name="s_title">
+	<input type="submit" value="검색">
+</form>
+
 </body>
 </html>

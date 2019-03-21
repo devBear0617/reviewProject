@@ -94,7 +94,7 @@ public class Mypage_controller {
 		String member_id = request.getParameter("member_id");
 		String member_pic = "";
 		if (file.getSize() == 0) {
-			member_pic = "";
+			member_pic = "DefaultPerson.png";
 			
 			memberService.updateProfile(member, member_id, member_pic);
 		} else {
