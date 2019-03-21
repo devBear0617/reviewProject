@@ -114,19 +114,11 @@ function move(e){
 							${board.board_readcount}</td>
 					</tr>
 					<tr>
-						<td style="height: 180px;" colspan="3">${board.board_title}</td>
+						<td style="height: 160px;" colspan="3">${board.board_title}</td>
 					</tr>
 					<tr>
-
-						<td style="height: 100px;" colspan="2">${board.board_title}</td>
-						
-						<!-- readCount -->
-						<td>${board.board_readcount}</td>
-					
-
 						<td style="font-size: small; text-align: right;" colspan="3">점수:
 							${board.lemon_grade}</td>
-
 					</tr>
 					<tr>
 						<td colspan="3"><hr></td>
