@@ -97,7 +97,6 @@ $('.sort').click(function () {
 			</tr>
 			<tr>
 				<td style="height: 100px;" colspan="4">${board.board_title}</td>
-				<br>
 				<td>조회수 : ${board.board_readcount}</td>
 			</tr>
 			<tr>

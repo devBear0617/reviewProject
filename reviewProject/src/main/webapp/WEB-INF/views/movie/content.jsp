@@ -117,17 +117,16 @@ function move(e){
 						<td style="height: 180px;" colspan="3">${board.board_title}</td>
 					</tr>
 					<tr>
-<<<<<<< HEAD
+
 						<td style="height: 100px;" colspan="2">${board.board_title}</td>
 						
 						<!-- readCount -->
-						<br>
 						<td>${board.board_readcount}</td>
 					
-=======
+
 						<td style="font-size: small; text-align: right;" colspan="3">점수:
 							${board.lemon_grade}</td>
->>>>>>> master
+
 					</tr>
 					<tr>
 						<td colspan="3"><hr></td>

@@ -53,11 +53,6 @@ public class Movie_controller {
 		if (user_id != null) {
 			MemberVO user = memberService.MemberInfo(user_id);
 			model.addAttribute("user", user);
-<<<<<<< HEAD
-
-			/*return "movie/main";*/
-=======
->>>>>>> master
 		}
 		
 		return "movie/main";
@@ -144,7 +139,6 @@ public class Movie_controller {
 
 	// >> 게시판 출력 ----------------------------------
 	@RequestMapping(value = "/contentView")
-<<<<<<< HEAD
 	public String contentView(HttpServletRequest request, HttpSession session, Model model) {
 		
 		String member_id = (String) session.getAttribute("member_id");
@@ -153,9 +147,6 @@ public class Movie_controller {
 			model.addAttribute("member_pic", member_pic);
 		}
 		
-=======
-	public String contentView(HttpServletRequest request, Model model) {
->>>>>>> master
 		//보여줄 content rnum기준 시작 번호 
 		int start_content = Integer.parseInt(request.getParameter("start_content"));
 		model.addAttribute("start_content", start_content);
