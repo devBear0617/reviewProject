@@ -77,11 +77,13 @@ public class MovieServiceImpl implements MovieService {
 	@Override
 	public List<BoardVO> getBoardList(Board_MovieVO b_MovieVO) {
 		String sort_id = b_MovieVO.getSort_id();
-		System.out.println(b_MovieVO.getPnum());
+		System.out.println(">"+sort_id);
 		try {
 			if (sort_id.equals("sort_likeit")) 
 				return boardDAO.getMovieBoardList_likeit(b_MovieVO);
 			if (sort_id.equals("sort_grade")) 
+				return boardDAO.getMovieBoardList_grade(b_MovieVO);
+			if (sort_id.equals("sort_time")) 
 				return boardDAO.getMovieBoardList_grade(b_MovieVO);
 		} catch (Exception e) {
 		}

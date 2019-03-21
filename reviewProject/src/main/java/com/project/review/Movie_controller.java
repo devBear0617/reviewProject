@@ -71,11 +71,9 @@ public class Movie_controller {
 	// 상세 카테고리 - 영화 리스트
 	@RequestMapping(value = "/moreCaMovie")
 	public String moreCaMovie(String de_ca_type, String cd, int pnum, Model model) {
-		System.out.println("___"+pnum);
 		Pagination pagination = new Pagination();
 		pagination.setCurPage(pnum);
 		int displayIdx = pagination.getDisplayIdx();
-		
 		
 		if (pnum % 5 == 1) 
 			moiveMap = movieService.getCaMovieList(de_ca_type, cd, pnum/5+1);
@@ -85,7 +83,6 @@ public class Movie_controller {
 		movieCd = ((List<String>) moiveMap.get("cd")).subList(displayIdx, displayIdx + 10);
 		movieNm = ((List<String>) moiveMap.get("nm")).subList(displayIdx, displayIdx + 10);
 
-		System.out.println("___"+pagination.toString());
 		model.addAttribute("movieCd", movieCd);
 		model.addAttribute("movieNm", movieNm);
 		model.addAttribute("pagination", pagination);
@@ -93,18 +90,6 @@ public class Movie_controller {
 		return "movie/detail_category3";
 	}
 
-/*	@RequestMapping(value = "/oneContentView")
-	public String oneContentView(MovieApiVO movieApiVO, Board_MovieVO b_movieVO, Model model) {
-		System.out.println(movieApiVO.getMovie_nm());
-		
-		movieApiVO = movieService.getMovie(movieApiVO);
-		List<BoardVO> board_list = movieService.getBoardList(b_movieVO, 1);
-		
-		model.addAttribute("movie", movieApiVO);
-		model.addAttribute("board_list", board_list);
-		
-		return "movie/movieInfo";
-	}*/
 	@RequestMapping(value = "/movieInfoView")
 	public String movieInfoView(MovieApiVO movieApiVO, Model model) {
 		movieApiVO = movieService.getMovie(movieApiVO);
@@ -119,7 +104,6 @@ public class Movie_controller {
 		List<BoardVO> board_list = movieService.getBoardList(b_movieVO);
 		Pagination pagination = new Pagination();
 		pagination.setCurPage(b_movieVO.getPnum());
-		
 		
 		model.addAttribute("board_list", board_list);
 		model.addAttribute("pagination", pagination);
