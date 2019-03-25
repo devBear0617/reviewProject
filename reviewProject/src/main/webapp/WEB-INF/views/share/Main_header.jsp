@@ -49,7 +49,7 @@
 					<c:if test="${not empty member_pic}"> --%>
 						<a href="/review/mypage/mypageCheck"><img alt="REMON_LOGO"
 							src="/review/movie/resources/memberImage/${member_pic}"
-							style="height: 50px;"></a>
+							style="height: 50px; width: 50px;border-radius: 50px;"></a>
 					<%-- </c:if> --%>
 				</div>
 			</div>

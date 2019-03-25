@@ -73,11 +73,9 @@
 										style="height: 50px;"></a>
 								</c:if>
 								<c:if test="${not empty user.member_pic}"> --%>
-								<div style="height: 50px; width: 50px; border-radius: 50px;">
 									<a href="/review/mypage/mypageCheck"><img alt="REMON_LOGO"
 										src="/review/movie/resources/memberImage/${user.member_pic}"
-										style="height: auto; width: 50px;"></a>
-								</div>
+										style="height: 50px; width: 50px;border-radius: 50px;"></a>
 								<%-- </c:if> --%>
 							</div>
 						</div>

@@ -87,7 +87,7 @@
 							style="height: 120px; width: 120px; border-radius: 120px; border: 3px solid #F2F2F2;">
 					</c:if> <c:if test="${not empty user.member_pic}">
 						<img src="/review/movie/resources/memberImage/${user.member_pic}"
-							style="height: 120px; width: auto; border-radius: 120px;">
+							style="height: 120px; width: 120px; border-radius: 120px;">
 					</c:if></td>
 				<td><table class="center">
 						<tr>
