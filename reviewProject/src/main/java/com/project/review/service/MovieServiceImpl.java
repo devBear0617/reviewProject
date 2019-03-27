@@ -84,7 +84,7 @@ public class MovieServiceImpl implements MovieService {
 			if (sort_id.equals("sort_grade")) 
 				return boardDAO.getMovieBoardList_grade(b_MovieVO);
 			if (sort_id.equals("sort_time")) 
-				return boardDAO.getMovieBoardList_grade(b_MovieVO);
+				return boardDAO.getMovieBoardList_time(b_MovieVO);
 		} catch (Exception e) {
 		}
 		return boardDAO.getMovieBoardList_time(b_MovieVO);

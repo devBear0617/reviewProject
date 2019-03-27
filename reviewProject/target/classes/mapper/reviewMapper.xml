@@ -157,7 +157,7 @@
      		FROM board_movie m, board b
       		WHERE m.board_num = b.board_num	AND m.movie_nm = #{movie_nm}	
   		    ) aa
-  		WHERE rnum between #{pnum} AND #{pnum}+2
+  		<!-- WHERE rnum between #{pnum} AND #{pnum}+2 -->
     </select>
     
 	<select id="getMovieBoardList_grade" parameterType="Board_MovieVO" resultMap="Board_movie">

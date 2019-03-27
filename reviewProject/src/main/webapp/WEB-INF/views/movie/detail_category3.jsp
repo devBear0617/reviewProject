@@ -119,4 +119,5 @@ $( document ).ready(function() {
 		<a href="#" onClick="fn_ca_paging('${pagination.nextPage}')">▶</a>
 		<%-- <c:if test="${pagination.curPage ne pagination.pageCnt && pagination.pageCnt > 0}">
 	</c:if> --%>
+	</div>
 </div>

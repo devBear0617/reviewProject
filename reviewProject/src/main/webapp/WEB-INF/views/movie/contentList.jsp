@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript" src="/review/resources/script/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
-var movie_nm = $('.q').html();
+var movie_nm = $('.movieinfo_2').html();
 console.log(movie_nm);
 function fn_paging(pnum) {
 	$.ajax({
