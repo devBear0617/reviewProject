@@ -4,69 +4,92 @@
 <script type="text/javascript"
 	src="/review/resources/script/jquery-3.3.1.min.js"></script>
 <style type="text/css">
-.center {
+.table_center {
 	margin-left: auto;
 	margin-right: auto;
+	width: 560px;
+	height: 190px;
 }
 
 .category1 {
-	height: 240px;
+	height: 270px;
 	width: 1200px;
 	background: linear-gradient(to left, #abf200, #ffe400);
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;
+	padding-top: 35px;
 }
 
 .movieinfo_1 {
-	width: 100px;
-	height:
+	width: 160px;
+	height: 190px;
+	background-color: #F2F2F2;
+	border-radius: 5px;
+	text-align: center;
+}
+
+.movieinfo_1a {
+	width: 400px;
+	height: 190px;
+}
+
+.movieinfo_1b {
+	width: 20px;
+	height: 190px;
 }
 
 .movieinfo_2 {
-	width: 300px;
-	height:	
+	width: 400px;
+	height: 40px;
+	font-size: x-large;
+	font-weight: bold;
+	text-align: left;
 }
 
 .movieinfo_3 {
 	width: 100px;
-	height:
-
+	height: 30px;
+	text-align: center;
+	font-weight: bold;
 }
 
 .movieinfo_4 {
-	width: 200px;
-	height:	
+	width: 300px;
+	height: 30px;
+	text-align: left;
 }
 </style>
 <div class="category1">
 	<div class="center">
-		<table class="center">
+		<table class="table_center">
 			<tr>
-				<td class="movieinfo_1"><img alt="포스터 없음" src="${movie.poster}"></td>
-				<td>
+				<td class="movieinfo_1"><img alt="포스터 없음" src="${movie.poster}"
+					style="width: 160px; height: auto; border-radius: 5px;"></td>
+				<td class="movieinfo_1b"></td>
+				<td class="movieinfo_1a">
 					<table>
 						<tr>
-							<td colspan="2" class="movieinfo_2">${movie.movie_nm}</td>
+							<td colspan="2" class="movieinfo_2">&nbsp;&nbsp;${movie.movie_nm}</td>
 						</tr>
 						<tr>
 							<td class="movieinfo_3">개봉일 :</td>
 							<td class="movieinfo_4">${movie.open_dt}</td>
 						</tr>
 						<tr>
-							<td class="movieinfo_3">장르 :</td>
+							<td class="movieinfo_3">장&nbsp;&nbsp;르 :</td>
 							<td class="movieinfo_4">${movie.genre}</td>
 						</tr>
 						<tr>
-							<td class="movieinfo_3">국가 :</td>
+							<td class="movieinfo_3">국&nbsp;&nbsp;가 :</td>
 							<td class="movieinfo_4">${movie.nation}</td>
 						</tr>
 						<tr>
-							<td class="movieinfo_3">감독 :</td>
+							<td class="movieinfo_3">감&nbsp;&nbsp;독 :</td>
 							<td class="movieinfo_4">${movie.director}</td>
 						</tr>
 						<tr>
-							<td class="movieinfo_3">배우 :</td>
+							<td class="movieinfo_3">배&nbsp;&nbsp;우 :</td>
 							<td class="movieinfo_4">${movie.actor}</td>
 						</tr>
 					</table>
