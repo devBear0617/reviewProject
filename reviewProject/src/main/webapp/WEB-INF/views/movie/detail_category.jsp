@@ -67,23 +67,23 @@ img[class^="cg_img"] {
 		<tr>
 			<td>
 				<img class="cg_img_actor" 
-				src="/review/resources/image/test.png" onclick="moreCategory(this)">
+				src="/review/resources/image/REMON_category_director.png" onclick="moreCategory(this)">
 			</td>
 			<td>
 				<img class="cg_img_director" 
-				src="/review/resources/image/test.png" onclick="moreCategory(this)">
+				src="/review/resources/image/REMON_category_actor.png" onclick="moreCategory(this)">
 			</td>
 			<!-- <td><img class="cg_img_dt"
 				src="/review/resources/image/test.png" onclick="moreCategory(this)">
 			</td> -->
 			<td><img class="cg_img_openDt"
-				src="/review/resources/image/test.png" onclick="moreCategory(this)">
+				src="/review/resources/image/REMON_category_new.png" onclick="moreCategory(this)">
 			</td>
 			<td><img class="cg_img_movieType"
-				src="/review/resources/image/test.png" onclick="moreCategory(this)">
+				src="/review/resources/image/REMON_category_type.png" onclick="moreCategory(this)">
 			</td>
 			<td><img class="cg_img_nation"
-				src="/review/resources/image/test.png" onclick="moreCategory(this)">
+				src="/review/resources/image/REMON_category_country.png" onclick="moreCategory(this)">
 			</td>
 		</tr>
 	</table>

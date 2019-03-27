@@ -2,12 +2,18 @@ package com.project.review.service;
 
 import java.util.List;
 
-import com.google.gson.JsonArray;
-import com.project.review.vo.BoardVO;
-import com.project.review.vo.MovieApiVO;
 
 public interface SearchService {
-	public List<BoardVO> searchTitle(String s_title);
-	public List<MovieApiVO> searchMovie(String s_title);
-	public JsonArray s_autocomplete(String s_title, String s_sort);
+	
+	// MOVIE
+	public List<Integer> searchMovie(String keyword);
+		public List<Integer> searchMovie_likeCount(String keyword);
+		public List<Integer> searchMovie_Grade(String keyword);
+		public List<Integer> searchMovie_titleContent(String keyword);
+		public List<Integer> searchMovie_Member(String keyword);
+		public List<Integer> searchMovie_ReplyContent(String keyword);
+		public List<Integer> searchMovie_Hashtag(String keyword);
+		
+	// TOTAL
+	public List<Integer> searchTotal(String keyword);
 }

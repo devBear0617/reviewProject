@@ -42,11 +42,12 @@
 		<!-- 검색 바 -->
 		<div class="center">
 			<!-- <div class='moveBT' data-target="#searchMain"> -->
-				<form action="/review/search/main/" id="searchMain">
-					<input type="text" id="query" name="query"
+				<form action="/review/search/searchResult" method="POST" id="search">
+					<input type="text" id="query" name="keyword"
 						style="width: 600px; height: 60px; background-image: url('resources/image/REMON_search_bar.png'); border-style: none;">
+					<input type="submit" value="검색">
 				</form>
-				<a href="/review/search/main">검색</a>
+				<!-- <a href="/review/search/main">검색</a> -->
 			<!-- </div> -->
 		</div>
 		<br>

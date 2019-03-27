@@ -99,22 +99,24 @@ $( document ).ready(function() {
 	<c:forEach var="mNm" items="${movieNm}" varStatus="status">
 		<div class="de_caM ${movieCd[status.index]}" onclick="getMRList(this)">${mNm}</div>
 	</c:forEach>
-</div>
-<div class="paging">
-	<c:if test="${pagination.prevPage ne 0}">
-		<a href="#" onClick="fn_ca_paging('${pagination.prevPage}')">[이전]</a> 
-	</c:if>
-	<c:forEach var="pnum" begin="${pagination.startPage}" end="${pagination.endPage}">
-		<c:choose>
-			<c:when test="${pnum eq  pagination.curPage}">
-				<span style="font-weight: bold;"><a href="#" onClick="fn_ca_paging('${pnum}')">${pnum}</a></span> 
-			</c:when>
-			<c:otherwise>
-				<a href="#" onClick="fn_ca_paging('${pnum}')">${pnum}</a> 
-			</c:otherwise>
-		</c:choose>
-	</c:forEach>
-	<a href="#" onClick="fn_ca_paging('${pagination.nextPage}')">[다음]</a> 
-	<%-- <c:if test="${pagination.curPage ne pagination.pageCnt && pagination.pageCnt > 0}">
+	<hr style="width: 1100px;">
+	<div class="paging">
+		<c:if test="${pagination.prevPage ne 0}">
+			<a href="#" onClick="fn_ca_paging('${pagination.prevPage}')">◀</a>
+		</c:if>
+		<c:forEach var="pnum" begin="${pagination.startPage}"
+			end="${pagination.endPage}">
+			<c:choose>
+				<c:when test="${pnum eq  pagination.curPage}">
+					<span style="font-weight: bold;"><a href="#"
+						onClick="fn_ca_paging('${pnum}')">${pnum}</a></span>
+				</c:when>
+				<c:otherwise>
+					<a href="#" onClick="fn_ca_paging('${pnum}')">${pnum}</a>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+		<a href="#" onClick="fn_ca_paging('${pagination.nextPage}')">▶</a>
+		<%-- <c:if test="${pagination.curPage ne pagination.pageCnt && pagination.pageCnt > 0}">
 	</c:if> --%>
 </div>
