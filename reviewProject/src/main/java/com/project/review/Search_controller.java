@@ -1,5 +1,6 @@
 package com.project.review;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,10 +35,16 @@ public class Search_controller {
 	public String result_Movie_grade(HttpServletRequest request, HttpSession session, Model model) {
 		
 		String keyword = request.getParameter("keyword");
-		List<Integer> search_Result = searchService.searchMovie_Grade(keyword);
-		System.out.println(search_Result);
-		// 무비에서 검색
-		model.addAttribute("search_Result", search_Result);
+		List<Integer> search_ResultNum = searchService.searchMovie_Grade(keyword);
+		System.out.println(search_ResultNum);
+		
+		List<BoardVO> Result = new ArrayList<BoardVO>();
+		for (int i=0; i<search_ResultNum.size(); i++) {
+			Result.add(i, searchService.Result(search_ResultNum.get(i)));
+			System.out.println(Result);
+		}
+		System.out.println("VALUE = " + Result);
+		model.addAttribute("Result", Result);
 		
 		return "share/result_Board";
 	}
@@ -47,10 +54,16 @@ public class Search_controller {
 	public String result_Movie_titleContent(HttpServletRequest request, HttpSession session, Model model) {
 		
 		String keyword = request.getParameter("keyword");
-		List<Integer> search_Result = searchService.searchMovie_titleContent(keyword);
-		System.out.println(search_Result);
-		// 무비에서 검색
-		model.addAttribute("search_Result", search_Result);
+		List<Integer> search_ResultNum = searchService.searchMovie_titleContent(keyword);
+		System.out.println(search_ResultNum);
+		
+		List<BoardVO> Result = new ArrayList<BoardVO>();
+		for (int i=0; i<search_ResultNum.size(); i++) {
+			Result.add(i, searchService.Result(search_ResultNum.get(i)));
+			System.out.println(Result);
+		}
+		System.out.println("VALUE = " + Result);
+		model.addAttribute("Result", Result);
 		
 		return "share/result_Board";
 	}
@@ -60,10 +73,16 @@ public class Search_controller {
 	public String result_Movie_hashtag(HttpServletRequest request, HttpSession session, Model model) {
 		
 		String keyword = request.getParameter("keyword");
-		List<Integer> search_Result = searchService.searchMovie_Hashtag(keyword);
-		System.out.println(search_Result);
-		// 무비에서 검색
-		model.addAttribute("search_Result", search_Result);
+		List<Integer> search_ResultNum = searchService.searchMovie_Hashtag(keyword);
+		System.out.println(search_ResultNum);
+		
+		List<BoardVO> Result = new ArrayList<BoardVO>();
+		for (int i=0; i<search_ResultNum.size(); i++) {
+			Result.add(i, searchService.Result(search_ResultNum.get(i)));
+			System.out.println(Result);
+		}
+		System.out.println("VALUE = " + Result);
+		model.addAttribute("Result", Result);
 		
 		return "share/result_Board";
 	}
@@ -73,10 +92,16 @@ public class Search_controller {
 	public String result_Movie_reply(HttpServletRequest request, HttpSession session, Model model) {
 		
 		String keyword = request.getParameter("keyword");
-		List<Integer> search_Result = searchService.searchMovie_ReplyContent(keyword);
-		System.out.println(search_Result);
-		// 무비에서 검색
-		model.addAttribute("search_Result", search_Result);
+		List<Integer> search_ResultNum = searchService.searchMovie_ReplyContent(keyword);
+		System.out.println(search_ResultNum);
+		
+		List<BoardVO> Result = new ArrayList<BoardVO>();
+		for (int i=0; i<search_ResultNum.size(); i++) {
+			Result.add(i, searchService.Result(search_ResultNum.get(i)));
+			System.out.println(Result);
+		}
+		System.out.println("VALUE = " + Result);
+		model.addAttribute("Result", Result);
 		
 		return "share/result_Board";
 	}
@@ -86,10 +111,16 @@ public class Search_controller {
 	public String result_Movie_member(HttpServletRequest request, HttpSession session, Model model) {
 		
 		String keyword = request.getParameter("keyword");
-		List<Integer> search_Result = searchService.searchMovie_Member(keyword);
-		System.out.println(search_Result);
-		// 무비에서 검색
-		model.addAttribute("search_Result", search_Result);
+		List<Integer> search_ResultNum = searchService.searchMovie_Member(keyword);
+		System.out.println(search_ResultNum);
+		
+		List<BoardVO> Result = new ArrayList<BoardVO>();
+		for (int i=0; i<search_ResultNum.size(); i++) {
+			Result.add(i, searchService.Result(search_ResultNum.get(i)));
+			System.out.println(Result);
+		}
+		System.out.println("VALUE = " + Result);
+		model.addAttribute("Result", Result);
 		
 		return "share/result_Board";
 	}
@@ -99,10 +130,16 @@ public class Search_controller {
 	public String result_Movie_only(HttpServletRequest request, HttpSession session, Model model) {
 		
 		String keyword = request.getParameter("keyword");
-		List<Integer> search_Result = searchService.searchMovie(keyword);
-		System.out.println(search_Result);
-		// 무비에서 검색
-		model.addAttribute("search_Result", search_Result);
+		List<Integer> search_ResultNum = searchService.searchMovie(keyword);
+		System.out.println(search_ResultNum);
+		
+		List<BoardVO> Result = new ArrayList<BoardVO>();
+		for (int i=0; i<search_ResultNum.size(); i++) {
+			Result.add(i, searchService.Result(search_ResultNum.get(i)));
+			System.out.println(Result);
+		}
+		System.out.println("VALUE = " + Result);
+		model.addAttribute("Result", Result);
 		
 		return "share/result_Board";
 	}
@@ -112,10 +149,16 @@ public class Search_controller {
 	public String result_Total(HttpServletRequest request, HttpSession session, Model model) {
 		
 		String keyword = request.getParameter("keyword");
-		List<Integer> search_Result = searchService.searchTotal(keyword);
-		System.out.println(search_Result);
-		// 통합검색
-		model.addAttribute("search_Result", search_Result);
+		List<Integer> search_ResultNum = searchService.searchTotal(keyword);
+		System.out.println(search_ResultNum);
+		
+		List<BoardVO> Result = new ArrayList<BoardVO>();
+		for (int i=0; i<search_ResultNum.size(); i++) {
+			Result.add(i, searchService.Result(search_ResultNum.get(i)));
+			System.out.println(Result);
+		}
+		System.out.println("VALUE = " + Result);
+		model.addAttribute("Result", Result);
 		
 		return "share/result_Board";
 	}

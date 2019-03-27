@@ -15,6 +15,13 @@ public class SearchServiceImpl implements SearchService {
 	private SearchDAO searchDAO;
 
 	
+	// 검색 결과 출력
+	@Override
+	public BoardVO Result(int board_num) {
+		
+		return searchDAO.Result(board_num);
+	}
+	
 	@Override
 	public List<Integer> searchMovie_likeCount(String keyword) {
 		

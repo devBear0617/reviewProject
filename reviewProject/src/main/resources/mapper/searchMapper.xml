@@ -3,6 +3,14 @@
 
 <mapper namespace="com.project.review.dao.SearchDAO">
 	
+	<!-- 결과값 board로 출력 -->
+	<select id="Result" parameterType="int" resultType="BoardVO">
+		SELECT *
+		FROM board
+		WHERE board_num = #{board_num}
+	</select>
+	
+	
 	<!-- Movie - grade desc -->
 	<select id="searchMovie_Grade" parameterType="String" resultType="int">
 		SELECT A.board_num
