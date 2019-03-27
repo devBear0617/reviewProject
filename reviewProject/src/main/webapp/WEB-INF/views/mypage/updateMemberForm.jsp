@@ -73,12 +73,6 @@
 					<td class="td_mypage1">Email</td>
 					<td class="td_mypage2">&nbsp;&nbsp;${user.member_email}</td>
 				</tr>
-				<tr>
-					<td colspan="2"><div class="uploadProfile_BT"></div></td>
-				</tr>
-				<tr>
-					<td colspan="2"><div class="uploadProfile"></div></td>
-				</tr>
 			</table>
 			<div style="height: 20px;"></div>
 			<hr width="400px;">
