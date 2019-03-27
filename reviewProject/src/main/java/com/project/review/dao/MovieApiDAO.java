@@ -1,5 +1,6 @@
 package com.project.review.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import com.google.gson.JsonArray;
@@ -14,4 +15,7 @@ public interface MovieApiDAO {
 	public Map<String, Object> setMap(JsonArray jsonArray);
 	public Map<String, Object> getMap(String category_type);
 	public Map<String, Object> getCaMovieArray(String ca_type, String cd, int pnum);
+	
+	public JsonArray getCaPeopleArray(String query, int pnum);
+	public List<String> getCaPeople1(String query, int pnum);
 }

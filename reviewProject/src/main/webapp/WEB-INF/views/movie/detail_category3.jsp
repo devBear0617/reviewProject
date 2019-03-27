@@ -6,9 +6,6 @@ function fn_ca_paging(pnum) {
 	var de_category_type = $('#de_ca_type').attr('class').split(" ");
 	var de_ca_type = de_category_type[0];
 	var cd = de_category_type[1];
-	console.log(de_ca_type);
-	console.log(cd);
-	console.log(pnum);
 	
 	$.ajax({
 		type : 'POST',
