@@ -6,20 +6,18 @@ import com.project.review.vo.BoardVO;
 
 public interface SearchDAO {
 
-	// 검색 결과 출력
-	public BoardVO Result(int board_num);
-	
+
 	// MOVIE
-	public List<Integer> searchMovie(String keyword);
-		public List<Integer> searchMovie_likeCount(String keyword);
-		public List<Integer> searchMovie_Grade(String keyword);
-		public List<Integer> searchMovie_titleContent(String keyword);
-		public List<Integer> searchMovie_Member(String keyword);
-		public List<Integer> searchMovie_ReplyContent(String keyword);
-		public List<Integer> searchMovie_Hashtag(String keyword);
+	public List<BoardVO> searchMovie(String keyword);
+		public List<BoardVO> searchMovie_likeCount(String keyword);
+		public List<BoardVO> searchMovie_Grade(String keyword);
+		public List<BoardVO> searchMovie_titleContent(String keyword);
+		public List<BoardVO> searchMovie_Member(String keyword);
+		public List<BoardVO> searchMovie_ReplyContent(String keyword);
+		public List<BoardVO> searchMovie_Hashtag(String keyword);
 	
 	// TOTAL
-	public List<Integer> searchTotal(String keyword);
+	public List<BoardVO> searchTotal(String keyword);
 	
 	
 	

@@ -15,57 +15,51 @@ public class SearchServiceImpl implements SearchService {
 	private SearchDAO searchDAO;
 
 	
-	// 검색 결과 출력
-	@Override
-	public BoardVO Result(int board_num) {
-		
-		return searchDAO.Result(board_num);
-	}
 	
 	@Override
-	public List<Integer> searchMovie_likeCount(String keyword) {
+	public List<BoardVO> searchMovie_likeCount(String keyword) {
 		
 		return searchDAO.searchMovie_likeCount(keyword);
 	}
 	
 	@Override
-	public List<Integer> searchMovie_Grade(String keyword) {
+	public List<BoardVO> searchMovie_Grade(String keyword) {
 		
 		return searchDAO.searchMovie_Grade(keyword);
 	}
 	
 	@Override
-	public List<Integer> searchMovie_titleContent(String keyword) {
+	public List<BoardVO> searchMovie_titleContent(String keyword) {
 		
 		return searchDAO.searchMovie_titleContent(keyword);
 	}
 	
 	@Override
-	public List<Integer> searchMovie_Member(String keyword) {
+	public List<BoardVO> searchMovie_Member(String keyword) {
 		
 		return searchDAO.searchMovie_Member(keyword);
 	}
 	
 	@Override
-	public List<Integer> searchMovie_ReplyContent(String keyword) {
+	public List<BoardVO> searchMovie_ReplyContent(String keyword) {
 		
 		return searchDAO.searchMovie_ReplyContent(keyword);
 	}
 	
 	@Override
-	public List<Integer> searchMovie_Hashtag(String keyword) {
+	public List<BoardVO> searchMovie_Hashtag(String keyword) {
 		
 		return searchDAO.searchMovie_Hashtag(keyword);
 	}
 	
 	@Override
-	public List<Integer> searchMovie(String keyword) {
+	public List<BoardVO> searchMovie(String keyword) {
 		
 		return searchDAO.searchMovie(keyword);
 	}
 	
 	@Override
-	public List<Integer> searchTotal(String keyword) {
+	public List<BoardVO> searchTotal(String keyword) {
 		
 		return searchDAO.searchTotal(keyword);
 	}

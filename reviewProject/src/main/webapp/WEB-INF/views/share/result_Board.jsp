@@ -18,7 +18,7 @@
 		<td>글쓴</td>
 		<td>날짜</td>
 	</tr>
-	<c:forEach items="${Result}" var="result">
+	<c:forEach items="${search_Result}" var="result">
 		<tr>
 			<td><a href="/review/movie/detail_view/${result.board_num}">${result.board_num}</a></td>
 			<td>
