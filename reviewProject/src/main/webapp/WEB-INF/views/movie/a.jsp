@@ -1,4 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="/review/resources/script/jquery-3.3.1.min.js"></script>
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"
 	type="text/javascript"></script>
@@ -13,7 +20,7 @@ $(document).ready(
 			delay : 30,
 			source : function(request, response) {
 				$.ajax({
-					url : "./autocomplete",
+					url : "../autocomplete",
 					type : "post",
 					dataType : "json",
 					data : {
@@ -24,10 +31,7 @@ $(document).ready(
 							item.title = item.title.replace(/<b>/gi, "").replace(/<\/b>/gi, "");
 							return {
 								label : item.title,
-								value : item.title,
-								director : item.director,
-								actor : item.actor,
-								poster : item.image                                                                                         0
+								value : item.title
 							};
 						}))
 					},
@@ -38,20 +42,16 @@ $(document).ready(
 			},
 			focus : function(event, ui) {
 				return false;
-			},
-			select : function(event, ui) {
-				$("#movie_poster").attr("src", ui.item.poster);
-				$("#movie_poster").show();
-				$("#poster").val(ui.item.poster);
-				$("#director").val(ui.item.director);
-				$("#actor").val(ui.item.actor);
 			}
 		});
-	}
-)
+	})
 </script>
-
-<form action="/review/search/searchResult" method="POST" id="searchTitle">
-	<input type="text" id="s_title" name="s_title">
-	<input type="submit" value="검색">
+</head>
+<body>
+<form action="/review/search/searchResult" id="searchTitle">
+	<input type="text" id="s_title" name="s_title"
+		style="width: 300px; height: 30px; border-radius: 20px; border-style: none;">
+	<button style="width: 50px; height: 30px; border-radius: 20px; border-style: none; background-color: yellow;">검색</button>
 </form>
+</body>
+</html>

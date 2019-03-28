@@ -6,7 +6,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -48,11 +50,11 @@ public class MovieApiDAOImpl implements MovieApiDAO{
 			}
 			int responseCode = con.getResponseCode();
 			BufferedReader br;
-			if(responseCode==200) {
+			if(responseCode==200) 
 				br = new BufferedReader(new InputStreamReader(con.getInputStream(),"UTF-8"));
-			} else {
+			else 
 				br = new BufferedReader(new InputStreamReader(con.getErrorStream(),"UTF-8"));
-			}
+			
 			String inputLine;
 			while ((inputLine = br.readLine()) != null) {
 				response.append(inputLine);
@@ -61,6 +63,7 @@ public class MovieApiDAOImpl implements MovieApiDAO{
 			
 			JsonParser Parser = new JsonParser();
 			jsonObj = (JsonObject) Parser.parse(response.toString());
+			System.out.println(jsonObj.toString());
 		} catch (Exception e) {
 			System.out.println("commonContent : "+e);
 		}
@@ -80,7 +83,7 @@ public class MovieApiDAOImpl implements MovieApiDAO{
 			jsonArray = (JsonArray) jsonObj.get("items");
 			
 		} catch (Exception e) {
-			System.out.println("getJson"+e);
+			System.out.println("getJson : "+e);
 		}
 		return jsonArray;
 	}
@@ -122,19 +125,6 @@ public class MovieApiDAOImpl implements MovieApiDAO{
 		}
 		return movieApiVO;
 	}
-	
-/*	@Override
-	public MovieApiVO setMovieApi(MovieApiVO movieApiVO, JsonObject jsonObj) {
-		jsonObj = (JsonObject) jsonObj.get("movieListResult");
-		JsonArray jsonArray = (JsonArray) jsonObj.get("movieList");
-		JsonObject object = (JsonObject) jsonArray.get(0);
-		
-		movieApiVO.setOpen_dt(object.get("openDt").getAsString());
-		movieApiVO.setGenre(object.get("genreAlt").getAsString());
-		movieApiVO.setNation(object.get("repNationNm").getAsString());
-		
-		return movieApiVO;
-	}*/
 	
 	@Override
 	public Map<String, Object> setMap(JsonArray jsonArray) {
@@ -185,13 +175,11 @@ public class MovieApiDAOImpl implements MovieApiDAO{
 				/*case "genre":
 					break;*/
 				case "openDt":
-					if (cd!="2000") {
-						int openEndDt = Integer.parseInt(cd)+1;
-						String queryCategory2 = URLEncoder.encode(Integer.toString(openEndDt), "UTF-8");
-						apiURL += "openStartDt"+queryCategory+"&openEndDt"+queryCategory2;
-					}else
-						apiURL += "&openEndDt"+queryCategory;
-					
+					if (cd!="2010") {
+						apiURL += "&openStartDt="+queryCategory+"&openEndDt="+queryCategory;
+					}else {
+						apiURL += "&openEndDt="+queryCategory;
+					}
 					break;
 				case "movieType":
 					apiURL += "movieTypeCd"+queryCategory;
@@ -212,4 +200,40 @@ public class MovieApiDAOImpl implements MovieApiDAO{
 		} 
 		return map;
 	}
+	
+	@Override
+	public JsonArray getCaPeopleArray(String query, int pnum) {
+		JsonArray jsonArray = null;
+		try {
+			String queryCategory = URLEncoder.encode(query, "UTF-8");
+			String apiURL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/people/searchPeopleList.json?key="+key+"&peopleNm="+queryCategory;
+			
+			JsonObject jsonObj = commonContent(apiURL, false);
+			jsonObj = (JsonObject) jsonObj.get("peopleListResult");
+			jsonArray = (JsonArray) jsonObj.get("peopleList");
+			
+		} catch (Exception e) {
+			System.out.println("getCaPeopleArray : "+e);
+		} 
+		return jsonArray;
+	}
+	
+	@Override
+	public List<String> getCaPeople1(String query, int pnum) {
+		List<String> list = new ArrayList<String>();
+		
+		try {
+			JsonArray jsonArray = getCaPeopleArray(query, pnum);
+			
+			JsonObject obj = (JsonObject) jsonArray.get(0);
+			String[] array = obj.get("filmoNames").getAsString().split("\\|");
+			
+			list = Arrays.asList(array);
+		} catch (Exception e) {
+			System.out.println("getCaPeople1 : "+e);
+		}
+		
+		return list;
+	}
+	
 }	

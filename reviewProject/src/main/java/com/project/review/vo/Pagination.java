@@ -9,27 +9,40 @@ public class Pagination {
 	private int pageCnt;
 	private int displayIdx;
 	
+	public void setPage(int curPage, int size) {
+		int pScale = 5;
+		int sp = 0;
+		
+		if (size==0) {
+			setStartPage(0);
+		}else {
+			if (curPage%pScale==0)
+				sp = curPage-(curPage-1)%pScale;
+			else
+				sp = curPage-curPage%pScale+1;
+			
+			setCurPage(curPage);
+			setDisplayIdx(((curPage-1)%pScale)*10);
+			setStartPage(sp);
+			setNextPage(sp+pScale);
+			
+			if (size/10+1<sp+4) 
+				setEndPage(size/10+1);
+			else
+				setEndPage(sp+pScale-1);
+				
+			if (sp==1)
+				setPrevPage(0);
+			else
+				setPrevPage(sp-pScale);
+		}
+	}
+	
 	public int getCurPage() {
 		return curPage;
 	}
 	public void setCurPage(int curPage) {
 		this.curPage = curPage;
-
-		int pScale = 5;
-		int sp = 0;
-		if (curPage%pScale==0)
-			sp = curPage-(curPage-1)%pScale;
-		else
-			sp = curPage-curPage%pScale+1;
-		
-		setDisplayIdx(((curPage-1)%pScale)*10);
-		setStartPage(sp);
-		setEndPage(sp+pScale-1);
-		setNextPage(sp+pScale);
-		if (sp==1)
-			setPrevPage(0);
-		else
-			setPrevPage(sp-pScale);
 	}
 	public int getStartPage() {
 		return startPage;

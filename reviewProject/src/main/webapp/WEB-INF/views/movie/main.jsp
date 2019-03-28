@@ -90,24 +90,23 @@
 	<div>
 		<jsp:include page="/WEB-INF/views/share/header.jsp" />
 	</div>
-	<!-- 카테고리 바 -->
-	<div>
-		<jsp:include page="/WEB-INF/views/share/category_bar.jsp" />
-	</div>
 	<div>
 		<jsp:include page="/WEB-INF/views/movie/detail_category.jsp" />
 	</div>
+	<!-- 카테고리 바 -->
+	<%-- 
+	
 
 	<!-- Best content -->
 	<div>
 		<jsp:include page="/WEB-INF/views/movie/best_content.jsp" />
 	</div>
 	<!-- content -->
+	 --%>
 	<div class="center">
 		<div class="movie_info"></div>
 		<div class="contentList"></div>
 	</div>
-
 	<!-- 새글쓰기 -->
 	<div style="float: right; margin-right: 200px;" id="STATICMENU">
 		<div id="adside">
@@ -132,11 +131,11 @@
 	<div style="height: 20px;"></div>
 	<div style="height: 20px;"></div>
 
-</body>
 
 <!-- 푸터 -->
-<div>
+<%-- <div>
 	<jsp:include page="/WEB-INF/views/share/footer.jsp" />
-</div>
+</div> --%>
+</body>
 
 </html>

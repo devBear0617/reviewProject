@@ -62,6 +62,7 @@ public class Movie_controller {
 	@RequestMapping(value = "/moreCategory")
 	public String moreCategory(String category_type, Model model) {
 		Map<String, Object> map = movieService.getCategory(category_type);
+		
 		model.addAttribute("cd", map.get("cd"));
 		model.addAttribute("nm", map.get("nm"));
 		model.addAttribute("ca_type", map.get("ca_type"));
@@ -71,19 +72,25 @@ public class Movie_controller {
 
 	// 상세 카테고리 - 영화 리스트
 	@RequestMapping(value = "/moreCaMovie")
-	public String moreCaMovie(String de_ca_type, String cd, int pnum, Model model) {
+	public String moreCaMovie(String de_ca_type, String cd, String nm, int pnum, Model model) {
 		Pagination pagination = new Pagination();
-		pagination.setCurPage(pnum);
+		pagination.setPage(pnum, 90000);
 		int displayIdx = pagination.getDisplayIdx();
-		
+
 		if (pnum % 5 == 1) 
-			moiveMap = movieService.getCaMovieList(de_ca_type, cd, pnum/5+1);
+			moiveMap = movieService.getCaMovieList(de_ca_type, cd, nm, pnum/5+1);
+		
 		
 		List<String> movieCd = new ArrayList<String>();
 		List<String> movieNm = new ArrayList<String>();
-		movieCd = ((List<String>) moiveMap.get("cd")).subList(displayIdx, displayIdx + 10);
-		movieNm = ((List<String>) moiveMap.get("nm")).subList(displayIdx, displayIdx + 10);
-
+		if (de_ca_type.equals("actor") || de_ca_type.equals("director")) {
+			movieCd = (List<String>) moiveMap.get("cd");
+			movieNm = (List<String>) moiveMap.get("nm");
+		}else {
+			movieCd = ((List<String>) moiveMap.get("cd")).subList(displayIdx, displayIdx + 10);
+			movieNm = ((List<String>) moiveMap.get("nm")).subList(displayIdx, displayIdx + 10);
+		}
+		
 		model.addAttribute("movieCd", movieCd);
 		model.addAttribute("movieNm", movieNm);
 		model.addAttribute("pagination", pagination);
@@ -103,9 +110,15 @@ public class Movie_controller {
 	@RequestMapping(value = "/oneContentView")
 	public String oneContentView(Board_MovieVO b_movieVO, Model model) {
 		List<BoardVO> board_list = movieService.getMovieBoardList(b_movieVO);
-		Pagination pagination = new Pagination();
-		pagination.setCurPage(b_movieVO.getPnum());
+		//pagination.setCurPage(b_movieVO.getPnum());
+		//List<BoardVO> board_list = movieService.getBoardList(b_movieVO);
 		
+		if (board_list.size()==0) 
+			return "movie/nullPage";
+		
+		Pagination pagination = new Pagination();
+		pagination.setPage(b_movieVO.getPnum(), board_list.size());
+			
 		model.addAttribute("board_list", board_list);
 		model.addAttribute("pagination", pagination);
 		

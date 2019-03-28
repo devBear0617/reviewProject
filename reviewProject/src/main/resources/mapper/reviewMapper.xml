@@ -150,7 +150,7 @@
      		FROM board_movie m, board b
       		WHERE m.board_num = b.board_num	AND m.movie_nm = #{movie_nm}	
   		    ) aa
-  		WHERE rnum between #{pnum} AND #{pnum}+2
+  		 WHERE rnum between #{pnum} AND #{pnum}+2
     </select>
     
 	<select id="getMovieBoardList_grade" parameterType="Board_MovieVO" resultMap="Board_movie">
@@ -188,7 +188,7 @@
      
        
     <!-- content 정렬  -->
-	<select id="getMovieBoardList" parameterType="map" resultMap="Board_movie">
+	<select id="getMovieBoardList" parameterType="Board_MovieVO" resultMap="Board_movie">
 		
 	SELECT bbb.*, (SELECT COUNT(*) FROM likeit WHERE board_num = bbb.board_num) as likeit_count, 
 				  (SELECT COUNT(*) FROM reply WHERE board_num = bbb.board_num) as reply_count	
@@ -196,17 +196,15 @@
 		   FROM ( SELECT rownum as rnum, bb.*
 		          FROM ( SELECT b.*, mv.b_movie_num, mv.movie_nm 
                          FROM board b, board_movie mv  
-                         WHERE b.board_num = mv.board_num order by <include refid = "sort"></include> 
+                         WHERE b.board_num = mv.board_num
+                         AND mv.movie_nm = #{movie_nm} order by <include refid = "sort"></include> 
                         ) bb                             
           <![CDATA[WHERE rownum <= #{pnum}+2]]> 
      	          )bmv ,  member m 
 		   WHERE bmv.member_id = m.member_id
 		   AND <![CDATA[bmv.rnum > ]]> #{pnum} ORDER BY rnum
 	     ) bbb
-    </select>    
-    
-   
-    
+    </select>        
       
     <!-- content 정렬  -->
 	<select id="getMovieBoardList_sort" parameterType="map" resultMap="Board_movie">

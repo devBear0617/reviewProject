@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript" src="/review/resources/script/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
-var movie_nm = $('.q').html();
+var movie_nm = $('.movieinfo_2').html();
 console.log(movie_nm);
 function fn_paging(pnum) {
 	$.ajax({
@@ -122,20 +122,22 @@ $('.sort').click(function () {
 </div>
 <div style="height: 20px;"></div>
 <div class="paging">
-	<c:if test="${pagination.prevPage ne 0}">
-		<a href="#" onClick="fn_paging('${pagination.prevPage}')">[이전]</a> 
-	</c:if>
-	<c:forEach var="pnum" begin="${pagination.startPage}" end="${pagination.endPage}">
-		<c:choose>
-			<c:when test="${pnum eq  pagination.curPage}">
-				<span style="font-weight: bold;"><a href="#" onClick="fn_paging('${pnum}')">${pnum}</a></span> 
-			</c:when>
-			<c:otherwise>
-				<a href="#" onClick="fn_paging('${pnum}')">${pnum}</a> 
-			</c:otherwise>
-		</c:choose>
-	</c:forEach>
-	<c:if test="${pagination.curPage ne pagination.pageCnt && pagination.pageCnt > 0}">
-		<a href="#" onClick="fn_paging('${pagination.nextPage}')">[다음]</a> 
+	<c:if test="${pagination.startPage ne 0}">
+		<c:if test="${pagination.prevPage ne 0}">
+			<a href="#" onClick="fn_paging('${pagination.prevPage}')">[이전]</a> 
+		</c:if>
+		<c:forEach var="pnum" begin="${pagination.startPage}" end="${pagination.endPage}">
+			<c:choose>
+				<c:when test="${pnum eq  pagination.curPage}">
+					<span style="font-weight: bold;"><a href="#" onClick="fn_paging('${pnum}')">${pnum}</a></span> 
+				</c:when>
+				<c:otherwise>
+					<a href="#" onClick="fn_paging('${pnum}')">${pnum}</a> 
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+		<c:if test="${pagination.curPage ne pagination.pageCnt && pagination.pageCnt > 0}">
+			<a href="#" onClick="fn_paging('${pagination.nextPage}')">[다음]</a> 
+		</c:if>
 	</c:if>
 </div>

@@ -84,7 +84,7 @@ public class MovieServiceImpl implements MovieService {
 			if (sort_id.equals("sort_grade")) 
 				return boardDAO.getMovieBoardList_grade(b_MovieVO);
 			if (sort_id.equals("sort_time")) 
-				return boardDAO.getMovieBoardList_grade(b_MovieVO);
+				return boardDAO.getMovieBoardList_time(b_MovieVO);
 		} catch (Exception e) {
 		}
 		return boardDAO.getMovieBoardList_time(b_MovieVO);*/
@@ -268,7 +268,6 @@ public class MovieServiceImpl implements MovieService {
 		
 		try {
 			isMoiveNm = getMovieInfo(movieApiVO.getMovie_nm()).getMovie_nm();
-			System.out.println("isMoiveNm :"+isMoiveNm);
 		} catch (Exception e) {
 			System.out.println("isMoiveNm : "+e);
 			isMoiveNm = null;
@@ -276,7 +275,6 @@ public class MovieServiceImpl implements MovieService {
 
 		if (isMoiveNm == null) {
 			movieApiVO = movieApiDAO.getMovieApi(movieApiVO, false);
-			System.out.println(">> 3 : "+movieApiVO.toString());
 			JsonArray jsonArray = searchMovie(movieApiVO.getMovie_nm());
 			
 			if (jsonArray.size() != 0) {
@@ -284,14 +282,11 @@ public class MovieServiceImpl implements MovieService {
 				movieApiVO.setDirector(object.get("director").getAsString());
 				movieApiVO.setActor(object.get("actor").getAsString());
 				movieApiVO.setPoster(object.get("image").getAsString());
-				System.out.println(">> 4 : "+movieApiVO.toString());
 			}
 			boardDAO.insertMovieInfo(movieApiVO);
 		}
 		else
 			movieApiVO = getMovieInfo(movieApiVO.getMovie_nm());
-		
-		System.out.println(">> 5 : "+movieApiVO.toString());
 		
 		return movieApiVO;
 	}
@@ -308,41 +303,31 @@ public class MovieServiceImpl implements MovieService {
 		List<String> dCategoryNm = new ArrayList<String>();
 		
 		switch (category_type) {
-			/*case "genre":
-				String[] genre = {"드라마", "판타지", "서부", "공포", "로맨스", "모험", "스릴러", "느와르", "컬트", "다큐멘터리",
-				               	"코미디", "가족", "미스터리", "전쟁", "애니메이션", "범죄", "뮤지컬", "SF", "액션", "무협",
-				               	"에로", "서스펜스", "서사", "블랙코미디"};
-				map = (Map<String, Object>) (dCategoryNm = Arrays.asList(genre));
-				
-				for (int i=1; i<=genre.length; i++) {
-					cd.add(Integer.toString(i));
-				}
-				break;*/
-				
-			case "dt":
-				// 중간 카테고리 X
-				String date = LocalDate.now().minusWeeks(1).format(DateTimeFormatter.BASIC_ISO_DATE);
-				map = movieApiDAO.getMap(date);
-				return map;
-				
 			case "actor":
+				String[] actorCd = {"10057015", "20323971", "10087395", "20322111", "20160378"};  
+				String[] actorNm = {"이나라", "이현균", "한기윤", "강길우", "김정팔"};
+				
+				cd = Arrays.asList(actorCd);
+				dCategoryNm = Arrays.asList(actorNm);
 				break;
 			case "director":
+				String[] directorCd = {"10085335", "10087327", "20112325", "20213366"};  
+				String[] directorNm = {"다렌 폴 피셔", "줄리아 하트", "강유가람", "허세준"};
+				
+				cd = Arrays.asList(directorCd);
+				dCategoryNm = Arrays.asList(directorNm);
 				break;
 			case "openDt":
-				String[] dtCd = new String[20];
-				String[] dtNm = new String[20];
-				dtCd[0] = "2000";
-				dtNm[0] = "2000년 이전";
+				String[] dtCd = new String[11];
+				String[] dtNm = new String[11];
+				dtCd[0] = "2010";
+				dtNm[0] = "2010년 이전";
 				for (int i=1; i<dtCd.length; i++) {
-					if (i<10) {
-						dtCd[i] = "200"+i;
-						dtNm[i] = "200"+i+"년";
-					}else {
-						dtCd[i] = "20"+i;
-						dtNm[i] = "20"+i+"년";
-					}
+					dtCd[i] = "201"+i;
+					dtNm[i] = "201"+i+"년";
 				}
+				dtCd[10] = "-1";
+				dtNm[10] = "현재 상영작";
 				cd = Arrays.asList(dtCd);
 				dCategoryNm = Arrays.asList(dtNm);
 				break;
@@ -370,8 +355,24 @@ public class MovieServiceImpl implements MovieService {
 	}
 
 	@Override
-	public Map<String, Object> getCaMovieList(String ca_type, String cd, int pnum) {
-		
-		return movieApiDAO.getCaMovieArray(ca_type, cd, pnum);
+	public Map<String, Object> getCaMovieList(String ca_type, String cd, String nm, int pnum) {
+		System.out.println("2>"+cd);
+		if (ca_type.equals("actor") || ca_type.equals("director")) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			List<String> list = movieApiDAO.getCaPeople1(nm, pnum);
+			List<String> list2 = list;
+			map.put("cd", list);
+			map.put("nm", list);
+			
+			return map;
+		}else if (ca_type.equals("openDt") && cd.equals("-1")) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			String date = LocalDate.now().minusWeeks(1).format(DateTimeFormatter.BASIC_ISO_DATE);
+			map = movieApiDAO.getMap(date);
+			
+			return map;
+		}else {
+			return movieApiDAO.getCaMovieArray(ca_type, cd, pnum);
+		}
 	}
 }

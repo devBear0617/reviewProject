@@ -65,21 +65,20 @@ img[class^="cg_img"] {
 <div class="category">
 	<table class="table_st">
 		<tr>
-			<td><img class="cg_img_genre"
+			<td>
+				<img class="cg_img_actor" 
 				src="/review/resources/image/REMON_category_director.png" onclick="moreCategory(this)">
 			</td>
-			<td><img class="cg_img_cnt"
+			<td>
+				<img class="cg_img_director" 
 				src="/review/resources/image/REMON_category_actor.png" onclick="moreCategory(this)">
 			</td>
-			<td><img class="cg_img_dt"
+			<!-- <td><img class="cg_img_dt"
+				src="/review/resources/image/test.png" onclick="moreCategory(this)">
+			</td> -->
+			<td><img class="cg_img_openDt"
 				src="/review/resources/image/REMON_category_new.png" onclick="moreCategory(this)">
 			</td>
-			<!-- <td>
-			<img class="cg_img_actor" src="/review/resources/image/test.png" onclick="moreCategory(this)">
-		</td>
-		<td>
-			<img class="cg_img_director" src="/review/resources/image/test.png" onclick="moreCategory(this)">
-		</td> -->
 			<td><img class="cg_img_movieType"
 				src="/review/resources/image/REMON_category_type.png" onclick="moreCategory(this)">
 			</td>

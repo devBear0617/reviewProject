@@ -19,9 +19,10 @@ public class BoardVO {
 	private GradeVO gradeVO;
 	private Board_MovieVO b_movieVO;
 	private Board_TvVO b_tvVO;
-	/*private Board_GameVO b_gameVO;*/
+	private Board_GameVO b_gameVO;
 	private MemberVO memberVO;
 	private HashtagVO hashtagVO;
+	private ReplyVO replyVO;
 	
 	private int reply_count;
 	private int likeit_count;
@@ -107,6 +108,12 @@ public class BoardVO {
 	public void setB_tvVO(Board_TvVO b_tvVO) {
 		this.b_tvVO = b_tvVO;
 	}
+	public Board_GameVO getB_gameVO() {
+		return b_gameVO;
+	}
+	public void setB_gameVO(Board_GameVO b_gameVO) {
+		this.b_gameVO = b_gameVO;
+	}
 	public MemberVO getMemberVO() {
 		return memberVO;
 	}
@@ -118,6 +125,12 @@ public class BoardVO {
 	}
 	public void setHashtagVO(HashtagVO hashtagVO) {
 		this.hashtagVO = hashtagVO;
+	}
+	public ReplyVO getReplyVO() {
+		return replyVO;
+	}
+	public void setReplyVO(ReplyVO replyVO) {
+		this.replyVO = replyVO;
 	}
 	public int getReply_count() {
 		return reply_count;
@@ -149,10 +162,9 @@ public class BoardVO {
 				+ ", board_date=" + board_date + ", member_id=" + member_id + ", lemon_grade=" + lemon_grade
 				+ ", recommend=" + recommend + ", thumbnail=" + thumbnail + ", board_up_date=" + board_up_date
 				+ ", board_readcount=" + board_readcount + ", gradeVO=" + gradeVO + ", b_movieVO=" + b_movieVO
-				+ ", b_tvVO=" + b_tvVO + ", memberVO=" + memberVO + ", hashtagVO=" + hashtagVO + ", reply_count="
-				+ reply_count + ", likeit_count=" + likeit_count + ", likeList=" + likeList + ", replyList=" + replyList
-				+ "]";
+				+ ", b_tvVO=" + b_tvVO + ", b_gameVO=" + b_gameVO + ", memberVO=" + memberVO + ", hashtagVO="
+				+ hashtagVO + ", replyVO=" + replyVO + ", reply_count=" + reply_count + ", likeit_count=" + likeit_count
+				+ ", likeList=" + likeList + ", replyList=" + replyList + "]";
 	}
-	
 	
 }

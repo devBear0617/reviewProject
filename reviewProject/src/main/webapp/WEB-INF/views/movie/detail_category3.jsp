@@ -1,80 +1,73 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script type="text/javascript"
-	src="/review/resources/script/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/review/resources/script/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
-	function fn_ca_paging(pnum) {
-		var de_category_type = $('#de_ca_type').attr('class').split(" ");
-		var de_ca_type = de_category_type[0];
-		var cd = de_category_type[1];
-		console.log(de_ca_type);
-		console.log(cd);
-		console.log(pnum);
-
-		$
-				.ajax({
-					type : 'POST',
-					url : "./moreCaMovie",
-					data : {
-						'de_ca_type' : de_ca_type,
-						'cd' : cd,
-						'pnum' : pnum
-					},
-					success : function(html) {
-						$('.detail2_category').empty();
-						$('.detail2_category').append(html);
-						$('.detail2_category').find('#de_ca_type').addClass(
-								de_ca_type);
-						$('.detail2_category').find('#de_ca_type').addClass(cd);
-					},
-					error : function(error) {
-						console.log(error);
-					}
-				})
-	}
-	function getMRList(e) {
-		var movie_cd = $(e).attr('class').split(" ")[1];
-		var movie_nm = $(e).html();
-
-		$.ajax({
-			type : 'POST',
-			url : "./movieInfoView",
-			data : {
-				'movie_cd' : movie_cd,
-				'movie_nm' : movie_nm
-			},
-			success : function(html) {
-				$('.movie_info').empty();
-				$('.movie_info').append(html);
-
-				$.ajax({
-					type : 'POST',
-					url : "./oneContentView",
-					data : {
-						"sort_id" : "sort_time",
-						'movie_nm' : movie_nm,
-						'pnum' : 1
-					},
-					success : function(html) {
-						$('.contentList').empty();
-						$('.contentList').append(html);
-					},
-					error : function(error) {
-						console.log(error);
-					}
-				})
-			},
-			error : function(error) {
-				console.log(error);
-			}
-		})
-	}
-
-	$(document).ready(function() {
-		var idx0 = $('.de_caM').first();
-		getMRList(idx0);
+function fn_ca_paging(pnum) {
+	var de_category_type = $('#de_ca_type').attr('class').split(" ");
+	var de_ca_type = de_category_type[0];
+	var cd = de_category_type[1];
+	
+	$.ajax({
+		type : 'POST',
+		url : "./moreCaMovie",
+		data : {
+			'de_ca_type' : de_ca_type,
+			'cd' : cd,
+			'pnum' : pnum
+		},
+		success : function(html) {
+			$('.detail2_category').empty();
+			$('.detail2_category').append(html);
+			$('.detail2_category').find('#de_ca_type').addClass(de_ca_type);
+			$('.detail2_category').find('#de_ca_type').addClass(cd);
+		},
+		error : function(error) {
+			console.log(error);
+		}
 	})
+}
+function getMRList(e){
+	var movie_cd = $(e).attr('class').split(" ")[1];
+	var movie_nm = $(e).html();
+	
+	$.ajax({
+		type : 'POST',
+		url : "./movieInfoView",
+		data : {
+			'movie_cd' : movie_cd,
+			'movie_nm' : movie_nm
+		},
+		success : function(html) {
+			$('.movie_info').empty();
+			$('.movie_info').append(html);
+			
+			$.ajax({
+				type : 'POST',
+				url : "./oneContentView",
+				data : {
+					"sort_id" : "sort_time",
+					'movie_nm' : movie_nm,
+					'pnum' : 1
+				},
+				success : function(html) {
+					$('.contentList').empty();
+					$('.contentList').append(html);
+				},
+				error : function(error) {
+					console.log(error);
+				}
+			})
+		},
+		error : function(error) {
+			console.log(error);
+		}
+	})
+}
+
+$( document ).ready(function() {
+	var idx0 = $('.de_caM').first();
+	getMRList(idx0);
+})
 </script>
 <style type="text/css">
 .de_caM {
@@ -84,7 +77,6 @@
 	float: left;
 	text-align: center;
 }
-
 .paging {
 	margin-left: auto;
 	margin-right: auto;
@@ -94,7 +86,6 @@
 	padding: 10px;
 	font-size: large;
 }
-
 .de_ca_3 {
 	background: linear-gradient(to right, #E4F7BA, #FAF4C0);
 	width: 1200px;
