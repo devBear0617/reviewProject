@@ -102,7 +102,7 @@ public class Movie_controller {
 	
 	@RequestMapping(value = "/oneContentView")
 	public String oneContentView(Board_MovieVO b_movieVO, Model model) {
-		List<BoardVO> board_list = movieService.getBoardList(b_movieVO);
+		List<BoardVO> board_list = movieService.getMovieBoardList(b_movieVO);
 		Pagination pagination = new Pagination();
 		pagination.setCurPage(b_movieVO.getPnum());
 		
@@ -149,17 +149,20 @@ public class Movie_controller {
 		model.addAttribute("sort_id", sort_id);				
 		
 		Map<String, Object> map = new HashMap<String, Object>();
+		//System.out.println(start_content+"///"+end_content);
 		map.put("start_content", start_content);
 		map.put("end_content", end_content);
+		map.put("sort_id", sort_id);
 		
 		List<BoardVO> board_list;		
-		if (sort_id.equals("sort_time")) {
+		board_list = movieService.getMovieBoardList_sort(map);
+		/*if (sort_id.equals("sort_time")) {
 			board_list = movieService.getMovieBoardList_sort_time(map);
 		}else if(sort_id.equals("sort_likeit")) {
 			board_list = movieService.getMovieBoardList_sort_likeit(map);			
 		}else {
 			board_list = movieService.getMovieBoardList_sort_grade(map);			
-		}		
+		}	*/
 		model.addAttribute("board_list", board_list);
 
 		int movieBoardCount = movieService.getMovieBoardCount();

@@ -137,15 +137,8 @@
 		SELECT *
 		FROM board
 	</select>	
-	
-	<!-- <select id="getMovieBoardList" resultMap="Board_movie">
-		SELECT *
-		FROM board_movie m, board b
-		WHERE m.board_num = b.board_num
-		ORDER BY m.board_num DESC
-	</select> -->
-	
-	<select id="getMovieBoardList_time" parameterType="Board_MovieVO" resultMap="Board_movie">
+		
+	<!-- <select id="getMovieBoardList_time" parameterType="Board_MovieVO" resultMap="Board_movie">
 		SELECT aa.*
 		FROM (
 			SELECT ROW_NUMBER() OVER (ORDER BY m.board_num DESC) rnum, 			
@@ -191,60 +184,64 @@
      		FROM board_movie m, board b
       		WHERE m.board_num = b.board_num	AND m.movie_nm = #{movie_nm}	
   		    ) aa
-    </select>
+    </select> -->
+     
+       
+    <!-- content 정렬  -->
+	<select id="getMovieBoardList" parameterType="map" resultMap="Board_movie">
+		
+	SELECT bbb.*, (SELECT COUNT(*) FROM likeit WHERE board_num = bbb.board_num) as likeit_count, 
+				  (SELECT COUNT(*) FROM reply WHERE board_num = bbb.board_num) as reply_count	
+	FROM ( SELECT bmv.*, m.MEMBER_EMAIL, m.MEMBER_PIC  
+		   FROM ( SELECT rownum as rnum, bb.*
+		          FROM ( SELECT b.*, mv.b_movie_num, mv.movie_nm 
+                         FROM board b, board_movie mv  
+                         WHERE b.board_num = mv.board_num order by <include refid = "sort"></include> 
+                        ) bb                             
+          <![CDATA[WHERE rownum <= #{pnum}+2]]> 
+     	          )bmv ,  member m 
+		   WHERE bmv.member_id = m.member_id
+		   AND <![CDATA[bmv.rnum > ]]> #{pnum} ORDER BY rnum
+	     ) bbb
+    </select>    
     
+   
     
+      
+    <!-- content 정렬  -->
+	<select id="getMovieBoardList_sort" parameterType="map" resultMap="Board_movie">
+		
+	SELECT bbb.*, (SELECT COUNT(*) FROM likeit WHERE board_num = bbb.board_num) as likeit_count, 
+				  (SELECT COUNT(*) FROM reply WHERE board_num = bbb.board_num) as reply_count	
+	FROM ( SELECT bmv.*, m.MEMBER_EMAIL, m.MEMBER_PIC  
+		   FROM ( SELECT rownum as rnum, bb.*
+		          FROM ( SELECT b.*, mv.b_movie_num, mv.movie_nm 
+                         FROM board b, board_movie mv  
+                         WHERE b.board_num = mv.board_num order by <include refid = "sort"></include> 
+                        ) bb                             
+          <![CDATA[WHERE rownum <= #{end_content}]]> 
+     	          )bmv ,  member m 
+		   WHERE bmv.member_id = m.member_id
+		   AND <![CDATA[bmv.rnum > ]]> #{start_content} ORDER BY rnum
+	     ) bbb
+    </select>    
     
-    
-	<select id="getMovieBoardList_sort_time" parameterType="map" resultMap="Board_movie">
-		SELECT aa.*
-		FROM (
-			SELECT ROW_NUMBER() OVER (ORDER BY m.board_num DESC) rnum, 			
-				   (SELECT COUNT(*) FROM likeit WHERE board_num = b.board_num) as likeit_count,
-                   (SELECT COUNT(*) FROM reply WHERE board_num = b.board_num) as reply_count,
-				   b.board_num, b.board_title, b.board_content, b.board_date, b.member_id, 
-				   b.lemon_grade, b.recommend, b.thumbnail, b.board_up_date, b.board_readcount, 
-				   m.movie_nm, m.b_movie_num
-     		FROM board_movie m, board b
-      		WHERE m.board_num = b.board_num		
-  		    ) aa
-		WHERE rnum between #{start_content} AND #{end_content}
-    </select>
-    
-	<select id="getMovieBoardList_sort_grade" parameterType="map" resultMap="Board_movie">
-		SELECT aa.*
-		FROM (
-			SELECT ROW_NUMBER() OVER (ORDER BY b.lemon_grade DESC, m.board_num DESC) rnum,
-				   (SELECT COUNT(*) FROM likeit WHERE board_num = b.board_num) as likeit_count,
-                   (SELECT COUNT(*) FROM reply WHERE board_num = b.board_num) as reply_count, 
-				   b.board_num, b.board_title, b.board_content, b.board_date, b.member_id, 
-				   b.lemon_grade, b.recommend, b.thumbnail, b.board_up_date, b.board_readcount, 
-				   m.movie_nm, m.b_movie_num
-     		FROM board_movie m, board b
-      		WHERE m.board_num = b.board_num		
-  		    ) aa
-		WHERE rnum between #{start_content} AND #{end_content}
-    </select>
-    
-	<select id="getMovieBoardList_sort_likeit" parameterType="map" resultMap="Board_movie">
-		SELECT aa.*
-		FROM (
-			SELECT ROW_NUMBER() OVER(ORDER BY(
-											SELECT COUNT(*)
-                                      		FROM likeit
-                                     		WHERE board_num = b.board_num                                           
-                                    		) DESC, b.board_num DESC 
-                                    ) rnum, 	
-                   (SELECT COUNT(*) FROM likeit WHERE board_num = b.board_num) as likeit_count,
-                   (SELECT COUNT(*) FROM reply WHERE board_num = b.board_num) as reply_count,		 
-				   b.board_num, b.board_title, b.board_content, b.board_date, b.member_id, 
-				   b.lemon_grade, b.recommend, b.thumbnail, b.board_up_date, b.board_readcount,
-				   m.movie_nm, m.b_movie_num
-     		FROM board_movie m, board b
-      		WHERE m.board_num = b.board_num		
-  		    ) aa
-		WHERE rnum between #{start_content} AND #{end_content}
-    </select>
+    <!-- 정렬 조건 include  -->
+    <sql id = "sort">
+    	<choose>
+    		<when test = "sort_id == 'sort_time'">
+    		  b.board_num desc
+    		</when>
+    		<when test = "sort_id == 'sort_grade'">
+    		  b.lemon_grade desc, b.board_num desc
+    		</when>
+    		<otherwise>
+    		  (SELECT COUNT(*) FROM likeit WHERE board_num = b.board_num) DESC, b.board_num DESC 
+    		</otherwise>   	
+    	</choose>    
+    </sql>    
+	    
+	
     <select id="getMovieBoardCount" resultType="int">
 		SELECT COUNT(*)
 		FROM board_movie

@@ -75,8 +75,8 @@ public class MovieServiceImpl implements MovieService {
 	
 	//게시판 호출
 	@Override
-	public List<BoardVO> getBoardList(Board_MovieVO b_MovieVO) {
-		String sort_id = b_MovieVO.getSort_id();
+	public List<BoardVO> getMovieBoardList(Board_MovieVO b_MovieVO) {
+	/*	String sort_id = b_MovieVO.getSort_id();
 		System.out.println(">"+sort_id);
 		try {
 			if (sort_id.equals("sort_likeit")) 
@@ -87,26 +87,16 @@ public class MovieServiceImpl implements MovieService {
 				return boardDAO.getMovieBoardList_grade(b_MovieVO);
 		} catch (Exception e) {
 		}
-		return boardDAO.getMovieBoardList_time(b_MovieVO);
+		return boardDAO.getMovieBoardList_time(b_MovieVO);*/
+		return boardDAO.getMovieBoardList(b_MovieVO);
 	}
+	//게시글 정렬
 	@Override
-	public List<BoardVO> getMovieBoardList_sort_time(Map<String, Object> map) {
-		// movie/tv/game -> 해당하는 board값 호출하는 함수 작성,
-		
-		return boardDAO.getMovieBoardList_sort_time(map);
+	public List<BoardVO> getMovieBoardList_sort(Map<String, Object> map) {
+				
+		return boardDAO.getMovieBoardList_sort(map);
 	}
-	@Override
-	public List<BoardVO> getMovieBoardList_sort_grade(Map<String, Object> map) {
-		// movie/tv/game -> 해당하는 board값 호출하는 함수 작성,
-		
-		return boardDAO.getMovieBoardList_sort_grade(map);
-	}
-	@Override
-	public List<BoardVO> getMovieBoardList_sort_likeit(Map<String, Object> map) {
-		// movie/tv/game -> 해당하는 board값 호출하는 함수 작성,
-		
-		return boardDAO.getMovieBoardList_sort_likeit(map);
-	}
+	
 	@Override
 	public int getMovieBoardCount() {
 		return boardDAO.getMovieBoardCount();
