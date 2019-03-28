@@ -92,8 +92,8 @@
 	<!-- Movie only search -->
 	<select id="searchMovie" parameterType="String" resultType="BoardVO">
 		SELECT *
-		FROM (
-			SELECT board_num FROM board WHERE board_title LIKE '%' ||  #{keyword} || '%'
+		FROM board A,
+			(SELECT board_num FROM board WHERE board_title LIKE '%' ||  #{keyword} || '%'
 			UNION
 			SELECT board_num FROM board WHERE board_content LIKE '%' ||  #{keyword} || '%'
 			UNION
@@ -112,8 +112,9 @@
 			SELECT board_num FROM hashtag WHERE hashtag5 LIKE '%' ||  #{keyword} || '%'
 			UNION
 			SELECT board_num FROM hashtag WHERE hashtag6 LIKE '%' ||  #{keyword} || '%'
-			) A, board_movie B
+			) B, board_movie C
 		WHERE A.board_num = B.board_num
+		AND A.board_num = C.board_num
 		ORDER BY A.board_num DESC
 	</select>
 	

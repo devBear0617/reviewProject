@@ -23,10 +23,7 @@ public class Search_controller {
 
 	@Autowired
 	private SearchService searchService;
-	@Autowired
-	private MovieService movieService;
-	@Autowired
-	private MemberService memberService;
+
 	
 	//-------------------------------------------
 	
@@ -164,10 +161,6 @@ public class Search_controller {
 		
 		String keyword = request.getParameter("keyword");
 		model.addAttribute("keyword", keyword);
-		/*List<Integer> boardTotal = searchService.searchTotal(keyword);
-		System.out.println(boardTotal);
-		// 통합검색
-		model.addAttribute("boardTotal", boardTotal);*/
 		
 		return "share/searchResult";
 	}
