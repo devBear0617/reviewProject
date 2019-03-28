@@ -11,18 +11,20 @@
 </head>
 <body>
 
-<table border='1'>
-	<tr>
+<table>
+<!-- 	<tr>
 		<td>글넘</td>
 		<td>글제 / <br> 내용</td>
 		<td>글쓴</td>
 		<td>날짜</td>
-	</tr>
+	</tr> -->
 	<c:forEach items="${search_Result}" var="result">
-		<tr>
-			<td><a href="/review/movie/detail_view/${result.board_num}">${result.board_num}</a></td>
+		<tr onclick="location.href='/review/movie/detail_view/${result.board_num}'">
+			<!-- <td>글넘{result.board_num}</td> -->
 			<td>
 				<img src="${result.thumbnail}" height="70px" width="70px">
+			</td>
+			<td>
 				${result.board_title} / <br>
 				<c:choose>
 					<c:when test="${fn:length(result.board_content) > 50}">
@@ -32,7 +34,7 @@
             			<c:out value="${result.board_content}"/>
            			</c:otherwise> 
 				</c:choose>
-				</td>
+			</td>
 			<td>${result.member_id}</td>
 			<td><c:if test="${empty result.board_up_date}">${result.board_date}</c:if>
 				<c:if test="${not empty result.board_up_date}">${result.board_up_date}</c:if></td>

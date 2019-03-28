@@ -14,8 +14,21 @@ public class SearchServiceImpl implements SearchService {
 	@Autowired
 	private SearchDAO searchDAO;
 
+	// only TV
+	@Override
+	public List<BoardVO> searchTV(String keyword) {
+		
+		return searchDAO.searchTV(keyword);
+	}
 	
+	// only Game
+	@Override
+	public List<BoardVO> searchGame(String keyword) {
+		
+		return searchDAO.searchGame(keyword);
+	}
 	
+	// Movie's
 	@Override
 	public List<BoardVO> searchMovie_likeCount(String keyword) {
 		
@@ -52,12 +65,14 @@ public class SearchServiceImpl implements SearchService {
 		return searchDAO.searchMovie_Hashtag(keyword);
 	}
 	
+	// only Movie
 	@Override
 	public List<BoardVO> searchMovie(String keyword) {
 		
 		return searchDAO.searchMovie(keyword);
 	}
 	
+	// Total
 	@Override
 	public List<BoardVO> searchTotal(String keyword) {
 		

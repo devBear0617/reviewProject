@@ -29,9 +29,17 @@
 
 <h3>All Items &nbsp; <span style="color:red">v</span></h3>
 
-<div class="spread_Movie" onclick="spread_Movie()">
-<h3>Movie</h3>
-</div>
+	<div class="spread_Movie" onclick="spread_Movie()">
+	<h3>Movie</h3>
+	</div>
+
+	<div class="spread_Game" onclick="spread_Game()">
+	<h3>GAME</h3>
+	</div>
+
+	<div class="spread_TV" onclick="spread_TV()">
+	<h3>TV</h3>
+	</div>
 
 </body>
 </html>

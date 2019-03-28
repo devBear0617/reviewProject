@@ -6,7 +6,12 @@ import com.project.review.vo.BoardVO;
 
 public interface SearchService {
 	
-
+	// TV
+	public List<BoardVO> searchTV(String keyword);
+	
+	// Game
+	public List<BoardVO> searchGame(String keyword);
+	
 	// MOVIE
 	public List<BoardVO> searchMovie(String keyword);
 		public List<BoardVO> searchMovie_likeCount(String keyword);

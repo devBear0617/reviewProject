@@ -27,6 +27,30 @@ public class Search_controller {
 	
 	//-------------------------------------------
 	
+	// only TV search
+	@RequestMapping(value="/searchResult/result_TV_only", method=RequestMethod.POST)
+	public String result_TV_only(HttpServletRequest request, HttpSession session, Model model) {
+		
+		String keyword = request.getParameter("keyword");
+		List<BoardVO> search_Result = searchService.searchTV(keyword);
+		System.out.println(search_Result);
+		model.addAttribute("search_Result", search_Result);
+		
+		return "share/result_Board";
+	}
+	
+	// only Game search
+	@RequestMapping(value="/searchResult/result_Game_only", method=RequestMethod.POST)
+	public String result_Game_only(HttpServletRequest request, HttpSession session, Model model) {
+		
+		String keyword = request.getParameter("keyword");
+		List<BoardVO> search_Result = searchService.searchGame(keyword);
+		System.out.println(search_Result);
+		model.addAttribute("search_Result", search_Result);
+		
+		return "share/result_Board";
+	}
+	
 	// Movie - grade desc
 	@RequestMapping(value="/searchResult/result_Movie_grade", method=RequestMethod.POST)
 	public String result_Movie_grade(HttpServletRequest request, HttpSession session, Model model) {
@@ -149,10 +173,25 @@ public class Search_controller {
 		return "share/menu_Movie_V";
 	}
 	
-	@RequestMapping(value="/searchResult/menu_Movie")
-	public String menu_Movie() {
+	// Game Menu's (V)
+	@RequestMapping(value="/searchResult/menu_Movie_V")
+	public String menu_Game_V() {
 		
-		return "share/menu_Movie";
+		return "share/menu_Game_V";
+	}
+	
+	// TV Menu's (V)
+	@RequestMapping(value="/searchResult/menu_Movie_V")
+	public String menu_TV_V() {
+		
+		return "share/menu_TV_V";
+	}
+	
+	// menu_Form
+	@RequestMapping(value="/searchResult/menu_Form")
+	public String menu_Form() {
+		
+		return "share/menu_Form";
 	}
 	
 	// result form
