@@ -38,14 +38,14 @@
 				</td>
 				<td class="no_background">
 					<!-- 검색 바 -->
-					<div class='moveBT' data-target="#searchMain">
-						<form action="/review/search/main/" id="searchMain">
+					<!-- <div class='moveBT' data-target="#searchMain"> -->
+						<form action="/review/search/searchResult" method="POST" id="search">
 							<input type="text" id="query" name="query"
 								style="width: 300px; height: 30px; border-radius: 20px; border-style: none;">
-							<button
-								style="width: 50px; height: 30px; border-radius: 20px; border-style: none; background-color: yellow;">검색</button>
+							<input type="submit" value="검색"
+								style="width: 50px; height: 30px; border-radius: 20px; border-style: none; background-color: yellow;">
 						</form>
-					</div>
+					<!-- </div> -->
 				</td>
 				<td class="no_background">
 					<!-- 마이페이지 --> <!-- 로그인 필요 시 -->
