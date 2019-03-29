@@ -174,14 +174,14 @@ public class Search_controller {
 	}
 	
 	// Game Menu's (V)
-	@RequestMapping(value="/searchResult/menu_Movie_V")
+	@RequestMapping(value="/searchResult/menu_Game_V")
 	public String menu_Game_V() {
 		
 		return "share/menu_Game_V";
 	}
 	
 	// TV Menu's (V)
-	@RequestMapping(value="/searchResult/menu_Movie_V")
+	@RequestMapping(value="/searchResult/menu_TV_V")
 	public String menu_TV_V() {
 		
 		return "share/menu_TV_V";

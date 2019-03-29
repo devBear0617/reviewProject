@@ -52,7 +52,6 @@ function spread_Movie () {
 			$(".menu_Movie_hashtagV").empty();
 			$(".menu_Movie_titleContentV").empty();
 			$(".menu_Movie_gradeV").empty();
-			$(".menu_Movie_V").empty();
 			$(".menu_Game_V").empty();
 			$(".menu_TV_V").empty();
 			
@@ -93,7 +92,6 @@ function return_Menu () {
 		type: 'GET',
 		dataType: 'text',
 		success: function (html) {
-			$(".menu_Movie_V").empty();
 			$(".menu_Movie_memberV").empty();
 			$(".menu_Movie_replyV").empty();
 			$(".menu_Movie_hashtagV").empty();
@@ -412,14 +410,13 @@ function spread_Game () {
 			$(".menu_Movie_gradeV").empty();
 			$(".menu_Movie_V").empty();
 			$(".menu_TV_V").empty();
-			$(".menu_Movie_V").empty();
 			
 			$(".menu_Game_V").empty();
 			$(".menu_Game_V").append(html);
 		}
 	});
 	
-	// 결과 펼치기 (movie recent)
+	// 결과 펼치기 (game recent)
  	$.ajax({
 		url: '/review/search/searchResult/result_Game_only',
 		type: 'POST',
@@ -444,7 +441,7 @@ function spread_Game () {
 	
 };
 
-function spread_Game () {
+function spread_TV () {
 	// 메뉴 펼치기
 	$.ajax({
 		url: '/review/search/searchResult/menu_TV_V',
@@ -458,7 +455,6 @@ function spread_Game () {
 			$(".menu_Movie_titleContentV").empty();
 			$(".menu_Movie_gradeV").empty();
 			$(".menu_Movie_V").empty();
-			$(".menu_Movie_V").empty();
 			$(".menu_Game_V").empty();
 			
 			$(".menu_TV_V").empty();
@@ -466,7 +462,7 @@ function spread_Game () {
 		}
 	});
 	
-	// 결과 펼치기 (movie recent)
+	// 결과 펼치기 (tv recent)
  	$.ajax({
 		url: '/review/search/searchResult/result_TV_only',
 		type: 'POST',

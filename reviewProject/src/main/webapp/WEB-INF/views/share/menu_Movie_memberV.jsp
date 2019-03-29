@@ -19,7 +19,7 @@
 <h3>All Items</h3>
 </div>
 
-	<div class="return_Menu" onclick="return_Menu()">
+	<div class="return_Menu" onclick="spread_Movie()">
 	<h3>Movie <span style="color:red">v</span></h3>
 	</div>
 		<div class="result_Movie_recent" onclick="result_Movie_recent()">
