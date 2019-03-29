@@ -40,62 +40,60 @@
 		<br>
 
 		<!-- 검색 바 -->
-		<div class="center">
-			<!-- <div class='moveBT' data-target="#searchMain"> -->
-				<form action="/review/search/searchResult" method="POST" id="search">
-					<input type="text" id="query" name="keyword"
-						style="width: 600px; height: 60px; background-image: url('resources/image/REMON_search_bar.png'); border-style: none;">
-					<input type="submit" value="검색">
-				</form>
-				<!-- <a href="/review/search/main">검색</a> -->
-			<!-- </div> -->
+		<div class="center"
+			style="width: 600px; height: 60px; background-image: url('resources/image/REMON_search_bar.png'); border-style: none;">
+			<form action="/review/search/searchResult" method="POST" id="search" style="padding-top: 15px;">
+				<input type="text" id="query" name="keyword"
+					style="width: 450px; height: 30px; border-style: none;"> <input
+					type="submit" style="border-style: none; background: none;" value="검색">
+			</form>
 		</div>
-		<br>
+	</div>
+	<br>
 
-		<!-- 네비 -->
-		<div class="center">
-			<table class="center">
-				<tr>
-					<td colspan="2"
-						style="background-image: url('resources/image/REMON_mainMovie_BG.png'); width: 500px; height: 220px;"
-						class='moveBT' data-target="#movieMain">
-						<form action="/review/movie/main" id="movieMain">
-							<div class="center">
-								<img alt="MOVIE_icon"
-									src="resources/image/REMON_MOVIE_icon(white).png"
-									style="width: 70px; height: 70px;">
-							</div>
-						</form>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="1"
-						style="background-image: url('resources/image/REMON_mainTv_BG.png'); width: 245px; height: 220px;"
-						class='moveBT' data-target="#tvMain">
-							<form action="/review/tv/main" id="tvMain">
-								<div class="center">
-									<img alt="TV_icon"
-										src="resources/image/REMON_TV_icon(white).png"
-										style="width: 70px; height: 70px;">
-								</div>
-							</form>
-					</td>
-					<td colspan="1"
-						style="background-image: url('resources/image/REMON_mainGame_BG.png'); width: 245px; height: 220px;"
-						class='moveBT' data-target="#gameMain">
-							<form action="/review/game/main" id="gameMain">
-								<div class="center">
-									<img alt="GAME_icon"
-										src="resources/image/REMON_GAME_icon(white).png"
-										style="width: 70px; height: 70px;">
-								</div>
-							</form>
-					</td>
-				</tr>
-			</table>
-		</div>
+	<!-- 네비 -->
+	<div class="center">
+		<table class="center">
+			<tr>
+				<td colspan="2"
+					style="background-image: url('resources/image/REMON_mainMovie_BG.png'); width: 500px; height: 220px;"
+					class='moveBT' data-target="#movieMain">
+					<form action="/review/movie/main" id="movieMain">
+						<div class="center">
+							<img alt="MOVIE_icon"
+								src="resources/image/REMON_MOVIE_icon(white).png"
+								style="width: 70px; height: 70px;">
+						</div>
+					</form>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="1"
+					style="background-image: url('resources/image/REMON_mainTv_BG.png'); width: 245px; height: 220px;"
+					class='moveBT' data-target="#tvMain">
+					<form action="/review/tv/main" id="tvMain">
+						<div class="center">
+							<img alt="TV_icon" src="resources/image/REMON_TV_icon(white).png"
+								style="width: 70px; height: 70px;">
+						</div>
+					</form>
+				</td>
+				<td colspan="1"
+					style="background-image: url('resources/image/REMON_mainGame_BG.png'); width: 245px; height: 220px;"
+					class='moveBT' data-target="#gameMain">
+					<form action="/review/game/main" id="gameMain">
+						<div class="center">
+							<img alt="GAME_icon"
+								src="resources/image/REMON_GAME_icon(white).png"
+								style="width: 70px; height: 70px;">
+						</div>
+					</form>
+				</td>
+			</tr>
+		</table>
+	</div>
 
-		<div style="height: 100px;"></div>
+	<div style="height: 100px;"></div>
 
 	</div>
 </body>
