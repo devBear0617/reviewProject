@@ -44,12 +44,11 @@
 <style type="text/css">
 .wrapper {
 	display: grid;
-	grid-template-columns: 200px 200px 200px;
-	grid-template-rows: 200px 200px 200px;
+	grid-template-columns: 300px 300px 300px;
+	grid-template-rows: 300px 300px 300px;
 	grid-column-gap: 5px;
 	grid-row-gap: 5px;
 	justify-content: center;
-	border: 1px solid #F2F2F2;
 }
 
 .wrapperCenter {
@@ -61,13 +60,13 @@
 	padding: 10px;
 	background-color: white;
 	background-size: 100%;
-	border: 1px solid gray;
+	border: 1px solid #F2F2F2;
 }
 
 .items:nth-child(odd) {
-	background-color: gray;
+	background-color: #F2F2F2;
 	background-size: 100%;
-	border: 1px solid white;
+	border: 1px solid #F4F4F4;
 }
 
 .center {
