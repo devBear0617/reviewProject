@@ -1,43 +1,45 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script type="text/javascript" src="/review/resources/script/jquery-3.3.1.min.js"></script>
+<script type="text/javascript"
+	src="/review/resources/script/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
-var movie_nm = $('.movieinfo_2').html();
-console.log(movie_nm);
-function fn_paging(pnum) {
-	$.ajax({
-		type : 'POST',
-		url : "./oneContentView",
-		data : {
-			'pnum' : pnum,
-			'movie_nm' : movie_nm 
-		},
-		success : function(html) {
-			$('.contentList').empty();
-			$('.contentList').append(html);
-		},
-		error : function(error) {
-			console.log(error);
-		}
-	})
-}
-$('.sort').click(function () {
+	var movie_nm = $('.movieinfo_2').html();
 	console.log(movie_nm);
-	var data = {
+	function fn_paging(pnum) {
+		$.ajax({
+			type : 'POST',
+			url : "./oneContentView",
+			data : {
+				'pnum' : pnum,
+				'movie_nm' : movie_nm
+			},
+			success : function(html) {
+				$('.contentList').empty();
+				$('.contentList').append(html);
+			},
+			error : function(error) {
+				console.log(error);
+			}
+		})
+	}
+	$('.sort').click(function() {
+		console.log(movie_nm);
+		var data = {
 			"sort_id" : $(this).attr('id'),
 			'movie_nm' : movie_nm
-	}
-	$.ajax({
-		type : "POST",
-		url : "./oneContentView",
-		cache : false,
-		data : data,
-		success : function(html) {			
-		    $('.contentList').empty();
-			$('.contentList').append(html);
 		}
-	}); 
-});
+		$.ajax({
+			type : "POST",
+			url : "./oneContentView",
+			cache : false,
+			data : data,
+			success : function(html) {
+				$('.contentList').empty();
+				$('.contentList').append(html);
+			}
+		});
+	});
 </script>
 <style type="text/css">
 .wrapper {
@@ -73,12 +75,12 @@ $('.sort').click(function () {
 	margin-right: auto;
 }
 
-.td_class1{
+.td_class1 {
 	width: 400px;
 }
-</style>   
+</style>
 <div class="center">
-	<input type= "hidden" id = "sort_id" value = "${sort_id}">
+	<input type="hidden" id="sort_id" value="${sort_id}">
 	<table class="center" style="font-size: small;">
 		<tr>
 			<td class="td_class1"><span class="sort" id="sort_time">최신순</span></td>
@@ -89,56 +91,78 @@ $('.sort').click(function () {
 </div>
 <br>
 <div class="wrapper">
-<c:forEach items="${board_list}" var="board">
-	<div class="items" onclick="move('/review/movie/detail_view/${board.board_num}')"
-		style="background-image:URL(${board.thumbnail});">
-		<table>
-			<tr>
-				<td style="font-size: small; text-align: left;" colspan="4">${board.member_id}</td>
-			</tr>
-			<tr>
-				<td style="height: 100px;" colspan="4">${board.board_title}</td>
-				<td>조회수 : ${board.board_readcount}</td>
-			</tr>
-			<tr>
-				<td colspan="2"><hr></td>
-			</tr>
-			<tr>
-				<td style="font-size: small; padding-right: 30px;">
-					<span><img alt="likeit" src="/review/resources/image/REMON_like_icon.png" 
-						style="width: 20px; margin-left: -20px;">
-					${board.likeit_count}</span>
-				</td>
-				<td style="font-size: small; padding-right: 30px;">
-					<span><img alt="likeit" src="/review/resources/image/REMON_comment_icon.png" 
-						style="width: 20px; margin-left: -20px;">
-					${board.reply_count}</span>
-				</td>
-				<td style="font-size: small;">점수: ${board.lemon_grade}</td>
-				<td style="font-size: x-small;">${board.board_date}</td>
-			</tr>
-		</table>
-	</div>
-</c:forEach>
+	<c:forEach items="${board_list}" var="board">
+		<div class="items"
+			onclick="move('/review/movie/detail_view/${board.board_num}')"
+			style="background-color: rgba(255, 255, 255, 0.7);">
+			<table>
+				<tr>
+					<td style="text-align: left; padding-left: 10px;" colspan="2">
+						${board.member_id}</td>
+					<td style="font-size: small; text-align: right;" colspan="1">조회수
+						: ${board.board_readcount}&nbsp;</td>
+				</tr>
+				<tr>
+					<td style="" colspan="3">
+						<div
+							style="background: url('${board.thumbnail}');height: 170px; font-size: large; font-weight: bold;">
+							<div
+								style="background-color: rgba(255, 255, 255, 0.7);">
+								<span style="color: black;">${board.board_title}</span>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td style="font-size: small; text-align: right;" colspan="3">점수:
+						${board.lemon_grade}&nbsp;</td>
+				</tr>
+				<tr>
+					<td colspan="3"><hr></td>
+				</tr>
+				<tr>
+					<td style="font-size: small; padding-right: 30px;"><div
+							style="display: inline-block; padding-top: 5px;">
+							<div style="float: left;">
+								<img alt="likeit"
+									src="/review/resources/image/REMON_like_icon.png"
+									style="width: 20px; margin-left: -20px;">
+								${board.likeit_count}
+							</div>
+							<div style="float: left; margin-left: 30px;">
+								<img alt="likeit"
+									src="/review/resources/image/REMON_comment_icon.png"
+									style="width: 20px; margin-left: -20px;">
+								${board.reply_count}
+							</div>
+						</div></td>
+					<td style="font-size: small; text-align: right;" colspan="2">${board.board_date}&nbsp;</td>
+				</tr>
+			</table>
+		</div>
+	</c:forEach>
 </div>
 <div style="height: 20px;"></div>
 <div class="paging">
 	<c:if test="${pagination.startPage ne 0}">
 		<c:if test="${pagination.prevPage ne 0}">
-			<a href="#" onClick="fn_paging('${pagination.prevPage}')">[이전]</a> 
+			<a href="#" onClick="fn_paging('${pagination.prevPage}')">[이전]</a>
 		</c:if>
-		<c:forEach var="pnum" begin="${pagination.startPage}" end="${pagination.endPage}">
+		<c:forEach var="pnum" begin="${pagination.startPage}"
+			end="${pagination.endPage}">
 			<c:choose>
 				<c:when test="${pnum eq  pagination.curPage}">
-					<span style="font-weight: bold;"><a href="#" onClick="fn_paging('${pnum}')">${pnum}</a></span> 
+					<span style="font-weight: bold;"><a href="#"
+						onClick="fn_paging('${pnum}')">${pnum}</a></span>
 				</c:when>
 				<c:otherwise>
-					<a href="#" onClick="fn_paging('${pnum}')">${pnum}</a> 
+					<a href="#" onClick="fn_paging('${pnum}')">${pnum}</a>
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
-		<c:if test="${pagination.curPage ne pagination.pageCnt && pagination.pageCnt > 0}">
-			<a href="#" onClick="fn_paging('${pagination.nextPage}')">[다음]</a> 
+		<c:if
+			test="${pagination.curPage ne pagination.pageCnt && pagination.pageCnt > 0}">
+			<a href="#" onClick="fn_paging('${pagination.nextPage}')">[다음]</a>
 		</c:if>
 	</c:if>
 </div>

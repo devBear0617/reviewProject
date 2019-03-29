@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -10,13 +11,16 @@
 <script src="../resources/tui-editor/jquery/dist/jquery.js"></script>
 <script src='../resources/tui-editor/markdown-it/dist/markdown-it.js'></script>
 <script src="../resources/tui-editor/to-mark/dist/to-mark.js"></script>
-<script src="../resources/tui-editor/tui-code-snippet/dist/tui-code-snippet.js"></script>
+<script
+	src="../resources/tui-editor/tui-code-snippet/dist/tui-code-snippet.js"></script>
 <script src="../resources/tui-editor/codemirror/lib/codemirror.js"></script>
 <script src="../resources/tui-editor/highlightjs/highlight.pack.js"></script>
 <script src="../resources/tui-editor/squire-rte/build/squire-raw.js"></script>
 
-<link rel="stylesheet" href="../resources/tui-editor/codemirror/lib/codemirror.css">
-<link rel="stylesheet" href="../resources/tui-editor/highlightjs/styles/github.css">
+<link rel="stylesheet"
+	href="../resources/tui-editor/codemirror/lib/codemirror.css">
+<link rel="stylesheet"
+	href="../resources/tui-editor/highlightjs/styles/github.css">
 
 <!-- autoComplete -->
 <script
@@ -36,18 +40,21 @@
 	overflow-x: hidden;
 }
 
-.center {
-	margin-left: auto;
-	margin-right: auto;
-}
-
 td {
 	width: 400px;
 	background-color: white;
 	margin: 50px;
 }
 
-table {
+.center {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.mv_table_st {
+	margin-left: auto;
+	margin-right: auto;
 	border-collapse: separate;
 	background-color: #D5D5D5;
 }
@@ -311,12 +318,11 @@ table {
 	<div>
 		<jsp:include page="/WEB-INF/views/share/header.jsp" />
 	</div>
-	<div style="height: 20px;"></div>
 	<div class="center">
 		<form action="/review/movie/movie_update/${board.board_num}"
 			method="post" id="movie_update">
 
-			<table class="center">
+			<table class="mv_table_st">
 				<tr style="height: 80px;">
 					<td>영화</td>
 					<td>tv</td>
@@ -346,7 +352,7 @@ table {
 					<td colspan="2">
 						<div>
 							<!-- tui-editor input -->
-							<input type="hidden" name="board_content" id="board_content" >
+							<input type="hidden" name="board_content" id="board_content">
 							<!-- tui-editor view -->
 							<div class="code-html">
 								<script
@@ -365,14 +371,15 @@ table {
 								<div id="editSection">${board.board_content}</div>
 							</div>
 							<script class="code-js">
-									var editor = new tui.Editor({
-										el : document
-												.querySelector('#editSection'),
-										initialEditType : 'wysiwyg',
-										height : '700px',
-										exts : [ 'colorSyntax' ]
-									});
-								</script>
+								var editor = new tui.Editor(
+										{
+											el : document
+													.querySelector('#editSection'),
+											initialEditType : 'wysiwyg',
+											height : '700px',
+											exts : [ 'colorSyntax' ]
+										});
+							</script>
 						</div>
 					</td>
 					<td>
@@ -630,16 +637,22 @@ table {
 			</table>
 
 			<br>
-
-			<div>
-				<input type="submit" id="form-submit" value="확인"> <input
-					type="reset" value="취소">
+			<div style="display: inline-block;">
+				<div style="float: left;">
+					<input type="submit" id="form-submit" value="확인"
+						style="width: 97px; height: 30px; background: linear-gradient(to left, #ffe400, #abf200); border-radius: 10px; border-style: none; margin-right: 5px;">
+				</div>
+				<div style="float: left;">
+					<input type="reset" value="취소"
+						style="width: 97px; height: 30px; background: linear-gradient(to left, #ffe400, #abf200); border-radius: 10px; border-style: none;">
+				</div>
 			</div>
-
 		</form>
+
 		<form action="/review/back" method="post" id="back">
 			<input type="hidden" name="address" value="${address}"> <input
-				type="submit" value="이전">
+				type="submit" value="뒤로가기"
+				style="width: 200px; height: 30px; background: linear-gradient(to left, #ffe400, #abf200); border-radius: 10px; border-style: none;">
 		</form>
 	</div>
 	<script>

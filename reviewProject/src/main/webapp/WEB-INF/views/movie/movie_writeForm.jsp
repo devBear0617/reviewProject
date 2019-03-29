@@ -34,20 +34,23 @@
 	overflow-x: hidden;
 }
 
-.center {
-	margin-left: auto;
-	margin-right: auto;
-}
-
 td {
 	width: 400px;
 	background-color: white;
 	margin: 50px;
 }
 
-table {
+.mv_table_st {
+	margin-left: auto;
+	margin-right: auto;
 	border-collapse: separate;
 	background-color: #D5D5D5;
+}
+
+.center {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
 }
 
 .hashtag_st {
@@ -77,231 +80,231 @@ table {
 <link rel="stylesheet" href="resources/css/star.css">
 
 <script type="text/javascript">
-$(document).ready(
-	function() {
-		$("#movie_nm").autocomplete({
-			minLength : 1,
-			delay : 30,
-			source : function(request, response) {
-				$.ajax({
-					url : "./autocomplete",
-					type : "post",
-					dataType : "json",
-					data : {
-						movie_nm : request.term
-					},
-					success : function(data) {
-						response($.map(data, function(item) {
-							item.title = item.title.replace(
-									/<b>/gi, "").replace(
-									/<\/b>/gi, "");
-							return {
-								label : item.title,
-								value : item.title,
-								director : item.director,
-								actor : item.actor,
-								poster : item.image
-							};
-						}))
-					},
-					error : function(data) {
-						console.log("에러");
-					}
-				});
-			},
-			focus : function(event, ui) {
-				return false;
-			},
-			select : function(event, ui) {
-				$("#movie_poster").attr("src", ui.item.poster);
-				$("#movie_poster").show();
-				$("#poster").val(ui.item.poster);
-				$("#director").val(ui.item.director);
-				$("#actor").val(ui.item.actor);
-			}
-		});
-	}
-);
+	$(document).ready(
+			function() {
+				$("#movie_nm").autocomplete(
+						{
+							minLength : 1,
+							delay : 30,
+							source : function(request, response) {
+								$.ajax({
+									url : "./autocomplete",
+									type : "post",
+									dataType : "json",
+									data : {
+										movie_nm : request.term
+									},
+									success : function(data) {
+										response($.map(data, function(item) {
+											item.title = item.title.replace(
+													/<b>/gi, "").replace(
+													/<\/b>/gi, "");
+											return {
+												label : item.title,
+												value : item.title,
+												director : item.director,
+												actor : item.actor,
+												poster : item.image
+											};
+										}))
+									},
+									error : function(data) {
+										console.log("에러");
+									}
+								});
+							},
+							focus : function(event, ui) {
+								return false;
+							},
+							select : function(event, ui) {
+								$("#movie_poster").attr("src", ui.item.poster);
+								$("#movie_poster").show();
+								$("#poster").val(ui.item.poster);
+								$("#director").val(ui.item.director);
+								$("#actor").val(ui.item.actor);
+							}
+						});
+			});
 
-//grade_name 미선택시  grade_radio 숨기기
-$(document).ready(
-	function() {
-		var grade_name1 = $("#grade_name1").val(), grade_name2 = $(
-				"#grade_name2").val(), grade_name3 = $("#grade_name3")
-				.val(), grade_name4 = $("#grade_name4").val();
+	//grade_name 미선택시  grade_radio 숨기기
+	$(document).ready(
+			function() {
+				var grade_name1 = $("#grade_name1").val(), grade_name2 = $(
+						"#grade_name2").val(), grade_name3 = $("#grade_name3")
+						.val(), grade_name4 = $("#grade_name4").val();
 
-		if (!grade_name1) {
-			$("#on_off_grade1").css('visibility', 'hidden');
-		}
-		if (!grade_name2) {
-			$("#on_off_grade2").css('visibility', 'hidden');
-		}
-		if (!grade_name3) {
-			$("#on_off_grade3").css('visibility', 'hidden');
-		}
-		if (!grade_name4) {
-			$("#on_off_grade4").css('visibility', 'hidden');
-		}
-	}
-);
-
-// grade_name선택시  grade값 초기화 , grade_name중복불가 
-$(document).ready(
-	function() {
-		var $select = $("select");
-
-		$select.on("change", function() {
-			//grade 값 초기화 
-			var id = this.id
-			if (id == "grade_name1") {
-				$("#on_off_grade1").css('visibility',
-						'visible');
-				$(":radio[name='grade1']").prop(
-						"checked", false);
-			} else if (id == "grade_name2") {
-				$("#on_off_grade2").css('visibility',
-						'visible');
-				$(":radio[name='grade2']").prop(
-						"checked", false);
-			} else if (id == "grade_name3") {
-				$("#on_off_grade3").css('visibility',
-						'visible');
-				$(":radio[name='grade3']").prop(
-						"checked", false);
-			} else {
-				$("#on_off_grade4").css('visibility',
-						'visible');
-				$(":radio[name='grade4']").prop(
-						"checked", false);
-			}
-
-			//lemon_grade 재계산
-			var grade1 = parseInt($(
-					':radio[name="grade1"]:checked')
-					.val()), grade2 = parseInt($(
-					':radio[name="grade2"]:checked')
-					.val()), grade3 = parseInt($(
-					':radio[name="grade3"]:checked')
-					.val()), grade4 = parseInt($(
-					':radio[name="grade4"]:checked')
-					.val());
-
-			grade1 = (!grade1) ? 0 : grade1;
-			grade2 = (!grade2) ? 0 : grade2;
-			grade3 = (!grade3) ? 0 : grade3;
-			grade4 = (!grade4) ? 0 : grade4;
-
-			var selected1 = $("option:selected",
-					$("#grade_name1"));
-			if (selected1.parent()[0].id == "bad1") {
-				grade1 = 25 - grade1;
-			}
-
-			var selected2 = $("option:selected", $("#grade_name2"));
-			if (selected2.parent()[0].id == "bad2") {
-				grade2 = 25 - grade2;
-			}
-
-			var selected3 = $("option:selected",
-					$("#grade_name3"));
-			if (selected3.parent()[0].id == "bad3") {
-				grade3 = 25 - grade3;
-			}
-
-			var selected4 = $("option:selected",
-					$("#grade_name4"));
-			if (selected4.parent()[0].id == "bad4") {
-				grade4 = 25 - grade4;
-			}
-
-			$("#lemon_grade").val(grade1 + grade2 + grade3 + grade4);
-			var value = $("#lemon_grade").val();
-			$('.total_value').html(value);
-			//----- lemon_grade 재계산 끝, select 중복방지 처리 시작 
-
-			var selected = [];
-			$.each($select, function(index, select) {
-				if (select.value !== "") {
-					selected.push(select.value);
+				if (!grade_name1) {
+					$("#on_off_grade1").css('visibility', 'hidden');
+				}
+				if (!grade_name2) {
+					$("#on_off_grade2").css('visibility', 'hidden');
+				}
+				if (!grade_name3) {
+					$("#on_off_grade3").css('visibility', 'hidden');
+				}
+				if (!grade_name4) {
+					$("#on_off_grade4").css('visibility', 'hidden');
 				}
 			});
-			$("option").prop("disabled", false);
-			for ( var index in selected) {
-				$(
-						'option[value="'
-								+ selected[index]
-								+ '"]').prop(
-						"disabled", true);
-			}
-		});
-	}
-);
 
-//개별점수 책정시 계산해서 총합점수 출력 
-$(document).ready(
-	function() {
-		$(".rating").change(
+	// grade_name선택시  grade값 초기화 , grade_name중복불가 
+	$(document).ready(
 			function() {
-				var grade1 = parseInt($(
-						':radio[name="grade1"]:checked')
-						.val()), grade2 = parseInt($(
-						':radio[name="grade2"]:checked')
-						.val()), grade3 = parseInt($(
-						':radio[name="grade3"]:checked')
-						.val()), grade4 = parseInt($(
-						':radio[name="grade4"]:checked')
-						.val());
+				var $select = $("select");
 
-				// null체크 , 값 보정 
-				grade1 = (!grade1) ? 0 : grade1;
-				grade2 = (!grade2) ? 0 : grade2;
-				grade3 = (!grade3) ? 0 : grade3;
-				grade4 = (!grade4) ? 0 : grade4;
+				$select
+						.on("change",
+								function() {
+									//grade 값 초기화 
+									var id = this.id
+									if (id == "grade_name1") {
+										$("#on_off_grade1").css('visibility',
+												'visible');
+										$(":radio[name='grade1']").prop(
+												"checked", false);
+									} else if (id == "grade_name2") {
+										$("#on_off_grade2").css('visibility',
+												'visible');
+										$(":radio[name='grade2']").prop(
+												"checked", false);
+									} else if (id == "grade_name3") {
+										$("#on_off_grade3").css('visibility',
+												'visible');
+										$(":radio[name='grade3']").prop(
+												"checked", false);
+									} else {
+										$("#on_off_grade4").css('visibility',
+												'visible');
+										$(":radio[name='grade4']").prop(
+												"checked", false);
+									}
 
-				var selected1 = $("option:selected",
-						$("#grade_name1"));
-				if (selected1.parent()[0].id == "bad1") {
-					grade1 = 25 - grade1;
-				}
+									//lemon_grade 재계산
+									var grade1 = parseInt($(
+											':radio[name="grade1"]:checked')
+											.val()), grade2 = parseInt($(
+											':radio[name="grade2"]:checked')
+											.val()), grade3 = parseInt($(
+											':radio[name="grade3"]:checked')
+											.val()), grade4 = parseInt($(
+											':radio[name="grade4"]:checked')
+											.val());
 
-				var selected2 = $("option:selected",
-						$("#grade_name2"));
-				if (selected2.parent()[0].id == "bad2") {
-					grade2 = 25 - grade2;
-				}
+									grade1 = (!grade1) ? 0 : grade1;
+									grade2 = (!grade2) ? 0 : grade2;
+									grade3 = (!grade3) ? 0 : grade3;
+									grade4 = (!grade4) ? 0 : grade4;
 
-				var selected3 = $("option:selected",
-						$("#grade_name3"));
-				if (selected3.parent()[0].id == "bad3") {
-					grade3 = 25 - grade3;
-				}
+									var selected1 = $("option:selected",
+											$("#grade_name1"));
+									if (selected1.parent()[0].id == "bad1") {
+										grade1 = 25 - grade1;
+									}
 
-				var selected4 = $("option:selected",
-						$("#grade_name4"));
-				if (selected4.parent()[0].id == "bad4") {
-					grade4 = 25 - grade4;
-				}
+									var selected2 = $("option:selected",
+											$("#grade_name2"));
+									if (selected2.parent()[0].id == "bad2") {
+										grade2 = 25 - grade2;
+									}
 
-				$("#lemon_grade").val(
-						grade1 + grade2 + grade3 + grade4);
-				var value = $("#lemon_grade").val();
-				$('.total_value').html(value);
-			}
-		);
-	}
-);
+									var selected3 = $("option:selected",
+											$("#grade_name3"));
+									if (selected3.parent()[0].id == "bad3") {
+										grade3 = 25 - grade3;
+									}
+
+									var selected4 = $("option:selected",
+											$("#grade_name4"));
+									if (selected4.parent()[0].id == "bad4") {
+										grade4 = 25 - grade4;
+									}
+
+									$("#lemon_grade").val(
+											grade1 + grade2 + grade3 + grade4);
+									var value = $("#lemon_grade").val();
+									$('.total_value').html(value);
+									//----- lemon_grade 재계산 끝, select 중복방지 처리 시작 
+
+									var selected = [];
+									$.each($select, function(index, select) {
+										if (select.value !== "") {
+											selected.push(select.value);
+										}
+									});
+									$("option").prop("disabled", false);
+									for ( var index in selected) {
+										$(
+												'option[value="'
+														+ selected[index]
+														+ '"]').prop(
+												"disabled", true);
+									}
+								});
+			});
+
+	//개별점수 책정시 계산해서 총합점수 출력 
+	$(document).ready(
+			function() {
+				$(".rating")
+						.change(
+								function() {
+									var grade1 = parseInt($(
+											':radio[name="grade1"]:checked')
+											.val()), grade2 = parseInt($(
+											':radio[name="grade2"]:checked')
+											.val()), grade3 = parseInt($(
+											':radio[name="grade3"]:checked')
+											.val()), grade4 = parseInt($(
+											':radio[name="grade4"]:checked')
+											.val());
+
+									// null체크 , 값 보정 
+									grade1 = (!grade1) ? 0 : grade1;
+									grade2 = (!grade2) ? 0 : grade2;
+									grade3 = (!grade3) ? 0 : grade3;
+									grade4 = (!grade4) ? 0 : grade4;
+
+									var selected1 = $("option:selected",
+											$("#grade_name1"));
+									if (selected1.parent()[0].id == "bad1") {
+										grade1 = 25 - grade1;
+									}
+
+									var selected2 = $("option:selected",
+											$("#grade_name2"));
+									if (selected2.parent()[0].id == "bad2") {
+										grade2 = 25 - grade2;
+									}
+
+									var selected3 = $("option:selected",
+											$("#grade_name3"));
+									if (selected3.parent()[0].id == "bad3") {
+										grade3 = 25 - grade3;
+									}
+
+									var selected4 = $("option:selected",
+											$("#grade_name4"));
+									if (selected4.parent()[0].id == "bad4") {
+										grade4 = 25 - grade4;
+									}
+
+									$("#lemon_grade").val(
+											grade1 + grade2 + grade3 + grade4);
+									var value = $("#lemon_grade").val();
+									$('.total_value').html(value);
+								});
+			});
 </script>
 </head>
 <body>
 	<div>
 		<jsp:include page="/WEB-INF/views/share/header.jsp" />
 	</div>
-	<div style="height: 20px;"></div>
 	<div class="center">
 		<form action="/review/movie/movie_write" method="post"
 			id="movie_write">
 
-			<table class="center">
+			<table class="mv_table_st">
 				<tr style="height: 80px;">
 					<td>영화</td>
 					<td>tv</td>
@@ -603,18 +606,24 @@ $(document).ready(
 			</table>
 
 			<br>
-
-			<div>
-				<input type="submit" id="form-submit" value="확인"> <input
-					type="reset" value="취소">
+			<div style="display: inline-block;">
+				<div style="float: left;">
+					<input type="submit" id="form-submit" value="확인"
+						style="width: 97px; height: 30px; background: linear-gradient(to left, #ffe400, #abf200); border-radius: 10px; border-style: none; margin-right: 5px;">
+				</div>
+				<div style="float: left;">
+					<input type="reset" value="취소"
+						style="width: 97px; height: 30px; background: linear-gradient(to left, #ffe400, #abf200); border-radius: 10px; border-style: none;">
+				</div>
 			</div>
 		</form>
-		
+
 		<form action="/review/back" method="post" id="back">
-         <input type="hidden" name="address" value="${address}">
-         <input type="submit" value="이전">
-      </form>
-		
+			<input type="hidden" name="address" value="${address}"> <input
+				type="submit" value="뒤로가기"
+				style="width: 200px; height: 30px; background: linear-gradient(to left, #ffe400, #abf200); border-radius: 10px; border-style: none;">
+		</form>
+
 	</div>
 	<script>
 		var formSubmitButton = document.querySelector("#form-submit");

@@ -148,7 +148,8 @@
 					style="background: background: -webkit-linear-gradient(to right, #abf200, #ffe400); background: linear-gradient(to right, #abf200, #ffe400);">
 					<!-- >>==============================▶ 삽입 이미지 크기 조정 필요 -->
 					<div>
-						<img src="${board.thumbnail}" style="height: 300px; width: auto;">
+						<img src="${board.thumbnail}"
+							style="height: 300px; width: auto; max-width: 400px;">
 						<c:if test="${board.thumbnail == null}">
 							<img src="${mApiVO.poster}">
 						</c:if>
@@ -254,15 +255,18 @@
 		<table class="center">
 			<tr>
 				<td><input type="button" value="목록"
-					onclick="location.href='/review/movie/main'"></td>
+					onclick="location.href='/review/movie/main'"
+					style="width: 100px; height: 30px; background: linear-gradient(to left, #ffe400, #abf200); border-radius: 10px; border-style: none;"></td>
 				<td><c:if test="${sessionScope.member_id == board.member_id}">
 						<input type="button" value="수정"
-							onclick="location.href='/review/movie/movie_updateForm/${board.board_num}'">
+							onclick="location.href='/review/movie/movie_updateForm/${board.board_num}'"
+							style="width: 100px; height: 30px; background: linear-gradient(to left, #ffe400, #abf200); border-radius: 10px; border-style: none;">
 					</c:if></td>
 				<td><c:if test="${sessionScope.member_id == board.member_id}">
 						<form action="/review/movie/movie_delete/${board.board_num}"
 							method="post" id="movie_delete">
-							<input type="submit" value="삭제">
+							<input type="submit" value="삭제"
+								style="width: 100px; height: 30px; background: linear-gradient(to left, #ffe400, #abf200); border-radius: 10px; border-style: none;">
 						</form>
 					</c:if></td>
 			</tr>
