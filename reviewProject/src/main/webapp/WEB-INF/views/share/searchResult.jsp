@@ -52,6 +52,7 @@ function spread_Movie () {
 			$(".menu_Movie_hashtagV").empty();
 			$(".menu_Movie_titleContentV").empty();
 			$(".menu_Movie_gradeV").empty();
+			$(".menu_Movie_likeV").empty();
 			$(".menu_Game_V").empty();
 			$(".menu_TV_V").empty();
 			
@@ -74,6 +75,7 @@ function spread_Movie () {
 			$(".result_Movie_Hashtag").empty();
 			$(".result_Movie_TitleContent").empty();
 			$(".result_Movie_Grade").empty();
+			$(".result_Movie_Like").empty();
 			$(".result_Total").empty();
 			$(".result_Game").empty();
 			$(".result_TV").empty();
@@ -97,6 +99,7 @@ function return_Menu () {
 			$(".menu_Movie_hashtagV").empty();
 			$(".menu_Movie_titleContentV").empty();
 			$(".menu_Movie_gradeV").empty();
+			$(".menu_Movie_likeV").empty();
 			$(".menu_Movie_V").empty();
 			$(".menu_Game_V").empty();
 			$(".menu_TV_V").empty();
@@ -121,6 +124,7 @@ function return_Menu () {
 			$(".result_Movie_Hashtag").empty();
 			$(".result_Movie_TitleContent").empty();
 			$(".result_Movie_Grade").empty();
+			$(".result_Movie_Like").empty();
 			$(".result_Game").empty();
 			$(".result_TV").empty();
 			
@@ -144,6 +148,7 @@ function result_Movie_recent () {
 			$(".menu_Movie_hashtagV").empty();
 			$(".menu_Movie_titleContentV").empty();
 			$(".menu_Movie_gradeV").empty();
+			$(".menu_Movie_likeV").empty();
 			$(".menu_Game_V").empty();
 			$(".menu_TV_V").empty();
 			
@@ -166,6 +171,7 @@ function result_Movie_recent () {
 			$(".result_Movie_Hashtag").empty();
 			$(".result_Movie_TitleContent").empty();
 			$(".result_Movie_Grade").empty();
+			$(".result_Movie_Like").empty();
 			$(".result_Game").empty();
 			$(".result_TV").empty();
 			
@@ -188,6 +194,7 @@ function result_Movie_memberV () {
 			$(".menu_Movie_hashtagV").empty();
 			$(".menu_Movie_titleContentV").empty();
 			$(".menu_Movie_gradeV").empty();
+			$(".menu_Movie_likeV").empty();
 			$(".menu_Game_V").empty();
 			$(".menu_TV_V").empty();
 			
@@ -210,6 +217,7 @@ function result_Movie_memberV () {
 			$(".result_Movie_Hashtag").empty();
 			$(".result_Movie_TitleContent").empty();
 			$(".result_Movie_Grade").empty();
+			$(".result_Movie_Like").empty();
 			$(".result_Game").empty();
 			$(".result_TV").empty();
 			
@@ -232,6 +240,7 @@ function result_Movie_replyV () {
 			$(".menu_Movie_hashtagV").empty();
 			$(".menu_Movie_titleContentV").empty();
 			$(".menu_Movie_gradeV").empty();
+			$(".menu_Movie_likeV").empty();
 			$(".menu_Game_V").empty();
 			$(".menu_TV_V").empty();
 			
@@ -254,6 +263,7 @@ function result_Movie_replyV () {
 			$(".result_Movie_Hashtag").empty();
 			$(".result_Movie_TitleContent").empty();
 			$(".result_Movie_Grade").empty();
+			$(".result_Movie_Like").empty();
 			$(".result_Game").empty();
 			$(".result_TV").empty();
 			
@@ -276,6 +286,7 @@ function result_Movie_hashtagV () {
 			$(".menu_Movie_replyV").empty();
 			$(".menu_Movie_titleContentV").empty();
 			$(".menu_Movie_gradeV").empty();
+			$(".menu_Movie_likeV").empty();
 			$(".menu_Game_V").empty();
 			$(".menu_TV_V").empty();
 			
@@ -298,6 +309,7 @@ function result_Movie_hashtagV () {
 			$(".result_Movie_Reply").empty();
 			$(".result_Movie_TitleContent").empty();
 			$(".result_Movie_Grade").empty();
+			$(".result_Movie_Like").empty();
 			$(".result_Game").empty();
 			$(".result_TV").empty();
 			
@@ -320,6 +332,7 @@ function result_Movie_titleContentV () {
 			$(".menu_Movie_replyV").empty();
 			$(".menu_Movie_hashtagV").empty();
 			$(".menu_Movie_gradeV").empty();
+			$(".menu_Movie_likeV").empty();
 			$(".menu_Game_V").empty();
 			$(".menu_TV_V").empty();
 			
@@ -342,6 +355,7 @@ function result_Movie_titleContentV () {
 			$(".result_Movie_Reply").empty();
 			$(".result_Movie_Hashtag").empty();
 			$(".result_Movie_Grade").empty();
+			$(".result_Movie_Like").empty();
 			$(".result_Game").empty();
 			$(".result_TV").empty();
 			
@@ -364,6 +378,7 @@ function result_Movie_gradeV () {
 			$(".menu_Movie_replyV").empty();
 			$(".menu_Movie_hashtagV").empty();
 			$(".menu_Movie_titleContentV").empty();
+			$(".menu_Movie_likeV").empty();
 			$(".menu_Game_V").empty();
 			$(".menu_TV_V").empty();
 			
@@ -386,11 +401,59 @@ function result_Movie_gradeV () {
 			$(".result_Movie_Reply").empty();
 			$(".result_Movie_Hashtag").empty();
 			$(".result_Movie_TitleContent").empty();
+			$(".result_Movie_Like").empty();
 			$(".result_Game").empty();
 			$(".result_TV").empty();
 			
 			$(".result_Movie_Grade").empty();
 			$(".result_Movie_Grade").append(html);
+		}
+	});
+};
+
+//Movie - like desc
+function result_Movie_likeV () {
+	$.ajax({
+		url: '/review/search/searchResult/menu_Movie_likeV',
+		type: 'GET',
+		dataType: 'text',
+		success: function (html) {
+			$(".menu_Form").empty();
+			$(".menu_Movie_V").empty();
+			$(".menu_Movie_memberV").empty();
+			$(".menu_Movie_replyV").empty();
+			$(".menu_Movie_hashtagV").empty();
+			$(".menu_Movie_titleContentV").empty();
+			$(".menu_Movie_gradeV").empty();
+			$(".menu_Game_V").empty();
+			$(".menu_TV_V").empty();
+			
+			$(".menu_Movie_likeV").empty();
+			$(".menu_Movie_likeV").append(html);
+		}
+	});
+	
+	$.ajax({
+		url: '/review/search/searchResult/result_Movie_like',
+		type: 'POST',
+		dataType: 'text',
+		data: {
+			keyword: $('.keyword').val()
+		},
+		success: function (html) {
+			$(".result_Total").empty();
+			$(".result_Movie").empty();
+			$(".result_Movie_Member").empty();
+			$(".result_Movie_Reply").empty();
+			$(".result_Movie_Hashtag").empty();
+			$(".result_Movie_TitleContent").empty();
+			$(".result_Movie_Grade").empty();
+			$(".result_Movie_Like").empty();
+			$(".result_Game").empty();
+			$(".result_TV").empty();
+			
+			$(".result_Movie_Like").empty();
+			$(".result_Movie_Like").append(html);
 		}
 	});
 };
@@ -408,6 +471,7 @@ function spread_Game () {
 			$(".menu_Movie_hashtagV").empty();
 			$(".menu_Movie_titleContentV").empty();
 			$(".menu_Movie_gradeV").empty();
+			$(".menu_Movie_likeV").empty();
 			$(".menu_Movie_V").empty();
 			$(".menu_TV_V").empty();
 			
@@ -430,6 +494,7 @@ function spread_Game () {
 			$(".result_Movie_Hashtag").empty();
 			$(".result_Movie_TitleContent").empty();
 			$(".result_Movie_Grade").empty();
+			$(".result_Movie_Like").empty();
 			$(".result_Total").empty();
 			$(".result_Movie").empty();
 			$(".result_TV").empty();
@@ -454,6 +519,7 @@ function spread_TV () {
 			$(".menu_Movie_hashtagV").empty();
 			$(".menu_Movie_titleContentV").empty();
 			$(".menu_Movie_gradeV").empty();
+			$(".menu_Movie_likeV").empty();
 			$(".menu_Movie_V").empty();
 			$(".menu_Game_V").empty();
 			
@@ -476,6 +542,7 @@ function spread_TV () {
 			$(".result_Movie_Hashtag").empty();
 			$(".result_Movie_TitleContent").empty();
 			$(".result_Movie_Grade").empty();
+			$(".result_Movie_Like").empty();
 			$(".result_Total").empty();
 			$(".result_Movie").empty();
 			$(".result_Game").empty();
@@ -516,12 +583,13 @@ function spread_TV () {
 				<div class="menu_Movie_hashtagV"></div>
 				<div class="menu_Movie_titleContentV"></div>
 				<div class="menu_Movie_gradeV"></div>
+				<div class="menu_Movie_likeV"></div>
 			<div class="menu_Game_V"></div>
 			<div class="menu_TV_V"></div>
 			
 	</div>
 
-	<div id="content" style="background-color:gray; width:500px; float:left;">
+	<div id="content" style="background-color:gray; width:700px; float:left;">
 		
 		<div class="result_Total"></div>
 			<div class="result_Movie"></div>
@@ -530,6 +598,7 @@ function spread_TV () {
 				<div class="result_Movie_Hashtag"></div>
 				<div class="result_Movie_TitleContent"></div>
 				<div class="result_Movie_Grade"></div>
+				<div class="result_Movie_Like"></div>
 			<div class="result_Game"></div>
 			<div class="result_TV"></div>
 		

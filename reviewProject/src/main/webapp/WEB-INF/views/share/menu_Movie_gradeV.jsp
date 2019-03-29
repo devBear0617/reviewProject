@@ -25,7 +25,7 @@
 		<div class="result_Movie_recent" onclick="result_Movie_recent()">
 		<h4>&nbsp; &nbsp; - Most Recent</h4>
 		</div>
-		<div class="">
+		<div class="result_Movie_likeV" onclick="result_Movie_likeV()">
 		<h4>&nbsp; &nbsp; - Most LikeCount</h4>
 		</div>
 		<div class="result_Movie_gradeV" onclick="result_Movie_gradeV()">

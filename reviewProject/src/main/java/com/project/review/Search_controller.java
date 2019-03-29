@@ -51,6 +51,18 @@ public class Search_controller {
 		return "share/result_Board";
 	}
 	
+	// Movie - like desc
+	@RequestMapping(value="/searchResult/result_Movie_like", method=RequestMethod.POST)
+	public String result_Movie_like(HttpServletRequest request, HttpSession session, Model model) {
+			
+		String keyword = request.getParameter("keyword");
+		List<BoardVO> search_Result = searchService.searchMovie_likeCount(keyword);
+		System.out.println(search_Result);
+		model.addAttribute("search_Result", search_Result);
+
+		return "share/result_Board";
+	}
+	
 	// Movie - grade desc
 	@RequestMapping(value="/searchResult/result_Movie_grade", method=RequestMethod.POST)
 	public String result_Movie_grade(HttpServletRequest request, HttpSession session, Model model) {
@@ -135,8 +147,13 @@ public class Search_controller {
 		return "share/result_Board";
 	}
 	
-	
 	// Movie Menu's (V)
+	@RequestMapping(value="/searchResult/menu_Movie_likeV")
+	public String menu_Movie_likeV() {
+		
+		return "share/menu_Movie_likeV";
+	}
+	
 	@RequestMapping(value="/searchResult/menu_Movie_gradeV")
 	public String menu_Movie_gradeV() {
 		

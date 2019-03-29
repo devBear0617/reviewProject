@@ -35,6 +35,9 @@
            			</c:otherwise> 
 				</c:choose>
 			</td>
+			<td>score: ${result.lemon_grade}</td>
+			<%-- <td>L_C: ${result.likeit_Count}
+				R_C: ${result.reply_Count}</td> --%>
 			<td>${result.member_id}</td>
 			<td><c:if test="${empty result.board_up_date}">${result.board_date}</c:if>
 				<c:if test="${not empty result.board_up_date}">${result.board_up_date}</c:if></td>

@@ -90,6 +90,35 @@
 		ORDER BY A.lemon_grade DESC
 	</select>
 	
+	<!-- Movie - like desc -->
+	<select id="searchMovie_likeCount" parameterType="String" resultType="BoardVO">
+		SELECT *
+		FROM board A,
+			(SELECT board_num FROM board WHERE board_title LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM board WHERE board_content LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM board WHERE member_id LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM reply WHERE reply_content LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag1 LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag2 LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag3 LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag4 LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag5 LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag6 LIKE '%' ||  #{keyword} || '%'
+			) B, board_movie C
+		WHERE A.board_num = B.board_num
+		AND A.board_num = C.board_num
+		ORDER BY (SELECT COUNT(*) FROM likeit where board_num = A.board_num) DESC, A.board_num DESC
+	</select>
+	
 	<!-- Movie - title, content -->
 	<select id="searchMovie_titleContent" parameterType="String" resultType="BoardVO">
 		SELECT * 
@@ -177,27 +206,27 @@
 	
 	<!-- Total search -->
 	<select id="searchTotal" parameterType="String" resultType="BoardVO">
-		SELECT *
+		SELECT * 
 		FROM board A,
-			(SELECT board_num FROM board WHERE board_title LIKE '%' ||  #{keyword} || '%'
-			UNION
-			SELECT board_num FROM board WHERE board_content LIKE '%' ||  #{keyword} || '%'
-			UNION
-			SELECT board_num FROM board WHERE member_id LIKE '%' ||  #{keyword} || '%'
-			UNION
-			SELECT board_num FROM reply WHERE reply_content LIKE '%' ||  #{keyword} || '%'
-			UNION
-			SELECT board_num FROM hashtag WHERE hashtag1 LIKE '%' ||  #{keyword} || '%'
-			UNION
-			SELECT board_num FROM hashtag WHERE hashtag2 LIKE '%' ||  #{keyword} || '%'
-			UNION
-			SELECT board_num FROM hashtag WHERE hashtag3 LIKE '%' ||  #{keyword} || '%'
-			UNION
-			SELECT board_num FROM hashtag WHERE hashtag4 LIKE '%' ||  #{keyword} || '%'
-			UNION
-			SELECT board_num FROM hashtag WHERE hashtag5 LIKE '%' ||  #{keyword} || '%'
-			UNION
-			SELECT board_num FROM hashtag WHERE hashtag6 LIKE '%' ||  #{keyword} || '%') B
+				(SELECT board_num FROM board WHERE board_title LIKE '%' ||  #{keyword} || '%'
+				UNION
+				SELECT board_num FROM board WHERE board_content LIKE '%' ||  #{keyword} || '%'
+				UNION
+				SELECT board_num FROM board WHERE member_id LIKE '%' ||  #{keyword} || '%'
+				UNION
+				SELECT board_num FROM reply WHERE reply_content LIKE '%' ||  #{keyword} || '%'
+				UNION
+				SELECT board_num FROM hashtag WHERE hashtag1 LIKE '%' ||  #{keyword} || '%'
+				UNION
+				SELECT board_num FROM hashtag WHERE hashtag2 LIKE '%' ||  #{keyword} || '%'
+				UNION
+				SELECT board_num FROM hashtag WHERE hashtag3 LIKE '%' ||  #{keyword} || '%'
+				UNION
+				SELECT board_num FROM hashtag WHERE hashtag4 LIKE '%' ||  #{keyword} || '%'
+				UNION
+				SELECT board_num FROM hashtag WHERE hashtag5 LIKE '%' ||  #{keyword} || '%'
+				UNION
+				SELECT board_num FROM hashtag WHERE hashtag6 LIKE '%' ||  #{keyword} || '%') B
 		WHERE A.board_num = B.board_num
 		ORDER BY A.board_num DESC
 	</select>
