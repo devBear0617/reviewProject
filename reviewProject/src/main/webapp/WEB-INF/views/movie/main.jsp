@@ -101,8 +101,8 @@
 	<div>
 		<jsp:include page="/WEB-INF/views/movie/best_content.jsp" />
 	</div>
-	<!-- content -->
 	 --%>
+	<!-- content -->
 	<div class="center">
 		<div class="movie_info"></div>
 		<div class="contentList"></div>
@@ -128,14 +128,11 @@
 			</c:if>
 		</div>
 	</div>
-	<div style="height: 20px;"></div>
-	<div style="height: 20px;"></div>
-
-
+	<div style="height: 50px;"></div>
 <!-- 푸터 -->
-<%-- <div>
+<div>
 	<jsp:include page="/WEB-INF/views/share/footer.jsp" />
-</div> --%>
+</div>
 </body>
 
 </html>

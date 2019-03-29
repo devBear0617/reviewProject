@@ -1,6 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script type="text/javascript" src="/review/resources/script/jquery-3.3.1.min.js"></script>
+<script type="text/javascript"
+	src="/review/resources/script/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 $('.sort').click(function () {
 	var data = {
@@ -80,76 +82,86 @@ function move(e){
 	margin-right: auto;
 }
 
-.td_class1{
+.td_class1 {
 	width: 400px;
 }
 </style>
-	<br>
-	<!-- 최신순, 좋아요순, 별점순 바 -->
-	<div class="center">
-		<input type="hidden" id="sort_id" value="${sort_id}">
-		<table class="center" style="font-size: small;">
-			<tr>
-				<td class="td_class1"><span class="sort" id="sort_time">최신순</span></td>
-				<td class="td_class1"><span class="sort" id="sort_likeit">좋아요순</span></td>
-				<td class="td_class1"><span class="sort" id="sort_grade">별점순</span></td>
-			</tr>
-		</table>
-	</div>
+<br>
+<!-- 최신순, 좋아요순, 별점순 바 -->
+<div class="center">
+	<input type="hidden" id="sort_id" value="${sort_id}">
+	<table class="center" style="font-size: small;">
+		<tr>
+			<td class="td_class1"><span class="sort" id="sort_time">최신순</span></td>
+			<td class="td_class1"><span class="sort" id="sort_likeit">좋아요순</span></td>
+			<td class="td_class1"><span class="sort" id="sort_grade">별점순</span></td>
+		</tr>
+	</table>
+</div>
 
-	<br>
+<br>
 
-	<div class="wrapper">
-		<c:forEach items="${board_list}" var="board">
-			<div class="items"
-				onclick="move('/review/movie/detail_view/${board.board_num}')"
-				style="background-image:URL(${board.thumbnail});">
-				<!--  
+<div class="wrapper">
+	<c:forEach items="${board_list}" var="board">
+		<div class="items"
+			onclick="move('/review/movie/detail_view/${board.board_num}')"
+			style="background-color: rgba(255, 255, 255, 0.7);">
+			<!--  background-image: url('${board.thumbnail}');
+				${board.thumbnail}
 	썸네일 임시로 div 배경으로 설정함 디자인상 변경필요하면  변경 ㄱㄱ   <img src="${board.thumbnail}"> 	
 -->
-				<table>
-					<tr>
-						<td style="text-align: left; padding-left: 10px;" colspan="2"> ${board.member_id}</td>
-						<td style="font-size: small; text-align: right;" colspan="1">조회수 :
-							${board.board_readcount}</td>
-					</tr>
-					<tr>
-						<td style="height: 170px;" colspan="3">${board.board_title}</td>
-					</tr>
-					<tr>
-						<td style="font-size: small; text-align: right;" colspan="3">점수:
-							${board.lemon_grade}</td>
-					</tr>
-					<tr>
-						<td colspan="3"><hr></td>
-					</tr>
-					<tr>
-						<td style="font-size: small; padding-right: 30px;"><div
-								style="display: inline-block; padding-top: 5px;">
-								<div style="float: left;">
-									<img alt="likeit"
-										src="/review/resources/image/REMON_like_icon.png"
-										style="width: 20px; margin-left: -20px;">
-									${board.likeit_count}
-								</div>
-								<div style="float: left; margin-left: 30px;">
-									<img alt="likeit"
-										src="/review/resources/image/REMON_comment_icon.png"
-										style="width: 20px; margin-left: -20px;">
-									${board.reply_count}
-								</div>
-							</div></td>
-						<td style="font-size: x-small; text-align: right;" colspan="2">${board.board_date}</td>
-					</tr>
-				</table>
-			</div>
-		</c:forEach>
-	</div>
-	<div style="height: 20px;"></div>
-	<c:if test="${end_content < movieBoardCount}">
-		<div id=moreList>
-			<img alt="REMON_LOGO"
-				src="/review/movie/resources/image/REMON_more.png"
-				style="height: 20px;">
+			<table>
+				<tr>
+					<td style="text-align: left; padding-left: 10px;" colspan="2">
+						${board.member_id}</td>
+					<td style="font-size: small; text-align: right;" colspan="1">조회수
+						: ${board.board_readcount}&nbsp;</td>
+				</tr>
+				<tr>
+					<td style="" colspan="3">
+						<div
+							style="background: url('${board.thumbnail}');height: 170px; font-size: large; font-weight: bold;">
+							<div
+								style="background-color: rgba(255, 255, 255, 0.7); padding-top: 10px;">
+								<span style="color: black;">${board.board_title}</span>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td style="font-size: small; text-align: right;" colspan="3">점수:
+						${board.lemon_grade}&nbsp;</td>
+				</tr>
+				<tr>
+					<td colspan="3"><hr></td>
+				</tr>
+				<tr>
+					<td style="font-size: small; padding-right: 30px;"><div
+							style="display: inline-block; padding-top: 5px;">
+							<div style="float: left;">
+								<img alt="likeit"
+									src="/review/resources/image/REMON_like_icon.png"
+									style="width: 20px; margin-left: -20px;">
+								${board.likeit_count}
+							</div>
+							<div style="float: left; margin-left: 30px;">
+								<img alt="likeit"
+									src="/review/resources/image/REMON_comment_icon.png"
+									style="width: 20px; margin-left: -20px;">
+								${board.reply_count}
+							</div>
+						</div></td>
+					<td style="font-size: small; text-align: right;" colspan="2">${board.board_date}&nbsp;</td>
+				</tr>
+			</table>
 		</div>
-	</c:if>
+	</c:forEach>
+</div>
+<div style="height: 20px;"></div>
+<c:if test="${end_content < movieBoardCount}">
+	<div id=moreList>
+		<img alt="REMON_LOGO"
+			src="/review/movie/resources/image/REMON_more.png"
+			style="height: 20px;">
+	</div>
+</c:if>
