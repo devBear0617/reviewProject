@@ -1,5 +1,7 @@
+
 package com.project.review;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,23 +24,55 @@ public class Search_controller {
 
 	@Autowired
 	private SearchService searchService;
-	@Autowired
-	private MovieService movieService;
-	@Autowired
-	private MemberService memberService;
+
 	
 	//-------------------------------------------
+	
+	// only TV search
+	@RequestMapping(value="/searchResult/result_TV_only", method=RequestMethod.POST)
+	public String result_TV_only(HttpServletRequest request, HttpSession session, Model model) {
+		
+		String keyword = request.getParameter("keyword");
+		List<BoardVO> search_Result = searchService.searchTV(keyword);
+		System.out.println(search_Result);
+		model.addAttribute("search_Result", search_Result);
+		
+		return "share/result_Board";
+	}
+	
+	// only Game search
+	@RequestMapping(value="/searchResult/result_Game_only", method=RequestMethod.POST)
+	public String result_Game_only(HttpServletRequest request, HttpSession session, Model model) {
+		
+		String keyword = request.getParameter("keyword");
+		List<BoardVO> search_Result = searchService.searchGame(keyword);
+		System.out.println(search_Result);
+		model.addAttribute("search_Result", search_Result);
+		
+		return "share/result_Board";
+	}
+	
+	// Movie - like desc
+	@RequestMapping(value="/searchResult/result_Movie_like", method=RequestMethod.POST)
+	public String result_Movie_like(HttpServletRequest request, HttpSession session, Model model) {
+			
+		String keyword = request.getParameter("keyword");
+		List<BoardVO> search_Result = searchService.searchMovie_likeCount(keyword);
+		System.out.println(search_Result);
+		model.addAttribute("search_Result", search_Result);
+
+		return "share/result_Board";
+	}
 	
 	// Movie - grade desc
 	@RequestMapping(value="/searchResult/result_Movie_grade", method=RequestMethod.POST)
 	public String result_Movie_grade(HttpServletRequest request, HttpSession session, Model model) {
 		
 		String keyword = request.getParameter("keyword");
-		List<Integer> search_Result = searchService.searchMovie_Grade(keyword);
+		List<BoardVO> search_Result = searchService.searchMovie_Grade(keyword);
 		System.out.println(search_Result);
-		// 무비에서 검색
 		model.addAttribute("search_Result", search_Result);
-		
+
 		return "share/result_Board";
 	}
 	
@@ -47,11 +81,10 @@ public class Search_controller {
 	public String result_Movie_titleContent(HttpServletRequest request, HttpSession session, Model model) {
 		
 		String keyword = request.getParameter("keyword");
-		List<Integer> search_Result = searchService.searchMovie_titleContent(keyword);
+		List<BoardVO> search_Result = searchService.searchMovie_titleContent(keyword);
 		System.out.println(search_Result);
-		// 무비에서 검색
 		model.addAttribute("search_Result", search_Result);
-		
+
 		return "share/result_Board";
 	}
 	
@@ -60,11 +93,10 @@ public class Search_controller {
 	public String result_Movie_hashtag(HttpServletRequest request, HttpSession session, Model model) {
 		
 		String keyword = request.getParameter("keyword");
-		List<Integer> search_Result = searchService.searchMovie_Hashtag(keyword);
+		List<BoardVO> search_Result = searchService.searchMovie_Hashtag(keyword);
 		System.out.println(search_Result);
-		// 무비에서 검색
 		model.addAttribute("search_Result", search_Result);
-		
+
 		return "share/result_Board";
 	}
 	
@@ -73,11 +105,10 @@ public class Search_controller {
 	public String result_Movie_reply(HttpServletRequest request, HttpSession session, Model model) {
 		
 		String keyword = request.getParameter("keyword");
-		List<Integer> search_Result = searchService.searchMovie_ReplyContent(keyword);
+		List<BoardVO> search_Result = searchService.searchMovie_ReplyContent(keyword);
 		System.out.println(search_Result);
-		// 무비에서 검색
 		model.addAttribute("search_Result", search_Result);
-		
+
 		return "share/result_Board";
 	}
 	
@@ -86,9 +117,8 @@ public class Search_controller {
 	public String result_Movie_member(HttpServletRequest request, HttpSession session, Model model) {
 		
 		String keyword = request.getParameter("keyword");
-		List<Integer> search_Result = searchService.searchMovie_Member(keyword);
+		List<BoardVO> search_Result = searchService.searchMovie_Member(keyword);
 		System.out.println(search_Result);
-		// 무비에서 검색
 		model.addAttribute("search_Result", search_Result);
 		
 		return "share/result_Board";
@@ -99,9 +129,8 @@ public class Search_controller {
 	public String result_Movie_only(HttpServletRequest request, HttpSession session, Model model) {
 		
 		String keyword = request.getParameter("keyword");
-		List<Integer> search_Result = searchService.searchMovie(keyword);
+		List<BoardVO> search_Result = searchService.searchMovie(keyword);
 		System.out.println(search_Result);
-		// 무비에서 검색
 		model.addAttribute("search_Result", search_Result);
 		
 		return "share/result_Board";
@@ -112,16 +141,20 @@ public class Search_controller {
 	public String result_Total(HttpServletRequest request, HttpSession session, Model model) {
 		
 		String keyword = request.getParameter("keyword");
-		List<Integer> search_Result = searchService.searchTotal(keyword);
+		List<BoardVO> search_Result = searchService.searchTotal(keyword);
 		System.out.println(search_Result);
-		// 통합검색
 		model.addAttribute("search_Result", search_Result);
 		
 		return "share/result_Board";
 	}
 	
-	
 	// Movie Menu's (V)
+	@RequestMapping(value="/searchResult/menu_Movie_likeV")
+	public String menu_Movie_likeV() {
+		
+		return "share/menu_Movie_likeV";
+	}
+	
 	@RequestMapping(value="/searchResult/menu_Movie_gradeV")
 	public String menu_Movie_gradeV() {
 		
@@ -158,10 +191,25 @@ public class Search_controller {
 		return "share/menu_Movie_V";
 	}
 	
-	@RequestMapping(value="/searchResult/menu_Movie")
-	public String menu_Movie() {
+	// Game Menu's (V)
+	@RequestMapping(value="/searchResult/menu_Game_V")
+	public String menu_Game_V() {
 		
-		return "share/menu_Movie";
+		return "share/menu_Game_V";
+	}
+	
+	// TV Menu's (V)
+	@RequestMapping(value="/searchResult/menu_TV_V")
+	public String menu_TV_V() {
+		
+		return "share/menu_TV_V";
+	}
+	
+	// menu_Form
+	@RequestMapping(value="/searchResult/menu_Form")
+	public String menu_Form() {
+		
+		return "share/menu_Form";
 	}
 	
 	// result form
@@ -170,10 +218,6 @@ public class Search_controller {
 		
 		String keyword = request.getParameter("keyword");
 		model.addAttribute("keyword", keyword);
-		/*List<Integer> boardTotal = searchService.searchTotal(keyword);
-		System.out.println(boardTotal);
-		// 통합검색
-		model.addAttribute("boardTotal", boardTotal);*/
 		
 		return "share/searchResult";
 	}
@@ -186,3 +230,4 @@ public class Search_controller {
 	
 	
 }
+

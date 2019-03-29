@@ -26,13 +26,13 @@
 		<h4>&nbsp; &nbsp; - Most Recent</h4>
 		</div>
 		<div class="result_Movie_likeV" onclick="result_Movie_likeV()">
-		<h4>&nbsp; &nbsp; - Most LikeCount</h4>
+		<h4>&nbsp; &nbsp; - Most LikeCount &nbsp; <span style="color:red">v</span></h4>
 		</div>
 		<div class="result_Movie_gradeV" onclick="result_Movie_gradeV()">
 		<h4>&nbsp; &nbsp; - Most Grade</h4>
 		</div>
 		<div class="result_Movie_titleContentV" onclick="result_Movie_titleContentV()">
-		<h4>&nbsp; &nbsp; - Title, Content &nbsp; <span style="color:red">v</span></h4>
+		<h4>&nbsp; &nbsp; - Title, Content</h4>
 		</div>
 		<div class="result_Movie_memberV" onclick="result_Movie_memberV()">
 		<h4>&nbsp; &nbsp; - Member</h4>
@@ -43,7 +43,7 @@
 		<div class="result_Movie_hashtagV" onclick="result_Movie_hashtagV()">
 		<h4>&nbsp; &nbsp; - Hashtag</h4>
 		</div>
-
+	
 	<div class="spread_Game" onclick="spread_Game()">
 	<h3>GAME</h3>
 	</div>
@@ -53,5 +53,4 @@
 	</div>
 
 </body>
-
 </html>

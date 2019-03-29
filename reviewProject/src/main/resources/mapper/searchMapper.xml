@@ -3,136 +3,233 @@
 
 <mapper namespace="com.project.review.dao.SearchDAO">
 	
-	<!-- Movie - grade desc -->
-	<select id="searchMovie_Grade" parameterType="String" resultType="int">
-		SELECT A.board_num
-		FROM (
-		SELECT board_num FROM board WHERE board_title LIKE '%' ||  #{keyword} || '%'
-		UNION
-		SELECT board_num FROM board WHERE board_content LIKE '%' ||  #{keyword} || '%'
-		UNION
-		SELECT board_num FROM board WHERE member_id LIKE '%' ||  #{keyword} || '%'
-		UNION
-		SELECT board_num FROM reply WHERE reply_content LIKE '%' ||  #{keyword} || '%'
-		UNION
-		SELECT board_num FROM hashtag WHERE hashtag1 LIKE '%' ||  #{keyword} || '%'
-		UNION
-		SELECT board_num FROM hashtag WHERE hashtag2 LIKE '%' ||  #{keyword} || '%'
-		UNION
-		SELECT board_num FROM hashtag WHERE hashtag3 LIKE '%' ||  #{keyword} || '%'
-		UNION
-		SELECT board_num FROM hashtag WHERE hashtag4 LIKE '%' ||  #{keyword} || '%'
-		UNION
-		SELECT board_num FROM hashtag WHERE hashtag5 LIKE '%' ||  #{keyword} || '%'
-		UNION
-		SELECT board_num FROM hashtag WHERE hashtag6 LIKE '%' ||  #{keyword} || '%'
-		) A, board_movie B, board C
+	<!-- Movie only search -->
+	<select id="searchTV" parameterType="String" resultType="BoardVO">
+		SELECT *
+		FROM board A,
+			(SELECT board_num FROM board WHERE board_title LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM board WHERE board_content LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM board WHERE member_id LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM reply WHERE reply_content LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag1 LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag2 LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag3 LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag4 LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag5 LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag6 LIKE '%' ||  #{keyword} || '%'
+			) B, board_tv C
 		WHERE A.board_num = B.board_num
 		AND A.board_num = C.board_num
-		ORDER BY C.lemon_grade DESC
+		ORDER BY A.board_num DESC
+	</select>
+	
+	<!-- Game only search -->
+	<select id="searchGame" parameterType="String" resultType="BoardVO">
+		SELECT *
+		FROM board A,
+			(SELECT board_num FROM board WHERE board_title LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM board WHERE board_content LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM board WHERE member_id LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM reply WHERE reply_content LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag1 LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag2 LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag3 LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag4 LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag5 LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag6 LIKE '%' ||  #{keyword} || '%'
+			) B, board_game C
+		WHERE A.board_num = B.board_num
+		AND A.board_num = C.board_num
+		ORDER BY A.board_num DESC
+	</select>
+	
+	<!-- Movie - grade desc -->
+	<select id="searchMovie_Grade" parameterType="String" resultType="BoardVO">
+		SELECT *
+		FROM board A,
+			(SELECT board_num FROM board WHERE board_title LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM board WHERE board_content LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM board WHERE member_id LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM reply WHERE reply_content LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag1 LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag2 LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag3 LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag4 LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag5 LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag6 LIKE '%' ||  #{keyword} || '%'
+			) B, board_movie C
+		WHERE A.board_num = B.board_num
+		AND A.board_num = C.board_num
+		ORDER BY A.lemon_grade DESC
+	</select>
+	
+	<!-- Movie - like desc -->
+	<select id="searchMovie_likeCount" parameterType="String" resultType="BoardVO">
+		SELECT *
+		FROM board A,
+			(SELECT board_num FROM board WHERE board_title LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM board WHERE board_content LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM board WHERE member_id LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM reply WHERE reply_content LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag1 LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag2 LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag3 LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag4 LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag5 LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag6 LIKE '%' ||  #{keyword} || '%'
+			) B, board_movie C
+		WHERE A.board_num = B.board_num
+		AND A.board_num = C.board_num
+		ORDER BY (SELECT COUNT(*) FROM likeit where board_num = A.board_num) DESC, A.board_num DESC
 	</select>
 	
 	<!-- Movie - title, content -->
-	<select id="searchMovie_titleContent" parameterType="String" resultType="int">
-		SELECT B.board_num FROM board B, board_movie BM WHERE B.board_num=BM.board_num
-		AND B.board_title LIKE '%' || #{keyword} || '%'
-		UNION
-		SELECT B.board_num FROM board B, board_movie BM WHERE B.board_num=BM.board_num
-		AND B.board_content LIKE '%' || #{keyword} || '%'
-		ORDER BY board_num DESC
+	<select id="searchMovie_titleContent" parameterType="String" resultType="BoardVO">
+		SELECT * 
+		FROM board X, 
+			(SELECT B.board_num FROM board B, board_movie BM WHERE B.board_num=BM.board_num
+			AND B.board_title LIKE '%' || #{keyword} || '%'
+			UNION
+			SELECT B.board_num FROM board B, board_movie BM WHERE B.board_num=BM.board_num
+			AND B.board_content LIKE '%' || #{keyword} || '%') Y
+		WHERE X.board_num = Y.board_num
+		ORDER BY X.board_num DESC
 	</select>
 	
 	<!-- Movie - hashtag -->
-	<select id="searchMovie_Hashtag" parameterType="String" resultType="int">
-		SELECT BM.board_num FROM board_movie BM, hashtag H WHERE BM.board_num = H.board_num
-		AND H.hashtag1 LIKE '%' || #{keyword} || '%'
-		UNION
-		SELECT BM.board_num FROM board_movie BM, hashtag H WHERE BM.board_num = H.board_num
-		AND H.hashtag2 LIKE '%' || #{keyword} || '%'
-		UNION
-		SELECT BM.board_num FROM board_movie BM, hashtag H WHERE BM.board_num = H.board_num
-		AND H.hashtag3 LIKE '%' || #{keyword} || '%'
-		UNION
-		SELECT BM.board_num FROM board_movie BM, hashtag H WHERE BM.board_num = H.board_num
-		AND H.hashtag4 LIKE '%' || #{keyword} || '%'
-		UNION
-		SELECT BM.board_num FROM board_movie BM, hashtag H WHERE BM.board_num = H.board_num
-		AND H.hashtag5 LIKE '%' || #{keyword} || '%'
-		UNION
-		SELECT BM.board_num FROM board_movie BM, hashtag H WHERE BM.board_num = H.board_num
-		AND H.hashtag6 LIKE '%' || #{keyword} || '%'
-		ORDER BY board_num DESC
-	</select>
-	
-	<!-- Movie - reply -->
-	<select id="searchMovie_ReplyContent" parameterType="String" resultType="int">
-		SELECT DISTINCT BM.board_num
-		FROM board_movie BM, reply R
-		WHERE BM.board_num = R.board_num
-		AND R.reply_content LIKE '%' || #{keyword} || '%'
-	</select>
-	
-	<!-- Movie - member -->
-	<select id="searchMovie_Member" parameterType="String" resultType="int">
-		SELECT BM.board_num
-		FROM board_movie BM, board B
-		WHERE BM.board_num = B.board_num
-		AND B.member_id LIKE '%' || #{keyword} || '%' 
-		ORDER BY BM.board_num DESC
-	</select>
-	
-	<!-- Movie only search -->
-	<select id="searchMovie" parameterType="String" resultType="int">
-		SELECT A.board_num
-		FROM (
-		SELECT board_num FROM board WHERE board_title LIKE '%' ||  #{keyword} || '%'
-		UNION
-		SELECT board_num FROM board WHERE board_content LIKE '%' ||  #{keyword} || '%'
-		UNION
-		SELECT board_num FROM board WHERE member_id LIKE '%' ||  #{keyword} || '%'
-		UNION
-		SELECT board_num FROM reply WHERE reply_content LIKE '%' ||  #{keyword} || '%'
-		UNION
-		SELECT board_num FROM hashtag WHERE hashtag1 LIKE '%' ||  #{keyword} || '%'
-		UNION
-		SELECT board_num FROM hashtag WHERE hashtag2 LIKE '%' ||  #{keyword} || '%'
-		UNION
-		SELECT board_num FROM hashtag WHERE hashtag3 LIKE '%' ||  #{keyword} || '%'
-		UNION
-		SELECT board_num FROM hashtag WHERE hashtag4 LIKE '%' ||  #{keyword} || '%'
-		UNION
-		SELECT board_num FROM hashtag WHERE hashtag5 LIKE '%' ||  #{keyword} || '%'
-		UNION
-		SELECT board_num FROM hashtag WHERE hashtag6 LIKE '%' ||  #{keyword} || '%'
-		) A, board_movie B
+	<select id="searchMovie_Hashtag" parameterType="String" resultType="BoardVO">
+		SELECT *
+		FROM board A,
+			(SELECT BM.board_num FROM board_movie BM, hashtag H WHERE BM.board_num = H.board_num
+			AND H.hashtag1 LIKE '%' || #{keyword} || '%'
+			UNION
+			SELECT BM.board_num FROM board_movie BM, hashtag H WHERE BM.board_num = H.board_num
+			AND H.hashtag2 LIKE '%' || #{keyword} || '%'
+			UNION
+			SELECT BM.board_num FROM board_movie BM, hashtag H WHERE BM.board_num = H.board_num
+			AND H.hashtag3 LIKE '%' || #{keyword} || '%'
+			UNION
+			SELECT BM.board_num FROM board_movie BM, hashtag H WHERE BM.board_num = H.board_num
+			AND H.hashtag4 LIKE '%' || #{keyword} || '%'
+			UNION
+			SELECT BM.board_num FROM board_movie BM, hashtag H WHERE BM.board_num = H.board_num
+			AND H.hashtag5 LIKE '%' || #{keyword} || '%'
+			UNION
+			SELECT BM.board_num FROM board_movie BM, hashtag H WHERE BM.board_num = H.board_num
+			AND H.hashtag6 LIKE '%' || #{keyword} || '%') B
 		WHERE A.board_num = B.board_num
 		ORDER BY A.board_num DESC
 	</select>
 	
-	<!-- Total search -->
-	<select id="searchTotal" parameterType="String" resultType="int">
-		SELECT board_num FROM board WHERE board_title LIKE '%' ||  #{keyword} || '%'
-		UNION
-		SELECT board_num FROM board WHERE board_content LIKE '%' ||  #{keyword} || '%'
-		UNION
-		SELECT board_num FROM board WHERE member_id LIKE '%' ||  #{keyword} || '%'
-		UNION
-		SELECT board_num FROM reply WHERE reply_content LIKE '%' ||  #{keyword} || '%'
-		UNION
-		SELECT board_num FROM hashtag WHERE hashtag1 LIKE '%' ||  #{keyword} || '%'
-		UNION
-		SELECT board_num FROM hashtag WHERE hashtag2 LIKE '%' ||  #{keyword} || '%'
-		UNION
-		SELECT board_num FROM hashtag WHERE hashtag3 LIKE '%' ||  #{keyword} || '%'
-		UNION
-		SELECT board_num FROM hashtag WHERE hashtag4 LIKE '%' ||  #{keyword} || '%'
-		UNION
-		SELECT board_num FROM hashtag WHERE hashtag5 LIKE '%' ||  #{keyword} || '%'
-		UNION
-		SELECT board_num FROM hashtag WHERE hashtag6 LIKE '%' ||  #{keyword} || '%'
-		ORDER BY board_num DESC
+	<!-- Movie - reply -->
+	<select id="searchMovie_ReplyContent" parameterType="String" resultType="BoardVO">
+		SELECT *
+		FROM board A, 
+			(SELECT DISTINCT BM.board_num FROM board_movie BM, reply R
+			WHERE BM.board_num = R.board_num AND R.reply_content LIKE '%' || #{keyword} || '%') B
+		WHERE A.board_num = B.board_num
+		ORDER BY A.board_num DESC
 	</select>
 	
+	<!-- Movie - member -->
+	<select id="searchMovie_Member" parameterType="String" resultType="BoardVO">
+		SELECT *
+		FROM board_movie BM, board B 
+		WHERE BM.board_num = B.board_num AND B.member_id LIKE '%' || #{keyword} || '%'
+		ORDER BY BM.board_num DESC
+	</select>
 	
+	<!-- Movie only search -->
+	<select id="searchMovie" parameterType="String" resultType="BoardVO">
+		SELECT *
+		FROM board A,
+			(SELECT board_num FROM board WHERE board_title LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM board WHERE board_content LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM board WHERE member_id LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM reply WHERE reply_content LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag1 LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag2 LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag3 LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag4 LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag5 LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag6 LIKE '%' ||  #{keyword} || '%'
+			) B, board_movie C
+		WHERE A.board_num = B.board_num
+		AND A.board_num = C.board_num
+		ORDER BY A.board_num DESC
+	</select>
 	
+	<!-- Total search -->
+	<select id="searchTotal" parameterType="String" resultType="BoardVO">
+		SELECT * 
+		FROM board A,
+				(SELECT board_num FROM board WHERE board_title LIKE '%' ||  #{keyword} || '%'
+				UNION
+				SELECT board_num FROM board WHERE board_content LIKE '%' ||  #{keyword} || '%'
+				UNION
+				SELECT board_num FROM board WHERE member_id LIKE '%' ||  #{keyword} || '%'
+				UNION
+				SELECT board_num FROM reply WHERE reply_content LIKE '%' ||  #{keyword} || '%'
+				UNION
+				SELECT board_num FROM hashtag WHERE hashtag1 LIKE '%' ||  #{keyword} || '%'
+				UNION
+				SELECT board_num FROM hashtag WHERE hashtag2 LIKE '%' ||  #{keyword} || '%'
+				UNION
+				SELECT board_num FROM hashtag WHERE hashtag3 LIKE '%' ||  #{keyword} || '%'
+				UNION
+				SELECT board_num FROM hashtag WHERE hashtag4 LIKE '%' ||  #{keyword} || '%'
+				UNION
+				SELECT board_num FROM hashtag WHERE hashtag5 LIKE '%' ||  #{keyword} || '%'
+				UNION
+				SELECT board_num FROM hashtag WHERE hashtag6 LIKE '%' ||  #{keyword} || '%') B
+		WHERE A.board_num = B.board_num
+		ORDER BY A.board_num DESC
+	</select>
+	
+
 </mapper>

@@ -7,6 +7,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('.moveBT').click(function() {
+			$($(this).attr("data-target")).submit();
+		});
+	})
+</script>
 <style type="text/css">
 .center {
 	margin-left: auto;
@@ -18,6 +25,10 @@
 	background: none;
 	width: 400px;
 	align-content: center;
+}
+
+.td_class1 {
+	width: 400px;
 }
 </style>
 </head>
@@ -38,14 +49,14 @@
 				</td>
 				<td class="no_background">
 					<!-- 검색 바 -->
-					<div class='moveBT' data-target="#searchMain">
-						<form action="/review/search/main/" id="searchMain">
+					<!-- <div class='moveBT' data-target="#searchMain"> -->
+						<form action="/review/search/searchResult" method="POST" id="search">
 							<input type="text" id="query" name="query"
 								style="width: 300px; height: 30px; border-radius: 20px; border-style: none;">
-							<button
-								style="width: 50px; height: 30px; border-radius: 20px; border-style: none; background-color: yellow;">검색</button>
+							<input type="submit" value="검색"
+								style="width: 50px; height: 30px; border-radius: 20px; border-style: none; background-color: yellow;">
 						</form>
-					</div>
+					<!-- </div> -->
 				</td>
 				<td class="no_background">
 					<!-- 마이페이지 --> <!-- 로그인 필요 시 -->
@@ -73,13 +84,41 @@
 										style="height: 50px;"></a>
 								</c:if>
 								<c:if test="${not empty user.member_pic}"> --%>
-									<a href="/review/mypage/mypageCheck"><img alt="REMON_LOGO"
-										src="/review/movie/resources/memberImage/${user.member_pic}"
-										style="height: 50px; width: 50px;border-radius: 50px;"></a>
+								<a href="/review/mypage/mypageCheck"><img alt="REMON_LOGO"
+									src="/review/movie/resources/memberImage/${user.member_pic}"
+									style="height: 50px; width: 50px; border-radius: 50px;"></a>
 								<%-- </c:if> --%>
 							</div>
 						</div>
 					</c:if>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+	<div class="center">
+		<table class="center">
+			<tr>
+				<td class="td_class1">
+					<div class='moveBT' data-target="#movieMain">
+						<form action="/review/movie/main" id="movieMain">
+							<h1>Movie</h1>
+						</form>
+					</div>
+				</td>
+				<td class="td_class1">
+					<div class='moveBT' data-target="#tvMain">
+						<form action="/review/tv/main" id="tvMain">
+							<h1>tv</h1>
+						</form>
+					</div>
+				</td>
+				<td class="td_class1">
+					<div class='moveBT' data-target="#gameMain">
+						<form action="/review/game/main" id="gameMain">
+							<h1>game</h1>
+						</form>
+					</div>
 				</td>
 			</tr>
 		</table>
