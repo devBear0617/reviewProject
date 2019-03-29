@@ -2,6 +2,8 @@ package com.project.review.dao;
 
 import java.util.List;
 
+import com.project.review.vo.BoardVO;
+
 public interface SearchDAO {
 
 	
@@ -21,12 +23,7 @@ public interface SearchDAO {
 		public List<BoardVO> searchMovie_Hashtag(String keyword);
 	
 	// TOTAL
-<<<<<<< HEAD
-	public List<Integer> searchTotal(String keyword);
-=======
 	public List<BoardVO> searchTotal(String keyword);
 	
-	
-	
->>>>>>> BearB
+
 }
