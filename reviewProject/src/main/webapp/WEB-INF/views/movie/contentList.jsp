@@ -47,6 +47,7 @@ $('.sort').click(function () {
 	grid-column-gap: 5px;
 	grid-row-gap: 5px;
 	justify-content: center;
+	border: 1px solid #F2F2F2;
 }
 
 .wrapperCenter {

@@ -121,9 +121,9 @@
 		<jsp:include page="/WEB-INF/views/share/header.jsp" />
 	</div>
 	<!-- category -->
-	<div>
+	<%-- 	<div>
 		<jsp:include page="/WEB-INF/views/share/category_bar.jsp" />
-	</div>
+	</div> --%>
 	<!-- 유저프로필, 유저ID, 제목 바 ( O 유저ID | 리뷰 제목              | 날짜 ) -->
 	<div class="user_form">
 		<table class="user">
