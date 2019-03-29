@@ -3,14 +3,16 @@
 <script type="text/javascript" src="/review/resources/script/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 var movie_nm = $('.movieinfo_2').html();
-console.log(movie_nm);
+console.log("contentList.jsp / movie_nm : " + movie_nm);
 function fn_paging(pnum) {
 	$.ajax({
 		type : 'POST',
 		url : "./oneContentView",
 		data : {
 			'pnum' : pnum,
-			'movie_nm' : movie_nm 
+			'movie_nm' : movie_nm,
+			'start_content' : 0,
+			'end_content' : 9
 		},
 		success : function(html) {
 			$('.contentList').empty();
@@ -22,10 +24,12 @@ function fn_paging(pnum) {
 	})
 }
 $('.sort').click(function () {
-	console.log(movie_nm);
+	console.log("contentList.jsp / sort click / movie_nm :"+movie_nm);
 	var data = {
-			"sort_id" : $(this).attr('id'),
-			'movie_nm' : movie_nm
+			'sort_id' : $(this).attr('id'),
+			'movie_nm' :movie_nm,
+			'start_content' : 0,
+			'end_content' : 9
 	}
 	$.ajax({
 		type : "POST",

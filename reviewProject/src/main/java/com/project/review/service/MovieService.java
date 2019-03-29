@@ -32,12 +32,11 @@ public interface MovieService {
 	/*plusReadCount*/
 	public void plusReadCount(int board_num);
 	public BoardVO getBoardById(int board_num);
+	
 	public List<BoardVO> getMovieBoardList(Board_MovieVO b_MovieVO);
-	
-	public List<BoardVO> getMovieBoardList_sort(Map<String, Object> map);	
-	
 	public int getMovieBoardCount();
-		// reply
+	
+	// reply
 		public int replyCount(int board_num);
 		public List<ReplyVO> getMovieBoardReplyList();
 		// likeit

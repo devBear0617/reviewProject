@@ -73,7 +73,7 @@
 			<td class="movieinfo_1a">
 				<table>
 					<tr>
-						<td colspan="2" class="movieinfo_2">&nbsp;&nbsp;${movie.movie_nm}</td>
+						<td colspan="2" class="movieinfo_2">${movie.movie_nm}</td>
 					</tr>
 					<tr>
 						<td class="movieinfo_3">개봉일 :</td>

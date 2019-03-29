@@ -29,7 +29,7 @@ function fn_ca_paging(pnum) {
 function getMRList(e){
 	var movie_cd = $(e).attr('class').split(" ")[1];
 	var movie_nm = $(e).html();
-	
+	console.log("detail_category3.jsp / getMRList / movie_nm : "+movie_nm);
 	$.ajax({
 		type : 'POST',
 		url : "./movieInfoView",
@@ -47,6 +47,8 @@ function getMRList(e){
 				data : {
 					"sort_id" : "sort_time",
 					'movie_nm' : movie_nm,
+					'start_content' : 0,
+					'end_content' : 9,
 					'pnum' : 1
 				},
 				success : function(html) {

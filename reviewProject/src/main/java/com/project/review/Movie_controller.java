@@ -106,19 +106,22 @@ public class Movie_controller {
 		
 		return "movie/movieInfo";
 	}
-	
+	// 상세 카테고리 - 영화 클릭시 contentList 출력
 	@RequestMapping(value = "/oneContentView")
 	public String oneContentView(Board_MovieVO b_movieVO, Model model) {
+		String sort_id = b_movieVO.getSort_id();
 		List<BoardVO> board_list = movieService.getMovieBoardList(b_movieVO);
-		//pagination.setCurPage(b_movieVO.getPnum());
-		//List<BoardVO> board_list = movieService.getBoardList(b_movieVO);
 		
 		if (board_list.size()==0) 
 			return "movie/nullPage";
 		
 		Pagination pagination = new Pagination();
+		
+		pagination.setCurPage(b_movieVO.getPnum());
 		pagination.setPage(b_movieVO.getPnum(), board_list.size());
-			
+	
+		model.addAttribute("sort_id", sort_id);		
+		
 		model.addAttribute("board_list", board_list);
 		model.addAttribute("pagination", pagination);
 		
@@ -136,46 +139,21 @@ public class Movie_controller {
 
 	// >> 게시판 출력 ----------------------------------
 	@RequestMapping(value = "/contentView")
-	public String contentView(HttpServletRequest request, HttpSession session, Model model) {
+	public String contentView(Board_MovieVO b_movieVO, HttpSession session, Model model) {
 		
-		String member_id = (String) session.getAttribute("member_id");
-		if (member_id != null) {
-			String member_pic = memberService.getMember_pic(member_id);
-			model.addAttribute("member_pic", member_pic);
-		}
 		
-		//보여줄 content rnum기준 시작 번호 
-		int start_content = Integer.parseInt(request.getParameter("start_content"));
+		int start_content = b_movieVO.getStart_content();
 		model.addAttribute("start_content", start_content);
 		
-		//보여줄 content rnum기준 끝 번호
-		int end_content = Integer.parseInt(request.getParameter("end_content"));
+		int end_content = b_movieVO.getEnd_content();
 		model.addAttribute("end_content", end_content);
 		
-		//content 정렬 방식 : sort_time/sort_likeit/sort_grade
-		String sort_id = request.getParameter("sort_id");
-		
-		//default : 시간순정렬
-		if(sort_id == null) {
-			sort_id = "sort_time";			
-		}		
+		String sort_id = b_movieVO.getSort_id();		
 		model.addAttribute("sort_id", sort_id);				
 		
-		Map<String, Object> map = new HashMap<String, Object>();
-		//System.out.println(start_content+"///"+end_content);
-		map.put("start_content", start_content);
-		map.put("end_content", end_content);
-		map.put("sort_id", sort_id);
+	    List<BoardVO> board_list;	
+		board_list = movieService.getMovieBoardList(b_movieVO);
 		
-		List<BoardVO> board_list;		
-		board_list = movieService.getMovieBoardList_sort(map);
-		/*if (sort_id.equals("sort_time")) {
-			board_list = movieService.getMovieBoardList_sort_time(map);
-		}else if(sort_id.equals("sort_likeit")) {
-			board_list = movieService.getMovieBoardList_sort_likeit(map);			
-		}else {
-			board_list = movieService.getMovieBoardList_sort_grade(map);			
-		}	*/
 		model.addAttribute("board_list", board_list);
 
 		int movieBoardCount = movieService.getMovieBoardCount();

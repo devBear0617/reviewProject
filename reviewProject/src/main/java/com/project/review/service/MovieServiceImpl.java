@@ -73,29 +73,12 @@ public class MovieServiceImpl implements MovieService {
 	}
 	
 	
-	//게시판 호출
+	//게시판 호출 및 정렬
 	@Override
 	public List<BoardVO> getMovieBoardList(Board_MovieVO b_MovieVO) {
-	/*	String sort_id = b_MovieVO.getSort_id();
-		System.out.println(">"+sort_id);
-		try {
-			if (sort_id.equals("sort_likeit")) 
-				return boardDAO.getMovieBoardList_likeit(b_MovieVO);
-			if (sort_id.equals("sort_grade")) 
-				return boardDAO.getMovieBoardList_grade(b_MovieVO);
-			if (sort_id.equals("sort_time")) 
-				return boardDAO.getMovieBoardList_time(b_MovieVO);
-		} catch (Exception e) {
-		}
-		return boardDAO.getMovieBoardList_time(b_MovieVO);*/
+	
 		return boardDAO.getMovieBoardList(b_MovieVO);
-	}
-	//게시글 정렬
-	@Override
-	public List<BoardVO> getMovieBoardList_sort(Map<String, Object> map) {
-				
-		return boardDAO.getMovieBoardList_sort(map);
-	}
+	}	
 	
 	@Override
 	public int getMovieBoardCount() {
