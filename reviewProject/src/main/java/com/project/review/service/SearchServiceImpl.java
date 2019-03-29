@@ -14,51 +14,67 @@ public class SearchServiceImpl implements SearchService {
 	@Autowired
 	private SearchDAO searchDAO;
 
-	
+	// only TV
 	@Override
-	public List<Integer> searchMovie_likeCount(String keyword) {
+	public List<BoardVO> searchTV(String keyword) {
+		
+		return searchDAO.searchTV(keyword);
+	}
+	
+	// only Game
+	@Override
+	public List<BoardVO> searchGame(String keyword) {
+		
+		return searchDAO.searchGame(keyword);
+	}
+	
+	// Movie's
+	@Override
+	public List<BoardVO> searchMovie_likeCount(String keyword) {
 		
 		return searchDAO.searchMovie_likeCount(keyword);
 	}
 	
 	@Override
-	public List<Integer> searchMovie_Grade(String keyword) {
+	public List<BoardVO> searchMovie_Grade(String keyword) {
 		
 		return searchDAO.searchMovie_Grade(keyword);
 	}
 	
 	@Override
-	public List<Integer> searchMovie_titleContent(String keyword) {
+	public List<BoardVO> searchMovie_titleContent(String keyword) {
 		
 		return searchDAO.searchMovie_titleContent(keyword);
 	}
 	
 	@Override
-	public List<Integer> searchMovie_Member(String keyword) {
+	public List<BoardVO> searchMovie_Member(String keyword) {
 		
 		return searchDAO.searchMovie_Member(keyword);
 	}
 	
 	@Override
-	public List<Integer> searchMovie_ReplyContent(String keyword) {
+	public List<BoardVO> searchMovie_ReplyContent(String keyword) {
 		
 		return searchDAO.searchMovie_ReplyContent(keyword);
 	}
 	
 	@Override
-	public List<Integer> searchMovie_Hashtag(String keyword) {
+	public List<BoardVO> searchMovie_Hashtag(String keyword) {
 		
 		return searchDAO.searchMovie_Hashtag(keyword);
 	}
 	
+	// only Movie
 	@Override
-	public List<Integer> searchMovie(String keyword) {
+	public List<BoardVO> searchMovie(String keyword) {
 		
 		return searchDAO.searchMovie(keyword);
 	}
 	
+	// Total
 	@Override
-	public List<Integer> searchTotal(String keyword) {
+	public List<BoardVO> searchTotal(String keyword) {
 		
 		return searchDAO.searchTotal(keyword);
 	}
