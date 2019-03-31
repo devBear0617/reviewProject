@@ -9,6 +9,12 @@ import com.project.review.vo.ReplyVO;
 
 public interface MemberDAO {
 	
+	// searchMemberPW
+	public MemberVO searchMemberPW(MemberVO member);
+	
+	// searchMemberID
+	public MemberVO searchMemberID(MemberVO member);
+	
 	// getMember_pic
 	public String getMember_pic(String member_id);
 	

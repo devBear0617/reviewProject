@@ -22,6 +22,7 @@
 		
 		<association property="boardVO" column="board_num" select="getBoardInfo" />
 	</resultMap>
+	
 	<!-- myLike -->
 	<resultMap id="myLike" type="LikeItVO">
 		<result property="board_num" column="board_num" />
@@ -30,6 +31,26 @@
 		
 		<association property="boardVO" column="board_num" select="getBoardInfo" />
 	</resultMap>
+	
+
+
+	
+	<!-- searchMemberPW -->
+	<select id="searchMemberPW" parameterType="MemberVO" resultType="MemberVO">
+		SELECT *
+		FROM member
+		WHERE member_id = #{member_id}
+		AND member_name = #{member_name}
+		AND member_email = #{member_email}
+	</select>
+	
+	<!-- searchMemberID -->
+	<select id="searchMemberID" parameterType="MemberVO" resultType="MemberVO">
+		SELECT *
+		FROM member
+		WHERE member_name = #{member_name}
+		AND member_email = #{member_email}
+	</select>
 	
 	<!-- getMember_pic -->
 	<select id="getMember_pic" parameterType="String" resultType="String">

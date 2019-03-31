@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,11 +9,14 @@
 </head>
 <body>
 
-<h1>환영.</h1>
-<input type="button" value="홈"
-	onclick="location.href='/review/'">
-<input type="button" value="로그인"
-	onclick="location.href='/review/mypage/login'">
+ID/PW 찾기
+<br>
+
+<input type="button" value="ID 찾기"
+	onclick="location.href='/review/mypage/findInfo/searchID'">
+<br>
+<input type="button" value="PW 찾기"
+	onclick="location.href='/review/mypage/findInfo/searchPW'">
 
 </body>
 </html>

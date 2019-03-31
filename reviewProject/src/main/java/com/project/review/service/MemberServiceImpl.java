@@ -17,6 +17,20 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private MemberDAO memberDAO;
 	
+	//--------------------------------------
+	
+	//searchMemberPW
+	public MemberVO searchMemberPW(MemberVO member) {
+		
+		return memberDAO.searchMemberPW(member);
+	}
+	
+	// searchMemberID
+	public MemberVO searchMemberID(MemberVO member) {
+		
+		return memberDAO.searchMemberID(member);
+	}
+	
 	// getMember_pic
 	@Override
 	public String getMember_pic(String member_id) {

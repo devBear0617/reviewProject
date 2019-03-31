@@ -39,6 +39,52 @@ public class Mypage_controller {
 	@Autowired
 	private MemberService memberService;
 	
+//---------------------------------------------------------------
+	
+	@RequestMapping(value="/findInfo/searchPW")
+	public String searchPWGET() {
+		
+		return "mypage/searchPW";
+	}
+	
+	@RequestMapping(value="/findInfo/searchPW", method=RequestMethod.POST)
+	public String searchPWPOST(MemberVO member) {
+		
+		MemberVO memberInfo = memberService.searchMemberID(member);
+		System.out.println(memberInfo);
+		
+		if(memberInfo == null) {
+			return "mypage/searchFail";
+		}
+		
+		return "mypage/login";
+	}
+	
+	@RequestMapping(value="/findInfo/searchID")
+	public String searchIDGET() {
+		
+		return "mypage/searchID";
+	}
+	
+	@RequestMapping(value="/findInfo/searchID", method=RequestMethod.POST)
+	public String searchIDPOST(MemberVO member) {
+	
+		MemberVO memberInfo = memberService.searchMemberID(member);
+		System.out.println(memberInfo);
+		
+		if(memberInfo == null) {
+			return "mypage/searchFail";
+		}
+		
+		return "mypage/login";
+	}
+	
+	@RequestMapping(value="/findInfo")
+	public String findInfo() {
+		
+		return "mypage/findInfo";
+	}
+	
 	/*alreadyWrittenBoard*/
 	@RequestMapping(value="/alreadyWrittenBoard")
 	public String GETalreadyWrittenBoard(HttpSession session, HttpServletRequest request, Model model) {
@@ -164,6 +210,69 @@ public class Mypage_controller {
 		model.addAttribute("user", user);
 
 		return "mypage/mypageCheck";
+	}
+	
+	// 글쓰기 진입 로그인
+	@RequestMapping(value="/writeLogin", method=RequestMethod.GET)
+	public String loginFormWrite(HttpServletRequest request, Model model) {
+		
+		/*String referer = request.getHeader("Referer");
+	System.out.println(referer);
+		model.addAttribute("address", referer);*/
+		
+		return "mypage/writeLogin";
+	}
+	@RequestMapping(value="/writeLogin", method=RequestMethod.POST)
+	public String loginMemberWrite(String member_id, String member_pw, HttpServletRequest request,
+			 HttpSession session, Model model) {
+
+		member_id = request.getParameter("member_id");
+		member_pw = request.getParameter("member_pw");
+		
+		MemberVO member = memberService.selectMember(member_id);
+		
+		String loginFail = "잘못된 아이디 및 비밀번호";
+		
+		if (member != null) {
+			String pw = member.getMember_pw();
+				if(pw == null) {
+					// 잘못된 아이디
+					model.addAttribute("loginFail", loginFail);
+					
+					return "mypage/writeLogin";
+					
+				} else {
+					// 아이디가 있음
+					if(pw.equals(member_pw)) {
+						// 비번 일치
+						session.setAttribute("member_id", member_id);
+						
+						String user_id = (String)session.getAttribute("member_id");
+						
+						MemberVO user = memberService.MemberInfo(user_id);
+						model.addAttribute("user", user);
+						
+						/*String address = request.getParameter("address");
+					System.out.println(address);*/
+			
+						return "movie/movie_writeForm";
+						
+					} else {
+						// 비번 불일치
+						model.addAttribute("loginFail", loginFail);
+						
+						return "mypage/writeLogin";
+					}
+					
+				}
+		}
+		// 노아이디
+		session.invalidate();
+		
+		String noID = "아이디를 입력해주세요";
+		model.addAttribute("loginFail", noID);
+		
+		return "mypage/writeLogin";
 	}
 	
 	// 로그인
