@@ -6,6 +6,9 @@ public class Board_MovieVO {
 	private String movie_nm;
 	private String sort_id;
 	private int pnum;
+	private int start_content;
+	private int end_content;
+	
 	
 	public int getB_movie_num() {
 		return b_movie_num;
@@ -32,15 +35,30 @@ public class Board_MovieVO {
 		this.sort_id = sort_id;
 	}
 	public int getPnum() {
-		return (pnum-1)*3+1;
+		return pnum;
 	}
 	public void setPnum(int pnum) {
 		this.pnum = pnum;
 	}
-
+	public int getStart_content() {
+		return start_content;
+	}
+	public void setStart_content(int start_content) {
+		this.start_content = start_content;
+	}
+	public int getEnd_content() {
+		return end_content;
+	}
+	public void setEnd_content(int end_content) {
+		this.end_content = end_content;
+	}
 	@Override
 	public String toString() {
 		return "Board_MovieVO [b_movie_num=" + b_movie_num + ", board_num=" + board_num + ", movie_nm=" + movie_nm
-				+ "]";
+				+ ", sort_id=" + sort_id + ", pnum=" + pnum + ", start_content=" + start_content + ", end_content="
+				+ end_content + "]";
 	}
+	
+	
+	
 }

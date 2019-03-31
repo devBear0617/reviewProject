@@ -12,7 +12,8 @@
 	$(document).ready(function() {
 		var data = {
 			"start_content" : 0,
-			"end_content" : 9
+			"end_content" : 9,
+			"sort_id" : "sort_time"
 		}
 		$.ajax({
 			type : "POST",

@@ -4,52 +4,57 @@
 <script type="text/javascript"
 	src="/review/resources/script/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
-	var movie_nm = $('.movieinfo_2').html();
-	console.log(movie_nm);
-	function fn_paging(pnum) {
-		$.ajax({
-			type : 'POST',
-			url : "./oneContentView",
-			data : {
-				'pnum' : pnum,
-				'movie_nm' : movie_nm
-			},
-			success : function(html) {
-				$('.contentList').empty();
-				$('.contentList').append(html);
-			},
-			error : function(error) {
-				console.log(error);
-			}
-		})
-	}
-	$('.sort').click(function() {
-		console.log(movie_nm);
-		var data = {
-			"sort_id" : $(this).attr('id'),
-			'movie_nm' : movie_nm
+var movie_nm = $('.movieinfo_2').html();
+console.log("contentList.jsp / movie_nm : " + movie_nm);
+function fn_paging(pnum) {
+	$.ajax({
+		type : 'POST',
+		url : "./oneContentView",
+		data : {
+			'pnum' : pnum,
+			'movie_nm' : movie_nm,
+			'start_content' : 0,
+			'end_content' : 9
+		},
+		success : function(html) {
+			$('.contentList').empty();
+			$('.contentList').append(html);
+		},
+		error : function(error) {
+			console.log(error);
 		}
-		$.ajax({
-			type : "POST",
-			url : "./oneContentView",
-			cache : false,
-			data : data,
-			success : function(html) {
-				$('.contentList').empty();
-				$('.contentList').append(html);
-			}
-		});
+	})
+}
+$('.sort').click(function () {
+	console.log("contentList.jsp / sort click / movie_nm :"+movie_nm);
+	var data = {
+			'sort_id' : $(this).attr('id'),
+			'movie_nm' :movie_nm,
+			'start_content' : 0,
+			'end_content' : 9
+	}
+	$.ajax({
+		type : "POST",
+		url : "./oneContentView",
+		cache : false,
+		data : data,
+		success : function(html) {			
+		    $('.contentList').empty();
+			$('.contentList').append(html);
+
+		}		
 	});
+});
 </script>
 <style type="text/css">
+/* 그리드 레이아웃 자료 : https://www.youtube.com/watch?v=jDD2uMJ_xNg */
 .wrapper {
 	display: grid;
-	grid-template-columns: 200px 200px 200px;
-	grid-template-rows: 200px 200px 200px;
+	grid-template-columns: 300px 300px 300px;
+	grid-template-rows: 300px 300px 300px;
 	grid-column-gap: 5px;
 	grid-row-gap: 5px;
 	justify-content: center;
-	border: 1px solid #F2F2F2;
 }
 
 .wrapperCenter {
@@ -61,13 +66,13 @@
 	padding: 10px;
 	background-color: white;
 	background-size: 100%;
-	border: 1px solid gray;
+	border: 1px solid #F2F2F2;
 }
 
 .items:nth-child(odd) {
-	background-color: gray;
+	background-color: #F2F2F2;
 	background-size: 100%;
-	border: 1px solid white;
+	border: 1px solid #F4F4F4;
 }
 
 .center {

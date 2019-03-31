@@ -19,14 +19,8 @@ public interface BoardDAO {
 	public BoardVO getBoardById(int board_num);
 	public List<BoardVO> getBoardList();
 	
-	public List<BoardVO> getMovieBoardList_sort_time(Map<String, Object> map);
-	public List<BoardVO> getMovieBoardList_sort_grade(Map<String, Object> map);
-	public List<BoardVO> getMovieBoardList_sort_likeit(Map<String, Object> map);
-
-	public List<BoardVO> getMovieBoardList_time(Board_MovieVO b_MovieVO);
-	public List<BoardVO> getMovieBoardList_likeit(Board_MovieVO b_MovieVO);
-	public List<BoardVO> getMovieBoardList_grade(Board_MovieVO b_MovieVO);
-	//public List<BoardVO> getMovieBoardList(Board_MovieVO b_MovieVO);
+	// Movie content List 출력,정렬시 사용 	
+	public List<BoardVO> getMovieBoardList(Board_MovieVO b_MovieVO);
 	
 	public int getMovieBoardCount();
 	public MovieApiVO getMovieInfo(String movie_nm);
