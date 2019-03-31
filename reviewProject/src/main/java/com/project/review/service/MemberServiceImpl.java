@@ -19,6 +19,12 @@ public class MemberServiceImpl implements MemberService {
 	
 	//--------------------------------------
 	
+	// idCheck
+	public String idCheck(String member_id) {
+		
+		return memberDAO.idCheck(member_id);
+	}
+	
 	//searchMemberPW
 	public MemberVO searchMemberPW(MemberVO member) {
 		

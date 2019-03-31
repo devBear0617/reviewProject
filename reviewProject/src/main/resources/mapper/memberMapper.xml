@@ -33,7 +33,12 @@
 	</resultMap>
 	
 
-
+	<!-- idCheck -->
+	<select id="idCheck" parameterType="String" resultType="String">
+		SELECT member_id
+		FROM member
+		WHERE member_id = #{member_id}
+	</select>
 	
 	<!-- searchMemberPW -->
 	<select id="searchMemberPW" parameterType="MemberVO" resultType="MemberVO">

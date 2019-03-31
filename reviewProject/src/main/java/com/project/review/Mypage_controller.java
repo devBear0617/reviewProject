@@ -14,6 +14,7 @@ import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -22,6 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -603,6 +605,24 @@ public class Mypage_controller {
 		return "mypage/check";
 	}
 	
+	// idChecker
+	@RequestMapping(value="/join/idChecker")
+	public String idCheckerGET() {
+		
+		return "mypage/idChecker";
+	}
+	@RequestMapping(value="/join/idChecker", method=RequestMethod.POST)
+	public String idChekerPOST(HttpServletRequest request) {
+		
+		String member_id = request.getParameter("text_st1");
+		String member = memberService.idCheck(member_id);
+		
+		if(member == null) {
+			return "mypage/idCheckOK";
+		}
+		
+		return "mypage/idCheckNO";
+	}
 
 	
 }
