@@ -22,7 +22,7 @@ $(document).ready(function() {
 		success : function(html) {
 			$(".menu_Form").append(html);
 		}
-	})
+	});
 	
 	// 통합 검색 결과글들
 	$.ajax({

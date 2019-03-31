@@ -4,9 +4,16 @@ package com.project.review;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Properties;
 
 import javax.annotation.Resource;
-
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -67,16 +74,70 @@ public class Mypage_controller {
 	}
 	
 	@RequestMapping(value="/findInfo/searchID", method=RequestMethod.POST)
-	public String searchIDPOST(MemberVO member) {
+	public String searchIDPOST(HttpServletRequest request, MemberVO member) throws AddressException, MessagingException {
 	
 		MemberVO memberInfo = memberService.searchMemberID(member);
 		System.out.println(memberInfo);
-		
 		if(memberInfo == null) {
 			return "mypage/searchFail";
 		}
 		
-		return "mypage/login";
+		String member_email = request.getParameter("member_email");
+		
+		// 네이버일 경우 smtp.naver.com 을 입력합니다. 
+		// Google일 경우 smtp.gmail.com 을 입력합니다. 
+		String host = "smtp.naver.com"; 
+		final String username = "chun6153"; 
+		//네이버 아이디를 입력해주세요. @nave.com은 입력하지 마시구요. 
+		final String password = "cjsdnd!573"; 
+		//네이버 이메일 비밀번호를 입력해주세요. 
+		int port=465; 
+		//포트번호 
+		
+		// 메일 내용 
+		String recipient = member_email; 
+		//받는 사람의 메일주소를 입력 
+		String subject = "메일테스트"; 
+		//메일 제목  
+		String body = "메일을 받았습니다." + memberInfo; 
+		//메일 내용  
+		Properties props = System.getProperties(); 
+		// 정보를 담기 위한 객체 생성
+		
+		// SMTP 서버 정보 설정 
+		props.put("mail.smtp.host", host); 
+		props.put("mail.smtp.port", port); 
+		props.put("mail.smtp.auth", "true"); 
+		props.put("mail.smtp.ssl.enable", "true"); 
+		props.put("mail.smtp.ssl.trust", host); 
+		
+		//Session 생성 
+		Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() { 
+			String un=username; 
+			String pw=password; 
+			protected javax.mail.PasswordAuthentication getPasswordAuthentication() { 
+				return new javax.mail.PasswordAuthentication(un, pw); 
+				} 
+			}); 
+		session.setDebug(true); 
+		//for debug 
+		
+		Message mimeMessage = new MimeMessage(session); 
+		//MimeMessage 생성
+		mimeMessage.setFrom(new InternetAddress("chun6153@naver.com")); 
+		//발신자 셋팅 , 보내는 사람의 이메일주소를 한번 더 입력합니다. 이때는 이메일 풀 주소를 다 작성해주세요. 
+		mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient)); 
+		//수신자셋팅 //.TO 외에 .CC(참조) .BCC(숨은참조) 도 있음 
+		
+		mimeMessage.setSubject(subject); 
+		//제목셋팅
+		mimeMessage.setText(body);
+		//내용셋팅 
+		Transport.send(mimeMessage); 
+		//javax.mail.Transport.send() 이용
+		
+		
+		return "redirect:/mypage/login";
 	}
 	
 	@RequestMapping(value="/findInfo")
@@ -85,9 +146,35 @@ public class Mypage_controller {
 		return "mypage/findInfo";
 	}
 	
-	/*alreadyWrittenBoard*/
-	@RequestMapping(value="/alreadyWrittenBoard")
+	/*alreadyWritten*/
+	@RequestMapping(value="/alreadyWritten")
 	public String GETalreadyWrittenBoard(HttpSession session, HttpServletRequest request, Model model) {
+		
+		String user_id = (String)session.getAttribute("member_id");
+		
+		MemberVO user = memberService.MemberInfo(user_id);
+	System.out.println("MemberVO user = " + user);
+		model.addAttribute("user", user);
+		
+	/*	List<BoardVO> myBoard = memberService.myBoard(user_id);
+	System.out.println("myBoard list : " + myBoard);
+		model.addAttribute("myBoard", myBoard);
+		
+		List<ReplyVO> myReply = memberService.myReply(user_id);
+	System.out.println("myReply list : " + myReply);
+		model.addAttribute("myReply", myReply);
+		
+		List<LikeItVO> myLike = memberService.myLike(user_id);
+	System.out.println("myLike list : " + myLike);
+		model.addAttribute("myLike", myLike);*/
+		
+		return "mypage/alreadyWritten";
+		
+	}
+	
+	/*alreadyWritten_Board*/
+	@RequestMapping(value="/alreadyWritten/alreadyWritten_Board")
+	public String alreadyWritten_Board(HttpSession session, HttpServletRequest request, Model model) {
 		
 		String user_id = (String)session.getAttribute("member_id");
 		
@@ -99,15 +186,62 @@ public class Mypage_controller {
 	System.out.println("myBoard list : " + myBoard);
 		model.addAttribute("myBoard", myBoard);
 		
+		return "mypage/alreadyWritten_Board";
+	}
+	
+	/*alreadyWritten_Reply*/
+	@RequestMapping(value="/alreadyWritten/alreadyWritten_Reply")
+	public String alreadyWritten_Reply(HttpSession session, HttpServletRequest request, Model model) {
+		
+		String user_id = (String)session.getAttribute("member_id");
+		
+		MemberVO user = memberService.MemberInfo(user_id);
+	System.out.println("MemberVO user = " + user);
+		model.addAttribute("user", user);
+		
 		List<ReplyVO> myReply = memberService.myReply(user_id);
 	System.out.println("myReply list : " + myReply);
 		model.addAttribute("myReply", myReply);
+		
+		return "mypage/alreadyWritten_Reply";
+	}
+	
+	/*alreadyWritten_Like*/
+	@RequestMapping(value="/alreadyWritten/alreadyWritten_Like")
+	public String alreadyWritten_Like(HttpSession session, HttpServletRequest request, Model model) {
+		
+		String user_id = (String)session.getAttribute("member_id");
+		
+		MemberVO user = memberService.MemberInfo(user_id);
+	System.out.println("MemberVO user = " + user);
+		model.addAttribute("user", user);
 		
 		List<LikeItVO> myLike = memberService.myLike(user_id);
 	System.out.println("myLike list : " + myLike);
 		model.addAttribute("myLike", myLike);
 		
-		return "mypage/alreadyWrittenBoard";
+		return "mypage/alreadyWritten_Like";
+	}
+	
+	/*alreadyWritten_menuBoard*/
+	@RequestMapping(value="alreadyWritten/alreadyWritten_menuBoard")
+	public String alreadyWritten_menuBoard() {
+		
+		return "mypage/alreadyWritten_menuBoard";
+	}
+	
+	/*alreadyWritten_menuReply*/
+	@RequestMapping(value="alreadyWritten/alreadyWritten_menuReply")
+	public String alreadyWritten_menuReply() {
+		
+		return "mypage/alreadyWritten_menuReply";
+	}
+	
+	/*alreadyWritten_menuLike*/
+	@RequestMapping(value="alreadyWritten/alreadyWritten_menuLike")
+	public String alreadyWritten_menuLike() {
+		
+		return "mypage/alreadyWritten_menuLike";
 	}
 	
 	/*upload*/
