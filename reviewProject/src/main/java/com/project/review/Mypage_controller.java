@@ -55,7 +55,8 @@ public class Mypage_controller {
 	}
 	
 	@RequestMapping(value="/findInfo/searchPW", method=RequestMethod.POST)
-	public String searchPWPOST(MemberVO member) {
+	public String searchPWPOST(HttpServletRequest request, MemberVO member) 
+			throws AddressException, MessagingException {
 		
 		MemberVO memberInfo = memberService.searchMemberID(member);
 		System.out.println(memberInfo);
@@ -64,7 +65,39 @@ public class Mypage_controller {
 			return "mypage/searchFail";
 		}
 		
-		return "mypage/login";
+		String host = "smtp.naver.com"; 
+		final String username = "chun6153"; 
+		final String password = "cjsdnd!573"; 
+		int port=465; 
+
+		String recipient = memberInfo.getMember_email(); 
+		String subject = "[REMON!] PW 찾기 확인 이메일."; 
+		String body = memberInfo.getMember_name() + "님(" + memberInfo.getMember_id() + ")의 PW 정보입니다. { " + memberInfo.getMember_pw() + " }"; 
+		Properties props = System.getProperties(); 
+		
+		props.put("mail.smtp.host", host); 
+		props.put("mail.smtp.port", port); 
+		props.put("mail.smtp.auth", "true"); 
+		props.put("mail.smtp.ssl.enable", "true"); 
+		props.put("mail.smtp.ssl.trust", host); 
+		
+		Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() { 
+			String un=username; 
+			String pw=password; 
+			protected javax.mail.PasswordAuthentication getPasswordAuthentication() { 
+				return new javax.mail.PasswordAuthentication(un, pw); 
+				} 
+			}); 
+		session.setDebug(true); 
+
+		Message mimeMessage = new MimeMessage(session); 
+		mimeMessage.setFrom(new InternetAddress("chun6153@naver.com")); 
+		mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient)); 
+		mimeMessage.setSubject(subject); 
+		mimeMessage.setText(body);
+		Transport.send(mimeMessage); 
+				
+		return "redirect:/mypage/loginHome";
 	}
 	
 	@RequestMapping(value="/findInfo/searchID")
@@ -74,7 +107,8 @@ public class Mypage_controller {
 	}
 	
 	@RequestMapping(value="/findInfo/searchID", method=RequestMethod.POST)
-	public String searchIDPOST(HttpServletRequest request, MemberVO member) throws AddressException, MessagingException {
+	public String searchIDPOST(HttpServletRequest request, MemberVO member) 
+			throws AddressException, MessagingException {
 	
 		MemberVO memberInfo = memberService.searchMemberID(member);
 		System.out.println(memberInfo);
@@ -82,27 +116,27 @@ public class Mypage_controller {
 			return "mypage/searchFail";
 		}
 		
-		String member_email = request.getParameter("member_email");
-		
 		// 네이버일 경우 smtp.naver.com 을 입력합니다. 
 		// Google일 경우 smtp.gmail.com 을 입력합니다. 
 		String host = "smtp.naver.com"; 
-		final String username = "chun6153"; 
-		//네이버 아이디를 입력해주세요. @nave.com은 입력하지 마시구요. 
-		final String password = "cjsdnd!573"; 
-		//네이버 이메일 비밀번호를 입력해주세요. 
-		int port=465; 
-		//포트번호 
 		
-		// 메일 내용 
-		String recipient = member_email; 
-		//받는 사람의 메일주소를 입력 
-		String subject = "메일테스트"; 
+		// 사용하는 아이디의 smtp설정 필수!
+		// @nave.com를 뺀 아이디 입력. 
+		final String username = "chun6153"; 
+		// 네이버 이메일 비밀번호 입력. 
+		final String password = "cjsdnd!573"; 
+		// 네이버의 포트번호 
+		int port=465; 
+		
+		// 발신 메일의 내용 		
+		// 수신자 메일주소 
+		String recipient = memberInfo.getMember_email(); 
 		//메일 제목  
-		String body = "메일을 받았습니다." + memberInfo; 
+		String subject = "[REMON!] ID 찾기 확인 이메일."; 
 		//메일 내용  
-		Properties props = System.getProperties(); 
+		String body = memberInfo.getMember_name() + "님의 ID 정보입니다. { " + memberInfo.getMember_id() + " } "; 
 		// 정보를 담기 위한 객체 생성
+		Properties props = System.getProperties(); 
 		
 		// SMTP 서버 정보 설정 
 		props.put("mail.smtp.host", host); 
@@ -122,22 +156,22 @@ public class Mypage_controller {
 		session.setDebug(true); 
 		//for debug 
 		
-		Message mimeMessage = new MimeMessage(session); 
 		//MimeMessage 생성
+		Message mimeMessage = new MimeMessage(session); 
+		//발신자 셋팅 , 발신자 이메일주소를 한번 더 입력. 메일주소 풀로 작성. 
 		mimeMessage.setFrom(new InternetAddress("chun6153@naver.com")); 
-		//발신자 셋팅 , 보내는 사람의 이메일주소를 한번 더 입력합니다. 이때는 이메일 풀 주소를 다 작성해주세요. 
+		//수신자셋팅 
+		//.TO 외에 .CC(참조) .BCC(숨은참조) 도 있음 
 		mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient)); 
-		//수신자셋팅 //.TO 외에 .CC(참조) .BCC(숨은참조) 도 있음 
 		
-		mimeMessage.setSubject(subject); 
 		//제목셋팅
-		mimeMessage.setText(body);
+		mimeMessage.setSubject(subject); 
 		//내용셋팅 
-		Transport.send(mimeMessage); 
+		mimeMessage.setText(body);
 		//javax.mail.Transport.send() 이용
-		
-		
-		return "redirect:/mypage/login";
+		Transport.send(mimeMessage); 
+				
+		return "redirect:/mypage/loginHome";
 	}
 	
 	@RequestMapping(value="/findInfo")
@@ -407,6 +441,69 @@ public class Mypage_controller {
 		model.addAttribute("loginFail", noID);
 		
 		return "mypage/writeLogin";
+	}
+	
+	// ID,PW 찾기 후 로그인
+	@RequestMapping(value="/loginHome", method=RequestMethod.GET)
+	public String loginHomeForm(HttpServletRequest request, Model model) {
+		
+		/*String referer = request.getHeader("Referer");
+	System.out.println(referer);
+		model.addAttribute("address", referer);*/
+		
+		return "mypage/loginHome";
+	}
+	@RequestMapping(value="/loginHome", method=RequestMethod.POST)
+	public String loginHomeMember(String member_id, String member_pw, HttpServletRequest request,
+			 HttpSession session, Model model) {
+
+		member_id = request.getParameter("member_id");
+		member_pw = request.getParameter("member_pw");
+		
+		MemberVO member = memberService.selectMember(member_id);
+		
+		String loginFail = "잘못된 아이디 및 비밀번호";
+		
+		if (member != null) {
+			String pw = member.getMember_pw();
+				if(pw == null) {
+					// 잘못된 아이디
+					model.addAttribute("loginFail", loginFail);
+					
+					return "mypage/loginHome";
+					
+				} else {
+					// 아이디가 있음
+					if(pw.equals(member_pw)) {
+						// 비번 일치
+						session.setAttribute("member_id", member_id);
+						
+						String user_id = (String)session.getAttribute("member_id");
+						
+						MemberVO user = memberService.MemberInfo(user_id);
+						model.addAttribute("user", user);
+						
+						/*String address = request.getParameter("address");
+					System.out.println(address);*/
+			
+						return "redirect:/review";
+						
+					} else {
+						// 비번 불일치
+						model.addAttribute("loginFail", loginFail);
+						
+						return "mypage/loginHome";
+					}
+					
+				}
+		}
+		// 노아이디
+		session.invalidate();
+		
+		String noID = "아이디를 입력해주세요";
+		model.addAttribute("loginFail", noID);
+		
+		return "mypage/loginHome";
 	}
 	
 	// 로그인
