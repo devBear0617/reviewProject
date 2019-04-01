@@ -23,6 +23,18 @@
 			success : function(html) {
 				$(".contentList").append(html);
 			}
+		})		
+	
+		$.ajax({
+			type : "POST",
+			url : "./bestContent",
+			dataType : 'html',
+			data : { "start_content" : 0,
+					 "end_content" : 3,
+					 "sort_id" : "sort_likeit" 	},
+			success : function(html) {
+				$(".best_contentList").append(html);
+			}
 		})
 
 		$('.moveBT').click(function() {
@@ -95,17 +107,12 @@
 		<jsp:include page="/WEB-INF/views/movie/detail_category.jsp" />
 	</div>
 	<!-- 카테고리 바 -->
-	<%-- 
 	
 
-	<!-- Best content -->
-	<div>
-		<jsp:include page="/WEB-INF/views/movie/best_content.jsp" />
-	</div>
-	 --%>
 	<!-- content -->
 	<div class="center">
 		<div class="movie_info"></div>
+		<div class="best_contentList"></div>
 		<div class="contentList"></div>
 	</div>
 	<!-- 새글쓰기 -->

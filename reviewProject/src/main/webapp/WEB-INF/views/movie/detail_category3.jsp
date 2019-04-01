@@ -59,6 +59,24 @@ function getMRList(e){
 					console.log(error);
 				}
 			})
+			
+			$.ajax({
+				type : 'POST',
+				url : "./bestContent",
+				data : {
+					"sort_id" : "sort_likeit",
+					'movie_nm' : movie_nm,
+					'start_content' : 0,
+					'end_content' : 3					
+				},
+				success : function(html) {
+					$('.best_contentList').empty();
+					$('.best_contentList').append(html);
+				},
+				error : function(error) {
+					console.log(error);
+				}
+			})
 		},
 		error : function(error) {
 			console.log(error);
