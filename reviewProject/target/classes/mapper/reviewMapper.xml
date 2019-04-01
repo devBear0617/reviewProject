@@ -31,6 +31,7 @@
 		<result property="member_id" column="member_id" />
 		
 		<association property="b_movieVO" column="board_num" select="getB_Movie" />
+		<association property="memberVO" column="member_id" select="getMember" />
 	</resultMap>
 	
 	<resultMap id="Movie_Reply" type="ReplyVO">
@@ -296,7 +297,7 @@
 	
 	
 	<!-- ____resultMap 조인______________________________________________________________________ -->
-	<select id="getMember" parameterType="String" resultType="Board_MovieVO">
+	<select id="getMember" parameterType="String" resultType="MemberVO">
 		SELECT *
 		FROM member
 		WHERE member_id = #{member_id}

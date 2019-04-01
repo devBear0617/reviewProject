@@ -6,6 +6,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Login_page</title>
 <style type="text/css">
+input:focus {
+	outline:none;
+	}
+	
 .center {
 	margin-left: auto;
 	margin-right: auto;
