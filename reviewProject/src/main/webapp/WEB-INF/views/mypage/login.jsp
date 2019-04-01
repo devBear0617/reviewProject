@@ -5,6 +5,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Login_page</title>
+
+<script type="text/javascript" src="/review/resources/script/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+function searchIDPW() {
+	window.open("/review/mypage/findInfo", "ID / PW 찾기", 
+			"width=430, height=340, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );
+};
+
+</script>
+
 <style type="text/css">
 input:focus {
 	outline:none;
@@ -54,8 +64,9 @@ input:focus {
 					<td colspan="2"><hr></td>
 				</tr>
 				<tr>
+					<!-- location.href='/review/mypage/findInfo' -->
 					<td colspan="2"><input type="button" value="아이디 /비번 찾기"
-						onclick="location.href='/review/mypage/findInfo'"
+						onclick="searchIDPW()"
 						style="background-image: url('/review/mypage/resources/image/REMON_smallbar.png'); color: white; width: 300px; height: 30px; border-radius: 10px; border-style: none;"></td>
 				</tr>
 				<tr>
