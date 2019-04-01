@@ -48,6 +48,10 @@ public class Mypage_controller {
 	@Autowired
 	private MemberService memberService;
 	
+	// eamil ID,PW | smtp 설정 필수!
+	final String emailSender = "chun6153"; 
+	final String emailPW = "cjsdnd!573"; 
+	
 //---------------------------------------------------------------
 	
 	@RequestMapping(value="/findInfo/searchPW")
@@ -68,8 +72,6 @@ public class Mypage_controller {
 		}
 		
 		String host = "smtp.naver.com"; 
-		final String username = "chun6153"; 
-		final String password = "cjsdnd!573"; 
 		int port=465; 
 
 		String recipient = memberInfo.getMember_email(); 
@@ -84,8 +86,8 @@ public class Mypage_controller {
 		props.put("mail.smtp.ssl.trust", host); 
 		
 		Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() { 
-			String un=username; 
-			String pw=password; 
+			String un=emailSender; 
+			String pw=emailPW; 
 			protected javax.mail.PasswordAuthentication getPasswordAuthentication() { 
 				return new javax.mail.PasswordAuthentication(un, pw); 
 				} 
@@ -122,11 +124,11 @@ public class Mypage_controller {
 		// Google일 경우 smtp.gmail.com 을 입력합니다. 
 		String host = "smtp.naver.com"; 
 		
-		// 사용하는 아이디의 smtp설정 필수!
+		// 사용하는 아이디의 smtp설정 필수! 위에서 final로 지정.
 		// @nave.com를 뺀 아이디 입력. 
-		final String username = "chun6153"; 
+		// final String emailSender = ""; 
 		// 네이버 이메일 비밀번호 입력. 
-		final String password = "cjsdnd!573"; 
+		// final String emailPW = ""; 
 		// 네이버의 포트번호 
 		int port=465; 
 		
@@ -149,8 +151,8 @@ public class Mypage_controller {
 		
 		//Session 생성 
 		Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() { 
-			String un=username; 
-			String pw=password; 
+			String un=emailSender; 
+			String pw=emailPW; 
 			protected javax.mail.PasswordAuthentication getPasswordAuthentication() { 
 				return new javax.mail.PasswordAuthentication(un, pw); 
 				} 
@@ -488,7 +490,7 @@ public class Mypage_controller {
 						/*String address = request.getParameter("address");
 					System.out.println(address);*/
 			
-						return "redirect:/review";
+						return "redirect:/";
 						
 					} else {
 						// 비번 불일치
