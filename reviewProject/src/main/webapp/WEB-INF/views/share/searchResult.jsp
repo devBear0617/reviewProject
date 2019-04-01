@@ -577,35 +577,14 @@ input:focus {
 </style>
 
 </head>
-<jsp:include page="/WEB-INF/views/share/Main_header.jsp" />
 <body>
-	<div style="height: 100px;"></div>
+
 	<div>
-		<!-- 헤더 -->
-		<div class="center">
-			<!-- 상단바, 로고 -->
-			<div class="center">
-				<a href="/review"><img alt="REMON_LOGO"
-					src="../resources/image/REMON_logo(bigsize).png"
-					style="width: 200px;"></a>
-			</div>
-			<br>
-
-			<!-- 검색 바 -->
-			<div class="center"
-				style="width: 600px; height: 60px; background-image: url('../resources/image/REMON_search_bar.png'); border-style: none;">
-				<form action="/review/search/searchResult" method="POST" id="search"
-					style="padding-top: 15px;">
-					<input type="text" name="keyword" value="${keyword}"
-						style="width: 450px; height: 30px; border-style: none;"><input
-						type="hidden" value="${keyword}" class="keyword">&nbsp;
-					&nbsp;<input type="submit" value="검색"
-						style="border-style: none; background: none;">
-				</form>
-			</div>
-		</div>
-
+		<jsp:include page="/WEB-INF/views/share/header.jsp" />
 	</div>
+	<hr width="1100px;">
+	<div style="height: 20px;"></div>
+
 	<div class="center">
 		<%--<form action="/review/search/searchResult" method="POST" id="search">
 			재검색 : <input type="text" name="keyword" value="${keyword}"><input
@@ -616,7 +595,7 @@ input:focus {
 		<div class="center">
 			<div id="con" style="display: inline-block;">
 				<div id="menu"
-					style="background-color: #F2F2F2; width: 300px; float: left">
+					style="background-color: #F2F2F2; width: 200px; float: left">
 					<h2>검색메뉴</h2>
 
 					<div class="menu_Form"></div>
@@ -633,7 +612,7 @@ input:focus {
 				</div>
 
 				<div id="content"
-					style="background: linear-gradient(to right, #abf200, #ffe400);; width: 900px; float: left;">
+					style="width: 900px; float: left;">
 
 					<div class="result_Total"></div>
 					<div class="result_Movie"></div>
