@@ -556,6 +556,13 @@ function spread_TV () {
 
 </script>
 
+<style type="text/css">
+input:focus {
+	outline:none;
+	}
+	
+</style>
+
 </head>
 <body>
 
