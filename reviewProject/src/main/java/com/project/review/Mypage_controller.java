@@ -48,9 +48,15 @@ public class Mypage_controller {
 	@Autowired
 	private MemberService memberService;
 	
+<<<<<<< HEAD
 	// eamil ID,PW | smtp 설정 필수!
 	final String emailSender = "chun6153"; 
 	final String emailPW = "cjsdnd!573"; 
+=======
+	// eamil ID(@naver.com 빼고 작성),PW | smtp 설정 필수!
+	final String emailSender = ""; 
+	final String emailPW = ""; 
+>>>>>>> master
 	
 //---------------------------------------------------------------
 	
