@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-" ${keyword} "에 관한 검색결과가 없습니다.
+<div style="height: 20px;">" ${keyword} "에 관한 검색결과가 없습니다.</div>
 
 </body>
 </html>
