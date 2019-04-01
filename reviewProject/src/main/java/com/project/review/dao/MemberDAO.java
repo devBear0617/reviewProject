@@ -9,6 +9,12 @@ import com.project.review.vo.ReplyVO;
 
 public interface MemberDAO {
 	
+	// searchMemberPW
+	public MemberVO searchMemberPW(MemberVO member);
+	
+	// searchMemberID
+	public MemberVO searchMemberID(MemberVO member);
+	
 	// getMember_pic
 	public String getMember_pic(String member_id);
 	
@@ -32,6 +38,8 @@ public interface MemberDAO {
 	
 	// 가입
 	public void joinMember(MemberVO member);
+		// idCheck
+		public String idCheck(String member_id);
 	
 	// 로그인
 	public MemberVO selectMember(String member_id);

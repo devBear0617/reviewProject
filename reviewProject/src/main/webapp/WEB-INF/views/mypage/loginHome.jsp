@@ -18,7 +18,7 @@
 	<div class="center">
 		<div style="height: 100px;"></div>
 		<!-- 테스트 로그인 기능 -->
-		<form action="/review/mypage/login" method="POST" id="loginMember">
+		<form action="/review/mypage/loginHome" method="POST" id="loginMember">
 			<table class="center">
 				<tr
 					style="text-align: center; background: linear-gradient(to right, #ffe400, #abf200);">
@@ -61,9 +61,9 @@
 				</tr>
 
 			</table>
-			<!-- 전페이지 저장 -->
+			<%-- <!-- 전페이지 저장 -->
 			<input type="hidden" name="address" value="${address}">
-			<%-- ${address} --%>
+			${address} --%>
 		</form>
 	</div>
 	<div style="height: 200px;"></div>

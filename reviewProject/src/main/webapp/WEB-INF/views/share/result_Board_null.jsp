@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,12 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-<h1>환영.</h1>
-<input type="button" value="홈"
-	onclick="location.href='/review/'">
-<input type="button" value="로그인"
-	onclick="location.href='/review/mypage/login'">
+" ${keyword} "에 관한 검색결과가 없습니다.
 
 </body>
 </html>

@@ -137,7 +137,7 @@
 			</tr>
 			<tr>
 				<td><input type="button" value="내가 쓴 글"
-					onclick="location.href='/review/mypage/alreadyWrittenBoard'"
+					onclick="location.href='/review/mypage/alreadyWritten'"
 					style="background-image: url('resources/image/REMON_smallbar.png'); color: white; width: 300px; height: 30px; border-radius: 10px; border-style: none;">
 				</td>
 			</tr>

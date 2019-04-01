@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,11 +9,8 @@
 </head>
 <body>
 
-<h1>환영.</h1>
-<input type="button" value="홈"
-	onclick="location.href='/review/'">
-<input type="button" value="로그인"
-	onclick="location.href='/review/mypage/login'">
+<span style="color:red">*동일한 아이디가 이미 존재합니다. </span> 
+<input type="button" value="확인" onclick="check_ID()">
 
 </body>
 </html>

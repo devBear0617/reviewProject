@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
 <style type="text/css">
 .center {
 	margin-left: auto;
@@ -50,6 +51,37 @@
 	text-align: center;
 }
 </style>
+
+<script type="text/javascript" src="/review/resources/script/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$.ajax({
+		type : "GET",
+		url : "/review/mypage/join/idChecker",
+		dataType : 'html',
+		success : function(html) {
+			$(".idChecker").append(html);
+		}
+	});
+});
+
+function check_ID() {
+	$.ajax({
+		url: '/review/mypage/join/idChecker',
+		type: 'POST',
+		dataType: 'text',
+		data: {
+			text_st1: $('.text_st1').val()
+		},
+		success: function (html) {
+			$(".idChecker").empty();
+			$(".idChecker").append(html);
+		}
+	});
+};
+
+</script>
+
 </head>
 <jsp:include page="../share/Login_header.jsp" />
 <body>
@@ -70,6 +102,11 @@
 					<td class="td_st1">ID</td>
 					<td class="td_st2"><input type="text" name="member_id"
 						class="text_st1"></td>
+					<td>
+						<div class="idChecker"></div>
+						<!-- <div class="idCheckOK"></div>
+						<div class="idCheckNO"></div> -->
+					</td>
 				</tr>
 
 				<tr>

@@ -4,9 +4,17 @@ package com.project.review;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Properties;
 
 import javax.annotation.Resource;
-
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -15,6 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -39,9 +48,171 @@ public class Mypage_controller {
 	@Autowired
 	private MemberService memberService;
 	
-	/*alreadyWrittenBoard*/
-	@RequestMapping(value="/alreadyWrittenBoard")
+	// eamil ID,PW | smtp 설정 필수!
+	final String emailSender = "chun6153"; 
+	final String emailPW = "cjsdnd!573"; 
+	
+//---------------------------------------------------------------
+	
+	@RequestMapping(value="/findInfo/searchPW")
+	public String searchPWGET() {
+		
+		return "mypage/searchPW";
+	}
+	
+	@RequestMapping(value="/findInfo/searchPW", method=RequestMethod.POST)
+	public String searchPWPOST(HttpServletRequest request, MemberVO member) 
+			throws AddressException, MessagingException {
+		
+		MemberVO memberInfo = memberService.searchMemberID(member);
+		System.out.println(memberInfo);
+		
+		if(memberInfo == null) {
+			return "mypage/searchFail";
+		}
+		
+		String host = "smtp.naver.com"; 
+		int port=465; 
+
+		String recipient = memberInfo.getMember_email(); 
+		String subject = "[REMON!] PW 찾기 확인 이메일."; 
+		String body = memberInfo.getMember_name() + "님(" + memberInfo.getMember_id() + ")의 PW 정보입니다. { " + memberInfo.getMember_pw() + " }"; 
+		Properties props = System.getProperties(); 
+		
+		props.put("mail.smtp.host", host); 
+		props.put("mail.smtp.port", port); 
+		props.put("mail.smtp.auth", "true"); 
+		props.put("mail.smtp.ssl.enable", "true"); 
+		props.put("mail.smtp.ssl.trust", host); 
+		
+		Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() { 
+			String un=emailSender; 
+			String pw=emailPW; 
+			protected javax.mail.PasswordAuthentication getPasswordAuthentication() { 
+				return new javax.mail.PasswordAuthentication(un, pw); 
+				} 
+			}); 
+		session.setDebug(true); 
+
+		Message mimeMessage = new MimeMessage(session); 
+		mimeMessage.setFrom(new InternetAddress("chun6153@naver.com")); 
+		mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient)); 
+		mimeMessage.setSubject(subject); 
+		mimeMessage.setText(body);
+		Transport.send(mimeMessage); 
+				
+		return "redirect:/mypage/loginHome";
+	}
+	
+	@RequestMapping(value="/findInfo/searchID")
+	public String searchIDGET() {
+		
+		return "mypage/searchID";
+	}
+	
+	@RequestMapping(value="/findInfo/searchID", method=RequestMethod.POST)
+	public String searchIDPOST(HttpServletRequest request, MemberVO member) 
+			throws AddressException, MessagingException {
+	
+		MemberVO memberInfo = memberService.searchMemberID(member);
+		System.out.println(memberInfo);
+		if(memberInfo == null) {
+			return "mypage/searchFail";
+		}
+		
+		// 네이버일 경우 smtp.naver.com 을 입력합니다. 
+		// Google일 경우 smtp.gmail.com 을 입력합니다. 
+		String host = "smtp.naver.com"; 
+		
+		// 사용하는 아이디의 smtp설정 필수! 위에서 final로 지정.
+		// @nave.com를 뺀 아이디 입력. 
+		// final String emailSender = ""; 
+		// 네이버 이메일 비밀번호 입력. 
+		// final String emailPW = ""; 
+		// 네이버의 포트번호 
+		int port=465; 
+		
+		// 발신 메일의 내용 		
+		// 수신자 메일주소 
+		String recipient = memberInfo.getMember_email(); 
+		//메일 제목  
+		String subject = "[REMON!] ID 찾기 확인 이메일."; 
+		//메일 내용  
+		String body = memberInfo.getMember_name() + "님의 ID 정보입니다. { " + memberInfo.getMember_id() + " } "; 
+		// 정보를 담기 위한 객체 생성
+		Properties props = System.getProperties(); 
+		
+		// SMTP 서버 정보 설정 
+		props.put("mail.smtp.host", host); 
+		props.put("mail.smtp.port", port); 
+		props.put("mail.smtp.auth", "true"); 
+		props.put("mail.smtp.ssl.enable", "true"); 
+		props.put("mail.smtp.ssl.trust", host); 
+		
+		//Session 생성 
+		Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() { 
+			String un=emailSender; 
+			String pw=emailPW; 
+			protected javax.mail.PasswordAuthentication getPasswordAuthentication() { 
+				return new javax.mail.PasswordAuthentication(un, pw); 
+				} 
+			}); 
+		session.setDebug(true); 
+		//for debug 
+		
+		//MimeMessage 생성
+		Message mimeMessage = new MimeMessage(session); 
+		//발신자 셋팅 , 발신자 이메일주소를 한번 더 입력. 메일주소 풀로 작성. 
+		mimeMessage.setFrom(new InternetAddress("chun6153@naver.com")); 
+		//수신자셋팅 
+		//.TO 외에 .CC(참조) .BCC(숨은참조) 도 있음 
+		mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient)); 
+		
+		//제목셋팅
+		mimeMessage.setSubject(subject); 
+		//내용셋팅 
+		mimeMessage.setText(body);
+		//javax.mail.Transport.send() 이용
+		Transport.send(mimeMessage); 
+				
+		return "redirect:/mypage/loginHome";
+	}
+	
+	@RequestMapping(value="/findInfo")
+	public String findInfo() {
+		
+		return "mypage/findInfo";
+	}
+	
+	/*alreadyWritten*/
+	@RequestMapping(value="/alreadyWritten")
 	public String GETalreadyWrittenBoard(HttpSession session, HttpServletRequest request, Model model) {
+		
+		String user_id = (String)session.getAttribute("member_id");
+		
+		MemberVO user = memberService.MemberInfo(user_id);
+	System.out.println("MemberVO user = " + user);
+		model.addAttribute("user", user);
+		
+	/*	List<BoardVO> myBoard = memberService.myBoard(user_id);
+	System.out.println("myBoard list : " + myBoard);
+		model.addAttribute("myBoard", myBoard);
+		
+		List<ReplyVO> myReply = memberService.myReply(user_id);
+	System.out.println("myReply list : " + myReply);
+		model.addAttribute("myReply", myReply);
+		
+		List<LikeItVO> myLike = memberService.myLike(user_id);
+	System.out.println("myLike list : " + myLike);
+		model.addAttribute("myLike", myLike);*/
+		
+		return "mypage/alreadyWritten";
+		
+	}
+	
+	/*alreadyWritten_Board*/
+	@RequestMapping(value="/alreadyWritten/alreadyWritten_Board")
+	public String alreadyWritten_Board(HttpSession session, HttpServletRequest request, Model model) {
 		
 		String user_id = (String)session.getAttribute("member_id");
 		
@@ -53,15 +224,62 @@ public class Mypage_controller {
 	System.out.println("myBoard list : " + myBoard);
 		model.addAttribute("myBoard", myBoard);
 		
+		return "mypage/alreadyWritten_Board";
+	}
+	
+	/*alreadyWritten_Reply*/
+	@RequestMapping(value="/alreadyWritten/alreadyWritten_Reply")
+	public String alreadyWritten_Reply(HttpSession session, HttpServletRequest request, Model model) {
+		
+		String user_id = (String)session.getAttribute("member_id");
+		
+		MemberVO user = memberService.MemberInfo(user_id);
+	System.out.println("MemberVO user = " + user);
+		model.addAttribute("user", user);
+		
 		List<ReplyVO> myReply = memberService.myReply(user_id);
 	System.out.println("myReply list : " + myReply);
 		model.addAttribute("myReply", myReply);
+		
+		return "mypage/alreadyWritten_Reply";
+	}
+	
+	/*alreadyWritten_Like*/
+	@RequestMapping(value="/alreadyWritten/alreadyWritten_Like")
+	public String alreadyWritten_Like(HttpSession session, HttpServletRequest request, Model model) {
+		
+		String user_id = (String)session.getAttribute("member_id");
+		
+		MemberVO user = memberService.MemberInfo(user_id);
+	System.out.println("MemberVO user = " + user);
+		model.addAttribute("user", user);
 		
 		List<LikeItVO> myLike = memberService.myLike(user_id);
 	System.out.println("myLike list : " + myLike);
 		model.addAttribute("myLike", myLike);
 		
-		return "mypage/alreadyWrittenBoard";
+		return "mypage/alreadyWritten_Like";
+	}
+	
+	/*alreadyWritten_menuBoard*/
+	@RequestMapping(value="alreadyWritten/alreadyWritten_menuBoard")
+	public String alreadyWritten_menuBoard() {
+		
+		return "mypage/alreadyWritten_menuBoard";
+	}
+	
+	/*alreadyWritten_menuReply*/
+	@RequestMapping(value="alreadyWritten/alreadyWritten_menuReply")
+	public String alreadyWritten_menuReply() {
+		
+		return "mypage/alreadyWritten_menuReply";
+	}
+	
+	/*alreadyWritten_menuLike*/
+	@RequestMapping(value="alreadyWritten/alreadyWritten_menuLike")
+	public String alreadyWritten_menuLike() {
+		
+		return "mypage/alreadyWritten_menuLike";
 	}
 	
 	/*upload*/
@@ -166,6 +384,132 @@ public class Mypage_controller {
 		return "mypage/mypageCheck";
 	}
 	
+	// 글쓰기 진입 로그인
+	@RequestMapping(value="/writeLogin", method=RequestMethod.GET)
+	public String loginFormWrite(HttpServletRequest request, Model model) {
+		
+		/*String referer = request.getHeader("Referer");
+	System.out.println(referer);
+		model.addAttribute("address", referer);*/
+		
+		return "mypage/writeLogin";
+	}
+	@RequestMapping(value="/writeLogin", method=RequestMethod.POST)
+	public String loginMemberWrite(String member_id, String member_pw, HttpServletRequest request,
+			 HttpSession session, Model model) {
+
+		member_id = request.getParameter("member_id");
+		member_pw = request.getParameter("member_pw");
+		
+		MemberVO member = memberService.selectMember(member_id);
+		
+		String loginFail = "잘못된 아이디 및 비밀번호";
+		
+		if (member != null) {
+			String pw = member.getMember_pw();
+				if(pw == null) {
+					// 잘못된 아이디
+					model.addAttribute("loginFail", loginFail);
+					
+					return "mypage/writeLogin";
+					
+				} else {
+					// 아이디가 있음
+					if(pw.equals(member_pw)) {
+						// 비번 일치
+						session.setAttribute("member_id", member_id);
+						
+						String user_id = (String)session.getAttribute("member_id");
+						
+						MemberVO user = memberService.MemberInfo(user_id);
+						model.addAttribute("user", user);
+						
+						/*String address = request.getParameter("address");
+					System.out.println(address);*/
+			
+						return "movie/movie_writeForm";
+						
+					} else {
+						// 비번 불일치
+						model.addAttribute("loginFail", loginFail);
+						
+						return "mypage/writeLogin";
+					}
+					
+				}
+		}
+		// 노아이디
+		session.invalidate();
+		
+		String noID = "아이디를 입력해주세요";
+		model.addAttribute("loginFail", noID);
+		
+		return "mypage/writeLogin";
+	}
+	
+	// ID,PW 찾기 후 로그인
+	@RequestMapping(value="/loginHome", method=RequestMethod.GET)
+	public String loginHomeForm(HttpServletRequest request, Model model) {
+		
+		/*String referer = request.getHeader("Referer");
+	System.out.println(referer);
+		model.addAttribute("address", referer);*/
+		
+		return "mypage/loginHome";
+	}
+	@RequestMapping(value="/loginHome", method=RequestMethod.POST)
+	public String loginHomeMember(String member_id, String member_pw, HttpServletRequest request,
+			 HttpSession session, Model model) {
+
+		member_id = request.getParameter("member_id");
+		member_pw = request.getParameter("member_pw");
+		
+		MemberVO member = memberService.selectMember(member_id);
+		
+		String loginFail = "잘못된 아이디 및 비밀번호";
+		
+		if (member != null) {
+			String pw = member.getMember_pw();
+				if(pw == null) {
+					// 잘못된 아이디
+					model.addAttribute("loginFail", loginFail);
+					
+					return "mypage/loginHome";
+					
+				} else {
+					// 아이디가 있음
+					if(pw.equals(member_pw)) {
+						// 비번 일치
+						session.setAttribute("member_id", member_id);
+						
+						String user_id = (String)session.getAttribute("member_id");
+						
+						MemberVO user = memberService.MemberInfo(user_id);
+						model.addAttribute("user", user);
+						
+						/*String address = request.getParameter("address");
+					System.out.println(address);*/
+			
+						return "redirect:/";
+						
+					} else {
+						// 비번 불일치
+						model.addAttribute("loginFail", loginFail);
+						
+						return "mypage/loginHome";
+					}
+					
+				}
+		}
+		// 노아이디
+		session.invalidate();
+		
+		String noID = "아이디를 입력해주세요";
+		model.addAttribute("loginFail", noID);
+		
+		return "mypage/loginHome";
+	}
+	
 	// 로그인
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String loginForm(HttpServletRequest request, Model model) {
@@ -263,6 +607,24 @@ public class Mypage_controller {
 		return "mypage/check";
 	}
 	
+	// idChecker
+	@RequestMapping(value="/join/idChecker")
+	public String idCheckerGET() {
+		
+		return "mypage/idChecker";
+	}
+	@RequestMapping(value="/join/idChecker", method=RequestMethod.POST)
+	public String idChekerPOST(HttpServletRequest request) {
+		
+		String member_id = request.getParameter("text_st1");
+		String member = memberService.idCheck(member_id);
+		
+		if(member == null) {
+			return "mypage/idCheckOK";
+		}
+		
+		return "mypage/idCheckNO";
+	}
 
 	
 }
