@@ -130,11 +130,7 @@
 			<tr>
 				<td style="width: 50px; padding-left: 20px;"><img
 					alt="user_img" src="/review/resources/memberImage/${board.memberVO.member_pic}"
-<<<<<<< HEAD
-					style="height: 50px; width: 50px; border-radius: 50px;"></td>
-=======
 					style="margin-left: auto; margin-right: auto;"></td>
->>>>>>> 22b86f20b15b55fa709470db1a69653ae21df62e
 				<td class="td_class3">&nbsp;${board.member_id}</td>
 				<td class="td_class4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${board.board_title}</td>
 				<td class="td_class5"><fmt:formatDate
