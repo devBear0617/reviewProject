@@ -556,6 +556,7 @@
 
 <style type="text/css">
 input:focus {
+<<<<<<< HEAD
 	outline: none;
 }
 
@@ -574,6 +575,11 @@ input:focus {
 	border-radius: 10px;
 	border-style: none;
 }
+=======
+	outline:none;
+	}
+	
+>>>>>>> 22b86f20b15b55fa709470db1a69653ae21df62e
 </style>
 
 </head>

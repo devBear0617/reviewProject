@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +20,10 @@
 				
 				<c:forEach items="${myBoard}" var="myBoard">
 					<tr onclick="location.href='/review/movie/detail_view/${myBoard.board_num}'">
+<<<<<<< HEAD
 			
+=======
+>>>>>>> 22b86f20b15b55fa709470db1a69653ae21df62e
 						<td>
 							<img src="${myBoard.thumbnail}" height="70px" width="70px">
 						</td>
@@ -27,7 +32,10 @@
 							
 						</td>
 						<td>score: ${myBoard.lemon_grade}</td>
+<<<<<<< HEAD
 						
+=======
+>>>>>>> 22b86f20b15b55fa709470db1a69653ae21df62e
 						<td>${myBoard.member_id}</td>
 						<td><c:if test="${empty myBoard.board_up_date}">${myBoard.board_date}</c:if>
 							<c:if test="${not empty myBoard.board_up_date}">${myBoard.board_up_date}</c:if></td>
@@ -36,6 +44,8 @@
 				
 			</table>
 		</div>
+		
+		<br><br>
 
 </body>
 </html>

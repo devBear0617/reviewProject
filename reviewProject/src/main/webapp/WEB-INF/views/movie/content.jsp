@@ -113,6 +113,7 @@ function move(e){
 			<table>
 				<tr>
 					<td style="text-align: left; padding-left: 10px;" colspan="2">
+<<<<<<< HEAD
 						<%-- <img
 						src="/review/movie/resources/memberImage/${board.memberVO.member_pic}"
 						style="width: 30px; height: 30px; border-radius: 50px;">${board.member_id} --%>
@@ -125,6 +126,11 @@ function move(e){
 							<div style="float: left;">&nbsp;&nbsp;${board.member_id}</div>
 						</div>
 					</td>
+=======
+						<img src="/review/movie/resources/memberImage/${board.memberVO.member_pic}"
+							style="width: 30px; height: 30px; border-radius: 50px;"> <%-- ${board.memberVO.member_pic} --%>
+							&nbsp; ${board.member_id}</td>
+>>>>>>> 22b86f20b15b55fa709470db1a69653ae21df62e
 					<td style="font-size: small; text-align: right;" colspan="1">조회수
 						: ${board.board_readcount}&nbsp;</td>
 				</tr>
