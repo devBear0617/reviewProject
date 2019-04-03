@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<input type="text" class="text_st_id" id="final_id" name="member_id" value="${member_id}" readonly>
+<input type="text" class="text_st_idh" id="final_id" name="member_id" value="${member_id}" readonly>
 &nbsp; <span style="color:blue">v</span>
 <input type="hidden" id="Check1" value="${Check1}">
 

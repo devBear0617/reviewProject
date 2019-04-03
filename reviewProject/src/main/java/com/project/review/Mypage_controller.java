@@ -103,7 +103,7 @@ public class Mypage_controller {
 		mimeMessage.setText(body);
 		Transport.send(mimeMessage); 
 				
-		return "redirect:/mypage/findInfo";
+		return "redirect:/mypage/findCheck";
 	}
 	
 	@RequestMapping(value="/findInfo/searchID")
@@ -177,7 +177,7 @@ public class Mypage_controller {
 		//javax.mail.Transport.send() 이용
 		Transport.send(mimeMessage); 
 				
-		return "redirect:/mypage/findInfo";
+		return "redirect:/mypage/findCheck";
 	}
 	
 	@RequestMapping(value="/findInfo")

@@ -198,13 +198,23 @@ input:focus {
 	};
 	
 	function check_Info(){
-		
 		var pw = document.getElementById("pw").value;
 		var pwck = document.getElementById("pwck").value;
 		
 		if(pw == null || pwck == null || pw != pwck) {
 			alert('비밀번호가 틀렸습니다. 다시 입력해 주세요');
 			document.getElementById('pwCheck').innerHTML = '*비밀번호를 다시 확인해 주세요.';
+			return false;
+		} 
+ 		
+		
+		/* var text_id = $('.text_st_id').val();
+		var text_nm = $('.text_st_nm').val();
+		alert(text_id+', '+text_nm);
+		console.log(text_id);
+		console.log(text_nm);
+		if (text_id.isEmpty()) {
+			alert('정보 부족');
 			return false;
 		}
 		
@@ -228,7 +238,7 @@ input:focus {
 		} else {
 			alert('아이디를 다시 확인해 주세요.');
 			return false;
-		}
+		} */
 		
 	};
 	
@@ -315,7 +325,10 @@ input:focus {
 						class="btn_st1"></td>
 				</tr>
 				<tr>
-					<td colspan="2"><input type="reset" value="취소" class="btn_st1"></td>
+					<td colspan="2">
+						<input type="button" value="취소" class="btn_st1"
+							onclick="window.location.reload()">
+					</td>
 				</tr>
 				<tr>
 					<td colspan="2"><hr></td>
