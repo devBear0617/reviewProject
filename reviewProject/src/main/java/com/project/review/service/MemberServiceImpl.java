@@ -19,6 +19,15 @@ public class MemberServiceImpl implements MemberService {
 	
 	//--------------------------------------
 	
+	// updateCheckPW
+	@Override
+	public MemberVO updateCheckPW(MemberVO member, String user_id, String pw) {
+		
+		member.setMember_id(user_id);
+		member.setMember_pw(pw);
+		return memberDAO.updateCheckPW(member);
+	}
+	
 	// nmCheck
 	@Override
 	public String nmCheck(String member_name) {

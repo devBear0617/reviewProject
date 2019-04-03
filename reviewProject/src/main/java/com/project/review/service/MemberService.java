@@ -32,6 +32,8 @@ public interface MemberService {
 	
 	// 수정
 	public void updateMember(MemberVO member);
+		// updateCheckPW
+		public MemberVO updateCheckPW(MemberVO member, String user_id, String pw);
 	
 	// 가입
 	public void joinMember(MemberVO member);

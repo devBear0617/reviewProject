@@ -104,6 +104,14 @@
 		WHERE member_id = #{member_id}
 	</update>
 	
+	<!-- 정보 수정 전 비번확인 -->
+	<select id="updateCheckPW" parameterType="MemberVO" resultType="MemberVO">
+		SELECT *
+		FROM member
+		WHERE member_id = #{member_id}
+		AND member_pw = #{member_pw}
+	</select>
+	
 	<!-- 정보 수정 -->
 	<update id="updateMember" parameterType="MemberVO">
 		UPDATE member SET

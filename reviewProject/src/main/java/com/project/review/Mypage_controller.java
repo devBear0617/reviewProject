@@ -14,7 +14,6 @@ import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -23,7 +22,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -56,12 +54,12 @@ public class Mypage_controller {
 	
 //---------------------------------------------------------------
 	
+	// 비번찾기
 	@RequestMapping(value="/findInfo/searchPW")
 	public String searchPWGET() {
 		
 		return "mypage/searchPW";
 	}
-	
 	@RequestMapping(value="/findInfo/searchPW", method=RequestMethod.POST)
 	public String searchPWPOST(HttpServletRequest request, MemberVO member) 
 			throws AddressException, MessagingException {
@@ -106,12 +104,12 @@ public class Mypage_controller {
 		return "redirect:/mypage/findCheck";
 	}
 	
+	// 아디찾기
 	@RequestMapping(value="/findInfo/searchID")
 	public String searchIDGET() {
 		
 		return "mypage/searchID";
 	}
-	
 	@RequestMapping(value="/findInfo/searchID", method=RequestMethod.POST)
 	public String searchIDPOST(HttpServletRequest request, MemberVO member) 
 			throws AddressException, MessagingException {
@@ -180,6 +178,7 @@ public class Mypage_controller {
 		return "redirect:/mypage/findCheck";
 	}
 	
+	// 아디비번찾기
 	@RequestMapping(value="/findInfo")
 	public String findInfo() {
 		
@@ -356,7 +355,32 @@ public class Mypage_controller {
 	}*/
 	
 	// 정보 변경
-	@RequestMapping(value="/updateMemberForm")
+	@RequestMapping(value="/updateLogin")
+	public String updateLogin (HttpSession session, Model model) {
+		String user_id = (String)session.getAttribute("member_id");
+		
+		model.addAttribute("member_id", user_id);
+		
+		return "mypage/updateLogin";
+	}
+	@RequestMapping(value="/updateMemberForm", method=RequestMethod.POST)
+	public String updateMemberForm (HttpServletRequest request, MemberVO member, 
+			HttpSession session, Model model) {
+		String user_id = (String)session.getAttribute("member_id");
+		String pw = request.getParameter("member_pw");
+		
+		MemberVO checkPW = memberService.updateCheckPW(member, user_id, pw);
+		System.out.println(checkPW);
+		if (checkPW != null) {
+			MemberVO user = memberService.MemberInfo(user_id);
+			model.addAttribute("user", user);
+			
+			return "mypage/updateMemberForm";			
+		}
+		//alert 추가
+		return "redirect:/mypage/updateLogin";
+	}
+/*	@RequestMapping(value="/updateMemberForm")
 	public String updateMemberForm (MemberVO member, HttpSession session, Model model) {
 		String user_id = (String)session.getAttribute("member_id");
 		
@@ -364,7 +388,7 @@ public class Mypage_controller {
 		model.addAttribute("user", user);
 		
 		return "mypage/updateMemberForm";
-	}
+	}*/
 	@RequestMapping(value="/updateMember", method=RequestMethod.POST)
 	public String updateMember (MemberVO member, HttpSession session, Model model) {
 		

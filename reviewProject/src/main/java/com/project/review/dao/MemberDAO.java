@@ -32,6 +32,8 @@ public interface MemberDAO {
 	
 	// 수정
 	public void updateMember(MemberVO member);
+		// updateCheckPW
+		public MemberVO updateCheckPW(MemberVO member);
 	
 	// 마이페이지 확인
 	public MemberVO MemberInfo(String member_id);
