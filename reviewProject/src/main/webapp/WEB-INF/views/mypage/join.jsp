@@ -84,165 +84,148 @@ input:focus {
 <script type="text/javascript"
 	src="/review/resources/script/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
-	$(document).ready(function() {
-		$.ajax({
-			type : "GET",
-			url : "/review/mypage/join/idText",
-			dataType : 'html',
-			success : function(html) {
-				$(".idText").append(html);
-			}
-		});
-		
-		$.ajax({
-			type : "GET",
-			url : "/review/mypage/join/nmText",
-			dataType : 'html',
-			success : function(html) {
-				$(".nmText").append(html);
-			}
-		});
-		
-		$.ajax({
-			type : "GET",
-			url : "/review/mypage/join/idChecker",
-			dataType : 'html',
-			success : function(html) {
-				$(".idChecker").append(html);
-			}
-		});	
-		
-		$.ajax({
-			type : "GET",
-			url : "/review/mypage/join/nmChecker",
-			dataType : 'html',
-			success : function(html) {
-				$(".nmChecker").append(html);
-			}
-		});	
-		
+//준비
+$(document).ready(function() {
+	//idChecker
+	$.ajax({
+		type : "GET",
+		url : "/review/mypage/join/idChecker",
+		dataType : 'html',
+		success : function(html) {
+			$(".idChecker").append(html);
+		}
 	});
+	//nmChecker
+	$.ajax({
+		type : "GET",
+		url : "/review/mypage/join/nmChecker",
+		dataType : 'html',
+		success : function(html) {
+			$(".nmChecker").append(html);
+		}
+	});
+});
 
-	function check_ID() {
-		$.ajax({
-			url : '/review/mypage/join/idChecker',
-			type : 'POST',
-			dataType : 'text',
-			data : {
-				text_st_id : $('.text_st_id').val()
-			},
-			success : function(html) {
-				$(".idChecker").empty();
-				$(".idChecker").append(html);
-			}
-		});
-	};
+//id체크
+function check_ID(){
+    var getCheck= RegExp(/^[a-zA-Z0-9]{4,12}$/);
+    //아이디 유효성 검사
+    if(!getCheck.test($("#id").val())){
+    	alert("올바른 형식의 아이디가 아닙니다.");
+    	$("#id").val("");
+    	$("#id").focus();
+     	return false;
+    };
 	
-	function hold_ID() {
-		$.ajax({
-			url : '/review/mypage/join/idHolder',
-			type : 'POST',
-			dataType : 'text',
-			data : {
-				text_st_id : $('.text_st_id').val(),
-				ID : $('.ID').val()
-			},
-			success : function(html) {
-				if ($('.ID').val() == $('.text_st_id').val()) {
-					$(".idText").empty();
-					$(".idChecker").empty();
-					$(".idTextHold").append(html);
-				} else {
-					$(".idChecker").empty();
-					$(".idChecker").append(html);
-				}
-			}
-		});
-	};
-	
-	function check_NM() {
-		$.ajax({
-			url : '/review/mypage/join/nmChecker',
-			type : 'POST',
-			dataType : 'text',
-			data : {
-				text_st_nm : $('.text_st_nm').val()
-			},
-			success : function(html) {
-				$(".nmChecker").empty();
-				$(".nmChecker").append(html);
-			}
-		});
-	};
-	
-	function hold_NM() {
-		$.ajax({
-			url : '/review/mypage/join/nmHolder',
-			type : 'POST',
-			dataType : 'text',
-			data : {
-				text_st_nm : $('.text_st_nm').val(),
-				NM : $('.NM').val()
-			},
-			success : function(html) {
-				if ($('.NM').val() == $('.text_st_nm').val()) {
-					$(".nmText").empty();
-					$(".nmChecker").empty();
-					$(".nmTextHold").append(html);
-				} else {
-					$(".nmChecker").empty();
-					$(".nmChecker").append(html);
-				}
-			}
-		});
-	};
-	
-	function check_Info(){
-		var pw = document.getElementById("pw").value;
-		var pwck = document.getElementById("pwck").value;
-		
-		if(pw == null || pwck == null || pw != pwck) {
-			alert('비밀번호가 틀렸습니다. 다시 입력해 주세요');
-			document.getElementById('pwCheck').innerHTML = '*비밀번호를 다시 확인해 주세요.';
-			return false;
-		} 
- 		
-		
-		/* var text_id = $('.text_st_id').val();
-		var text_nm = $('.text_st_nm').val();
-		alert(text_id+', '+text_nm);
-		console.log(text_id);
-		console.log(text_nm);
-		if (text_id.isEmpty()) {
-			alert('정보 부족');
-			return false;
+	$.ajax({
+		url : '/review/mypage/join/idChecker',
+		type : 'POST',
+		dataType : 'text',
+		data : {
+			ID : $('.ID').val()
+		},
+		success : function(html) {
+			$(".idChecker").empty();
+			$(".idChecker").append(html);
 		}
-		
-		var check1 = document.getElementById("Check1").value;
-		var check2 = document.getElementById("Check2").value;
-		console.log('1'+check1);
-		console.log('2'+check2);
-		
-		if(check1.isEmpty() || check2.isEmpty()){
-			alert("정보누락");
-			return false;
+	});
+}
+
+//nm체크
+function check_NM(){
+	var getName= RegExp(/^[가-힣a-zA-Z0-9]+$/);
+    //이름 유효성
+    if (!getName.test($("#name").val())) {
+      	alert("올바른 형식의 닉네임이 아닙니다");
+      	$("#name").val("");
+      	$("#name").focus();
+      	return false;
+    };
+	
+	$.ajax({
+		url : '/review/mypage/join/nmChecker',
+		type : 'POST',
+		dataType : 'text',
+		data : {
+			NM : $('.NM').val()
+		},
+		success : function(html) {
+			$(".nmChecker").empty();
+			$(".nmChecker").append(html);
 		}
-		
-		if(check1.equals("true")){
-			if(check2.equals("true")) {
-				return true;
-			} else {
-				alert('닉네임을 다시 확인해 주세요.');
-				return false;
-			}
-		} else {
-			alert('아이디를 다시 확인해 주세요.');
-			return false;
-		} */
-		
-	};
-	
-	
+	});
+}
+
+function check_info() {
+    var getMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
+    var getCheck= RegExp(/^[a-zA-Z0-9]{4,12}$/);
+    var getName= RegExp(/^[가-힣a-zA-Z0-9]+$/);
+
+  	//아이디 공백 확인
+    if($("#id").val() == ""){
+      	alert("아이디를 확인해주세요.");
+      	$("#id").focus();
+      	return false;
+    }
+
+    //아이디 유효성 검사
+    if(!getCheck.test($("#id").val())){
+    	alert("올바른 형식의 아이디가 아닙니다.");
+    	$("#id").val("");
+    	$("#id").focus();
+     	return false;
+    }
+
+    //비밀번호
+    if(!getCheck.test($("#pw").val())) {
+    	alert("올바른 형식의 비밀번호가 아닙니다.");
+    	$("#pw").val("");
+    	$("#pw").focus();
+    	return false;
+    }
+
+    //아이디랑 비밀번호랑 같은지
+    if ($("#id").val()==($("#pw").val())) {
+    	alert("아이디와 비밀번호가 일치합니다.");
+    	$("#pw").val("");
+    	$("#pw").focus();
+    	return false;
+  	}
+
+    //비밀번호 똑같은지
+   if($("#pw").val() != ($("#pwck").val())){ 
+    	alert("비밀번호를 다시 확인해주세요.");
+    	$("#pw").val("");
+    	$("#pwck").val("");
+   		$("#pw").focus();
+   		return false;
+   }
+
+   //이메일 공백 확인
+    if($("#mail").val() == ""){
+      	alert("이메일을 입력해주세요.");
+      	$("#mail").focus();
+      	return false;
+    }
+         
+    //이메일 유효성 검사
+    if(!getMail.test($("#mail").val())){
+      	alert("올바른 이메일의 형식이 아닙니다.")
+      	$("#mail").val("");
+      	$("#mail").focus();
+      	return false;
+    }
+
+    //이름 유효성
+    if (!getName.test($("#name").val())) {
+      	alert("올바른 형식의 닉네임이 아닙니다");
+      	$("#name").val("");
+      	$("#name").focus();
+      	return false;
+    }
+    
+    return true;
+}		
 </script>
 
 </head>
@@ -250,8 +233,7 @@ input:focus {
 <body>
 
 	<div class="center">
-		<form action="/review/mypage/join" method="POST" id="joinMember"
-			enctype="multipart/form-data" onsubmit="return check_Info()">
+		<form action="/review/mypage/join" method="POST" id="joinMember" onsubmit="return check_info()">
 			<div style="height: 100px;"></div>
 			<table class="center">
 				<tr
@@ -266,31 +248,29 @@ input:focus {
 				<tr>
 					<td class="td_st1">ID</td>
 					<td class="td_st2">
-						<div class="idText"></div>
-						<div class="idTextHold"></div>
+						<input type="text" id="id" class="ID" maxlength="12"> 
 					</td>
 				</tr>
 				<tr>
 					<td colspan="2" class="td_st3">
 						<div class="idChecker"></div>
-						<input type="hidden" id="Check1" value="${Check1}">
 					</td>
 				</tr>
 				
 				<!-- PW -->
 				<tr>
 					<td class="td_st1">PW</td>
-					<td class="td_st2"><input type="password"
-						class="text_st_pw" id="pw"></td>
+					<td class="td_st2">
+						<input type="password" 
+							class="text_st_pw" id="pw" maxlength="12">
+							*4~12자리의 영문 대소문자와 숫자로만 입력
+					</td>
 				</tr>
 				<tr>
 					<td class="td_st1">PW-CHECK</td>
-					<td class="td_st2"><input type="password" name="member_pw"
-						class="text_st_pw" id="pwck"></td>
-				</tr>
-				<tr>
-					<td colspan="2" class="td_st3">
-						<span id="pwCheck" style="color:red; font-size: small;"></span> 
+					<td class="td_st2">
+						<input type="password" name="member_pw"
+							class="text_st_pw" id="pwck" maxlength="12">
 					</td>
 				</tr>
 				
@@ -298,27 +278,27 @@ input:focus {
 				<tr>
 					<td class="td_st1">NAME</td>
 					<td class="td_st2">
-						<div class="nmText"></div>
-						<div class="nmTextHold"></div>
+						<input type="text" id="name" class="NM">
 					</td>
 				</tr>
 				<tr>
 					<td colspan="2" class="td_st3">
 						<div class="nmChecker"></div>
-						<input type="hidden" id="Check2" value="${Check2}">
 					</td>
 				</tr>
 
 				<!-- Email -->
 				<tr>
 					<td class="td_st1">EMAIL</td>
-					<td class="td_st2"><input type="text" name="member_email"
-						class="text_st1"></td>
+					<td class="td_st2">
+						<input type="text" name="member_email" id="mail"
+							class="text_st1">
+					</td>
 				</tr>
 				<tr>
 					<td colspan="2"><hr></td>
 				</tr>
-				
+	
 				<!-- button -->
 				<tr>
 					<td colspan="2"><input type="submit" value="가입"
@@ -345,4 +325,4 @@ input:focus {
 
 </body>
 <jsp:include page="../share/footer.jsp" />
-</html>
+</html>     

@@ -9,8 +9,8 @@
 </head>
 <body>
 
-<span style="color:red">*동일한 아이디가 이미 존재합니다. </span> 
-<input type="button" value="확인" onclick="check_ID()">
+<span style="color:red">${mem_id} x</span> 
+<input type="button" value="중복확인" onclick="check_ID()">
 
 </body>
 </html>

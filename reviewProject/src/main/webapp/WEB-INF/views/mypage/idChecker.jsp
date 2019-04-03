@@ -9,8 +9,8 @@
 </head>
 <body>
 
-<span style="color:gray; font-size: small;">*아이디 중복확인을 해주세요. </span>
-<input type="button" value="확인" onclick="check_ID()" style="border-style: none;">
+<span style="color:gray; font-size: small;">*4~12자리의 영문 대소문자와 숫자로만 입력. </span>
+<input type="button" value="중복확인" onclick="check_ID()" style="border-style: none;">
 
 </body>
 </html>

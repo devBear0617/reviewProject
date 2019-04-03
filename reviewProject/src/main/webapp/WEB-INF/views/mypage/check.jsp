@@ -37,8 +37,10 @@ function back() {
 	<div class="center">
 		<table class="center">
 			<tr>
-				<td><h2>REMON의 회원가입을 축하합니다.</h2>
-				<h4>지금 바로 REMON에서 리뷰를 해보세요~!</h4></td>
+				<td>
+					<h2>${member_name}(${member_id})님의 REMON의 회원가입을 축하합니다.</h2>
+					<h4>지금 바로 REMON에서 리뷰를 해보세요~!</h4>
+				</td>
 			</tr>
 			<tr>
 				<td><hr></td>

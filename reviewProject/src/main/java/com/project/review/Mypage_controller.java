@@ -602,7 +602,7 @@ public class Mypage_controller {
 	}
 	// @PostMapping(value="/join")
 	@RequestMapping(value="/join", method=RequestMethod.POST)
-	public String joinMember(HttpServletRequest request, MemberVO member) {
+	public String joinMember(HttpServletRequest request, MemberVO member, Model model) {
 		
 		String member_id = request.getParameter("member_id");
 		String member_pw = request.getParameter("member_pw");
@@ -617,16 +617,12 @@ public class Mypage_controller {
 		} else {
 			memberService.joinMember(member);
 			
+			model.addAttribute("member_id", member_id);
+			model.addAttribute("member_name", member_name);
+			
 			return "mypage/check";
 		}
 		
-	}
-	
-	// idText
-	@RequestMapping(value="/join/idText")
-	public String idTextGET() {
-		
-		return "mypage/idText";
 	}
 	
 	// idChecker
@@ -638,47 +634,24 @@ public class Mypage_controller {
 	@RequestMapping(value="/join/idChecker", method=RequestMethod.POST)
 	public String idChekerPOST(HttpServletRequest request, Model model) {
 		
-		String member_id = request.getParameter("text_st_id");
+		String member_id = request.getParameter("ID");
 		if(member_id.isEmpty()) {
+			model.addAttribute("mem_id", member_id);
 			
-			return "mypage/idCheckNOId";
+			return "mypage/idCheckNO";
 		}
 		
 		String member = memberService.idCheck(member_id);
 		if(member == null) {
-			model.addAttribute("ID", member_id);
+			model.addAttribute("mem_id", member_id);
 			
 			return "mypage/idCheckOK";
 		} 
+		model.addAttribute("mem_id", member_id);
 		
 		return "mypage/idCheckNO";
 	}
-	// idHolder
-	@RequestMapping(value="/join/idHolder", method=RequestMethod.POST)
-	public String idHolderPOST(HttpServletRequest request, Model model) {
-		
-		String ID = request.getParameter("ID");
-		String member_id = request.getParameter("text_st_id");
-		if (ID.equals(member_id)) {
-			model.addAttribute("member_id", member_id);
-			
-			boolean Check1 = true;
-			System.out.println(Check1);
-			model.addAttribute("Check1", Check1);
-			
-			return "mypage/idTextHold";
-		}
-		
-		return "mypage/idCheckNO";
-	}
-	
-	// nmText
-	@RequestMapping(value="/join/nmText")
-	public String nmTextGET() {
-		
-		return "mypage/nmText";
-	}
-	
+
 	// nmChecker
 	@RequestMapping(value="/join/nmChecker")
 	public String nmCheckerGET() {
@@ -688,35 +661,19 @@ public class Mypage_controller {
 	@RequestMapping(value="/join/nmChecker", method=RequestMethod.POST)
 	public String nmChekerPOST(HttpServletRequest request, Model model) {
 		
-		String member_name = request.getParameter("text_st_nm");
+		String member_name = request.getParameter("NM");
 		if(member_name.isEmpty()) {
+			model.addAttribute("mem_nm", member_name);
 			
-			return "mypage/nmCheckNONm";
+			return "mypage/nmCheckNO";
 		}
 		String member = memberService.nmCheck(member_name);
 		if(member == null) {
-			model.addAttribute("NM", member_name);
+			model.addAttribute("mem_nm", member_name);
 			
 			return "mypage/nmCheckOK";
 		}
-		
-		return "mypage/nmCheckNO";
-	}
-	// nmHolder
-	@RequestMapping(value="/join/nmHolder", method=RequestMethod.POST)
-	public String nmHolderGET(HttpServletRequest request, Model model) {
-
-		String NM = request.getParameter("NM");
-		String member_name = request.getParameter("text_st_nm");
-		if (NM.equals(member_name)) {
-			model.addAttribute("member_name", member_name);
-			
-			boolean Check2 = true;
-			System.out.println(Check2);
-			model.addAttribute("Check2", Check2);
-			
-			return "mypage/nmTextHold";
-		}
+		model.addAttribute("mem_nm", member_name);
 		
 		return "mypage/nmCheckNO";
 	}

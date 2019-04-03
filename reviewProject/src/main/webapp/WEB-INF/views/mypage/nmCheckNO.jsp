@@ -9,8 +9,8 @@
 </head>
 <body>
 
-<span style="color:red">*동일한 닉네임이 이미 존재합니다. </span> 
-<input type="button" value="확인" onclick="check_NM()">
+<span style="color:red">${mem_nm} x</span> 
+<input type="button" value="중복확인" onclick="check_NM()">
 
 </body>
 </html>

@@ -9,10 +9,9 @@
 </head>
 <body>
 
-<span style="color:blue">*사용 가능한 닉네임 입니다. </span> 
-<input type="hidden" value="${NM}" class="NM">
-<input type="button" value="재확인" onclick="check_NM()">
-<input type="button" value="사용하기" onclick="hold_NM()">
+<span style="color:blue">${mem_nm} v</span>
+<input type="button" value="중복확인" onclick="check_NM()">
+<input type="hidden" value="${mem_nm}" name="member_name">
 
 
 </body>
