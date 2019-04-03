@@ -55,6 +55,7 @@ table {
 			<hr>
 			<div style="height: 20px;"></div>
 			<input type="submit" value="확인" class="btn_st1">
+			
 		</form>
 	</div>
 	<br>

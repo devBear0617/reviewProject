@@ -33,6 +33,15 @@
 	</resultMap>
 	
 
+
+
+	<!-- nmCheck -->
+	<select id="nmCheck" parameterType="String" resultType="String">
+		SELECT member_name
+		FROM member
+		WHERE member_name = #{member_name}
+	</select>
+
 	<!-- idCheck -->
 	<select id="idCheck" parameterType="String" resultType="String">
 		SELECT member_id

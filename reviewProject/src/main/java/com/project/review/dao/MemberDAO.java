@@ -40,6 +40,8 @@ public interface MemberDAO {
 	public void joinMember(MemberVO member);
 		// idCheck
 		public String idCheck(String member_id);
+		// nmCheck
+		public String nmCheck(String member_name);
 	
 	// 로그인
 	public MemberVO selectMember(String member_id);

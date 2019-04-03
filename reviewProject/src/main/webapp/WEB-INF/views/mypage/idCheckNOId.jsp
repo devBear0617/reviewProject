@@ -9,10 +9,8 @@
 </head>
 <body>
 
-<span style="color:blue">*사용 가능한 아이디 입니다. </span> 
-<input type="hidden" value="${ID}" class="ID">
-<input type="button" value="재확인" onclick="check_ID()">
-<input type="button" value="사용하기" onclick="hold_ID()">
+<span style="color:red">*아이디를 입력해 주세요. </span> 
+<input type="button" value="확인" onclick="check_ID()">
 
 </body>
 </html>

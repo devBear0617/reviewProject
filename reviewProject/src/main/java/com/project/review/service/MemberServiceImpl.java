@@ -19,19 +19,29 @@ public class MemberServiceImpl implements MemberService {
 	
 	//--------------------------------------
 	
+	// nmCheck
+	@Override
+	public String nmCheck(String member_name) {
+		
+		return memberDAO.nmCheck(member_name);
+	}
+	
 	// idCheck
+	@Override
 	public String idCheck(String member_id) {
 		
 		return memberDAO.idCheck(member_id);
 	}
 	
 	//searchMemberPW
+	@Override
 	public MemberVO searchMemberPW(MemberVO member) {
 		
 		return memberDAO.searchMemberPW(member);
 	}
 	
 	// searchMemberID
+	@Override
 	public MemberVO searchMemberID(MemberVO member) {
 		
 		return memberDAO.searchMemberID(member);

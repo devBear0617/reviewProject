@@ -103,7 +103,7 @@ public class Mypage_controller {
 		mimeMessage.setText(body);
 		Transport.send(mimeMessage); 
 				
-		return "redirect:/mypage/loginHome";
+		return "redirect:/mypage/findInfo";
 	}
 	
 	@RequestMapping(value="/findInfo/searchID")
@@ -177,7 +177,7 @@ public class Mypage_controller {
 		//javax.mail.Transport.send() 이용
 		Transport.send(mimeMessage); 
 				
-		return "redirect:/mypage/loginHome";
+		return "redirect:/mypage/findInfo";
 	}
 	
 	@RequestMapping(value="/findInfo")
@@ -596,17 +596,37 @@ public class Mypage_controller {
 	// 가입
 	// @GetMapping(value="/join")
 	@RequestMapping(value="/join", method=RequestMethod.GET)
-	public String joinForm(Model model) {
+	public String joinForm() {
 		
 		return "mypage/join";
 	}
 	// @PostMapping(value="/join")
 	@RequestMapping(value="/join", method=RequestMethod.POST)
-	public String joinMember(MemberVO member, Model model) {
+	public String joinMember(HttpServletRequest request, MemberVO member) {
 		
-		memberService.joinMember(member);
+		String member_id = request.getParameter("member_id");
+		String member_pw = request.getParameter("member_pw");
+		String member_name = request.getParameter("member_name");
+		String member_email = request.getParameter("member_email");
+		System.out.println("id: "+member_id+", pw: "+member_pw+
+				", name: "+member_name+", email: "+member_email);
+		if (member_id.isEmpty() || member_pw.isEmpty() || 
+				member_name.isEmpty() || member_email.isEmpty()) {
+			
+			return "redirect:/mypage/join";
+		} else {
+			memberService.joinMember(member);
+			
+			return "mypage/check";
+		}
 		
-		return "mypage/check";
+	}
+	
+	// idText
+	@RequestMapping(value="/join/idText")
+	public String idTextGET() {
+		
+		return "mypage/idText";
 	}
 	
 	// idChecker
@@ -616,17 +636,91 @@ public class Mypage_controller {
 		return "mypage/idChecker";
 	}
 	@RequestMapping(value="/join/idChecker", method=RequestMethod.POST)
-	public String idChekerPOST(HttpServletRequest request) {
+	public String idChekerPOST(HttpServletRequest request, Model model) {
 		
-		String member_id = request.getParameter("text_st1");
+		String member_id = request.getParameter("text_st_id");
+		if(member_id.isEmpty()) {
+			
+			return "mypage/idCheckNOId";
+		}
+		
 		String member = memberService.idCheck(member_id);
-		
 		if(member == null) {
+			model.addAttribute("ID", member_id);
+			
 			return "mypage/idCheckOK";
+		} 
+		
+		return "mypage/idCheckNO";
+	}
+	// idHolder
+	@RequestMapping(value="/join/idHolder", method=RequestMethod.POST)
+	public String idHolderPOST(HttpServletRequest request, Model model) {
+		
+		String ID = request.getParameter("ID");
+		String member_id = request.getParameter("text_st_id");
+		if (ID.equals(member_id)) {
+			model.addAttribute("member_id", member_id);
+			
+			boolean Check1 = true;
+			System.out.println(Check1);
+			model.addAttribute("Check1", Check1);
+			
+			return "mypage/idTextHold";
 		}
 		
 		return "mypage/idCheckNO";
 	}
+	
+	// nmText
+	@RequestMapping(value="/join/nmText")
+	public String nmTextGET() {
+		
+		return "mypage/nmText";
+	}
+	
+	// nmChecker
+	@RequestMapping(value="/join/nmChecker")
+	public String nmCheckerGET() {
+		
+		return "mypage/nmChecker";
+	}
+	@RequestMapping(value="/join/nmChecker", method=RequestMethod.POST)
+	public String nmChekerPOST(HttpServletRequest request, Model model) {
+		
+		String member_name = request.getParameter("text_st_nm");
+		if(member_name.isEmpty()) {
+			
+			return "mypage/nmCheckNONm";
+		}
+		String member = memberService.nmCheck(member_name);
+		if(member == null) {
+			model.addAttribute("NM", member_name);
+			
+			return "mypage/nmCheckOK";
+		}
+		
+		return "mypage/nmCheckNO";
+	}
+	// nmHolder
+	@RequestMapping(value="/join/nmHolder", method=RequestMethod.POST)
+	public String nmHolderGET(HttpServletRequest request, Model model) {
+
+		String NM = request.getParameter("NM");
+		String member_name = request.getParameter("text_st_nm");
+		if (NM.equals(member_name)) {
+			model.addAttribute("member_name", member_name);
+			
+			boolean Check2 = true;
+			System.out.println(Check2);
+			model.addAttribute("Check2", Check2);
+			
+			return "mypage/nmTextHold";
+		}
+		
+		return "mypage/nmCheckNO";
+	}
+
 
 	
 }

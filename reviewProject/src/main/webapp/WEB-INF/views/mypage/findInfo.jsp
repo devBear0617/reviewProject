@@ -32,6 +32,16 @@ table {
 	border-style: none;
 }
 </style>
+
+<script type="text/javascript"
+	src="/review/resources/script/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+function wClose() {
+	window.open('','_self').close();
+};
+
+</script>
+
 </head>
 <body>
 	<div class="find_st">
@@ -53,6 +63,12 @@ table {
 				<td><input type="button" value="PW 찾기"
 					onclick="location.href='/review/mypage/findInfo/searchPW'"
 					class="btn_st1"></td>
+			</tr>
+			<tr>
+				<td>
+					<input type="button" value="닫기"
+						onclick="wClose()">
+				</td>
 			</tr>
 		</table>
 	</div>

@@ -39,6 +39,26 @@ input:focus {
 	height: 20px;
 }
 
+.text_st_id {
+	width: 200px;
+	height: 20px;
+}
+
+.text_st_pw {
+	width: 200px;
+	height: 20px;
+}
+
+.text_st_pwck {
+	width: 200px;
+	height: 20px;
+}
+
+.text_st_nm {
+	width: 200px;
+	height: 20px;
+}
+
 .btn_st1 {
 	background-image: url('resources/image/REMON_smallbar.png');
 	color: white;
@@ -67,12 +87,40 @@ input:focus {
 	$(document).ready(function() {
 		$.ajax({
 			type : "GET",
+			url : "/review/mypage/join/idText",
+			dataType : 'html',
+			success : function(html) {
+				$(".idText").append(html);
+			}
+		});
+		
+		$.ajax({
+			type : "GET",
+			url : "/review/mypage/join/nmText",
+			dataType : 'html',
+			success : function(html) {
+				$(".nmText").append(html);
+			}
+		});
+		
+		$.ajax({
+			type : "GET",
 			url : "/review/mypage/join/idChecker",
 			dataType : 'html',
 			success : function(html) {
 				$(".idChecker").append(html);
 			}
-		});
+		});	
+		
+		$.ajax({
+			type : "GET",
+			url : "/review/mypage/join/nmChecker",
+			dataType : 'html',
+			success : function(html) {
+				$(".nmChecker").append(html);
+			}
+		});	
+		
 	});
 
 	function check_ID() {
@@ -81,7 +129,7 @@ input:focus {
 			type : 'POST',
 			dataType : 'text',
 			data : {
-				text_st1 : $('.text_st1').val()
+				text_st_id : $('.text_st_id').val()
 			},
 			success : function(html) {
 				$(".idChecker").empty();
@@ -89,6 +137,102 @@ input:focus {
 			}
 		});
 	};
+	
+	function hold_ID() {
+		$.ajax({
+			url : '/review/mypage/join/idHolder',
+			type : 'POST',
+			dataType : 'text',
+			data : {
+				text_st_id : $('.text_st_id').val(),
+				ID : $('.ID').val()
+			},
+			success : function(html) {
+				if ($('.ID').val() == $('.text_st_id').val()) {
+					$(".idText").empty();
+					$(".idChecker").empty();
+					$(".idTextHold").append(html);
+				} else {
+					$(".idChecker").empty();
+					$(".idChecker").append(html);
+				}
+			}
+		});
+	};
+	
+	function check_NM() {
+		$.ajax({
+			url : '/review/mypage/join/nmChecker',
+			type : 'POST',
+			dataType : 'text',
+			data : {
+				text_st_nm : $('.text_st_nm').val()
+			},
+			success : function(html) {
+				$(".nmChecker").empty();
+				$(".nmChecker").append(html);
+			}
+		});
+	};
+	
+	function hold_NM() {
+		$.ajax({
+			url : '/review/mypage/join/nmHolder',
+			type : 'POST',
+			dataType : 'text',
+			data : {
+				text_st_nm : $('.text_st_nm').val(),
+				NM : $('.NM').val()
+			},
+			success : function(html) {
+				if ($('.NM').val() == $('.text_st_nm').val()) {
+					$(".nmText").empty();
+					$(".nmChecker").empty();
+					$(".nmTextHold").append(html);
+				} else {
+					$(".nmChecker").empty();
+					$(".nmChecker").append(html);
+				}
+			}
+		});
+	};
+	
+	function check_Info(){
+		
+		var pw = document.getElementById("pw").value;
+		var pwck = document.getElementById("pwck").value;
+		
+		if(pw == null || pwck == null || pw != pwck) {
+			alert('비밀번호가 틀렸습니다. 다시 입력해 주세요');
+			document.getElementById('pwCheck').innerHTML = '*비밀번호를 다시 확인해 주세요.';
+			return false;
+		}
+		
+		var check1 = document.getElementById("Check1").value;
+		var check2 = document.getElementById("Check2").value;
+		console.log('1'+check1);
+		console.log('2'+check2);
+		
+		if(check1.isEmpty() || check2.isEmpty()){
+			alert("정보누락");
+			return false;
+		}
+		
+		if(check1.equals("true")){
+			if(check2.equals("true")) {
+				return true;
+			} else {
+				alert('닉네임을 다시 확인해 주세요.');
+				return false;
+			}
+		} else {
+			alert('아이디를 다시 확인해 주세요.');
+			return false;
+		}
+		
+	};
+	
+	
 </script>
 
 </head>
@@ -97,7 +241,7 @@ input:focus {
 
 	<div class="center">
 		<form action="/review/mypage/join" method="POST" id="joinMember"
-			enctype="multipart/form-data">
+			enctype="multipart/form-data" onsubmit="return check_Info()">
 			<div style="height: 100px;"></div>
 			<table class="center">
 				<tr
@@ -107,28 +251,55 @@ input:focus {
 				<tr>
 					<td colspan="2"><br></td>
 				<tr>
+				
+				<!-- ID -->
 				<tr>
 					<td class="td_st1">ID</td>
-					<td class="td_st2"><input type="text" name="member_id"
-						class="text_st1"></td>
+					<td class="td_st2">
+						<div class="idText"></div>
+						<div class="idTextHold"></div>
+					</td>
 				</tr>
 				<tr>
 					<td colspan="2" class="td_st3">
 						<div class="idChecker"></div>
+						<input type="hidden" id="Check1" value="${Check1}">
+					</td>
+				</tr>
+				
+				<!-- PW -->
+				<tr>
+					<td class="td_st1">PW</td>
+					<td class="td_st2"><input type="password"
+						class="text_st_pw" id="pw"></td>
+				</tr>
+				<tr>
+					<td class="td_st1">PW-CHECK</td>
+					<td class="td_st2"><input type="password" name="member_pw"
+						class="text_st_pw" id="pwck"></td>
+				</tr>
+				<tr>
+					<td colspan="2" class="td_st3">
+						<span id="pwCheck" style="color:red; font-size: small;"></span> 
+					</td>
+				</tr>
+				
+				<!-- NAME -->
+				<tr>
+					<td class="td_st1">NAME</td>
+					<td class="td_st2">
+						<div class="nmText"></div>
+						<div class="nmTextHold"></div>
 					</td>
 				</tr>
 				<tr>
-					<td class="td_st1">PW</td>
-					<td class="td_st2"><input type="password" name="member_pw"
-						class="text_st1"></td>
+					<td colspan="2" class="td_st3">
+						<div class="nmChecker"></div>
+						<input type="hidden" id="Check2" value="${Check2}">
+					</td>
 				</tr>
 
-				<tr>
-					<td class="td_st1">NAME</td>
-					<td class="td_st2"><input type="text" name="member_name"
-						class="text_st1"></td>
-				</tr>
-
+				<!-- Email -->
 				<tr>
 					<td class="td_st1">EMAIL</td>
 					<td class="td_st2"><input type="text" name="member_email"
@@ -137,6 +308,8 @@ input:focus {
 				<tr>
 					<td colspan="2"><hr></td>
 				</tr>
+				
+				<!-- button -->
 				<tr>
 					<td colspan="2"><input type="submit" value="가입"
 						class="btn_st1"></td>
