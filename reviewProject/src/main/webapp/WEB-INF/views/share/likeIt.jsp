@@ -10,6 +10,12 @@
 <script type = "text/javascript" src = "/review/resources/script/jquery-3.3.1.min.js"></script>
 <script type = "text/javascript">
 
+var link = document.location.href; 
+console.log(link);
+function addSender() {
+	sessionStorage.setItem("address", link);
+};
+
 // 로그인x
 $('#need_login').click(function(){
 	var login = confirm("좋아요를 표시하려면 로그인이 필요합니다. \n로그인 페이지로 이동하시겠습니까?");
@@ -54,7 +60,9 @@ $('#likeObt').click(function () {
 <br>
 <!-- 로그인 x -->
 <c:if test="${empty sessionScope.member_id}">
-	<span id="need_login"> <img alt="likeit" src="/review/movie/resources/image/REMON_like_icon.png" class="imgform"></span> 	
+	<span id="need_login" onclick="addSender();">
+		<img alt="likeit" src="/review/movie/resources/image/REMON_like_icon.png" class="imgform">
+	</span> 	
 </c:if>
 
 <!-- 로그인 o -->

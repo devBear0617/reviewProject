@@ -23,6 +23,10 @@ function addSender() {
 	sessionStorage.setItem("address", link);
 };
 
+function outCheck() {
+	alert('로그아웃 되엇습니다.');
+};
+
 </script>
 
 </head>
@@ -48,7 +52,7 @@ function addSender() {
 		<c:if test="${not empty sessionScope.member_id}">
 			<div style="float: right; margin-right: 10px; margin-top: 20px;">
 				<div style="float: left; margin-left: 10px;">
-					<a href="/review/mypage/logout"><img alt="REMON_LOGO"
+					<a href="/review/mypage/logout" onclick="outCheck()"><img alt="REMON_LOGO"
 						src="/review/movie/resources/image/REMON_Logout_icon(white).png"
 						style="height: 50px;"></a>
 				</div>
