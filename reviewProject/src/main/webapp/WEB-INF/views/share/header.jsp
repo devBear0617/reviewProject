@@ -25,9 +25,9 @@ function addSender() {
 </script>
 <style type="text/css">
 input:focus {
-	outline:none;
-	}
-	
+	outline: none;
+}
+
 .center {
 	margin-left: auto;
 	margin-right: auto;
@@ -61,15 +61,21 @@ input:focus {
 					</div>
 				</td>
 				<td class="no_background">
-					<!-- 검색 바 -->
-					<!-- <div class='moveBT' data-target="#searchMain"> -->
-						<form action="/review/search/searchResult" method="POST" id="search">
+					<!-- 검색 바 --> <!-- <div class='moveBT' data-target="#searchMain"> -->
+					<!--<form action="/review/search/searchResult" method="POST" id="search">
 							<input type="text" id="query" name="query"
 								style="width: 300px; height: 30px; border-radius: 20px; border-style: none;">
 							<input type="submit" value="검색"
 								style="width: 50px; height: 30px; border-radius: 20px; border-style: none; background-color: yellow;">
-						</form>
-					<!-- </div> -->
+						</form> -->
+					<form action="/review/search/searchResult" method="POST"
+						id="search">
+						<input type="text" id="query" name="keyword" value="${keyword}"
+							style="width: 300px; height: 30px; border-radius: 20px; border-style: none; text-align: center;"><input
+							type="hidden" value="${keyword}" class="keyword"> <input
+							type="submit" value="검색"
+							style="width: 50px; height: 30px; border-radius: 20px; border-style: none; background-color: yellow;">
+					</form> <!-- </div> -->
 				</td>
 				<td class="no_background">
 					<!-- 마이페이지 --> <!-- 로그인 필요 시 -->
@@ -99,7 +105,7 @@ input:focus {
 										style="height: 50px;"></a>
 								</c:if>
 								<c:if test="${not empty user.member_pic}"> --%>
-								<a href="/review/mypage/mypageCheck"><img alt="REMON_LOGO"
+								<a href="/review/mypage/mypageCheck"><img alt="USER_PIC"
 									src="/review/movie/resources/memberImage/${user.member_pic}"
 									style="height: 50px; width: 50px; border-radius: 50px;"></a>
 								<%-- </c:if> --%>
