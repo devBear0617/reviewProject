@@ -8,8 +8,10 @@
 
 <script type="text/javascript" src="/review/resources/script/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
-function goBack() {
-	window.history.back();
+var msg = '${Alert}';
+console.log(msg);
+if(msg) {
+	alert(msg);		
 }
 
 </script>
@@ -64,7 +66,7 @@ input:focus {
 				</tr>
 			</table>
 		</form>
-		<input type="button" value="취소" onclick="goBack()">
+		<input type="button" value="취소" onclick="location.href='/review/mypage/mypageCheck'">
 	</div>
 	<div style="height: 200px;"></div>
 </body>

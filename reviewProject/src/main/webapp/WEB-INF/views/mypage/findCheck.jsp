@@ -27,8 +27,7 @@ function wClose() {
 <input type="button" value="PW 찾기"
 	onclick="location.href='/review/mypage/findInfo/searchPW'">
 	
-<input type="button" value="닫기"
-						onclick="wClose()">
+<input type="button" value="닫기" onclick="wClose()">
 
 </body>
 </html>

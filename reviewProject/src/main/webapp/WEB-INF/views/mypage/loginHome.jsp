@@ -12,6 +12,17 @@
 	text-align: center;
 }
 </style>
+
+<script type="text/javascript" src="/review/resources/script/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+var msg = '${loginFail}';
+console.log(msg);
+if(msg) {
+	alert(msg);		
+}
+
+</script>
+
 </head>
 <jsp:include page="/WEB-INF/views/share/Login_header.jsp" />
 <body>

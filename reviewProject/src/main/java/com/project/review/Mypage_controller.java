@@ -101,7 +101,7 @@ public class Mypage_controller {
 		mimeMessage.setText(body);
 		Transport.send(mimeMessage); 
 				
-		return "redirect:/mypage/findCheck";
+		return "mypage/findCheck";
 	}
 	
 	// 아디찾기
@@ -175,7 +175,7 @@ public class Mypage_controller {
 		//javax.mail.Transport.send() 이용
 		Transport.send(mimeMessage); 
 				
-		return "redirect:/mypage/findCheck";
+		return "mypage/findCheck";
 	}
 	
 	// 아디비번찾기
@@ -184,6 +184,7 @@ public class Mypage_controller {
 		
 		return "mypage/findInfo";
 	}
+	
 	
 	/*alreadyWritten*/
 	@RequestMapping(value="/alreadyWritten")
@@ -377,8 +378,9 @@ public class Mypage_controller {
 			
 			return "mypage/updateMemberForm";			
 		}
-		//alert 추가
-		return "redirect:/mypage/updateLogin";
+		//alert
+		model.addAttribute("Alert", "입력하신 비밀번호가 다릅니다. 다시 입력해 주세요.");
+		return "mypage/updateLogin";
 	}
 /*	@RequestMapping(value="/updateMemberForm")
 	public String updateMemberForm (MemberVO member, HttpSession session, Model model) {
@@ -429,7 +431,7 @@ public class Mypage_controller {
 		
 		MemberVO member = memberService.selectMember(member_id);
 		
-		String loginFail = "잘못된 아이디 및 비밀번호";
+		String loginFail = "잘못된 아이디 및 비밀번호 입니다.";
 		
 		if (member != null) {
 			String pw = member.getMember_pw();
@@ -473,13 +475,13 @@ public class Mypage_controller {
 		return "mypage/writeLogin";
 	}
 	
-	// ID,PW 찾기 후 로그인
+/*	// ID,PW 찾기 후 로그인
 	@RequestMapping(value="/loginHome", method=RequestMethod.GET)
 	public String loginHomeForm(HttpServletRequest request, Model model) {
 		
-		/*String referer = request.getHeader("Referer");
+		String referer = request.getHeader("Referer");
 	System.out.println(referer);
-		model.addAttribute("address", referer);*/
+		model.addAttribute("address", referer);
 		
 		return "mypage/loginHome";
 	}
@@ -513,8 +515,8 @@ public class Mypage_controller {
 						MemberVO user = memberService.MemberInfo(user_id);
 						model.addAttribute("user", user);
 						
-						/*String address = request.getParameter("address");
-					System.out.println(address);*/
+						String address = request.getParameter("address");
+					System.out.println(address);
 			
 						return "redirect:/";
 						
@@ -534,15 +536,18 @@ public class Mypage_controller {
 		model.addAttribute("loginFail", noID);
 		
 		return "mypage/loginHome";
-	}
+	}*/
 	
 	// 로그인
 	@RequestMapping(value="/login", method=RequestMethod.GET)
-	public String loginForm(HttpServletRequest request, Model model) {
+	public String loginForm(HttpServletRequest request, HttpSession session, Model model) {
 		
 		String referer = request.getHeader("Referer");
-	System.out.println(referer);
+	/*System.out.println(referer);*/
 		model.addAttribute("address", referer);
+		
+		/*String address = (String)session.getAttribute("address");
+		System.out.println(address);*/
 		
 		return "mypage/login";
 	}
@@ -576,10 +581,10 @@ public class Mypage_controller {
 						MemberVO user = memberService.MemberInfo(user_id);
 						model.addAttribute("user", user);
 						
-						String address = request.getParameter("address");
-					System.out.println(address);
+						/*String address = request.getParameter("address");
+					System.out.println(address);*/
 			
-						return "redirect:"+address;
+						return "mypage/loginCheck";
 						
 					} else {
 						// 비번 불일치

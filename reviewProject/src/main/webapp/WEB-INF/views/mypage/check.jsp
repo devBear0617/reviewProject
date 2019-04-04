@@ -28,6 +28,7 @@
 function back() {
 	window.history.go(-2);
 }
+
 </script>
 
 </head>
@@ -51,7 +52,7 @@ function back() {
 			</tr>
 			<tr>
 				<td><input type="button" value="로그인하기"
-					onclick="location.href='/review/mypage/loginHome'" class="btn_st1"></td>
+					onclick="location.href='/review/mypage/login'" class="btn_st1"></td>
 			</tr>
 			<tr>
 				<td><input type="button" value="이전페이지"
