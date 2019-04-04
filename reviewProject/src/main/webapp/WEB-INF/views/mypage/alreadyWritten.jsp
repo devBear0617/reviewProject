@@ -24,6 +24,7 @@ $(document).ready(function() {
 	$.ajax({
 		type : "GET",
 		url : "/review/mypage/alreadyWritten/alreadyWritten_Board",
+		data: {"pnum":1},
 		dataType : 'html',
 		success : function(html) {
 			$(".alreadyWritten_Board").append(html);
@@ -49,6 +50,7 @@ function already_Board () {
 	$.ajax({
 		type : "GET",
 		url : "/review/mypage/alreadyWritten/alreadyWritten_Board",
+		data: {"pnum":1},
 		dataType : 'html',
 		success : function(html) {
 			$(".alreadyWritten_Reply").empty();
@@ -77,6 +79,7 @@ function already_Reply () {
 	$.ajax({
 		type : "GET",
 		url : "/review/mypage/alreadyWritten/alreadyWritten_Reply",
+		data: {"pnum":1},
 		dataType : 'html',
 		success : function(html) {
 			$(".alreadyWritten_Board").empty();
@@ -105,6 +108,7 @@ function already_Like () {
 	$.ajax({
 		type : "GET",
 		url : "/review/mypage/alreadyWritten/alreadyWritten_Like",
+		data: {"pnum":1},
 		dataType : 'html',
 		success : function(html) {
 			$(".alreadyWritten_Board").empty();

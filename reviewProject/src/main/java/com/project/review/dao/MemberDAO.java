@@ -1,6 +1,7 @@
 package com.project.review.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.project.review.vo.BoardVO;
 import com.project.review.vo.LikeItVO;
@@ -19,13 +20,16 @@ public interface MemberDAO {
 	public String getMember_pic(String member_id);
 	
 	// myLike
-	public List<LikeItVO> myLike(String member_id);
+	public List<LikeItVO> myLike(Map<String,Object> map);
+	public int myLikeCount(String member_id);
 	
 	// myReply
-	public List<ReplyVO> myReply(String member_id);
+	public List<ReplyVO> myReply(Map<String,Object> map);
+	public int myReplyCount(String member_id);
 	
 	//alreadyBoard
-	public List<BoardVO> myBoard(String member_id);
+	public List<BoardVO> myBoard(Map<String,Object> map);
+	public int myBoardCount(String member_id);
 	
 	// updateProfile
 	public void updateProfile(MemberVO member_pic);

@@ -117,7 +117,7 @@ public class Movie_controller {
 		
 		Pagination pagination = new Pagination();
 		
-		pagination.setCurPage(b_movieVO.getPnum());
+		//pagination.setCurPage(b_movieVO.getPnum());
 		pagination.setPage(b_movieVO.getPnum(), board_list.size());
 	
 		model.addAttribute("sort_id", sort_id);		

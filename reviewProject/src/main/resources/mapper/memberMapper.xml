@@ -65,28 +65,61 @@
 	</select>
 	
 	<!-- myLike -->
-	<select id="myLike" parameterType="String" resultMap="myLike">
-		SELECT *
+	<select id="myLike" parameterType="map" resultMap="myLike">
+		SELECT aa.*
+		FROM( SELECT ROWNUM as rnum, a.*
+			  FROM ( SELECT *
+					 FROM likeit
+					 WHERE member_id = #{member_id}
+					 ORDER BY board_num DESC)a
+		      WHERE <![CDATA[rownum <= #{end_content}]]> )aa
+		WHERE <![CDATA[aa.rnum >= #{start_content} ]]>	
+	</select>
+	
+	<select id="myLikeCount" parameterType="String" resultType="int">
+		SELECT COUNT(*) 
 		FROM likeit
 		WHERE member_id = #{member_id}
-		ORDER BY board_num DESC
 	</select>
 	
 	<!-- myReply -->
-	<select id="myReply" parameterType="String" resultMap="myReply">
-		SELECT *
+	<select id="myReply" parameterType="map" resultMap="myReply">
+		SELECT aa.*
+		FROM( SELECT ROWNUM as rnum, a.*
+			  FROM ( SELECT *
+					 FROM reply
+					 WHERE member_id = #{member_id}
+					 ORDER BY reply_num DESC)a
+		      WHERE <![CDATA[rownum <= #{end_content}]]> )aa
+		WHERE <![CDATA[aa.rnum >= #{start_content} ]]>		
+	</select>
+	
+	<select id="myReplyCount" parameterType="String" resultType="int">
+		SELECT COUNT(*) 
 		FROM reply
 		WHERE member_id = #{member_id}
-		ORDER BY reply_num DESC
 	</select>
 	
 	<!-- myBoard -->
-	<select id="myBoard" parameterType="String" resultType="BoardVO">
-		SELECT *
+	<select id="myBoard" parameterType="map" resultType="BoardVO">
+		SELECT aa.*
+		FROM( SELECT ROWNUM as rnum, a.*
+			  FROM ( SELECT *
+		             FROM board
+		             WHERE member_id = #{member_id}
+		             ORDER BY board_num DESC )a
+		      WHERE <![CDATA[rownum <= #{end_content}]]> )aa
+		WHERE <![CDATA[aa.rnum >= #{start_content} ]]>
+	</select>
+	
+	<select id="myBoardCount" parameterType="String" resultType="int">
+		SELECT COUNT(*) 
 		FROM board
 		WHERE member_id = #{member_id}
-		ORDER BY board_num DESC
 	</select>
+
+	
+	
 	
 	<!-- updateProfile -->
 	<update id="updateProfile" parameterType="MemberVO">

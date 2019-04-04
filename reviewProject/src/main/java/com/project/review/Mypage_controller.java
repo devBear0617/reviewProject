@@ -3,7 +3,9 @@ package com.project.review;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import javax.annotation.Resource;
@@ -14,16 +16,13 @@ import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -33,6 +32,7 @@ import com.project.review.service.MemberService;
 import com.project.review.vo.BoardVO;
 import com.project.review.vo.LikeItVO;
 import com.project.review.vo.MemberVO;
+import com.project.review.vo.Pagination;
 import com.project.review.vo.ReplyVO;
 
 
@@ -214,33 +214,43 @@ public class Mypage_controller {
 	
 	/*alreadyWritten_Board*/
 	@RequestMapping(value="/alreadyWritten/alreadyWritten_Board")
-	public String alreadyWritten_Board(HttpSession session, HttpServletRequest request, Model model) {
+	public String alreadyWritten_Board(HttpSession session, int pnum, Model model) {	
 		
 		String user_id = (String)session.getAttribute("member_id");
-		
+					
 		MemberVO user = memberService.MemberInfo(user_id);
-	System.out.println("MemberVO user = " + user);
-		model.addAttribute("user", user);
+		model.addAttribute("user", user);					
+		List<BoardVO> myBoard = memberService.myBoard(user_id, pnum);
 		
-		List<BoardVO> myBoard = memberService.myBoard(user_id);
-	System.out.println("myBoard list : " + myBoard);
+		
+		Pagination pagination = new Pagination();
+		int size = memberService.myBoardCount(user_id);
+		pagination.setPage(pnum, size);
+		
+		model.addAttribute("pagination", pagination);
 		model.addAttribute("myBoard", myBoard);
-		
+				
 		return "mypage/alreadyWritten_Board";
 	}
 	
 	/*alreadyWritten_Reply*/
 	@RequestMapping(value="/alreadyWritten/alreadyWritten_Reply")
-	public String alreadyWritten_Reply(HttpSession session, HttpServletRequest request, Model model) {
+	public String alreadyWritten_Reply(HttpSession session, int pnum, Model model) {
 		
 		String user_id = (String)session.getAttribute("member_id");
 		
 		MemberVO user = memberService.MemberInfo(user_id);
-	System.out.println("MemberVO user = " + user);
+	//System.out.println("MemberVO user = " + user);
 		model.addAttribute("user", user);
 		
-		List<ReplyVO> myReply = memberService.myReply(user_id);
-	System.out.println("myReply list : " + myReply);
+		List<ReplyVO> myReply = memberService.myReply(user_id, pnum);
+	//System.out.println("myReply list : " + myReply);
+		
+		Pagination pagination = new Pagination();
+		int size = memberService.myReplyCount(user_id);
+		pagination.setPage(pnum, size);
+		
+		model.addAttribute("pagination", pagination);
 		model.addAttribute("myReply", myReply);
 		
 		return "mypage/alreadyWritten_Reply";
@@ -248,16 +258,22 @@ public class Mypage_controller {
 	
 	/*alreadyWritten_Like*/
 	@RequestMapping(value="/alreadyWritten/alreadyWritten_Like")
-	public String alreadyWritten_Like(HttpSession session, HttpServletRequest request, Model model) {
+	public String alreadyWritten_Like(HttpSession session, int pnum, Model model) {
 		
 		String user_id = (String)session.getAttribute("member_id");
 		
 		MemberVO user = memberService.MemberInfo(user_id);
-	System.out.println("MemberVO user = " + user);
+	//System.out.println("MemberVO user = " + user);
 		model.addAttribute("user", user);
 		
-		List<LikeItVO> myLike = memberService.myLike(user_id);
-	System.out.println("myLike list : " + myLike);
+		List<LikeItVO> myLike = memberService.myLike(user_id, pnum);
+	//System.out.println("myLike list : " + myLike);
+		
+		Pagination pagination = new Pagination();
+		int size = memberService.myLikeCount(user_id);
+		pagination.setPage(pnum, size);
+		
+		model.addAttribute("pagination", pagination);		
 		model.addAttribute("myLike", myLike);
 		
 		return "mypage/alreadyWritten_Like";

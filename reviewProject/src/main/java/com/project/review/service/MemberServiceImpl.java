@@ -1,6 +1,8 @@
 package com.project.review.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,23 +48,62 @@ public class MemberServiceImpl implements MemberService {
 	
 	// myLike
 	@Override
-	public List<LikeItVO> myLike(String member_id) {
+	public List<LikeItVO> myLike(String member_id , int pnum) {
+		int limit = 10;
+		int start_content = (pnum - 1) * 10 + 1;
+		int end_content = start_content + limit -1;
 		
-		return memberDAO.myLike(member_id);
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("member_id", member_id);
+		map.put("start_content", start_content);
+		map.put("end_content", end_content);
+		
+		return memberDAO.myLike(map);
+	}
+	@Override
+	public int myLikeCount(String member_id) {
+		
+		return memberDAO.myLikeCount(member_id);
 	}
 	
 	// myReply
 	@Override
-	public List<ReplyVO> myReply(String member_id) {
+	public List<ReplyVO> myReply(String member_id, int pnum) {
+		int limit = 10;
+		int start_content = (pnum - 1) * 10 + 1;
+		int end_content = start_content + limit -1;
 		
-		return memberDAO.myReply(member_id);
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("member_id", member_id);
+		map.put("start_content", start_content);
+		map.put("end_content", end_content);
+		
+		return memberDAO.myReply(map);
+	}
+	@Override
+	public int myReplyCount(String member_id) {
+		
+		return memberDAO.myReplyCount(member_id);
 	}
 	
 	// alreadyBoard
 	@Override
-	public List<BoardVO> myBoard(String member_id) {
+	public List<BoardVO> myBoard(String member_id, int pnum) {
+		int limit = 10;
+		int start_content = (pnum - 1) * 10 + 1;
+		int end_content = start_content + limit -1;
+				
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("member_id", member_id);
+		map.put("start_content", start_content);
+		map.put("end_content", end_content);
 		
-		return memberDAO.myBoard(member_id);
+		return memberDAO.myBoard(map);
+	}
+	@Override
+	public int myBoardCount(String member_id) {
+		
+		return memberDAO.myBoardCount(member_id);
 	}
 	
 	// updateProfile

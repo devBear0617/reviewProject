@@ -1,6 +1,7 @@
 package com.project.review.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.project.review.vo.BoardVO;
 import com.project.review.vo.LikeItVO;
@@ -19,13 +20,16 @@ public interface MemberService {
 	public String getMember_pic(String member_id);
 	
 	// myLike
-	public List<LikeItVO> myLike(String member_id);
+	public List<LikeItVO> myLike(String member_id, int pnum);
+	public int myLikeCount(String member_id);
 	
 	// myReply
-	public List<ReplyVO> myReply(String member_id);
-	
+	public List<ReplyVO> myReply(String member_id, int pnum);
+	public int myReplyCount(String member_id);
 	// alreadyBoard
-	public List<BoardVO> myBoard(String member_id);
+	public List<BoardVO> myBoard(String member_id, int pnum);
+	public int myBoardCount(String member_id);
+	
 	
 	// updateProfile
 	public void updateProfile(MemberVO member, String member_id, String member_pic);

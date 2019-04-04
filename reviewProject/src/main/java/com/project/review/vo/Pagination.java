@@ -27,7 +27,11 @@ public class Pagination {
 			setNextPage(sp+pScale);
 			
 			if (size/10+1<sp+4) 
-				setEndPage(size/10+1);
+				if(size%10==0){
+					setEndPage(size/10);
+				}else{
+					setEndPage(size/10+1);
+				}
 			else
 				setEndPage(sp+pScale-1);
 				
