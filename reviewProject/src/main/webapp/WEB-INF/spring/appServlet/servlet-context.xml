@@ -22,11 +22,10 @@
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources directory -->
-	<resources mapping="movie/resources/**"
-		location="/resources/" />
+	<resources mapping="movie/resources/**" location="/resources/" />
 	<resources mapping="tv/resources/**" location="/resources/" />
-	<resources mapping="mypage/resources/**"
-		location="/resources/" />
+	<resources mapping="mypage/resources/**" location="/resources/" />
+	<resources mapping="loginApi/resources/**" location="/resources/" />
 	<resources mapping="/resources/**" location="/resources/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
@@ -37,17 +36,15 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
-	<context:component-scan
-		base-package="com.project.review" />
-	<beans:bean name="MovieApiDAO"
-		class="com.project.review.dao.MovieApiDAOImpl">
-		<beans:property name="key"
-			value="a231afcb6c034d1613dd7b9d94e33237" />
-		<beans:property name="clientId"
-			value="JkVf4ViBfh9V1cpbJrwH" />
+	<context:component-scan base-package="com.project.review" />
+	<beans:bean name="MovieApiDAO" class="com.project.review.dao.MovieApiDAOImpl">
+		<beans:property name="key" value="a231afcb6c034d1613dd7b9d94e33237" />
+		<beans:property name="clientId" value="JkVf4ViBfh9V1cpbJrwH" />
 		<beans:property name="clientSecret" value="iEi_R1G4vQ" />
 	</beans:bean>
-
+	
+	<beans:bean name="LoginApiBO" class="com.project.review.vo.LoginApiBO"/>
+	
 	<beans:bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<beans:property name="dataSource" ref="dataSource" />

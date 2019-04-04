@@ -1,21 +1,32 @@
 package com.project.review.service;
 
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.project.review.dao.MemberDAO;
 import com.project.review.vo.BoardVO;
 import com.project.review.vo.LikeItVO;
+import com.project.review.vo.LoginApiBO;
 import com.project.review.vo.MemberVO;
 import com.project.review.vo.ReplyVO;
 
+
 @Service
 public class MemberServiceImpl implements MemberService {
-	
+	private LoginApiBO loginApiBO;
+	@Autowired
+    private void setNaverLoginBO(LoginApiBO loginApiBO) {
+        this.loginApiBO = loginApiBO;
+    }
 	@Autowired
 	private MemberDAO memberDAO;
+	
 	
 	// getMember_pic
 	@Override
@@ -57,7 +68,6 @@ public class MemberServiceImpl implements MemberService {
 	// 수정
 	@Override
 	public void updateMember(MemberVO member) {
-		
 		memberDAO.updateMember(member);
 	}
 	
@@ -71,8 +81,12 @@ public class MemberServiceImpl implements MemberService {
 	// 가입
 	@Override
 	public void joinMember(MemberVO member) {
-		
 		memberDAO.joinMember(member);
+	}
+	
+	@Override
+	public void joinSnsUser(MemberVO member) {
+		memberDAO.joinSnsUser(member);
 	}
 	
 	// 로그인
@@ -82,5 +96,18 @@ public class MemberServiceImpl implements MemberService {
 		return memberDAO.selectMember(member_id);
 	}
 
+	@Override
+	public MemberVO handleSnsUser(String code, String state, HttpSession session) throws IOException {
+		OAuth2AccessToken oauthToken = loginApiBO.getAccessToken(session, code, state);
+		String apiResult = loginApiBO.getUserProfile(oauthToken);
+		MemberVO member = loginApiBO.setApiCodeToVO(apiResult);
+		String str = memberDAO.getMemberId(member.getMember_id());
 
+		if (str == null) {
+			joinSnsUser(member);
+		}
+		member = selectMember(member.getMember_id());
+		
+		return member;
+	}
 }

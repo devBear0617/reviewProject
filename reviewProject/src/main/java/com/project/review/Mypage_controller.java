@@ -17,19 +17,29 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.project.review.service.MemberService;
 import com.project.review.vo.BoardVO;
 import com.project.review.vo.LikeItVO;
+import com.project.review.vo.LoginApiBO;
 import com.project.review.vo.MemberVO;
 import com.project.review.vo.ReplyVO;
+import com.project.review.vo.SnsUserVO;
 
 
 @Controller
 @RequestMapping(value="/mypage")
 public class Mypage_controller {
+	// 네이버 api 로그인 
+	private LoginApiBO loginApiVO;
+	@Autowired
+    private void setNaverLoginBO(LoginApiBO loginApiVO) {
+        this.loginApiVO = loginApiVO;
+    }
 	
 	@Resource(name="uploadPathS")
 	String uploadPathS;
@@ -147,9 +157,7 @@ public class Mypage_controller {
 	}
 	@RequestMapping(value="/updateMember", method=RequestMethod.POST)
 	public String updateMember (MemberVO member, HttpSession session, Model model) {
-		
 		memberService.updateMember(member);
-	System.out.println(member);
 		
 		return "redirect:/mypage/mypageCheck";
 	}
@@ -168,23 +176,21 @@ public class Mypage_controller {
 	
 	// 로그인
 	@RequestMapping(value="/login", method=RequestMethod.GET)
-	public String loginForm(HttpServletRequest request, Model model) {
-		
+	public String loginForm(HttpServletRequest request, Model model, HttpSession session) {
 		String referer = request.getHeader("Referer");
-	System.out.println(referer);
+		String naverAuthUrl = loginApiVO.getAuthorizationUrl(session);
+		
 		model.addAttribute("address", referer);
+		model.addAttribute("url", naverAuthUrl);
 		
 		return "mypage/login";
 	}
+	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String loginMember(String member_id, String member_pw, HttpServletRequest request,
-			 HttpSession session, Model model) {
-
-		member_id = request.getParameter("member_id");
-		member_pw = request.getParameter("member_pw");
+			HttpSession session, Model model) throws IOException {
 		
 		MemberVO member = memberService.selectMember(member_id);
-		
 		String loginFail = "잘못된 아이디 및 비밀번호";
 		
 		if (member != null) {
@@ -207,17 +213,15 @@ public class Mypage_controller {
 						model.addAttribute("user", user);
 						
 						String address = request.getParameter("address");
-					System.out.println(address);
+						System.out.println(address);
 			
 						return "redirect:"+address;
-						
 					} else {
 						// 비번 불일치
 						model.addAttribute("loginFail", loginFail);
 						
 						return "mypage/login";
 					}
-					
 				}
 		}
 		// 노아이디
@@ -229,16 +233,25 @@ public class Mypage_controller {
 		return "mypage/login";
 	}
 	
+	@RequestMapping(value="/loginCallback")
+	public String loginCallbackTest (String code, String state, String address, HttpSession session, Model model) throws IOException {
+		MemberVO member = memberService.handleSnsUser(code, state, session);
+		
+		session.setAttribute("member_id", member.getMember_id());
+		model.addAttribute("user", member);
+		
+		return "redirect:/";
+	}
+	
 	// 로그아웃
 	@RequestMapping(value="/logout")
 	public String logout(HttpServletRequest request, HttpSession session, Model model) {
 		String referer = request.getHeader("Referer");
-	System.out.println(referer);
-		// 로그아웃 세션끊기.
 		session.invalidate();
 		
 		return "redirect:"+referer;
 	}
+	
 	// mypageLogout
 	@RequestMapping(value="/mypageLogout")
 	public String mypageLogout(HttpSession session) {
@@ -248,21 +261,16 @@ public class Mypage_controller {
 	}
 	
 	// 가입
-	// @GetMapping(value="/join")
 	@RequestMapping(value="/join", method=RequestMethod.GET)
 	public String joinForm(Model model) {
 		
 		return "mypage/join";
 	}
-	// @PostMapping(value="/join")
+	
 	@RequestMapping(value="/join", method=RequestMethod.POST)
 	public String joinMember(MemberVO member, Model model) {
-		
 		memberService.joinMember(member);
 		
 		return "mypage/check";
 	}
-	
-
-	
 }

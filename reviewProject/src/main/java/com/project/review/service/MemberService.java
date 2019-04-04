@@ -1,11 +1,16 @@
 package com.project.review.service;
 
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import com.project.review.vo.BoardVO;
 import com.project.review.vo.LikeItVO;
 import com.project.review.vo.MemberVO;
 import com.project.review.vo.ReplyVO;
+import com.project.review.vo.SnsUserVO;
 
 public interface MemberService {
 	
@@ -29,10 +34,14 @@ public interface MemberService {
 	
 	// 가입
 	public void joinMember(MemberVO member);
+	public void joinSnsUser(MemberVO member);
+	
 	
 	// 로그인
 	public MemberVO selectMember(String member_id);
 	
 	// 마이페이지 확인
 	public MemberVO MemberInfo(String member_id);
+
+	public MemberVO handleSnsUser(String code, String state, HttpSession session) throws IOException;
 }

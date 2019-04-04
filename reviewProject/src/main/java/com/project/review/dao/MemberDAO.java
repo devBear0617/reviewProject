@@ -32,8 +32,9 @@ public interface MemberDAO {
 	
 	// 가입
 	public void joinMember(MemberVO member);
+	public void joinSnsUser(MemberVO member);
 	
 	// 로그인
 	public MemberVO selectMember(String member_id);
-	
+	public String getMemberId(String member_id);
 }

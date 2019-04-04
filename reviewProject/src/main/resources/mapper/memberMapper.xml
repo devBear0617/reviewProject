@@ -85,13 +85,26 @@
 
 	<!-- 가입 -->
 	<insert id="joinMember" parameterType="MemberVO" >
-		INSERT INTO member (member_id, member_pw, member_name, member_email)
-		VALUES (#{member_id}, #{member_pw}, #{member_name}, #{member_email})
+		INSERT INTO 
+			member (member_id, member_pw, member_name, member_email)
+		VALUES 
+			(#{member_id}, #{member_pw}, #{member_name}, #{member_email})
 	</insert>	
+	<insert id="joinSnsUser" parameterType="MemberVO">
+	    INSERT INTO 
+			member (member_id, member_name, sns_type, sns_idx)
+		VALUES 
+			(#{member_id}, #{member_name}, #{sns_type}, #{sns_idx})
+  	</insert>
 	
 	<!-- 로그인 -->
 	<select id="selectMember" parameterType="MemberVO" resultMap="Member">
 		SELECT *
+		FROM member
+		WHERE member_id = #{member_id}
+	</select>
+	<select id="getMemberId" parameterType="String" resultType="String">
+		SELECT member_id
 		FROM member
 		WHERE member_id = #{member_id}
 	</select>
@@ -102,5 +115,4 @@
 		FROM board
 		WHERE board_num = #{board_num}
 	</select>
-
 </mapper>
