@@ -67,9 +67,9 @@ public interface BoardDAO {
 	/*delete*/
 	public void delete_Reply(int board_num);
 	public void delete_Like(int board_num);
-	public void deleteMovie(int board_num);
 	public void deleteGrade(int board_num);
-	public void deleteB_movie(int board_num);
 	public void deleteHashtag(int board_num);
+	public void deleteB_movie(int board_num);
+	public void deleteMovie(int board_num);
 	
 }

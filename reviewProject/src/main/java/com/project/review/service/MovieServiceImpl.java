@@ -207,11 +207,11 @@ public class MovieServiceImpl implements MovieService {
 	@Override
 	public void deleteMovie(int board_num) {	
 		// 삭제 (board_num으로)
-		/*boardDAO.delete_Reply(board_num);
-		boardDAO.delete_Like(board_num);*/
+		boardDAO.delete_Reply(board_num);
+		boardDAO.delete_Like(board_num);
+		boardDAO.deleteGrade(board_num);
 		boardDAO.deleteHashtag(board_num);
 		boardDAO.deleteB_movie(board_num);
-		boardDAO.deleteGrade(board_num);
 		boardDAO.deleteMovie(board_num);
 	}	
 	

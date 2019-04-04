@@ -289,12 +289,12 @@
 		DELETE FROM hashtag
 		WHERE board_num = #{board_num}
 	</delete>
-	<delete id="deleteB_movie" parameterType="Board_MovieVO">
-		DELETE FROM board_movie
-		WHERE board_num = #{board_num}
-	</delete>
 	<delete id="deleteGrade" parameterType="GradeVO">
 		DELETE FROM grade
+		WHERE board_num = #{board_num}
+	</delete>
+	<delete id="deleteB_movie" parameterType="Board_MovieVO">
+		DELETE FROM board_movie
 		WHERE board_num = #{board_num}
 	</delete>
 	<delete id="deleteMovie" parameterType="BoardVO">
