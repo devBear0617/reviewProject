@@ -39,7 +39,7 @@ input:focus {
 	height: 20px;
 }
 
-.text_st_id {
+.ID {
 	width: 200px;
 	height: 20px;
 }
@@ -54,7 +54,7 @@ input:focus {
 	height: 20px;
 }
 
-.text_st_nm {
+.NM {
 	width: 200px;
 	height: 20px;
 }
@@ -244,7 +244,7 @@ input:focus {
 					<td colspan="2"><h1>회원가입 PAGE</h1></td>
 				</tr>
 				<tr>
-					<td colspan="2"><br></td>
+					<td colspan="2"><hr></td>
 				<tr>
 
 					<!-- ID -->

@@ -32,37 +32,45 @@
 	height: 120px;
 	text-align: center;
 }
+
+.btn_st2 {
+	background-image: url('resources/image/REMON_smallbar.png');
+	color: white;
+	width: 150px;
+	height: 30px;
+	border-radius: 10px;
+	border-style: none;
+}
 </style>
 
 <script type="text/javascript"
 	src="/review/resources/script/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
-function check_info() {
-	var getCheck= RegExp(/^[a-zA-Z0-9]{4,12}$/);
-    //비밀번호
-    if(!getCheck.test($("#pw").val())) {
-    	alert("올바른 형식의 비밀번호가 아닙니다.");
-    	$("#pw").val("");
-    	$("#pw").focus();
-    	return false;
-    }
-   	//비밀번호 똑같은지
-	if($("#pw").val() != ($("#pwck").val())){ 
-    	alert("비밀번호를 다시 확인해주세요.");
-    	$("#pw").val("");
-    	$("#pwck").val("");
-   		$("#pw").focus();
-   		return false;
-   	}
-   	//아이디랑 비밀번호랑 같은지
-   	if ($("#id").val()==($("#pw").val())) {
-   		alert("아이디와 비밀번호가 일치합니다.");
-   		$("#pw").val("");
-   		$("#pw").focus();
-   		return false;
- 	}
-}
-
+	function check_info() {
+		var getCheck = RegExp(/^[a-zA-Z0-9]{4,12}$/);
+		//비밀번호
+		if (!getCheck.test($("#pw").val())) {
+			alert("올바른 형식의 비밀번호가 아닙니다.");
+			$("#pw").val("");
+			$("#pw").focus();
+			return false;
+		}
+		//비밀번호 똑같은지
+		if ($("#pw").val() != ($("#pwck").val())) {
+			alert("비밀번호를 다시 확인해주세요.");
+			$("#pw").val("");
+			$("#pwck").val("");
+			$("#pw").focus();
+			return false;
+		}
+		//아이디랑 비밀번호랑 같은지
+		if ($("#id").val() == ($("#pw").val())) {
+			alert("아이디와 비밀번호가 일치합니다.");
+			$("#pw").val("");
+			$("#pw").focus();
+			return false;
+		}
+	}
 </script>
 
 </head>
@@ -92,39 +100,38 @@ function check_info() {
 					<td class="td_mypage2">&nbsp;&nbsp;${user.member_id}<input
 						type="hidden" name="member_id" value="${user.member_id}" id="id"></td>
 				</tr>
-				
+
 				<tr>
 					<td class="td_mypage1">PW</td>
-					<td class="td_mypage2">
-						<input type="password" id="pw"
-							style="border-style: none; background: none; height: 25px; width: 190px;">
+					<td class="td_mypage2"><input type="password" id="pw"
+						style="border-style: none; background: none; height: 25px; width: 190px;">
 					</td>
 				</tr>
 				<tr>
 					<td class="td_mypage1">PW-Check</td>
-					<td class="td_mypage2">
-						<input type="password" name="member_pw" id="pwck"
-							style="border-style: none; background: none; height: 25px; width: 190px;">
+					<td class="td_mypage2"><input type="password" name="member_pw"
+						id="pwck"
+						style="border-style: none; background: none; height: 25px; width: 190px;">
 					</td>
 				</tr>
-				
+
 				<tr>
 					<td class="td_mypage1">NAME</td>
 					<td class="td_mypage2">&nbsp;&nbsp;${user.member_name}<input
 						type="hidden" name="member_name" value="${user.member_name}"></td>
 				</tr>
-				
+
 				<tr>
 					<td class="td_mypage1">Email</td>
 					<td class="td_mypage2">&nbsp;&nbsp;${user.member_email}</td>
 				</tr>
-				
+
 			</table>
 			<div style="height: 20px;"></div>
 			<hr width="400px;">
 			<div style="height: 20px;"></div>
-			<input type="submit" value="확인"> <input type="reset"
-				value="리셋">
+			<input type="submit" value="확인" class="btn_st2"> <input
+				type="reset" value="리셋" class="btn_st2">
 			<div style="height: 100px;"></div>
 		</form>
 	</div>

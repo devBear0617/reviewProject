@@ -6,25 +6,34 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Login_page</title>
 
-<script type="text/javascript" src="/review/resources/script/jquery-3.3.1.min.js"></script>
+<script type="text/javascript"
+	src="/review/resources/script/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
-var msg = '${Alert}';
-console.log(msg);
-if(msg) {
-	alert(msg);		
-}
-
+	var msg = '${Alert}';
+	console.log(msg);
+	if (msg) {
+		alert(msg);
+	}
 </script>
 
 <style type="text/css">
 input:focus {
-	outline:none;
-	}
-	
+	outline: none;
+}
+
 .center {
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;
+}
+
+.btn_st1 {
+	background-image: url('resources/image/REMON_smallbar.png');
+	color: white;
+	width: 300px;
+	height: 30px;
+	border-radius: 10px;
+	border-style: none;
 }
 </style>
 </head>
@@ -33,7 +42,8 @@ input:focus {
 	<div class="center">
 		<div style="height: 100px;"></div>
 		<!-- 테스트 로그인 기능 -->
-		<form action="/review/mypage/updateMemberForm" method="POST" id="updateLogin">
+		<form action="/review/mypage/updateMemberForm" method="POST"
+			id="updateLogin">
 			<table class="center">
 				<tr
 					style="text-align: center; background: linear-gradient(to right, #ffe400, #abf200);">
@@ -59,14 +69,15 @@ input:focus {
 				<tr>
 				<tr>
 					<td colspan="2"><input type="submit" value="로그인"
-						style="background-image: url('/review/mypage/resources/image/REMON_smallbar.png'); color: white; width: 300px; height: 30px; border-radius: 10px; border-style: none;"></td>
+						class="btn_st1"></td>
 				</tr>
 				<tr>
 					<td colspan="2"><hr></td>
 				</tr>
 			</table>
 		</form>
-		<input type="button" value="취소" onclick="location.href='/review/mypage/mypageCheck'">
+		<input type="button" value="취소"
+			onclick="location.href='/review/mypage/mypageCheck'" class="btn_st1">
 	</div>
 	<div style="height: 200px;"></div>
 </body>

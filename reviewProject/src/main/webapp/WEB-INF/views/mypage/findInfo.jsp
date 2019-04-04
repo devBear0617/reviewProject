@@ -36,10 +36,9 @@ table {
 <script type="text/javascript"
 	src="/review/resources/script/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
-function wClose() {
-	window.open('','_self').close();
-};
-
+	function wClose() {
+		window.open('', '_self').close();
+	};
 </script>
 
 </head>
@@ -65,10 +64,11 @@ function wClose() {
 					class="btn_st1"></td>
 			</tr>
 			<tr>
-				<td>
-					<input type="button" value="닫기"
-						onclick="wClose()">
-				</td>
+				<td><hr></td>
+			</tr>
+			<tr>
+				<td><input type="button" value="닫기" onclick="wClose()"
+					class="btn_st1"></td>
 			</tr>
 		</table>
 	</div>
