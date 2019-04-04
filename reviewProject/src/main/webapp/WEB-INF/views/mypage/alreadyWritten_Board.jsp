@@ -64,7 +64,7 @@
 						style="font-size: large;">${myBoard.board_title}</span> <br></td>
 					<td class="AW_st4">score: ${myBoard.lemon_grade}</td>
 					<td class="AW_st5" style="">&nbsp;&nbsp;<img
-						src="/review/movie/resources/memberImage/${board.memberVO.member_pic}"
+						src="/review/movie/resources/memberImage/${myBoard.memberVO.member_pic}"
 						style="width: 30px; height: 30px; border-radius: 30px;">
 						${myBoard.member_id}
 					</td>
