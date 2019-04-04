@@ -577,11 +577,9 @@ input:focus {
 </style>
 
 </head>
+<jsp:include page="/WEB-INF/views/share/header.jsp" />
 <body>
 
-	<div>
-		<jsp:include page="/WEB-INF/views/share/header.jsp" />
-	</div>
 	<hr width="1100px;">
 	<div style="height: 20px;"></div>
 
@@ -611,8 +609,7 @@ input:focus {
 
 				</div>
 
-				<div id="content"
-					style="width: 900px; float: left;">
+				<div id="content" style="width: 900px; float: left;">
 
 					<div class="result_Total"></div>
 					<div class="result_Movie"></div>

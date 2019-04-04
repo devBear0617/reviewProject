@@ -62,7 +62,7 @@ input:focus {
 					<form action="/review/search/searchResult" method="POST"
 						id="search">
 						<input type="text" id="query" name="keyword" value="${keyword}"
-							style="width: 300px; height: 30px; border-radius: 20px; border-style: none;"><input
+							style="width: 300px; height: 30px; border-radius: 20px; border-style: none; text-align: center;"><input
 							type="hidden" value="${keyword}" class="keyword"> <input
 							type="submit" value="검색"
 							style="width: 50px; height: 30px; border-radius: 20px; border-style: none; background-color: yellow;">
@@ -94,7 +94,7 @@ input:focus {
 										style="height: 50px;"></a>
 								</c:if>
 								<c:if test="${not empty user.member_pic}"> --%>
-								<a href="/review/mypage/mypageCheck"><img alt="REMON_LOGO"
+								<a href="/review/mypage/mypageCheck"><img alt="USER_PIC"
 									src="/review/movie/resources/memberImage/${user.member_pic}"
 									style="height: 50px; width: 50px; border-radius: 50px;"></a>
 								<%-- </c:if> --%>
