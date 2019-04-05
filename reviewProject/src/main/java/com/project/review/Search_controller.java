@@ -299,10 +299,10 @@ public class Search_controller {
 	// result form
 	@RequestMapping(value="/searchResult", method=RequestMethod.POST)
 	public String searchResultTotal(HttpServletRequest request, HttpSession session, Model model) {
-		String member_id = (String) session.getAttribute("member_id");
-		if (member_id != null) {
-			String member_pic = memberService.getMember_pic(member_id);
-			model.addAttribute("member_pic", member_pic);
+		String user_id = (String) session.getAttribute("member_id");
+		if (user_id != null) {
+			MemberVO user = memberService.MemberInfo(user_id);
+			model.addAttribute("user", user);
 		}
 		
 		String keyword = request.getParameter("keyword");

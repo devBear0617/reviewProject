@@ -30,7 +30,7 @@
 				</c:choose> --%></td>
 				<td>score: ${result.lemon_grade}</td>
 				<td style="text-align: right;">&nbsp;&nbsp;<img
-									src="/review/movie/resources/memberImage/${board.memberVO.member_pic}"
+									src="/review/movie/resources/memberImage/${result.memberVO.member_pic}"
 									style="width: 30px; height: 30px; border-radius: 30px;"> ${result.member_id}</td>
 				<td>&nbsp;<c:if test="${empty result.board_up_date}">${result.board_date}</c:if>
 					<c:if test="${not empty result.board_up_date}">${result.board_up_date}</c:if></td>
