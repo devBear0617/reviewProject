@@ -297,7 +297,8 @@ public class Search_controller {
 	}
 	
 	// result form
-	@RequestMapping(value="/searchResult", method=RequestMethod.POST)
+	/*@RequestMapping(value="/searchResult", method=RequestMethod.POST)*/
+	@RequestMapping(value="/searchResult")
 	public String searchResultTotal(HttpServletRequest request, HttpSession session, Model model) {
 		String user_id = (String) session.getAttribute("member_id");
 		if (user_id != null) {
