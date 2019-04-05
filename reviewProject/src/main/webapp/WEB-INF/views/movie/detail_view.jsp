@@ -190,7 +190,7 @@
 				<td class="td_class1">
 					<div
 						style="text-align: left; padding-left: 20px; padding-top: 5px;">
-						<span class="likeIt"></span> &nbsp;<img alt="reply"
+						<span class="likeIt" onclick="addSender();"></span> &nbsp;<img alt="reply"
 							src="/review/resources/image/REMON_comment_icon.png"
 							class="imgform"> <span> ${replyCount} </span>
 					</div>
