@@ -8,6 +8,8 @@ public class MemberVO {
 	private String member_name;
 	private String member_email;
 	private String member_pic;
+	private String sns_type;
+	private int sns_idx;
 	
 	private List<BoardVO> boardList;
 	private List<ReplyVO> replyList;
@@ -43,6 +45,19 @@ public class MemberVO {
 	public void setMember_pic(String member_pic) {
 		this.member_pic = member_pic;
 	}
+	public String getSns_type() {
+		return sns_type;
+	}
+	public void setSns_type(String sns_type) {
+		this.sns_type = sns_type;
+	}
+	public int getSns_idx() {
+		return sns_idx;
+	}
+	public void setSns_idx(int sns_idx) {
+		this.sns_idx = sns_idx;
+	}
+	
 	public List<BoardVO> getBoardList() {
 		return boardList;
 	}
@@ -61,13 +76,12 @@ public class MemberVO {
 	public void setLikeList(List<LikeItVO> likeList) {
 		this.likeList = likeList;
 	}
+	
 	@Override
 	public String toString() {
 		return "MemberVO [member_id=" + member_id + ", member_pw=" + member_pw + ", member_name=" + member_name
-				+ ", member_email=" + member_email + ", member_pic=" + member_pic + ", boardList=" + boardList
-				+ ", replyList=" + replyList + ", likeList=" + likeList + "]";
+				+ ", member_email=" + member_email + ", member_pic=" + member_pic + ", sns_type=" + sns_type
+				+ ", sns_idx=" + sns_idx + ", boardList=" + boardList + ", replyList=" + replyList + ", likeList="
+				+ likeList + "]";
 	}
-	
-	
-	
 }

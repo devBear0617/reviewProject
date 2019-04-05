@@ -6,7 +6,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Login_page</title>
 
-<script type="text/javascript" src="/review/resources/script/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" 
+	src="/review/resources/script/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" 
+	src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+
 <script type="text/javascript">
 console.log(sessionStorage.getItem("address"));
 function searchIDPW() {
@@ -92,6 +96,11 @@ if(msg) {
 			<input type="hidden" name="address" value="${address}">
 			<%-- ${address} --%>
 		</form>
+	</div>
+	<div id="naver_id_login" style="text-align:center">
+		<a href="${url}">
+			<img width="223" src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/>
+		</a>
 	</div>
 	<div style="height: 200px;"></div>
 </body>

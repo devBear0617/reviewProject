@@ -24,12 +24,15 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.project.review.service.MemberService;
 import com.project.review.vo.BoardVO;
 import com.project.review.vo.LikeItVO;
+import com.project.review.vo.LoginApiBO;
 import com.project.review.vo.MemberVO;
 import com.project.review.vo.ReplyVO;
 
@@ -37,6 +40,11 @@ import com.project.review.vo.ReplyVO;
 @Controller
 @RequestMapping(value="/mypage")
 public class Mypage_controller {
+	private LoginApiBO loginApiVO;
+	@Autowired
+    private void setNaverLoginBO(LoginApiBO loginApiVO) {
+        this.loginApiVO = loginApiVO;
+    }
 	
 	@Resource(name="uploadPathS")
 	String uploadPathS;
@@ -540,11 +548,12 @@ public class Mypage_controller {
 	
 	// 로그인
 	@RequestMapping(value="/login", method=RequestMethod.GET)
-	public String loginForm(HttpServletRequest request, HttpSession session, Model model) {
-		
+	public String loginForm(HttpServletRequest request, Model model, HttpSession session) {
 		String referer = request.getHeader("Referer");
-	/*System.out.println(referer);*/
+		String naverAuthUrl = loginApiVO.getAuthorizationUrl(session);
+		
 		model.addAttribute("address", referer);
+		model.addAttribute("url", naverAuthUrl);
 		
 		/*String address = (String)session.getAttribute("address");
 		System.out.println(address);*/
@@ -602,6 +611,16 @@ public class Mypage_controller {
 		model.addAttribute("loginFail", noID);
 		
 		return "mypage/login";
+	}
+	
+	@RequestMapping(value="/loginCallback")
+	public String loginCallbackTest (String code, String state, String address, HttpSession session, Model model) throws IOException {
+		MemberVO member = memberService.handleSnsUser(code, state, session);
+		
+		session.setAttribute("member_id", member.getMember_id());
+		model.addAttribute("user", member);
+		
+		return "redirect:/";
 	}
 	
 	// 로그아웃
