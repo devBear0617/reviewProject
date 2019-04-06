@@ -88,7 +88,7 @@ td {
 							delay : 30,
 							source : function(request, response) {
 								$.ajax({
-									url : "./autocomplete",
+									url : "/review/movie/autocomplete",
 									type : "post",
 									dataType : "json",
 									data : {

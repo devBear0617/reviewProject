@@ -1,7 +1,11 @@
 package com.project.review.service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import com.project.review.vo.BoardVO;
 import com.project.review.vo.LikeItVO;
@@ -36,15 +40,22 @@ public interface MemberService {
 	
 	// 수정
 	public void updateMember(MemberVO member);
+		// updateCheckPW
+		public MemberVO updateCheckPW(MemberVO member, String user_id, String pw);
 	
 	// 가입
 	public void joinMember(MemberVO member);
 		// idCheck
 		public String idCheck(String member_id);
+		// nmCheck
+		public String nmCheck(String member_name);
+	public void joinSnsUser(MemberVO member);
 	
 	// 로그인
 	public MemberVO selectMember(String member_id);
 	
 	// 마이페이지 확인
 	public MemberVO MemberInfo(String member_id);
+	
+	public MemberVO handleSnsUser(String code, String state, HttpSession session) throws IOException;
 }

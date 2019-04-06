@@ -9,8 +9,9 @@
 </head>
 <body>
 
-<span style="color:blue">*사용 가능한 아이디 입니다. </span> 
-<input type="button" value="확인" onclick="check_ID()">
+<span style="color:blue">${mem_id} v</span>
+<input type="button" value="중복확인" onclick="check_ID()">
+<input type="hidden" value="${mem_id}" name="member_id">
 
 </body>
 </html>

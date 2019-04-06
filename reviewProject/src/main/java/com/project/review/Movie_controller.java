@@ -131,15 +131,27 @@ public class Movie_controller {
 	
 	// >> 베스트 게시글 출력 ----------------------------------
 	@RequestMapping(value = "/bestContent")
-	public String bestContent(HttpServletRequest request, Model model) {
-		// 좋아요수 많은 3개의 게시글 불러와서 내보내는 함수 호출
+	public String bestContent(Board_MovieVO b_movieVO, Model model) {
+		List<BoardVO> board_list;	
+		board_list = movieService.getMovieBoardList(b_movieVO);
+		model.addAttribute("board_list", board_list);
+		
+		String emptyCheck = "notEmpty";
+		if(board_list.size()== 0) {
+			emptyCheck = "Empty";
+		}		
+		model.addAttribute("emptyCheck", emptyCheck);		
+		
+		String movie_nm = b_movieVO.getMovie_nm();
+		model.addAttribute("movie_nm", movie_nm);
 
-		return null;
+		
+		return "movie/best_content";
 	}
 
 	// >> 게시판 출력 ----------------------------------
 	@RequestMapping(value = "/contentView")
-	public String contentView(Board_MovieVO b_movieVO, HttpSession session, Model model) {
+	public String contentView(Board_MovieVO b_movieVO, Model model) {
 		
 		
 		int start_content = b_movieVO.getStart_content();

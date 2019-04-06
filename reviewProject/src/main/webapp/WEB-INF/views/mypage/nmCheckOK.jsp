@@ -9,8 +9,10 @@
 </head>
 <body>
 
-<span style="color:red">${mem_id} x</span> 
-<input type="button" value="중복확인" onclick="check_ID()">
+<span style="color:blue">${mem_nm} v</span>
+<input type="button" value="중복확인" onclick="check_NM()">
+<input type="hidden" value="${mem_nm}" name="member_name">
+
 
 </body>
 </html>

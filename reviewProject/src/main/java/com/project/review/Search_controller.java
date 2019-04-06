@@ -17,6 +17,7 @@ import com.project.review.service.MemberService;
 import com.project.review.service.MovieService;
 import com.project.review.service.SearchService;
 import com.project.review.vo.BoardVO;
+import com.project.review.vo.MemberVO;
 
 @Controller
 @RequestMapping(value="/search")
@@ -24,6 +25,8 @@ public class Search_controller {
 
 	@Autowired
 	private SearchService searchService;
+	@Autowired
+	private MemberService memberService;
 
 	
 	//-------------------------------------------
@@ -296,6 +299,11 @@ public class Search_controller {
 	// result form
 	@RequestMapping(value="/searchResult", method=RequestMethod.POST)
 	public String searchResultTotal(HttpServletRequest request, HttpSession session, Model model) {
+		String member_id = (String) session.getAttribute("member_id");
+		if (member_id != null) {
+			String member_pic = memberService.getMember_pic(member_id);
+			model.addAttribute("member_pic", member_pic);
+		}
 		
 		String keyword = request.getParameter("keyword");
 		model.addAttribute("keyword", keyword);

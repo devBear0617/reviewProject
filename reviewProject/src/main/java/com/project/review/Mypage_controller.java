@@ -25,12 +25,15 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.project.review.service.MemberService;
 import com.project.review.vo.BoardVO;
 import com.project.review.vo.LikeItVO;
+import com.project.review.vo.LoginApiBO;
 import com.project.review.vo.MemberVO;
 import com.project.review.vo.Pagination;
 import com.project.review.vo.ReplyVO;
@@ -39,6 +42,11 @@ import com.project.review.vo.ReplyVO;
 @Controller
 @RequestMapping(value="/mypage")
 public class Mypage_controller {
+	private LoginApiBO loginApiVO;
+	@Autowired
+    private void setNaverLoginBO(LoginApiBO loginApiVO) {
+        this.loginApiVO = loginApiVO;
+    }
 	
 	@Resource(name="uploadPathS")
 	String uploadPathS;
@@ -56,12 +64,12 @@ public class Mypage_controller {
 	
 //---------------------------------------------------------------
 	
+	// 비번찾기
 	@RequestMapping(value="/findInfo/searchPW")
 	public String searchPWGET() {
 		
 		return "mypage/searchPW";
 	}
-	
 	@RequestMapping(value="/findInfo/searchPW", method=RequestMethod.POST)
 	public String searchPWPOST(HttpServletRequest request, MemberVO member) 
 			throws AddressException, MessagingException {
@@ -103,15 +111,15 @@ public class Mypage_controller {
 		mimeMessage.setText(body);
 		Transport.send(mimeMessage); 
 				
-		return "redirect:/mypage/loginHome";
+		return "mypage/findCheck";
 	}
 	
+	// 아디찾기
 	@RequestMapping(value="/findInfo/searchID")
 	public String searchIDGET() {
 		
 		return "mypage/searchID";
 	}
-	
 	@RequestMapping(value="/findInfo/searchID", method=RequestMethod.POST)
 	public String searchIDPOST(HttpServletRequest request, MemberVO member) 
 			throws AddressException, MessagingException {
@@ -177,14 +185,16 @@ public class Mypage_controller {
 		//javax.mail.Transport.send() 이용
 		Transport.send(mimeMessage); 
 				
-		return "redirect:/mypage/loginHome";
+		return "mypage/findCheck";
 	}
 	
+	// 아디비번찾기
 	@RequestMapping(value="/findInfo")
 	public String findInfo() {
 		
 		return "mypage/findInfo";
 	}
+	
 	
 	/*alreadyWritten*/
 	@RequestMapping(value="/alreadyWritten")
@@ -372,7 +382,33 @@ public class Mypage_controller {
 	}*/
 	
 	// 정보 변경
-	@RequestMapping(value="/updateMemberForm")
+	@RequestMapping(value="/updateLogin")
+	public String updateLogin (HttpSession session, Model model) {
+		String user_id = (String)session.getAttribute("member_id");
+		
+		model.addAttribute("member_id", user_id);
+		
+		return "mypage/updateLogin";
+	}
+	@RequestMapping(value="/updateMemberForm", method=RequestMethod.POST)
+	public String updateMemberForm (HttpServletRequest request, MemberVO member, 
+			HttpSession session, Model model) {
+		String user_id = (String)session.getAttribute("member_id");
+		String pw = request.getParameter("member_pw");
+		
+		MemberVO checkPW = memberService.updateCheckPW(member, user_id, pw);
+		System.out.println(checkPW);
+		if (checkPW != null) {
+			MemberVO user = memberService.MemberInfo(user_id);
+			model.addAttribute("user", user);
+			
+			return "mypage/updateMemberForm";			
+		}
+		//alert
+		model.addAttribute("Alert", "입력하신 비밀번호가 다릅니다. 다시 입력해 주세요.");
+		return "mypage/updateLogin";
+	}
+/*	@RequestMapping(value="/updateMemberForm")
 	public String updateMemberForm (MemberVO member, HttpSession session, Model model) {
 		String user_id = (String)session.getAttribute("member_id");
 		
@@ -380,7 +416,7 @@ public class Mypage_controller {
 		model.addAttribute("user", user);
 		
 		return "mypage/updateMemberForm";
-	}
+	}*/
 	@RequestMapping(value="/updateMember", method=RequestMethod.POST)
 	public String updateMember (MemberVO member, HttpSession session, Model model) {
 		
@@ -421,7 +457,7 @@ public class Mypage_controller {
 		
 		MemberVO member = memberService.selectMember(member_id);
 		
-		String loginFail = "잘못된 아이디 및 비밀번호";
+		String loginFail = "잘못된 아이디 및 비밀번호 입니다.";
 		
 		if (member != null) {
 			String pw = member.getMember_pw();
@@ -465,13 +501,13 @@ public class Mypage_controller {
 		return "mypage/writeLogin";
 	}
 	
-	// ID,PW 찾기 후 로그인
+/*	// ID,PW 찾기 후 로그인
 	@RequestMapping(value="/loginHome", method=RequestMethod.GET)
 	public String loginHomeForm(HttpServletRequest request, Model model) {
 		
-		/*String referer = request.getHeader("Referer");
+		String referer = request.getHeader("Referer");
 	System.out.println(referer);
-		model.addAttribute("address", referer);*/
+		model.addAttribute("address", referer);
 		
 		return "mypage/loginHome";
 	}
@@ -505,8 +541,8 @@ public class Mypage_controller {
 						MemberVO user = memberService.MemberInfo(user_id);
 						model.addAttribute("user", user);
 						
-						/*String address = request.getParameter("address");
-					System.out.println(address);*/
+						String address = request.getParameter("address");
+					System.out.println(address);
 			
 						return "redirect:/";
 						
@@ -526,15 +562,19 @@ public class Mypage_controller {
 		model.addAttribute("loginFail", noID);
 		
 		return "mypage/loginHome";
-	}
+	}*/
 	
 	// 로그인
 	@RequestMapping(value="/login", method=RequestMethod.GET)
-	public String loginForm(HttpServletRequest request, Model model) {
-		
+	public String loginForm(HttpServletRequest request, Model model, HttpSession session) {
 		String referer = request.getHeader("Referer");
-	System.out.println(referer);
+		String naverAuthUrl = loginApiVO.getAuthorizationUrl(session);
+		
 		model.addAttribute("address", referer);
+		model.addAttribute("url", naverAuthUrl);
+		
+		/*String address = (String)session.getAttribute("address");
+		System.out.println(address);*/
 		
 		return "mypage/login";
 	}
@@ -568,10 +608,10 @@ public class Mypage_controller {
 						MemberVO user = memberService.MemberInfo(user_id);
 						model.addAttribute("user", user);
 						
-						String address = request.getParameter("address");
-					System.out.println(address);
+						/*String address = request.getParameter("address");
+					System.out.println(address);*/
 			
-						return "redirect:"+address;
+						return "mypage/loginCheck";
 						
 					} else {
 						// 비번 불일치
@@ -589,6 +629,16 @@ public class Mypage_controller {
 		model.addAttribute("loginFail", noID);
 		
 		return "mypage/login";
+	}
+	
+	@RequestMapping(value="/loginCallback")
+	public String loginCallbackTest (String code, String state, String address, HttpSession session, Model model) throws IOException {
+		MemberVO member = memberService.handleSnsUser(code, state, session);
+		
+		session.setAttribute("member_id", member.getMember_id());
+		model.addAttribute("user", member);
+		
+		return "redirect:/";
 	}
 	
 	// 로그아웃
@@ -612,17 +662,33 @@ public class Mypage_controller {
 	// 가입
 	// @GetMapping(value="/join")
 	@RequestMapping(value="/join", method=RequestMethod.GET)
-	public String joinForm(Model model) {
+	public String joinForm() {
 		
 		return "mypage/join";
 	}
 	// @PostMapping(value="/join")
 	@RequestMapping(value="/join", method=RequestMethod.POST)
-	public String joinMember(MemberVO member, Model model) {
+	public String joinMember(HttpServletRequest request, MemberVO member, Model model) {
 		
-		memberService.joinMember(member);
+		String member_id = request.getParameter("member_id");
+		String member_pw = request.getParameter("member_pw");
+		String member_name = request.getParameter("member_name");
+		String member_email = request.getParameter("member_email");
+		System.out.println("id: "+member_id+", pw: "+member_pw+
+				", name: "+member_name+", email: "+member_email);
+		if (member_id.isEmpty() || member_pw.isEmpty() || 
+				member_name.isEmpty() || member_email.isEmpty()) {
+			
+			return "redirect:/mypage/join";
+		} else {
+			memberService.joinMember(member);
+			
+			model.addAttribute("member_id", member_id);
+			model.addAttribute("member_name", member_name);
+			
+			return "mypage/check";
+		}
 		
-		return "mypage/check";
 	}
 	
 	// idChecker
@@ -632,17 +698,52 @@ public class Mypage_controller {
 		return "mypage/idChecker";
 	}
 	@RequestMapping(value="/join/idChecker", method=RequestMethod.POST)
-	public String idChekerPOST(HttpServletRequest request) {
+	public String idChekerPOST(HttpServletRequest request, Model model) {
 		
-		String member_id = request.getParameter("text_st1");
-		String member = memberService.idCheck(member_id);
-		
-		if(member == null) {
-			return "mypage/idCheckOK";
+		String member_id = request.getParameter("ID");
+		if(member_id.isEmpty()) {
+			model.addAttribute("mem_id", member_id);
+			
+			return "mypage/idCheckNO";
 		}
+		
+		String member = memberService.idCheck(member_id);
+		if(member == null) {
+			model.addAttribute("mem_id", member_id);
+			
+			return "mypage/idCheckOK";
+		} 
+		model.addAttribute("mem_id", member_id);
 		
 		return "mypage/idCheckNO";
 	}
+
+	// nmChecker
+	@RequestMapping(value="/join/nmChecker")
+	public String nmCheckerGET() {
+		
+		return "mypage/nmChecker";
+	}
+	@RequestMapping(value="/join/nmChecker", method=RequestMethod.POST)
+	public String nmChekerPOST(HttpServletRequest request, Model model) {
+		
+		String member_name = request.getParameter("NM");
+		if(member_name.isEmpty()) {
+			model.addAttribute("mem_nm", member_name);
+			
+			return "mypage/nmCheckNO";
+		}
+		String member = memberService.nmCheck(member_name);
+		if(member == null) {
+			model.addAttribute("mem_nm", member_name);
+			
+			return "mypage/nmCheckOK";
+		}
+		model.addAttribute("mem_nm", member_name);
+		
+		return "mypage/nmCheckNO";
+	}
+
 
 	
 }

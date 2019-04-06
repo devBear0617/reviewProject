@@ -32,6 +32,16 @@ table {
 	border-style: none;
 }
 </style>
+
+<script type="text/javascript"
+	src="/review/resources/script/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+function wClose() {
+	window.open('','_self').close();
+}
+
+</script>
+
 </head>
 <body>
 	<div class="find_st">
@@ -40,12 +50,12 @@ table {
 		<br>
 		<table class="center">
 			<tr>
-				<td><input type="button" value="홈"
-					onclick="location.href='/review/'" class="btn_st1"></td>
+				<td><input type="button" value="이전"
+					onclick="location.href='/review/mypage/findInfo'" class="btn_st1"></td>
 			</tr>
 			<tr>
-				<td><input type="button" value="로그인"
-					onclick="location.href='/review/mypage/login'" class="btn_st1"></td>
+				<td><input type="button" value="닫기"
+					onclick="wClose()" class="btn_st1"></td>
 			</tr>
 		</table>
 		<br>

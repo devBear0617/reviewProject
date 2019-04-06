@@ -92,7 +92,7 @@ function move(e){
 	<input type="hidden" id="sort_id" value="${sort_id}">
 	<table class="center" style="font-size: small;">
 		<tr>
-			<td class="td_class1"><span class="sort" id="sort_time">최신순</span></td>
+		    <td class="td_class1"><span class="sort" id="sort_time">최신순 </span></td>
 			<td class="td_class1"><span class="sort" id="sort_likeit">좋아요순</span></td>
 			<td class="td_class1"><span class="sort" id="sort_grade">별점순</span></td>
 		</tr>

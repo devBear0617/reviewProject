@@ -14,6 +14,9 @@
 			$($(this).attr("data-target")).submit();
 		});
 	})
+
+
+	
 </script>
 <style type="text/css">
 input:focus {
