@@ -140,6 +140,27 @@
 		FROM board
 	</select>	    
        
+    <!-- best_content 출력-->
+	<select id="getMovieBoardList_Best" parameterType="Board_MovieVO" resultMap="Board_movie">
+		
+	SELECT bbb.*, (SELECT COUNT(*) FROM likeit WHERE board_num = bbb.board_num) as likeit_count, 
+				  (SELECT COUNT(*) FROM reply WHERE board_num = bbb.board_num) as reply_count	
+	FROM ( SELECT bmv.*, m.MEMBER_EMAIL, m.MEMBER_PIC  
+		   FROM ( SELECT rownum as rnum, bb.*
+		          FROM ( SELECT b.*, mv.b_movie_num, mv.movie_nm 
+                         FROM board b, board_movie mv  
+                         WHERE b.board_num = mv.board_num
+                         <include refid = "movie_name"></include>
+                         <![CDATA[AND (SELECT COUNT(*) FROM likeit WHERE board_num = b.board_num) > 0 ]]> 
+                         ORDER BY  (SELECT COUNT(*) FROM likeit WHERE board_num = b.board_num) DESC, b.board_num DESC 
+                         ) bb                             
+          <![CDATA[WHERE rownum <= 3]]> 
+     	          )bmv ,  member m 
+		   WHERE bmv.member_id = m.member_id
+		   AND <![CDATA[bmv.rnum > 0 ]]>  ORDER BY rnum
+	     ) bbb
+    </select> 
+               
     <!-- content List 출력 및  정렬  -->
 	<select id="getMovieBoardList" parameterType="Board_MovieVO" resultMap="Board_movie">
 		
@@ -150,7 +171,7 @@
 		          FROM ( SELECT b.*, mv.b_movie_num, mv.movie_nm 
                          FROM board b, board_movie mv  
                          WHERE b.board_num = mv.board_num
-                         <include refid = "movie_name"></include> order by <include refid = "sort"></include> 
+                         <include refid = "movie_name"></include> ORDER BY <include refid = "sort"></include> 
                         ) bb                             
           <![CDATA[WHERE rownum <= #{end_content}]]> 
      	          )bmv ,  member m 
@@ -180,8 +201,7 @@
     			AND mv.movie_nm = #{movie_nm}    			
     		</when>    		
     	</choose>
-    </sql>  
-	    
+    </sql>  	    
 	
     <select id="getMovieBoardCount" resultType="int">
 		SELECT COUNT(*)

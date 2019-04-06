@@ -33,6 +33,7 @@ public interface MovieService {
 	public void plusReadCount(int board_num);
 	public BoardVO getBoardById(int board_num);
 	
+	public List<BoardVO> getMovieBoardList_Best(Board_MovieVO b_MovieVO);
 	public List<BoardVO> getMovieBoardList(Board_MovieVO b_MovieVO);
 	public int getMovieBoardCount();
 	

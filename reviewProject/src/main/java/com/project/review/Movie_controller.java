@@ -133,7 +133,7 @@ public class Movie_controller {
 	@RequestMapping(value = "/bestContent")
 	public String bestContent(Board_MovieVO b_movieVO, Model model) {
 		List<BoardVO> board_list;	
-		board_list = movieService.getMovieBoardList(b_movieVO);
+		board_list = movieService.getMovieBoardList_Best(b_movieVO);
 		model.addAttribute("board_list", board_list);
 		
 		String emptyCheck = "notEmpty";

@@ -75,6 +75,11 @@ public class MovieServiceImpl implements MovieService {
 	
 	//게시판 호출 및 정렬
 	@Override
+	public List<BoardVO> getMovieBoardList_Best(Board_MovieVO b_MovieVO) {
+		
+		return boardDAO.getMovieBoardList_Best(b_MovieVO);
+	}	
+	@Override
 	public List<BoardVO> getMovieBoardList(Board_MovieVO b_MovieVO) {
 	
 		return boardDAO.getMovieBoardList(b_MovieVO);

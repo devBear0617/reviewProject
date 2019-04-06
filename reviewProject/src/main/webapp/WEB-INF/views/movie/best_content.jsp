@@ -75,7 +75,15 @@ $(document).ready(function(){
 			<table>
 				<tr>
 					<td style="text-align: left; padding-left: 10px;" colspan="2">
-						${board.member_id}</td>
+							<div style="display: inline-block;">
+							<div style="float: left;">
+								<img
+									src="/review/movie/resources/memberImage/${board.memberVO.member_pic}"
+									style="width: 30px; height: 30px; border-radius: 50px;">
+							</div>
+							<div style="float: left;">&nbsp;&nbsp;${board.member_id}</div>
+						</div>
+					</td>
 					<td style="font-size: small; text-align: right;" colspan="1">조회수
 						: ${board.board_readcount}&nbsp;</td>
 				</tr>
