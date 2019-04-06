@@ -640,6 +640,13 @@ public class Mypage_controller {
 		
 		return "redirect:/";
 	}
+	// searchLogout
+	@RequestMapping(value="/searchLogout")
+	public String searchLogout(HttpSession session) {
+		session.invalidate();
+		
+		return "redirect:/";
+	}
 	
 	// 가입
 	// @GetMapping(value="/join")

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -36,6 +37,7 @@ public class Search_controller {
 	public String result_TV_only(HttpServletRequest request, HttpSession session, Model model) {
 		
 		String keyword = request.getParameter("keyword");
+		keyword = keyword.trim();
 		if(keyword == "") {			
 			model.addAttribute("keyword", keyword);
 			return "share/result_Board_null";
@@ -56,6 +58,7 @@ public class Search_controller {
 	public String result_Game_only(HttpServletRequest request, HttpSession session, Model model) {
 		
 		String keyword = request.getParameter("keyword");
+		keyword = keyword.trim();
 		if(keyword == "") {			
 			model.addAttribute("keyword", keyword);
 			return "share/result_Board_null";
@@ -76,6 +79,7 @@ public class Search_controller {
 	public String result_Movie_like(HttpServletRequest request, HttpSession session, Model model) {
 			
 		String keyword = request.getParameter("keyword");
+		keyword = keyword.trim();
 		if(keyword == "") {		
 			model.addAttribute("keyword", keyword);
 			return "share/result_Board_null";
@@ -96,6 +100,7 @@ public class Search_controller {
 	public String result_Movie_grade(HttpServletRequest request, HttpSession session, Model model) {
 		
 		String keyword = request.getParameter("keyword");
+		keyword = keyword.trim();
 		if(keyword == "") {		
 			model.addAttribute("keyword", keyword);
 			return "share/result_Board_null";
@@ -116,6 +121,7 @@ public class Search_controller {
 	public String result_Movie_titleContent(HttpServletRequest request, HttpSession session, Model model) {
 		
 		String keyword = request.getParameter("keyword");
+		keyword = keyword.trim();
 		if(keyword == "") {		
 			model.addAttribute("keyword", keyword);
 			return "share/result_Board_null";
@@ -136,6 +142,7 @@ public class Search_controller {
 	public String result_Movie_hashtag(HttpServletRequest request, HttpSession session, Model model) {
 		
 		String keyword = request.getParameter("keyword");
+		keyword = keyword.trim();
 		if(keyword == "") {		
 			model.addAttribute("keyword", keyword);
 			return "share/result_Board_null";
@@ -156,6 +163,7 @@ public class Search_controller {
 	public String result_Movie_reply(HttpServletRequest request, HttpSession session, Model model) {
 		
 		String keyword = request.getParameter("keyword");
+		keyword = keyword.trim();
 		if(keyword == "") {		
 			model.addAttribute("keyword", keyword);
 			return "share/result_Board_null";
@@ -176,6 +184,7 @@ public class Search_controller {
 	public String result_Movie_member(HttpServletRequest request, HttpSession session, Model model) {
 		
 		String keyword = request.getParameter("keyword");
+		keyword = keyword.trim();
 		if(keyword == "") {	
 			model.addAttribute("keyword", keyword);
 			return "share/result_Board_null";
@@ -196,6 +205,7 @@ public class Search_controller {
 	public String result_Movie_only(HttpServletRequest request, HttpSession session, Model model) {
 		
 		String keyword = request.getParameter("keyword");
+		keyword = keyword.trim();
 		if(keyword == "") {			
 			model.addAttribute("keyword", keyword);
 			return "share/result_Board_null";
@@ -216,6 +226,7 @@ public class Search_controller {
 	public String result_Total(HttpServletRequest request, HttpSession session, Model model) {
 		
 		String keyword = request.getParameter("keyword");
+		keyword = keyword.trim();
 		if(keyword == "") {			
 			model.addAttribute("keyword", keyword);
 			return "share/result_Board_null";
@@ -297,7 +308,21 @@ public class Search_controller {
 	}
 	
 	// result form
-	/*@RequestMapping(value="/searchResult", method=RequestMethod.POST)*/
+	/*@RequestMapping(value="/searchResult/{searchWord}")
+	public String searchResultTotalGET(@PathVariable String searchWord, 
+			HttpServletRequest request, HttpSession session, Model model) {
+		String user_id = (String) session.getAttribute("member_id");
+		if (user_id != null) {
+			MemberVO user = memberService.MemberInfo(user_id);
+			model.addAttribute("user", user);
+		}
+		
+		String keyword = searchWord;
+		model.addAttribute("keyword", keyword);
+		
+		return "share/searchResult";
+	}*/
+/*	@RequestMapping(value="/searchResult", method=RequestMethod.POST)*/
 	@RequestMapping(value="/searchResult")
 	public String searchResultTotal(HttpServletRequest request, HttpSession session, Model model) {
 		String user_id = (String) session.getAttribute("member_id");
@@ -307,6 +332,7 @@ public class Search_controller {
 		}
 		
 		String keyword = request.getParameter("keyword");
+		keyword = keyword.trim();
 		model.addAttribute("keyword", keyword);
 		
 		return "share/searchResult";

@@ -27,7 +27,7 @@
 </head>
 <body>
 
-<h3>All Items &nbsp; <span style="color:red">v</span></h3>
+<h3><span style="color: #abf200;">All Items &nbsp; </span></h3>
 
 	<div class="spread_Movie" onclick="spread_Movie()">
 	<h3>Movie</h3>
