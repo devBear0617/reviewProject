@@ -47,7 +47,6 @@ public class MovieServiceImpl implements MovieService {
 	//게시글 호출
 	@Override
 	public BoardVO getBoardById(int board_num) {
-		// movie/tv/game -> 해당하는 board값 호출하는 함수 작성
 		
 		return boardDAO.getBoardById(board_num);
 	}
@@ -107,6 +106,7 @@ public class MovieServiceImpl implements MovieService {
 	// likeItMinus
 	@Override
 	public void likeItMinus(LikeItVO likeVO, int board_num, String member_id) {
+		
 		board_num = likeVO.getBoard_num();
 		likeVO.setBoard_num(board_num);
 		likeVO.setMember_id(member_id);
@@ -117,6 +117,7 @@ public class MovieServiceImpl implements MovieService {
 	// likeItPlus
 	@Override
 	public void likeItPlus(LikeItVO likeVO, int board_num, String member_id) {
+		
 		board_num = likeVO.getBoard_num();
 		likeVO.setBoard_num(board_num);
 		likeVO.setMember_id(member_id);
@@ -127,10 +128,9 @@ public class MovieServiceImpl implements MovieService {
 	// 리플 추가 
 	@Override
 	public void insertReply(ReplyVO replyVO, String member_id) {
-		// 보드넘 대입
-		replyVO.setMember_id(member_id);
 		
-		// 리플 추가
+		replyVO.setMember_id(member_id);
+
 		boardDAO.insertReply(replyVO);
 	}
 	// 리플 수정
@@ -152,9 +152,8 @@ public class MovieServiceImpl implements MovieService {
 	//게시글 추가 (Board & Board_Movie & Garde & Hashtag)
 	@Override
 	public void insertMovie(BoardVO board, Board_MovieVO movie, GradeVO grade, HashtagVO hash, MovieApiVO movieApiVO, String member_id) {
-		// member 처리
+
 		board.setMember_id(member_id);
-		// board테이블 추가
 		boardDAO.insertMovie(board);
 		
 		// 썸네일 추가

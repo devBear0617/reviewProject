@@ -28,10 +28,10 @@
 	</div>
 
 	<div class="spread_TV" onclick="spread_TV()">
-	<h3>TV <span style="color:red">v</span></h3>
+	<h3><span style="color: #abf200;">TV </span></h3>
 	</div>
 		<div>
-		<h4>&nbsp; &nbsp; - Most Recent &nbsp; <span style="color:red">v</span></h4>
+		<h4><span style="color: #abf200;">&nbsp; &nbsp; - Most Recent &nbsp; </span></h4>
 		</div>
 
 

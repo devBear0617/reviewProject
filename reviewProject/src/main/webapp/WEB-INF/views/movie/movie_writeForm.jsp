@@ -624,12 +624,6 @@ td {
 			</div>
 		</form>
 
-		<%-- <form action="/review/back" method="post" id="back">
-			<input type="hidden" name="address" value="${address}"> <input
-				type="submit" value="뒤로가기"
-				style="width: 200px; height: 30px; background: linear-gradient(to left, #ffe400, #abf200); border-radius: 10px; border-style: none;">
-		</form> --%>
-
 	</div>
 	<script>
 		var formSubmitButton = document.querySelector("#form-submit");

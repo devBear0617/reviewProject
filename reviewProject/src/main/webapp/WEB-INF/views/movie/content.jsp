@@ -49,7 +49,7 @@ function move(e){
 </script>
 
 <style type="text/css">
-/* 그리드 레이아웃 자료 : https://www.youtube.com/watch?v=jDD2uMJ_xNg */
+
 .wrapper {
 	display: grid;
 	grid-template-columns: 300px 300px 300px;
@@ -106,16 +106,10 @@ function move(e){
 		<div class="items"
 			onclick="move('/review/movie/detail_view/${board.board_num}')"
 			style="background-color: rgba(255, 255, 255, 0.7);">
-			<!--  background-image: url('${board.thumbnail}');
-				${board.thumbnail}
-	썸네일 임시로 div 배경으로 설정함 디자인상 변경필요하면  변경 ㄱㄱ   <img src="${board.thumbnail}"> 	
--->
+
 			<table>
 				<tr>
 					<td style="text-align: left; padding-left: 10px;" colspan="2">
-						<%-- <img
-						src="/review/movie/resources/memberImage/${board.memberVO.member_pic}"
-						style="width: 30px; height: 30px; border-radius: 50px;">${board.member_id} --%>
 						<div style="display: inline-block;">
 							<div style="float: left;">
 								<img

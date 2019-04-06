@@ -17,8 +17,13 @@ $(document).ready(function() {
 
 var link = document.location.href; 
 console.log(link);
+
 function addSender() {
-	sessionStorage.setItem("address", link);
+	var kk = document.getElementById('query').value;
+	console.log(kk);
+	var add = link + "/" + kk;
+	console.log(add);
+	sessionStorage.setItem("address", add);
 };
 
 </script>
@@ -87,7 +92,7 @@ input:focus {
 						<div style="float: right; margin-right: 10px; margin-top: 10px;">
 
 							<div style="float: left; margin-left: 10px;">
-								<a href="/review/mypage/logout"><img alt="REMON_LOGO"
+								<a href="/review/mypage/searchLogout" onclick="addSender();"><img alt="REMON_LOGO"
 									src="/review/movie/resources/image/REMON_Logout_icon(white).png"
 									style="height: 50px;"></a>
 							</div>

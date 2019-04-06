@@ -72,9 +72,6 @@ if(msg) {
 				</tr>
 
 			</table>
-			<%-- <!-- 전페이지 저장 -->
-			<input type="hidden" name="address" value="${address}">
-			${address} --%>
 		</form>
 	</div>
 	<div style="height: 200px;"></div>

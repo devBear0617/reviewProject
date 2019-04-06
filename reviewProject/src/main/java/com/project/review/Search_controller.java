@@ -1,7 +1,7 @@
 
 package com.project.review;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.project.review.service.MemberService;
-import com.project.review.service.MovieService;
+
 import com.project.review.service.SearchService;
 import com.project.review.vo.BoardVO;
 import com.project.review.vo.MemberVO;
@@ -308,8 +308,8 @@ public class Search_controller {
 	}
 	
 	// result form
-	/*@RequestMapping(value="/searchResult/{searchWord}")
-	public String searchResultTotalGET(@PathVariable String searchWord, 
+	@RequestMapping(value="/searchResult/{keyword}")
+	public String searchResultTotalKeyword(@PathVariable String keyword, 
 			HttpServletRequest request, HttpSession session, Model model) {
 		String user_id = (String) session.getAttribute("member_id");
 		if (user_id != null) {
@@ -317,12 +317,12 @@ public class Search_controller {
 			model.addAttribute("user", user);
 		}
 		
-		String keyword = searchWord;
-		model.addAttribute("keyword", keyword);
+		System.out.println("111"+keyword);
+		keyword = keyword.trim();
+		model.addAttribute("keyword", keyword);			
 		
 		return "share/searchResult";
-	}*/
-/*	@RequestMapping(value="/searchResult", method=RequestMethod.POST)*/
+	}
 	@RequestMapping(value="/searchResult")
 	public String searchResultTotal(HttpServletRequest request, HttpSession session, Model model) {
 		String user_id = (String) session.getAttribute("member_id");
@@ -332,8 +332,9 @@ public class Search_controller {
 		}
 		
 		String keyword = request.getParameter("keyword");
+		System.out.println("111"+keyword);
 		keyword = keyword.trim();
-		model.addAttribute("keyword", keyword);
+		model.addAttribute("keyword", keyword);			
 		
 		return "share/searchResult";
 	}

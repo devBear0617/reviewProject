@@ -566,7 +566,7 @@ input:focus {
 .btn_st1 {
 	margin-left: auto;
 	margin-right: auto;
-	background-image: url('../resources/image/REMON_smallbar.png');
+	background-image: url('/review/movie/resources/image/REMON_smallbar.png');
 	color: white;
 	width: 300px;
 	height: 30px;
@@ -576,18 +576,13 @@ input:focus {
 </style>
 
 </head>
-<jsp:include page="/WEB-INF/views/share/header.jsp" />
+<jsp:include page="/WEB-INF/views/share/searchHeader.jsp" />
 <body>
 
 	<hr width="1100px;">
 	<div style="height: 20px;"></div>
 
 	<div class="center">
-		<%--<form action="/review/search/searchResult" method="POST" id="search">
-			재검색 : <input type="text" name="keyword" value="${keyword}"><input
-				type="hidden" value="${keyword}" class="keyword">&nbsp;
-			&nbsp;<input type="submit" value="검색">
-		</form> --%>
 		<br>
 		<div class="center">
 			<div id="con" style="display: inline-block;">

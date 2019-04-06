@@ -10,17 +10,6 @@
 <script type="text/javascript" src="/review/resources/script/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 
-/* function spread_Movie () {
-	$.ajax({
-		url: '/review/search/searchResult/menu_Movie_V',
-		type: 'GET',
-		dataType: 'text',
-		success: function (html) {
-			$(".menu_Movie").empty();
-			$(".menu_Movie_V").append(html);
-		}
-	});
-}; */
 
 </script>
 
