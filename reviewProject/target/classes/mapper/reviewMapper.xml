@@ -32,6 +32,7 @@
 		
 		<association property="memberVO" column="member_id" select="getMember" />
 		<association property="b_movieVO" column="board_num" select="getB_Movie" />
+		<association property="memberVO" column="member_id" select="getMember" />
 	</resultMap>
 	
 	<resultMap id="Movie_Reply" type="ReplyVO">
@@ -276,6 +277,15 @@
 	</update>
 	
 	<!-- ____게시글 삭제______________________________________________________________________ -->
+	<delete id="delete_Reply" parameterType="ReplyVO">
+		DELETE FROM reply
+		WHERE board_num = #{board_num}
+	</delete>
+	<delete id="delete_Like" parameterType="LikeItVO">
+		DELETE FROM likeit
+		WHERE board_num = #{board_num}
+		AND likeit = '1'
+	</delete>
 	<delete id="deleteHashtag" parameterType="HashtagVO">
 		DELETE FROM hashtag
 		WHERE board_num = #{board_num}

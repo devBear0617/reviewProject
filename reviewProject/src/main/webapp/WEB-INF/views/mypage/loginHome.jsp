@@ -5,26 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Login_page</title>
-
-<script type="text/javascript" 
-	src="/review/resources/script/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" 
-	src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
-
-<script type="text/javascript">
-console.log(sessionStorage.getItem("address"));
-function searchIDPW() {
-	window.open("/review/mypage/findInfo", "ID / PW 찾기", 
-			"width=430, height=340, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );
-};
-
-</script>
-
 <style type="text/css">
-input:focus {
-	outline:none;
-	}
-	
 .center {
 	margin-left: auto;
 	margin-right: auto;
@@ -48,7 +29,7 @@ if(msg) {
 	<div class="center">
 		<div style="height: 100px;"></div>
 		<!-- 테스트 로그인 기능 -->
-		<form action="/review/mypage/login" method="POST" id="loginMember">
+		<form action="/review/mypage/loginHome" method="POST" id="loginMember">
 			<table class="center">
 				<tr
 					style="text-align: center; background: linear-gradient(to right, #ffe400, #abf200);">
@@ -80,9 +61,8 @@ if(msg) {
 					<td colspan="2"><hr></td>
 				</tr>
 				<tr>
-					<!-- location.href='/review/mypage/findInfo' -->
 					<td colspan="2"><input type="button" value="아이디 /비번 찾기"
-						onclick="searchIDPW()"
+						onclick="location.href='/review/mypage/findInfo'"
 						style="background-image: url('/review/mypage/resources/image/REMON_smallbar.png'); color: white; width: 300px; height: 30px; border-radius: 10px; border-style: none;"></td>
 				</tr>
 				<tr>
@@ -92,15 +72,10 @@ if(msg) {
 				</tr>
 
 			</table>
-			<!-- 전페이지 저장 -->
+			<%-- <!-- 전페이지 저장 -->
 			<input type="hidden" name="address" value="${address}">
-			<%-- ${address} --%>
+			${address} --%>
 		</form>
-	</div>
-	<div id="naver_id_login" style="text-align:center">
-		<a href="${url}">
-			<img width="223" src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/>
-		</a>
 	</div>
 	<div style="height: 200px;"></div>
 </body>

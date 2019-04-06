@@ -17,6 +17,7 @@ import com.project.review.service.MemberService;
 import com.project.review.service.MovieService;
 import com.project.review.service.SearchService;
 import com.project.review.vo.BoardVO;
+import com.project.review.vo.MemberVO;
 
 @Controller
 @RequestMapping(value="/search")
@@ -24,6 +25,8 @@ public class Search_controller {
 
 	@Autowired
 	private SearchService searchService;
+	@Autowired
+	private MemberService memberService;
 
 	
 	//-------------------------------------------
@@ -33,8 +36,16 @@ public class Search_controller {
 	public String result_TV_only(HttpServletRequest request, HttpSession session, Model model) {
 		
 		String keyword = request.getParameter("keyword");
+		if(keyword == "") {			
+			model.addAttribute("keyword", keyword);
+			return "share/result_Board_null";
+		}
 		List<BoardVO> search_Result = searchService.searchTV(keyword);
 		System.out.println(search_Result);
+		if(search_Result.isEmpty()) {
+			model.addAttribute("keyword", keyword);
+			return "share/result_Board_null";
+		}
 		model.addAttribute("search_Result", search_Result);
 		
 		return "share/result_Board";
@@ -45,8 +56,16 @@ public class Search_controller {
 	public String result_Game_only(HttpServletRequest request, HttpSession session, Model model) {
 		
 		String keyword = request.getParameter("keyword");
+		if(keyword == "") {			
+			model.addAttribute("keyword", keyword);
+			return "share/result_Board_null";
+		}
 		List<BoardVO> search_Result = searchService.searchGame(keyword);
 		System.out.println(search_Result);
+		if(search_Result.isEmpty()) {
+			model.addAttribute("keyword", keyword);
+			return "share/result_Board_null";
+		}
 		model.addAttribute("search_Result", search_Result);
 		
 		return "share/result_Board";
@@ -57,8 +76,16 @@ public class Search_controller {
 	public String result_Movie_like(HttpServletRequest request, HttpSession session, Model model) {
 			
 		String keyword = request.getParameter("keyword");
+		if(keyword == "") {		
+			model.addAttribute("keyword", keyword);
+			return "share/result_Board_null";
+		}
 		List<BoardVO> search_Result = searchService.searchMovie_likeCount(keyword);
 		System.out.println(search_Result);
+		if(search_Result.isEmpty()) {
+			model.addAttribute("keyword", keyword);
+			return "share/result_Board_null";
+		}
 		model.addAttribute("search_Result", search_Result);
 
 		return "share/result_Board";
@@ -69,8 +96,16 @@ public class Search_controller {
 	public String result_Movie_grade(HttpServletRequest request, HttpSession session, Model model) {
 		
 		String keyword = request.getParameter("keyword");
+		if(keyword == "") {		
+			model.addAttribute("keyword", keyword);
+			return "share/result_Board_null";
+		}
 		List<BoardVO> search_Result = searchService.searchMovie_Grade(keyword);
 		System.out.println(search_Result);
+		if(search_Result.isEmpty()) {
+			model.addAttribute("keyword", keyword);
+			return "share/result_Board_null";
+		}
 		model.addAttribute("search_Result", search_Result);
 
 		return "share/result_Board";
@@ -81,8 +116,16 @@ public class Search_controller {
 	public String result_Movie_titleContent(HttpServletRequest request, HttpSession session, Model model) {
 		
 		String keyword = request.getParameter("keyword");
+		if(keyword == "") {		
+			model.addAttribute("keyword", keyword);
+			return "share/result_Board_null";
+		}
 		List<BoardVO> search_Result = searchService.searchMovie_titleContent(keyword);
 		System.out.println(search_Result);
+		if(search_Result.isEmpty()) {
+			model.addAttribute("keyword", keyword);
+			return "share/result_Board_null";
+		}
 		model.addAttribute("search_Result", search_Result);
 
 		return "share/result_Board";
@@ -93,8 +136,16 @@ public class Search_controller {
 	public String result_Movie_hashtag(HttpServletRequest request, HttpSession session, Model model) {
 		
 		String keyword = request.getParameter("keyword");
+		if(keyword == "") {		
+			model.addAttribute("keyword", keyword);
+			return "share/result_Board_null";
+		}
 		List<BoardVO> search_Result = searchService.searchMovie_Hashtag(keyword);
 		System.out.println(search_Result);
+		if(search_Result.isEmpty()) {
+			model.addAttribute("keyword", keyword);
+			return "share/result_Board_null";
+		}
 		model.addAttribute("search_Result", search_Result);
 
 		return "share/result_Board";
@@ -105,8 +156,16 @@ public class Search_controller {
 	public String result_Movie_reply(HttpServletRequest request, HttpSession session, Model model) {
 		
 		String keyword = request.getParameter("keyword");
+		if(keyword == "") {		
+			model.addAttribute("keyword", keyword);
+			return "share/result_Board_null";
+		}
 		List<BoardVO> search_Result = searchService.searchMovie_ReplyContent(keyword);
 		System.out.println(search_Result);
+		if(search_Result.isEmpty()) {
+			model.addAttribute("keyword", keyword);
+			return "share/result_Board_null";
+		}
 		model.addAttribute("search_Result", search_Result);
 
 		return "share/result_Board";
@@ -117,8 +176,16 @@ public class Search_controller {
 	public String result_Movie_member(HttpServletRequest request, HttpSession session, Model model) {
 		
 		String keyword = request.getParameter("keyword");
+		if(keyword == "") {	
+			model.addAttribute("keyword", keyword);
+			return "share/result_Board_null";
+		}
 		List<BoardVO> search_Result = searchService.searchMovie_Member(keyword);
 		System.out.println(search_Result);
+		if(search_Result.isEmpty()) {
+			model.addAttribute("keyword", keyword);
+			return "share/result_Board_null";
+		}
 		model.addAttribute("search_Result", search_Result);
 		
 		return "share/result_Board";
@@ -129,8 +196,16 @@ public class Search_controller {
 	public String result_Movie_only(HttpServletRequest request, HttpSession session, Model model) {
 		
 		String keyword = request.getParameter("keyword");
+		if(keyword == "") {			
+			model.addAttribute("keyword", keyword);
+			return "share/result_Board_null";
+		}
 		List<BoardVO> search_Result = searchService.searchMovie(keyword);
 		System.out.println(search_Result);
+		if(search_Result.isEmpty()) {
+			model.addAttribute("keyword", keyword);
+			return "share/result_Board_null";
+		}
 		model.addAttribute("search_Result", search_Result);
 		
 		return "share/result_Board";
@@ -141,11 +216,20 @@ public class Search_controller {
 	public String result_Total(HttpServletRequest request, HttpSession session, Model model) {
 		
 		String keyword = request.getParameter("keyword");
+		if(keyword == "") {			
+			model.addAttribute("keyword", keyword);
+			return "share/result_Board_null";
+		}
 		List<BoardVO> search_Result = searchService.searchTotal(keyword);
 		System.out.println(search_Result);
+		if(search_Result.isEmpty()) {
+			model.addAttribute("keyword", keyword);
+			return "share/result_Board_null";
+		}
 		model.addAttribute("search_Result", search_Result);
 		
-		return "share/result_Board";
+		return "share/result_Board";			
+		
 	}
 	
 	// Movie Menu's (V)
@@ -215,6 +299,11 @@ public class Search_controller {
 	// result form
 	@RequestMapping(value="/searchResult", method=RequestMethod.POST)
 	public String searchResultTotal(HttpServletRequest request, HttpSession session, Model model) {
+		String member_id = (String) session.getAttribute("member_id");
+		if (member_id != null) {
+			String member_pic = memberService.getMember_pic(member_id);
+			model.addAttribute("member_pic", member_pic);
+		}
 		
 		String keyword = request.getParameter("keyword");
 		model.addAttribute("keyword", keyword);

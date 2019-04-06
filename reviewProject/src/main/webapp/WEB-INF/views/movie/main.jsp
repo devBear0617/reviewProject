@@ -119,7 +119,7 @@
 	<div style="float: right; margin-right: 200px;" id="STATICMENU">
 		<div id="adside">
 			<c:if test="${empty sessionScope.member_id}">
-				<form action="/review/mypage/login" id="login">
+				<form action="/review/mypage/writeLogin" id="login">
 					<input type="image"
 						src="/review/movie/resources/image/REMON_NewWrite_button.png"
 						class='moveBT' data-target="#Login" style="height: 80px;">

@@ -22,6 +22,7 @@
 		
 		<association property="boardVO" column="board_num" select="getBoardInfo" />
 	</resultMap>
+	
 	<!-- myLike -->
 	<resultMap id="myLike" type="LikeItVO">
 		<result property="board_num" column="board_num" />
@@ -30,6 +31,40 @@
 		
 		<association property="boardVO" column="board_num" select="getBoardInfo" />
 	</resultMap>
+	
+
+
+
+	<!-- nmCheck -->
+	<select id="nmCheck" parameterType="String" resultType="String">
+		SELECT member_name
+		FROM member
+		WHERE member_name = #{member_name}
+	</select>
+
+	<!-- idCheck -->
+	<select id="idCheck" parameterType="String" resultType="String">
+		SELECT member_id
+		FROM member
+		WHERE member_id = #{member_id}
+	</select>
+	
+	<!-- searchMemberPW -->
+	<select id="searchMemberPW" parameterType="MemberVO" resultType="MemberVO">
+		SELECT *
+		FROM member
+		WHERE member_id = #{member_id}
+		AND member_name = #{member_name}
+		AND member_email = #{member_email}
+	</select>
+	
+	<!-- searchMemberID -->
+	<select id="searchMemberID" parameterType="MemberVO" resultType="MemberVO">
+		SELECT *
+		FROM member
+		WHERE member_name = #{member_name}
+		AND member_email = #{member_email}
+	</select>
 	
 	<!-- getMember_pic -->
 	<select id="getMember_pic" parameterType="String" resultType="String">
@@ -69,6 +104,14 @@
 		WHERE member_id = #{member_id}
 	</update>
 	
+	<!-- 정보 수정 전 비번확인 -->
+	<select id="updateCheckPW" parameterType="MemberVO" resultType="MemberVO">
+		SELECT *
+		FROM member
+		WHERE member_id = #{member_id}
+		AND member_pw = #{member_pw}
+	</select>
+	
 	<!-- 정보 수정 -->
 	<update id="updateMember" parameterType="MemberVO">
 		UPDATE member SET
@@ -88,10 +131,21 @@
 		INSERT INTO member (member_id, member_pw, member_name, member_email)
 		VALUES (#{member_id}, #{member_pw}, #{member_name}, #{member_email})
 	</insert>	
-	
+	<insert id="joinSnsUser" parameterType="MemberVO">
+	    INSERT INTO 
+			member (member_id, member_name, sns_type, sns_idx)
+		VALUES 
+			(#{member_id}, #{member_name}, #{sns_type}, #{sns_idx})
+  	</insert>
+  	
 	<!-- 로그인 -->
 	<select id="selectMember" parameterType="MemberVO" resultMap="Member">
 		SELECT *
+		FROM member
+		WHERE member_id = #{member_id}
+	</select>
+	<select id="getMemberId" parameterType="String" resultType="String">
+		SELECT member_id
 		FROM member
 		WHERE member_id = #{member_id}
 	</select>

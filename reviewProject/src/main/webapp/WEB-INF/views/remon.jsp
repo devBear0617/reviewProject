@@ -14,8 +14,15 @@
 			$($(this).attr("data-target")).submit();
 		});
 	})
+
+
+	
 </script>
 <style type="text/css">
+input:focus {
+	outline:none;
+	}
+
 .center {
 	margin-left: auto;
 	margin-right: auto;
@@ -95,7 +102,7 @@
 
 	<div style="height: 100px;"></div>
 
-	</div>
+	
 </body>
 
 <jsp:include page="/WEB-INF/views/share/footer.jsp" />

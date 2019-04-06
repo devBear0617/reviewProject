@@ -94,10 +94,10 @@
 							<td class="td_mypage1">ID</td>
 							<td class="td_mypage2">&nbsp;&nbsp;${user.member_id}</td>
 						</tr>
-						<tr>
+<%-- 						<tr>
 							<td class="td_mypage1">PW</td>
 							<td class="td_mypage2">&nbsp;&nbsp;${user.member_pw}</td>
-						</tr>
+						</tr> --%>
 						<tr>
 							<td class="td_mypage1">NAME</td>
 							<td class="td_mypage2">&nbsp;&nbsp;${user.member_name}</td>
@@ -131,13 +131,13 @@
 			</tr>
 			<tr>
 				<td><input type="button" value="정보변경"
-					onclick="location.href='/review/mypage/updateMemberForm'"
+					onclick="location.href='/review/mypage/updateLogin'"
 					style="background-image: url('resources/image/REMON_smallbar.png'); color: white; width: 300px; height: 30px; border-radius: 10px; border-style: none;">
 				</td>
 			</tr>
 			<tr>
 				<td><input type="button" value="내가 쓴 글"
-					onclick="location.href='/review/mypage/alreadyWrittenBoard'"
+					onclick="location.href='/review/mypage/alreadyWritten'"
 					style="background-image: url('resources/image/REMON_smallbar.png'); color: white; width: 300px; height: 30px; border-radius: 10px; border-style: none;">
 				</td>
 			</tr>

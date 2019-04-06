@@ -9,6 +9,12 @@ import com.project.review.vo.ReplyVO;
 
 public interface MemberDAO {
 	
+	// searchMemberPW
+	public MemberVO searchMemberPW(MemberVO member);
+	
+	// searchMemberID
+	public MemberVO searchMemberID(MemberVO member);
+	
 	// getMember_pic
 	public String getMember_pic(String member_id);
 	
@@ -26,14 +32,21 @@ public interface MemberDAO {
 	
 	// 수정
 	public void updateMember(MemberVO member);
+		// updateCheckPW
+		public MemberVO updateCheckPW(MemberVO member);
 	
 	// 마이페이지 확인
 	public MemberVO MemberInfo(String member_id);
 	
 	// 가입
 	public void joinMember(MemberVO member);
+		// idCheck
+		public String idCheck(String member_id);
+		// nmCheck
+		public String nmCheck(String member_name);
+	public void joinSnsUser(MemberVO member);
 	
 	// 로그인
 	public MemberVO selectMember(String member_id);
-	
+	public String getMemberId(String member_id);
 }

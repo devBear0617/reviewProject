@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,9 +9,8 @@
 </head>
 <body>
 
-<h1>로그인 실패.</h1>
-<input type="button" value="홈"
-				onclick="location.href='/review/'">
+<span style="color:red">${mem_id} x</span> 
+<input type="button" value="중복확인" onclick="check_ID()">
 
 </body>
 </html>

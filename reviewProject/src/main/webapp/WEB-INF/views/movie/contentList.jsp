@@ -4,47 +4,47 @@
 <script type="text/javascript"
 	src="/review/resources/script/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
-var movie_nm = $('.movieinfo_2').html();
-console.log("contentList.jsp / movie_nm : " + movie_nm);
-function fn_paging(pnum) {
-	$.ajax({
-		type : 'POST',
-		url : "./oneContentView",
-		data : {
-			'pnum' : pnum,
+	var movie_nm = $('.movieinfo_2').html();
+	console.log("contentList.jsp / movie_nm : " + movie_nm);
+	function fn_paging(pnum) {
+		$.ajax({
+			type : 'POST',
+			url : "./oneContentView",
+			data : {
+				'pnum' : pnum,
+				'movie_nm' : movie_nm,
+				'start_content' : 0,
+				'end_content' : 9
+			},
+			success : function(html) {
+				$('.contentList').empty();
+				$('.contentList').append(html);
+			},
+			error : function(error) {
+				console.log(error);
+			}
+		})
+	}
+	$('.sort').click(function() {
+		console.log("contentList.jsp / sort click / movie_nm :" + movie_nm);
+		var data = {
+			'sort_id' : $(this).attr('id'),
 			'movie_nm' : movie_nm,
 			'start_content' : 0,
 			'end_content' : 9
-		},
-		success : function(html) {
-			$('.contentList').empty();
-			$('.contentList').append(html);
-		},
-		error : function(error) {
-			console.log(error);
 		}
-	})
-}
-$('.sort').click(function () {
-	console.log("contentList.jsp / sort click / movie_nm :"+movie_nm);
-	var data = {
-			'sort_id' : $(this).attr('id'),
-			'movie_nm' :movie_nm,
-			'start_content' : 0,
-			'end_content' : 9
-	}
-	$.ajax({
-		type : "POST",
-		url : "./oneContentView",
-		cache : false,
-		data : data,
-		success : function(html) {			
-		    $('.contentList').empty();
-			$('.contentList').append(html);
+		$.ajax({
+			type : "POST",
+			url : "./oneContentView",
+			cache : false,
+			data : data,
+			success : function(html) {
+				$('.contentList').empty();
+				$('.contentList').append(html);
 
-		}		
+			}
+		});
 	});
-});
 </script>
 <style type="text/css">
 /* 그리드 레이아웃 자료 : https://www.youtube.com/watch?v=jDD2uMJ_xNg */
@@ -103,7 +103,15 @@ $('.sort').click(function () {
 			<table>
 				<tr>
 					<td style="text-align: left; padding-left: 10px;" colspan="2">
-						${board.member_id}</td>
+						<div style="display: inline-block;">
+							<div style="float: left;">
+								<img
+									src="/review/movie/resources/memberImage/${board.memberVO.member_pic}"
+									style="width: 30px; height: 30px; border-radius: 50px;">
+							</div>
+							<div style="float: left;">&nbsp;&nbsp;${board.member_id}</div>
+						</div>
+					</td>
 					<td style="font-size: small; text-align: right;" colspan="1">조회수
 						: ${board.board_readcount}&nbsp;</td>
 				</tr>
@@ -111,8 +119,7 @@ $('.sort').click(function () {
 					<td style="" colspan="3">
 						<div
 							style="background: url('${board.thumbnail}');height: 170px; font-size: large; font-weight: bold;">
-							<div
-								style="background-color: rgba(255, 255, 255, 0.7);">
+							<div style="background-color: rgba(255, 255, 255, 0.7);">
 								<span style="color: black;">${board.board_title}</span>
 							</div>
 						</div>
