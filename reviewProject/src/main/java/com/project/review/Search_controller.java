@@ -323,20 +323,29 @@ public class Search_controller {
 		
 		return "share/searchResult";
 	}
-	@RequestMapping(value="/searchResult")
-	public String searchResultTotal(HttpServletRequest request, HttpSession session, Model model) {
+	@RequestMapping(value="/searchResult/{keyword}", method=RequestMethod.POST)
+	public String searchResultTotalKeywordPOST(@PathVariable String keyword, 
+			HttpServletRequest request, HttpSession session, Model model) {
 		String user_id = (String) session.getAttribute("member_id");
 		if (user_id != null) {
 			MemberVO user = memberService.MemberInfo(user_id);
 			model.addAttribute("user", user);
 		}
 		
-		String keyword = request.getParameter("keyword");
 		System.out.println("111"+keyword);
 		keyword = keyword.trim();
 		model.addAttribute("keyword", keyword);			
 		
 		return "share/searchResult";
+	}
+	@RequestMapping(value="/searchResult", method=RequestMethod.POST)
+	public String searchResultTotal(HttpServletRequest request, HttpSession session, Model model) {
+		
+		String keyword = request.getParameter("keyword");
+		System.out.println("111"+keyword);
+		keyword = keyword.trim();	
+		
+		return "redirect:/search/searchResult/"+keyword;
 	}
 	
 	@RequestMapping(value="/main")

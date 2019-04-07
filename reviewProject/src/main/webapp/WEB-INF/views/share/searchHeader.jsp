@@ -18,13 +18,12 @@ $(document).ready(function() {
 var link = document.location.href; 
 console.log(link);
 
+var link = document.location.href; 
+console.log(link);
 function addSender() {
-	var kk = document.getElementById('query').value;
-	console.log(kk);
-	var add = link + "/" + kk;
-	console.log(add);
-	sessionStorage.setItem("address", add);
+	sessionStorage.setItem("address", link);
 };
+
 
 </script>
 <style type="text/css">
@@ -79,7 +78,7 @@ input:focus {
 					<!-- 마이페이지 --> <!-- 로그인 필요 시 -->
 					<div style="float: right; margin-top: 10px; margin-right: 20px;">
 						<c:if test="${empty sessionScope.member_id}">
-							<a href="/review/mypage/join"  onclick="addSender();"><img alt="REMON_LOGO"
+							<a href="/review/mypage/join"><img alt="REMON_LOGO"
 								src="/review/movie/resources/image/REMON_Join_icon(white).png"
 								style="height: 50px;"></a>
 							<a href="/review/mypage/login" onclick="addSender();">
