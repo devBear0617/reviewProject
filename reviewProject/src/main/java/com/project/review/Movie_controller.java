@@ -1,11 +1,9 @@
 package com.project.review;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletResponse;
@@ -139,8 +137,6 @@ public class Movie_controller {
 	// >> 게시판 출력 ----------------------------------
 	@RequestMapping(value = "/contentView")
 	public String contentView(Board_MovieVO b_movieVO, Model model) {
-		
-		
 		int start_content = b_movieVO.getStart_content();
 		model.addAttribute("start_content", start_content);
 		
