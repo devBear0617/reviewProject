@@ -106,10 +106,6 @@ function move(e){
 		<div class="items"
 			onclick="move('/review/movie/detail_view/${board.board_num}')"
 			style="background-color: rgba(255, 255, 255, 0.7);">
-<<<<<<< HEAD
-=======
-
->>>>>>> BearF
 			<table>
 				<tr>
 					<td style="text-align: left; padding-left: 10px;" colspan="2">

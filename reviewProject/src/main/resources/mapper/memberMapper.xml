@@ -127,8 +127,7 @@
 	</select>
 	
 	<!-- myBoard -->
-<<<<<<< HEAD
-	<select id="myBoard" parameterType="map" resultType="BoardVO">
+	<select id="myBoard" parameterType="map" resultMap="Board">
 		SELECT aa.*
 		FROM( SELECT ROWNUM as rnum, a.*
 			  FROM ( SELECT *
@@ -141,10 +140,6 @@
 	
 	<select id="myBoardCount" parameterType="String" resultType="int">
 		SELECT COUNT(*) 
-=======
-	<select id="myBoard" parameterType="String" resultMap="Board">
-		SELECT *
->>>>>>> BearF
 		FROM board
 		WHERE member_id = #{member_id}
 	</select>
