@@ -2,6 +2,8 @@
 package com.project.review;
 
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -310,42 +312,27 @@ public class Search_controller {
 	// result form
 	@RequestMapping(value="/searchResult/{keyword}")
 	public String searchResultTotalKeyword(@PathVariable String keyword, 
-			HttpServletRequest request, HttpSession session, Model model) {
+			HttpSession session, Model model) {
+		
 		String user_id = (String) session.getAttribute("member_id");
 		if (user_id != null) {
 			MemberVO user = memberService.MemberInfo(user_id);
 			model.addAttribute("user", user);
 		}
-		
-		System.out.println("111"+keyword);
-		keyword = keyword.trim();
 		model.addAttribute("keyword", keyword);			
 		
 		return "share/searchResult";
 	}
-	@RequestMapping(value="/searchResult/{keyword}", method=RequestMethod.POST)
-	public String searchResultTotalKeywordPOST(@PathVariable String keyword, 
-			HttpServletRequest request, HttpSession session, Model model) {
-		String user_id = (String) session.getAttribute("member_id");
-		if (user_id != null) {
-			MemberVO user = memberService.MemberInfo(user_id);
-			model.addAttribute("user", user);
-		}
-		
-		System.out.println("111"+keyword);
-		keyword = keyword.trim();
-		model.addAttribute("keyword", keyword);			
-		
-		return "share/searchResult";
-	}
+	
 	@RequestMapping(value="/searchResult", method=RequestMethod.POST)
-	public String searchResultTotal(HttpServletRequest request, HttpSession session, Model model) {
+	public String searchResultTotal(HttpServletRequest request, HttpSession session, Model model) throws UnsupportedEncodingException {
 		
 		String keyword = request.getParameter("keyword");
 		System.out.println("111"+keyword);
 		keyword = keyword.trim();	
-		
-		return "redirect:/search/searchResult/"+keyword;
+		String key =  URLEncoder.encode(keyword, "UTF-8");
+
+		return "redirect:/search/searchResult/"+key;
 	}
 	
 	@RequestMapping(value="/main")

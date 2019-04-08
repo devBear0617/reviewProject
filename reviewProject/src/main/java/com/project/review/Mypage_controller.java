@@ -59,7 +59,7 @@ public class Mypage_controller {
 
 	// eamil ID,PW | smtp 설정 필수!
 	final String emailSender = "chun6153"; 
-	final String emailPW = "cjsdnd!573"; 
+	final String emailPW = "cjsdnd!47"; 
 
 	
 //---------------------------------------------------------------
