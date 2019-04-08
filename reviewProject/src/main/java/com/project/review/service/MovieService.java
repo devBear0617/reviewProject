@@ -6,6 +6,7 @@ import java.util.Map;
 import com.google.gson.JsonArray;
 import com.project.review.vo.BoardVO;
 import com.project.review.vo.Board_MovieVO;
+import com.project.review.vo.CategoryVO;
 import com.project.review.vo.GradeVO;
 import com.project.review.vo.HashtagVO;
 import com.project.review.vo.LikeItVO;
@@ -61,7 +62,8 @@ public interface MovieService {
 	public MovieApiVO getMovie(MovieApiVO movieApiVO);
 	
 	//Category
-	public Map<String, Object> getCategory(String ca_type);
+	public List<CategoryVO> getCategory(String ca_type);
+	//public Map<String, Object> getCategory(String ca_type);
 	public Map<String, Object> getCaMovieList(String ca_type, String cd, String nm, int pnum);
 	//public Map<String, Object> getCategory2(String category_type);
 }

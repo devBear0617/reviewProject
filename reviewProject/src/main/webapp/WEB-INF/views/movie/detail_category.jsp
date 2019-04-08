@@ -73,13 +73,10 @@ img[class^="cg_img"] {
 				<img class="cg_img_director" 
 				src="/review/resources/image/REMON_category_actor.png" onclick="moreCategory(this)">
 			</td>
-			<!-- <td><img class="cg_img_dt"
-				src="/review/resources/image/test.png" onclick="moreCategory(this)">
-			</td> -->
-			<td><img class="cg_img_openDt"
+			<td><img class="cg_img_open_dt"
 				src="/review/resources/image/REMON_category_new.png" onclick="moreCategory(this)">
 			</td>
-			<td><img class="cg_img_movieType"
+			<td><img class="cg_img_movie_type"
 				src="/review/resources/image/REMON_category_type.png" onclick="moreCategory(this)">
 			</td>
 			<td><img class="cg_img_nation"

@@ -24,6 +24,7 @@ import com.project.review.service.MemberService;
 import com.project.review.service.MovieService;
 import com.project.review.vo.BoardVO;
 import com.project.review.vo.Board_MovieVO;
+import com.project.review.vo.CategoryVO;
 import com.project.review.vo.GradeVO;
 import com.project.review.vo.HashtagVO;
 import com.project.review.vo.LikeItVO;
@@ -39,8 +40,6 @@ public class Movie_controller {
 	private MovieService movieService;
 	@Autowired
 	private MemberService memberService;
-
-	private Map<String, Object> moiveMap;
 
 	// -- 메인페이지
 	// ----------------------------------------------------------------------------
@@ -61,11 +60,9 @@ public class Movie_controller {
 	// >> 상세 카테고리----------------------------------
 	@RequestMapping(value = "/moreCategory")
 	public String moreCategory(String category_type, Model model) {
-		Map<String, Object> map = movieService.getCategory(category_type);
+		List<CategoryVO> category = movieService.getCategory(category_type);
 		
-		model.addAttribute("cd", map.get("cd"));
-		model.addAttribute("nm", map.get("nm"));
-		model.addAttribute("ca_type", map.get("ca_type"));
+		model.addAttribute("category", category);
 
 		return "movie/detail_category2";
 	}
@@ -75,21 +72,11 @@ public class Movie_controller {
 	public String moreCaMovie(String de_ca_type, String cd, String nm, int pnum, Model model) {
 		Pagination pagination = new Pagination();
 		pagination.setPage(pnum, 90000);
-		int displayIdx = pagination.getDisplayIdx();
 
-		if (pnum % 5 == 1) 
-			moiveMap = movieService.getCaMovieList(de_ca_type, cd, nm, pnum/5+1);
+		Map<String, Object> moiveMap = movieService.getCaMovieList(de_ca_type, cd, nm, pnum);
 		
-		
-		List<String> movieCd = new ArrayList<String>();
-		List<String> movieNm = new ArrayList<String>();
-		if (de_ca_type.equals("actor") || de_ca_type.equals("director")) {
-			movieCd = (List<String>) moiveMap.get("cd");
-			movieNm = (List<String>) moiveMap.get("nm");
-		}else {
-			movieCd = ((List<String>) moiveMap.get("cd")).subList(displayIdx, displayIdx + 10);
-			movieNm = ((List<String>) moiveMap.get("nm")).subList(displayIdx, displayIdx + 10);
-		}
+		List<String> movieCd = ((List<String>) moiveMap.get("cd"));
+		List<String> movieNm = ((List<String>) moiveMap.get("nm"));
 		
 		model.addAttribute("movieCd", movieCd);
 		model.addAttribute("movieNm", movieNm);
@@ -106,7 +93,7 @@ public class Movie_controller {
 		
 		return "movie/movieInfo";
 	}
-	// 상세 카테고리 - 영화 클릭시 contentList 출력
+
 	@RequestMapping(value = "/oneContentView")
 	public String oneContentView(Board_MovieVO b_movieVO, Model model) {
 		String sort_id = b_movieVO.getSort_id();

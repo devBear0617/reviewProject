@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.project.review.vo.BoardVO;
 import com.project.review.vo.Board_MovieVO;
+import com.project.review.vo.CategoryVO;
 import com.project.review.vo.GradeVO;
 import com.project.review.vo.HashtagVO;
 import com.project.review.vo.LikeItVO;
@@ -71,5 +72,7 @@ public interface BoardDAO {
 	public void deleteGrade(int board_num);
 	public void deleteB_movie(int board_num);
 	public void deleteHashtag(int board_num);
+
+	public List<CategoryVO> getCategory(String ca_type);
 	
 }

@@ -21,6 +21,7 @@ import com.project.review.dao.BoardDAO;
 import com.project.review.dao.MovieApiDAO;
 import com.project.review.vo.BoardVO;
 import com.project.review.vo.Board_MovieVO;
+import com.project.review.vo.CategoryVO;
 import com.project.review.vo.GradeVO;
 import com.project.review.vo.HashtagVO;
 import com.project.review.vo.LikeItVO;
@@ -215,7 +216,6 @@ public class MovieServiceImpl implements MovieService {
 		boardDAO.deleteMovie(board_num);
 	}	
 	
-	// -- api ---------------------------------------------------------
 	@Override
 	public JsonArray searchMovie(String movie_nm) {
 		
@@ -240,7 +240,6 @@ public class MovieServiceImpl implements MovieService {
 		}
 	}
 	
-	// 영화 기본 정보 호출
 	@Override
 	public MovieApiVO getMovieInfo(String movie_nm) {
 		
@@ -276,88 +275,33 @@ public class MovieServiceImpl implements MovieService {
 		return movieApiVO;
 	}
 
-	//Category
 	@Override
-	public Map<String, Object> getCategory(String category_type) {
+	public List<CategoryVO> getCategory(String category_type) {
 		if (!category_type.equals(null)) 
 			category_type = category_type.split("cg_img_")[1];
 		
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("ca_type", category_type);
-		List<String> cd = new ArrayList<>();
-		List<String> dCategoryNm = new ArrayList<String>();
+		List<CategoryVO> category = boardDAO.getCategory(category_type);
 		
-		switch (category_type) {
-			case "actor":
-				String[] actorCd = {"10057015", "20323971", "10087395", "20322111", "20160378"};  
-				String[] actorNm = {"이나라", "이현균", "한기윤", "강길우", "김정팔"};
-				
-				cd = Arrays.asList(actorCd);
-				dCategoryNm = Arrays.asList(actorNm);
-				break;
-			case "director":
-				String[] directorCd = {"10085335", "10087327", "20112325", "20213366"};  
-				String[] directorNm = {"다렌 폴 피셔", "줄리아 하트", "강유가람", "허세준"};
-				
-				cd = Arrays.asList(directorCd);
-				dCategoryNm = Arrays.asList(directorNm);
-				break;
-			case "openDt":
-				String[] dtCd = new String[11];
-				String[] dtNm = new String[11];
-				dtCd[0] = "2010";
-				dtNm[0] = "2010년 이전";
-				for (int i=1; i<dtCd.length; i++) {
-					dtCd[i] = "201"+i;
-					dtNm[i] = "201"+i+"년";
-				}
-				dtCd[10] = "-1";
-				dtNm[10] = "현재 상영작";
-				cd = Arrays.asList(dtCd);
-				dCategoryNm = Arrays.asList(dtNm);
-				break;
-			case "movieType":
-				String[] typeCd = {"220101", "220102", "220103", "220109"};  
-				String[] typeNm = {"장편", "단편", "옴니버스", "기타"};
-				
-				cd = Arrays.asList(typeCd);
-				dCategoryNm = Arrays.asList(typeNm);
-				break;
-			case "nation":
-				String[] nationCd = {"22041011", "22042002", "22044010", "22044017", "22041009", "22041008", "22041001", "22041007"};  
-				String[] nationNm = {"한국", "미국", "영국", "프랑스", "중국", "일본", "대만", "인도"};
-				
-				cd = Arrays.asList(nationCd);
-				dCategoryNm = Arrays.asList(nationNm);
-				break;
-			default:
-				break;
-		}
-		map.put("cd", cd);
-		map.put("nm", dCategoryNm);
-		
-		return map;
+		return category;
 	}
 
 	@Override
 	public Map<String, Object> getCaMovieList(String ca_type, String cd, String nm, int pnum) {
-		System.out.println("2>"+cd);
 		if (ca_type.equals("actor") || ca_type.equals("director")) {
 			Map<String, Object> map = new HashMap<String, Object>();
 			List<String> list = movieApiDAO.getCaPeople1(nm, pnum);
-			List<String> list2 = list;
 			map.put("cd", list);
 			map.put("nm", list);
 			
 			return map;
-		}else if (ca_type.equals("openDt") && cd.equals("-1")) {
+		}
+		if (ca_type.equals("openDt") && cd.equals("-1")) {
 			Map<String, Object> map = new HashMap<String, Object>();
 			String date = LocalDate.now().minusWeeks(1).format(DateTimeFormatter.BASIC_ISO_DATE);
 			map = movieApiDAO.getMap(date);
 			
 			return map;
-		}else {
-			return movieApiDAO.getCaMovieArray(ca_type, cd, pnum);
 		}
+		return movieApiDAO.getCaMovieArray(ca_type, cd, pnum);
 	}
 }

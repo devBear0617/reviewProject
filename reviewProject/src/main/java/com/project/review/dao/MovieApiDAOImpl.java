@@ -8,7 +8,6 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -19,9 +18,7 @@ import com.project.review.vo.MovieApiVO;
 
 
 public class MovieApiDAOImpl implements MovieApiDAO{
-	//영화진흥원 Api 
-	private String key;
-	//naverApi
+	private String key; 
 	private String clientId;
     private String clientSecret;
 	
@@ -49,6 +46,7 @@ public class MovieApiDAOImpl implements MovieApiDAO{
 				con.setRequestProperty("X-Naver-Client-Secret", clientSecret);
 			}
 			int responseCode = con.getResponseCode();
+			
 			BufferedReader br;
 			if(responseCode==200) 
 				br = new BufferedReader(new InputStreamReader(con.getInputStream(),"UTF-8"));
@@ -63,9 +61,8 @@ public class MovieApiDAOImpl implements MovieApiDAO{
 			
 			JsonParser Parser = new JsonParser();
 			jsonObj = (JsonObject) Parser.parse(response.toString());
-			System.out.println(jsonObj.toString());
 		} catch (Exception e) {
-			System.out.println("commonContent : "+e);
+			System.out.println("commonContent Error : "+e);
 		}
 		
 		return jsonObj;
@@ -81,30 +78,28 @@ public class MovieApiDAOImpl implements MovieApiDAO{
 			
 			JsonObject jsonObj = commonContent(apiURL, true);
 			jsonArray = (JsonArray) jsonObj.get("items");
-			
 		} catch (Exception e) {
-			System.out.println("getJson : "+e);
+			System.out.println("getJson Error : "+e);
 		}
 		return jsonArray;
 	}
 	
 	@Override
 	public MovieApiVO getMovieApi(MovieApiVO movieApiVO, Boolean isDirector) {
-		String movieNm = movieApiVO.getMovie_nm();
 		String apiDirecorURL = "";
+		String movieNm = movieApiVO.getMovie_nm();
 		
 		try {
 			if (isDirector) {
-				//naver api 연동 오류 처리
 				String director = movieApiVO.getDirector().split("|")[0];
+				
 				if (movieNm.contains(" - ")) {
 					String movieNm1 = movieNm.split(" - ")[0];
 					String movieNm2 = movieNm.split(" - ")[1].split("부")[0];
 					movieNm = movieNm1+movieNm2;
-					
-					String queryDirector = URLEncoder.encode(director, "UTF-8");
-					apiDirecorURL = "&directorNm="+queryDirector;
-				}
+				}		
+				String queryDirector = URLEncoder.encode(director, "UTF-8");
+				apiDirecorURL = "&directorNm="+queryDirector;
 			}
 			String queryMovieNm = URLEncoder.encode(movieNm, "UTF-8");
 			String apiURL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json?key="+key+"&movieNm="+queryMovieNm+apiDirecorURL;
@@ -121,7 +116,7 @@ public class MovieApiDAOImpl implements MovieApiDAO{
 			movieApiVO.setGenre(object.get("genreAlt").getAsString());
 			movieApiVO.setNation(object.get("repNationNm").getAsString());
 		} catch (Exception e) {
-			System.out.println("getMovieApi : "+e);
+			System.out.println("getMovieApi Error : "+e);
 		}
 		return movieApiVO;
 	}
@@ -141,7 +136,7 @@ public class MovieApiDAOImpl implements MovieApiDAO{
 			map.put("cd", movieCd);
 			map.put("nm", movieNm);
 		} catch (Exception e) {
-			System.out.println("setMap : "+e);
+			System.out.println("setMap Error : "+e);
 		}
 		return map;
 	}
@@ -160,7 +155,7 @@ public class MovieApiDAOImpl implements MovieApiDAO{
 			
 			map = setMap(jsonArray);
 		} catch (Exception e) {
-			System.out.println("getArray : "+e);
+			System.out.println("getArray Error : "+e);
 		}
 		return map;
 	}
@@ -170,19 +165,18 @@ public class MovieApiDAOImpl implements MovieApiDAO{
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
 			String queryCategory = URLEncoder.encode(cd, "UTF-8");
-			String apiURL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json?key="+key+"&itemPerPage=50&curPage="+pnum;
+			String apiURL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json?key="+key+"&curPage="+pnum;
+			
 			switch (ca_type) {
-				/*case "genre":
-					break;*/
-				case "openDt":
+				case "open_dt":
 					if (cd!="2010") {
 						apiURL += "&openStartDt="+queryCategory+"&openEndDt="+queryCategory;
 					}else {
 						apiURL += "&openEndDt="+queryCategory;
 					}
 					break;
-				case "movieType":
-					apiURL += "movieTypeCd"+queryCategory;
+				case "movie_type":
+					apiURL += "&movieTypeCd="+queryCategory;
 					break;
 				case "nation":
 					apiURL += "&repNationCd="+queryCategory;
@@ -196,7 +190,7 @@ public class MovieApiDAOImpl implements MovieApiDAO{
 			
 			map = setMap(jsonArray);
 		} catch (Exception e) {
-			System.out.println("getCaMovieArray : "+e);
+			System.out.println("getCaMovieArray Error : "+e);
 		} 
 		return map;
 	}
@@ -213,7 +207,7 @@ public class MovieApiDAOImpl implements MovieApiDAO{
 			jsonArray = (JsonArray) jsonObj.get("peopleList");
 			
 		} catch (Exception e) {
-			System.out.println("getCaPeopleArray : "+e);
+			System.out.println("getCaPeopleArray Error : "+e);
 		} 
 		return jsonArray;
 	}
@@ -230,7 +224,7 @@ public class MovieApiDAOImpl implements MovieApiDAO{
 			
 			list = Arrays.asList(array);
 		} catch (Exception e) {
-			System.out.println("getCaPeople1 : "+e);
+			System.out.println("getCaPeople1 Error : "+e);
 		}
 		
 		return list;

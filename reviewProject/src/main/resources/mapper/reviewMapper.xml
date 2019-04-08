@@ -344,5 +344,9 @@
 		WHERE board_num = #{board_num}
 	</select>
 
-
+	<select id="getCategory" parameterType="CategoryVO" resultType="CategoryVO">
+		SELECT *
+		FROM category
+		WHERE ca_type = #{ca_type}		
+	</select>
 </mapper>

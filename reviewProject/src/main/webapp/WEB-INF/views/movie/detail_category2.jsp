@@ -56,9 +56,9 @@ function moreCaMovie(e) {
 
 <div class="center">
 	<div class="de_ca_st">
-		<c:forEach var="dcNm" items="${nm}" varStatus="status">
-			<div class="de_ca ${ca_type} ${cd[status.index]}"
-				onclick="moreCaMovie(this)">${dcNm}</div>
+		<c:forEach var="ca" items="${category}" varStatus="status">
+			<div class="de_ca ${ca.ca_type} ${ca.ca_cd}"
+				onclick="moreCaMovie(this)">${ca.ca_nm}</div>
 		</c:forEach>
 		<div class="detail2_category"></div>
 	</div>
