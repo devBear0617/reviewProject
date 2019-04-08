@@ -129,9 +129,10 @@ td {
 	//grade_name 미선택시  grade_radio 숨기기
 	$(document).ready(
 			function() {
-				var grade_name1 = $("#grade_name1").val(), grade_name2 = $(
-						"#grade_name2").val(), grade_name3 = $("#grade_name3")
-						.val(), grade_name4 = $("#grade_name4").val();
+				var grade_name1 = $("#grade_name1").val(), 
+					grade_name2 = $("#grade_name2").val(), 
+					grade_name3 = $("#grade_name3").val(),
+					grade_name4 = $("#grade_name4").val();
 
 				if (!grade_name1) {
 					$("#on_off_grade1").css('visibility', 'hidden');
@@ -152,8 +153,7 @@ td {
 			function() {
 				var $select = $("select");
 
-				$select
-						.on("change",
+				$select.on("change",
 								function() {
 									//grade 값 초기화 
 									var id = this.id
@@ -222,6 +222,22 @@ td {
 									$("#lemon_grade").val(
 											grade1 + grade2 + grade3 + grade4);
 									var value = $("#lemon_grade").val();
+									if(value >= 80){
+										$("#lemon_grade_img").attr("src", "/review/movie/resources/image/REMON_grade_1.png");
+										$('.lemon_grade_name').html("달콤한 레몬");
+									}else if(value >= 60){
+										$("#lemon_grade_img").attr("src", "/review/movie/resources/image/REMON_grade_2.png");										
+										$('.lemon_grade_name').html("새콤한 레몬");
+									}else if(value >= 40){
+										$("#lemon_grade_img").attr("src", "/review/movie/resources/image/REMON_grade_3.png");										
+										$('.lemon_grade_name').html("신맛 레몬");
+									}else if(value >= 20){
+										$("#lemon_grade_img").attr("src", "/review/movie/resources/image/REMON_grade_4.png");									
+										$('.lemon_grade_name').html("씁쓸한 레몬");
+									}else {
+										$("#lemon_grade_img").attr("src", "/review/movie/resources/image/REMON_grade_5.png");										
+										$('.lemon_grade_name').html("썩은 레몬");
+									}
 									$('.total_value').html(value);
 									//----- lemon_grade 재계산 끝, select 중복방지 처리 시작 
 
@@ -291,10 +307,26 @@ td {
 									$("#lemon_grade").val(
 											grade1 + grade2 + grade3 + grade4);
 									var value = $("#lemon_grade").val();
+									if(value >= 80){
+										$("#lemon_grade_img").attr("src", "/review/movie/resources/image/REMON_grade_1.png");
+										$('.lemon_grade_name').html("달콤한 레몬");
+									}else if(value >= 60){
+										$("#lemon_grade_img").attr("src", "/review/movie/resources/image/REMON_grade_2.png");										
+										$('.lemon_grade_name').html("새콤한 레몬");
+									}else if(value >= 40){
+										$("#lemon_grade_img").attr("src", "/review/movie/resources/image/REMON_grade_3.png");										
+										$('.lemon_grade_name').html("신맛 레몬");
+									}else if(value >= 20){
+										$("#lemon_grade_img").attr("src", "/review/movie/resources/image/REMON_grade_4.png");									
+										$('.lemon_grade_name').html("씁쓸한 레몬");
+									}else {
+										$("#lemon_grade_img").attr("src", "/review/movie/resources/image/REMON_grade_5.png");										
+										$('.lemon_grade_name').html("썩은 레몬");
+									}
 									$('.total_value').html(value);
 								});
 			});
-	
+
 	function backBT() {
 		window.history.back();
 	}
@@ -371,11 +403,13 @@ td {
 						<div>
 							<div style="height: 300px;">
 								<h3>전체 평점</h3>
+								<img id="lemon_grade_img">
 							</div>
 							<div style="height: 30px;">
-								<label for="lemon_grade">총합 점수 : </label> <input type="hidden"
-									value="0" id="lemon_grade" name="lemon_grade"> <span
-									class="total_value">0</span>점
+								<label for="lemon_grade">총합 </label> <input type="hidden"
+									value="0" id="lemon_grade" name="lemon_grade"> 
+									<span class="total_value">0</span>점의 <span class="lemon_grade_name">레몬</span>
+									
 							</div>
 							<div style="height: 20px;">
 								<hr>
@@ -616,8 +650,15 @@ td {
 						style="width: 97px; height: 30px; background: linear-gradient(to left, #ffe400, #abf200); border-radius: 10px; border-style: none; margin-right: 5px;">
 				</div>
 				<div style="float: left;">
+<<<<<<< HEAD
 					<input type="hidden" name="address" value="${address}">
 					<input type="button" value="뒤로" onclick="backBT()">
+=======
+					<!-- <input type="reset" value="취소"
+						style="width: 97px; height: 30px; background: linear-gradient(to left, #ffe400, #abf200); border-radius: 10px; border-style: none;"> -->
+					<input type="hidden" name="address" value="${address}"> <input
+						type="button" value="뒤로" onclick="backBT()">
+>>>>>>> Min02
 				</div>
 			</div>
 		</form>

@@ -11,8 +11,8 @@
 <script type="text/javascript"
 	src="/review/resources/script/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
-$(document).ready(function() {
-	$.ajax({
+	$(document).ready(function() {
+		$.ajax({
 			type : "GET",
 			url : "/review/mypage/alreadyWritten/alreadyWritten_menuBoard",
 			dataType : 'html',
@@ -21,78 +21,84 @@ $(document).ready(function() {
 			}
 		})
 
-	$.ajax({
-		type : "GET",
-		url : "/review/mypage/alreadyWritten/alreadyWritten_Board",
-		data: {"pnum":1},
-		dataType : 'html',
-		success : function(html) {
-			$(".alreadyWritten_Board").append(html);
-		}
-	})
-	
-});	
+		$.ajax({
+			type : "GET",
+			url : "/review/mypage/alreadyWritten/alreadyWritten_Board",
+			data : {
+				"pnum" : 1
+			},
+			dataType : 'html',
+			success : function(html) {
+				$(".alreadyWritten_Board").append(html);
+			}
+		})
 
-function already_Reply () {
-	$.ajax({
-		type : "GET",
-		url : "/review/mypage/alreadyWritten/alreadyWritten_menuReply",
-		dataType : 'html',
-		success : function(html) {
-			$(".alreadyWritten_menuBoard").empty();
-			$(".alreadyWritten_menuLike").empty();
-			$(".alreadyWritten_menuReply").empty();
-			
-			$(".alreadyWritten_menuReply").append(html);
-		}
 	});
-	
-	$.ajax({
-		type : "GET",
-		url : "/review/mypage/alreadyWritten/alreadyWritten_Reply",
-		data: {"pnum":1},
-		dataType : 'html',
-		success : function(html) {
-			$(".alreadyWritten_Board").empty();
-			$(".alreadyWritten_Like").empty();
-			$(".alreadyWritten_Reply").empty();
-			
-			$(".alreadyWritten_Reply").append(html);
-		}
-	});
-};
 
-function already_Like () {
-	$.ajax({
-		type : "GET",
-		url : "/review/mypage/alreadyWritten/alreadyWritten_menuLike",
-		dataType : 'html',
-		success : function(html) {
-			$(".alreadyWritten_menuBoard").empty();
-			$(".alreadyWritten_menuReply").empty();
-			$(".alreadyWritten_menuLike").empty();
-			
-			$(".alreadyWritten_menuLike").append(html);
-		}
-	});
-	
-	$.ajax({
-		type : "GET",
-		url : "/review/mypage/alreadyWritten/alreadyWritten_Like",
-		data: {"pnum":1},
-		dataType : 'html',
-		success : function(html) {
-			$(".alreadyWritten_Board").empty();
-			$(".alreadyWritten_Reply").empty();
-			$(".alreadyWritten_Like").empty();
-			
-			$(".alreadyWritten_Like").append(html);
-		}
-	});
-};
+	function already_Reply() {
+		$.ajax({
+			type : "GET",
+			url : "/review/mypage/alreadyWritten/alreadyWritten_menuReply",
+			dataType : 'html',
+			success : function(html) {
+				$(".alreadyWritten_menuBoard").empty();
+				$(".alreadyWritten_menuLike").empty();
+				$(".alreadyWritten_menuReply").empty();
 
-function already_Board() {
-	$.ajax({
+				$(".alreadyWritten_menuReply").append(html);
+			}
+		});
+
+		$.ajax({
+			type : "GET",
+			url : "/review/mypage/alreadyWritten/alreadyWritten_Reply",
+			data : {
+				"pnum" : 1
+			},
+			dataType : 'html',
+			success : function(html) {
+				$(".alreadyWritten_Board").empty();
+				$(".alreadyWritten_Like").empty();
+				$(".alreadyWritten_Reply").empty();
+
+				$(".alreadyWritten_Reply").append(html);
+			}
+		});
+	};
+
+	function already_Like() {
+		$.ajax({
+			type : "GET",
+			url : "/review/mypage/alreadyWritten/alreadyWritten_menuLike",
+			dataType : 'html',
+			success : function(html) {
+				$(".alreadyWritten_menuBoard").empty();
+				$(".alreadyWritten_menuReply").empty();
+				$(".alreadyWritten_menuLike").empty();
+
+				$(".alreadyWritten_menuLike").append(html);
+			}
+		});
+
+		$.ajax({
+			type : "GET",
+			url : "/review/mypage/alreadyWritten/alreadyWritten_Like",
+			data : {
+				"pnum" : 1
+			},
+			dataType : 'html',
+			success : function(html) {
+				$(".alreadyWritten_Board").empty();
+				$(".alreadyWritten_Reply").empty();
+				$(".alreadyWritten_Like").empty();
+
+				$(".alreadyWritten_Like").append(html);
+			}
+		});
+	};
+
+	function already_Board() {
+		$.ajax({
 			type : "GET",
 			url : "/review/mypage/alreadyWritten/alreadyWritten_menuBoard",
 			dataType : 'html',
@@ -104,21 +110,22 @@ function already_Board() {
 				$(".alreadyWritten_menuBoard").append(html);
 			}
 		});
-	$.ajax({
+		$.ajax({
 			type : "GET",
 			url : "/review/mypage/alreadyWritten/alreadyWritten_Board",
-			data: {"pnum":1},
+			data : {
+				"pnum" : 1
+			},
 			dataType : 'html',
 			success : function(html) {
 				$(".alreadyWritten_Reply").empty();
 				$(".alreadyWritten_Like").empty();
 				$(".alreadyWritten_Board").empty();
-				
+
 				$(".alreadyWritten_Board").append(html);
 			}
-	});
-};
-		
+		});
+	};
 </script>
 
 <style type="text/css">
@@ -148,6 +155,9 @@ function already_Board() {
 				<div id="menu"
 					style="background: #F2F2F2; width: 200px; float: left">
 					<h2>메뉴</h2>
+					<div>
+						<hr>
+					</div>
 					<div class="alreadyWritten_menuBoard"></div>
 					<div class="alreadyWritten_menuReply"></div>
 					<div class="alreadyWritten_menuLike"></div>

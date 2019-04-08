@@ -9,7 +9,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
-<script type="text/javascript" src="/review/resources/script/jquery-3.3.1.min.js"></script>
+<script type="text/javascript"
+	src="/review/resources/script/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 	// 최초
 	$(document).ready(function() {
@@ -563,10 +564,24 @@ input:focus {
 	margin-right: auto;
 }
 
+#menu {
+	text-align: left;
+	padding-left: 10px;
+	background-color: #F2F2F2;
+	width: 200px;
+	float: left
+}
+
+#content {
+	width: 900px;
+	float: left;
+}
+
 .btn_st1 {
 	margin-left: auto;
 	margin-right: auto;
-	background-image: url('/review/movie/resources/image/REMON_smallbar.png');
+	background-image:
+		url('/review/movie/resources/image/REMON_smallbar.png');
 	color: white;
 	width: 300px;
 	height: 30px;
@@ -580,16 +595,17 @@ input:focus {
 <body>
 
 	<hr width="1100px;">
-	<div style="height: 20px;"></div>
+	<div style="height: 10px;"></div>
 
 	<div class="center">
 		<br>
 		<div class="center">
 			<div id="con" style="display: inline-block;">
-				<div id="menu"
-					style="background-color: #F2F2F2; width: 200px; float: left">
+				<div id="menu">
 					<h2>검색메뉴</h2>
-
+					<div>
+						<hr>
+					</div>
 					<div class="menu_Form"></div>
 					<div class="menu_Movie_V"></div>
 					<div class="menu_Movie_memberV"></div>
@@ -603,7 +619,7 @@ input:focus {
 
 				</div>
 
-				<div id="content" style="width: 900px; float: left;">
+				<div id="content">
 
 					<div class="result_Total"></div>
 					<div class="result_Movie"></div>
