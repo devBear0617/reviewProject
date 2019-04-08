@@ -206,7 +206,6 @@ public class Movie_controller {
 		}
 		
 		// 게시글 추가 서비스
-		/*String member_id = (String) session.getAttribute("member_id");*/
 		movieService.insertMovie(board, movie, grade, hash, movieApiVO, member_id);
 
 		// 게시글 추가 후 추가한 게시글 확인

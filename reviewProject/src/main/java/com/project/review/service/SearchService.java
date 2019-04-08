@@ -23,7 +23,6 @@ public interface SearchService {
 		public List<BoardVO> searchMovie_Hashtag(String keyword);
 		
 	// TOTAL
-
 	public List<BoardVO> searchTotal(String keyword);
 	
 

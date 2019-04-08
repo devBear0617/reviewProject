@@ -162,8 +162,14 @@ function already_Board() {
 					<div class="alreadyWritten_Like"></div>
 
 				</div>
+<<<<<<< HEAD
 			</div>	
 		</div>
+=======
+			</div>
+		</div>
+
+>>>>>>> BearF
 		<div style="height: 100px;"></div>
 	</div>
 </body>

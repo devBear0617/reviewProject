@@ -94,10 +94,6 @@
 							<td class="td_mypage1">ID</td>
 							<td class="td_mypage2">&nbsp;&nbsp;${user.member_id}</td>
 						</tr>
-<%-- 						<tr>
-							<td class="td_mypage1">PW</td>
-							<td class="td_mypage2">&nbsp;&nbsp;${user.member_pw}</td>
-						</tr> --%>
 						<tr>
 							<td class="td_mypage1">NAME</td>
 							<td class="td_mypage2">&nbsp;&nbsp;${user.member_name}</td>

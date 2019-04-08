@@ -21,6 +21,7 @@
 		<result property="reply_up_date" column="reply_up_date" />
 		
 		<association property="boardVO" column="board_num" select="getBoardInfo" />
+		<association property="memberVO" column="member_id" select="getMember" />
 	</resultMap>
 	
 	<!-- myLike -->
@@ -30,8 +31,24 @@
 		<result property="likeit" column="likeit" />
 		
 		<association property="boardVO" column="board_num" select="getBoardInfo" />
+		<association property="memberVO" column="member_id" select="getMember" />
 	</resultMap>
 	
+	<!-- resultMap Board -->
+	<resultMap id="Board" type="BoardVO">
+		<id property="board_num" column="board_num" />
+		<result property="board_title" column="board_title" />
+		<result property="board_content" column="board_content" />
+		<result property="board_date" column="board_date" />
+		<result property="member_id" column="member_id" />
+		<result property="lemon_grade" column="lemon_grade" />
+		<result property="recommend" column="recommend" />
+		<result property="thumbnail" column="thumbnail"/>
+		<result property="board_up_date" column="board_up_date" />
+		<result property="board_readcount" column="board_readcount" />
+		
+		<association property="memberVO" column="member_id" select="getMember" />	
+	</resultMap>
 
 
 
@@ -110,6 +127,7 @@
 	</select>
 	
 	<!-- myBoard -->
+<<<<<<< HEAD
 	<select id="myBoard" parameterType="map" resultType="BoardVO">
 		SELECT aa.*
 		FROM( SELECT ROWNUM as rnum, a.*
@@ -123,6 +141,10 @@
 	
 	<select id="myBoardCount" parameterType="String" resultType="int">
 		SELECT COUNT(*) 
+=======
+	<select id="myBoard" parameterType="String" resultMap="Board">
+		SELECT *
+>>>>>>> BearF
 		FROM board
 		WHERE member_id = #{member_id}
 	</select>
@@ -183,11 +205,16 @@
 		WHERE member_id = #{member_id}
 	</select>
 	
-	<!-- resultJoin -->
+	<!-- ____resultMap 조인______________________________________________________________________ -->
 	<select id="getBoardInfo" parameterType="int" resultType="BoardVO">
 		SELECT *
 		FROM board
 		WHERE board_num = #{board_num}
+	</select>
+	<select id="getMember" parameterType="String" resultType="MemberVO">
+		SELECT *
+		FROM member
+		WHERE member_id = #{member_id}
 	</select>
 
 </mapper>

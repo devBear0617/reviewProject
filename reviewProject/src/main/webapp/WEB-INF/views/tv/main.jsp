@@ -18,34 +18,5 @@
 	<input type="submit" value="이전">
 </form>
 
-<!-- 테스트 게시판 -->
-
-<%-- <table border="1">
-   <tr>
-      <td>리얼번호</td>
-      <td>번호</td>
-      <td>제목</td>
-      <td>작성자</td>
-      <td>날짜</td>
-   </tr>
-   
-   <c:forEach items="${tvboard_list}" var="board">
-   <tr>
-      <td>${board.board_num}</td>
-      <td>${board.b_tvVO.b_tv_num}</td>
-      <td><a href="/review/tv/content/${board.board_num}">${board.board_title}</a></td>
-      <td>${board.member_id}</td>
-      <td>${board.board_date}</td>
-   </tr>
-   </c:forEach>
-</table>
-
-
-<input type="button" value="new" onclick="location.href='/review/tv/new'">
-
-<br>
-
-<input type="button" value="home" onclick="location.href='/review/'"> --%>
-
 </body>
 </html>

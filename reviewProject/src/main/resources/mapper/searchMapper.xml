@@ -3,8 +3,25 @@
 
 <mapper namespace="com.project.review.dao.SearchDAO">
 	
+	<!-- resultMap Board -->
+	<resultMap id="Board" type="BoardVO">
+		<id property="board_num" column="board_num" />
+		<result property="board_title" column="board_title" />
+		<result property="board_content" column="board_content" />
+		<result property="board_date" column="board_date" />
+		<result property="member_id" column="member_id" />
+		<result property="lemon_grade" column="lemon_grade" />
+		<result property="recommend" column="recommend" />
+		<result property="thumbnail" column="thumbnail"/>
+		<result property="board_up_date" column="board_up_date" />
+		<result property="board_readcount" column="board_readcount" />
+		
+		<association property="memberVO" column="member_id" select="getMember" />	
+	</resultMap>
+	
+	
 	<!-- Movie only search -->
-	<select id="searchTV" parameterType="String" resultType="BoardVO">
+	<select id="searchTV" parameterType="String" resultMap="Board">
 		SELECT *
 		FROM board A,
 			(SELECT board_num FROM board WHERE board_title LIKE '%' ||  #{keyword} || '%'
@@ -33,7 +50,7 @@
 	</select>
 	
 	<!-- Game only search -->
-	<select id="searchGame" parameterType="String" resultType="BoardVO">
+	<select id="searchGame" parameterType="String" resultMap="Board">
 		SELECT *
 		FROM board A,
 			(SELECT board_num FROM board WHERE board_title LIKE '%' ||  #{keyword} || '%'
@@ -62,7 +79,7 @@
 	</select>
 	
 	<!-- Movie - grade desc -->
-	<select id="searchMovie_Grade" parameterType="String" resultType="BoardVO">
+	<select id="searchMovie_Grade" parameterType="String" resultMap="Board">
 		SELECT *
 		FROM board A,
 			(SELECT board_num FROM board WHERE board_title LIKE '%' ||  #{keyword} || '%'
@@ -91,7 +108,7 @@
 	</select>
 	
 	<!-- Movie - like desc -->
-	<select id="searchMovie_likeCount" parameterType="String" resultType="BoardVO">
+	<select id="searchMovie_likeCount" parameterType="String" resultMap="Board">
 		SELECT *
 		FROM board A,
 			(SELECT board_num FROM board WHERE board_title LIKE '%' ||  #{keyword} || '%'
@@ -120,7 +137,7 @@
 	</select>
 	
 	<!-- Movie - title, content -->
-	<select id="searchMovie_titleContent" parameterType="String" resultType="BoardVO">
+	<select id="searchMovie_titleContent" parameterType="String" resultMap="Board">
 		SELECT * 
 		FROM board X, 
 			(SELECT B.board_num FROM board B, board_movie BM WHERE B.board_num=BM.board_num
@@ -133,7 +150,7 @@
 	</select>
 	
 	<!-- Movie - hashtag -->
-	<select id="searchMovie_Hashtag" parameterType="String" resultType="BoardVO">
+	<select id="searchMovie_Hashtag" parameterType="String" resultMap="Board">
 		SELECT *
 		FROM board A,
 			(SELECT BM.board_num FROM board_movie BM, hashtag H WHERE BM.board_num = H.board_num
@@ -158,7 +175,7 @@
 	</select>
 	
 	<!-- Movie - reply -->
-	<select id="searchMovie_ReplyContent" parameterType="String" resultType="BoardVO">
+	<select id="searchMovie_ReplyContent" parameterType="String" resultMap="Board">
 		SELECT *
 		FROM board A, 
 			(SELECT DISTINCT BM.board_num FROM board_movie BM, reply R
@@ -168,7 +185,7 @@
 	</select>
 	
 	<!-- Movie - member -->
-	<select id="searchMovie_Member" parameterType="String" resultType="BoardVO">
+	<select id="searchMovie_Member" parameterType="String" resultMap="Board">
 		SELECT *
 		FROM board_movie BM, board B 
 		WHERE BM.board_num = B.board_num AND B.member_id LIKE '%' || #{keyword} || '%'
@@ -176,7 +193,7 @@
 	</select>
 	
 	<!-- Movie only search -->
-	<select id="searchMovie" parameterType="String" resultType="BoardVO">
+	<select id="searchMovie" parameterType="String" resultMap="Board">
 		SELECT *
 		FROM board A,
 			(SELECT board_num FROM board WHERE board_title LIKE '%' ||  #{keyword} || '%'
@@ -205,7 +222,7 @@
 	</select>
 	
 	<!-- Total search -->
-	<select id="searchTotal" parameterType="String" resultType="BoardVO">
+	<select id="searchTotal" parameterType="String" resultMap="Board">
 		SELECT * 
 		FROM board A,
 				(SELECT board_num FROM board WHERE board_title LIKE '%' ||  #{keyword} || '%'
@@ -231,5 +248,12 @@
 		ORDER BY A.board_num DESC
 	</select>
 	
+	
+	<!-- ____resultMap 조인______________________________________________________________________ -->
+	<select id="getMember" parameterType="String" resultType="MemberVO">
+		SELECT *
+		FROM member
+		WHERE member_id = #{member_id}
+	</select>
 
 </mapper>
