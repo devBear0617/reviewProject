@@ -148,21 +148,17 @@ function already_Board() {
 				<div id="menu"
 					style="background: #F2F2F2; width: 200px; float: left">
 					<h2>메뉴</h2>
-
 					<div class="alreadyWritten_menuBoard"></div>
 					<div class="alreadyWritten_menuReply"></div>
 					<div class="alreadyWritten_menuLike"></div>
-
 				</div>
 
 				<div id="content" style="width: 900px; float: left;">
-
 					<div class="alreadyWritten_Board"></div>
 					<div class="alreadyWritten_Reply"></div>
 					<div class="alreadyWritten_Like"></div>
-
 				</div>
-			</div>	
+			</div>
 		</div>
 		<div style="height: 100px;"></div>
 	</div>

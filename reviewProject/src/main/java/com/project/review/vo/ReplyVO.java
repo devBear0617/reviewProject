@@ -12,6 +12,7 @@ public class ReplyVO {
 	
 	private Board_MovieVO b_movieVO;
 	private BoardVO boardVO;
+	private MemberVO memberVO;
 	//-------------------------
 	public int getReply_num() {
 		return reply_num;
@@ -61,12 +62,19 @@ public class ReplyVO {
 	public void setBoardVO(BoardVO boardVO) {
 		this.boardVO = boardVO;
 	}
+	public MemberVO getMemberVO() {
+		return memberVO;
+	}
+	public void setMemberVO(MemberVO memberVO) {
+		this.memberVO = memberVO;
+	}
 	@Override
 	public String toString() {
 		return "ReplyVO [reply_num=" + reply_num + ", board_num=" + board_num + ", member_id=" + member_id
 				+ ", reply_content=" + reply_content + ", reply_date=" + reply_date + ", reply_up_date=" + reply_up_date
-				+ ", b_movieVO=" + b_movieVO + ", boardVO=" + boardVO + "]";
+				+ ", b_movieVO=" + b_movieVO + ", boardVO=" + boardVO + ", memberVO=" + memberVO + "]";
 	}
+
 	
 	
 }

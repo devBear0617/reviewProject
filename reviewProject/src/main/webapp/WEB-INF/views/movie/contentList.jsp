@@ -47,7 +47,7 @@
 	});
 </script>
 <style type="text/css">
-/* 그리드 레이아웃 자료 : https://www.youtube.com/watch?v=jDD2uMJ_xNg */
+
 .wrapper {
 	display: grid;
 	grid-template-columns: 300px 300px 300px;

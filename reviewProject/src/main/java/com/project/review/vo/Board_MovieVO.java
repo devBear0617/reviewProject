@@ -7,8 +7,7 @@ public class Board_MovieVO {
 	private String sort_id;
 	private int pnum;
 	private int start_content;
-	private int end_content;
-	
+	private int end_content;	
 	
 	public int getB_movie_num() {
 		return b_movie_num;

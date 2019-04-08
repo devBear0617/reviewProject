@@ -20,10 +20,10 @@
 </div>
 	
 	<div class="return_Menu" onclick="spread_Movie()">
-	<h3>Movie <span style="color:red">v</span></h3>
+	<h3><span style="color: #abf200;">Movie </span></h3>
 	</div>
 		<div class="result_Movie_recent" onclick="result_Movie_recent()">
-		<h4>&nbsp; &nbsp; - Most Recent &nbsp; <span style="color:red">v</span></h4>
+		<h4><span style="color: #abf200;">&nbsp; &nbsp; - Most Recent &nbsp; </span></h4>
 		</div>
 		<div class="result_Movie_likeV" onclick="result_Movie_likeV()">
 		<h4>&nbsp; &nbsp; - Most LikeCount</h4>

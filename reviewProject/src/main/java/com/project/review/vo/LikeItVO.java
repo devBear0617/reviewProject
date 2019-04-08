@@ -6,43 +6,43 @@ public class LikeItVO {
 	private int likeit;
 	
 	private BoardVO boardVO;
+	private MemberVO memberVO;
 	//-----------------------------
 	public int getBoard_num() {
 		return board_num;
 	}
-
 	public void setBoard_num(int board_num) {
 		this.board_num = board_num;
 	}
-
 	public String getMember_id() {
 		return member_id;
 	}
-
 	public void setMember_id(String member_id) {
 		this.member_id = member_id;
 	}
-
 	public int getLikeit() {
 		return likeit;
 	}
-
 	public void setLikeit(int likeit) {
 		this.likeit = likeit;
 	}
-
 	public BoardVO getBoardVO() {
 		return boardVO;
 	}
-
 	public void setBoardVO(BoardVO boardVO) {
 		this.boardVO = boardVO;
 	}
-
+	public MemberVO getMemberVO() {
+		return memberVO;
+	}
+	public void setMemberVO(MemberVO memberVO) {
+		this.memberVO = memberVO;
+	}
 	@Override
 	public String toString() {
 		return "LikeItVO [board_num=" + board_num + ", member_id=" + member_id + ", likeit=" + likeit + ", boardVO="
-				+ boardVO + "]";
+				+ boardVO + ", memberVO=" + memberVO + "]";
 	}
+	
 	
 }

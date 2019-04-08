@@ -20,6 +20,9 @@ public interface BoardDAO {
 	public BoardVO getBoardById(int board_num);
 	public List<BoardVO> getBoardList();
 	
+	// Best_movie List
+	public List<BoardVO> getMovieBoardList_Best(Board_MovieVO b_MovieVO);
+	
 	// Movie content List 출력,정렬시 사용 	
 	public List<BoardVO> getMovieBoardList(Board_MovieVO b_MovieVO);
 	
