@@ -595,7 +595,7 @@ input:focus {
 <body>
 
 	<hr width="1100px;">
-	<div style="height: 20px;"></div>
+	<div style="height: 10px;"></div>
 
 	<div class="center">
 		<br>
@@ -603,7 +603,9 @@ input:focus {
 			<div id="con" style="display: inline-block;">
 				<div id="menu">
 					<h2>검색메뉴</h2>
-
+					<div>
+						<hr>
+					</div>
 					<div class="menu_Form"></div>
 					<div class="menu_Movie_V"></div>
 					<div class="menu_Movie_memberV"></div>
