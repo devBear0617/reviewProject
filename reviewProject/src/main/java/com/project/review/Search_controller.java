@@ -326,9 +326,7 @@ public class Search_controller {
 	
 	@RequestMapping(value="/searchResult", method=RequestMethod.POST)
 	public String searchResultTotal(HttpServletRequest request, HttpSession session, Model model) throws UnsupportedEncodingException {
-		
 		String keyword = request.getParameter("keyword");
-		System.out.println("111"+keyword);
 		keyword = keyword.trim();	
 		String key =  URLEncoder.encode(keyword, "UTF-8");
 
@@ -340,7 +338,5 @@ public class Search_controller {
 		
 		return "share/search";
 	}
-	
-	
 }
 
