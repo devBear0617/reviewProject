@@ -650,15 +650,8 @@ td {
 						style="width: 97px; height: 30px; background: linear-gradient(to left, #ffe400, #abf200); border-radius: 10px; border-style: none; margin-right: 5px;">
 				</div>
 				<div style="float: left;">
-<<<<<<< HEAD
 					<input type="hidden" name="address" value="${address}">
 					<input type="button" value="뒤로" onclick="backBT()">
-=======
-					<!-- <input type="reset" value="취소"
-						style="width: 97px; height: 30px; background: linear-gradient(to left, #ffe400, #abf200); border-radius: 10px; border-style: none;"> -->
-					<input type="hidden" name="address" value="${address}"> <input
-						type="button" value="뒤로" onclick="backBT()">
->>>>>>> Min02
 				</div>
 			</div>
 		</form>
