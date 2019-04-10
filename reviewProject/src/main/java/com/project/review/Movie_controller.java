@@ -4,9 +4,10 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -69,17 +70,14 @@ public class Movie_controller {
 	@RequestMapping(value = "/moreCaMovie")
 	public String moreCaMovie(String de_ca_type, String cd, String nm, int pnum, Model model) {
 		Pagination pagination = new Pagination();
-		pagination.setPage(pnum, 90000);
+		
+		List<String> movieNmList = movieService.getCaMovieList(de_ca_type, cd, nm, pnum);
+		pagination.setPage(pnum,1000);
+		//pagination.setPage(pnum, movieNmList.size());
 
-		Map<String, Object> moiveMap = movieService.getCaMovieList(de_ca_type, cd, nm, pnum);
-		
-		List<String> movieCd = ((List<String>) moiveMap.get("cd"));
-		List<String> movieNm = ((List<String>) moiveMap.get("nm"));
-		
-		model.addAttribute("movieCd", movieCd);
-		model.addAttribute("movieNm", movieNm);
+		model.addAttribute("movieNmList", movieNmList);
 		model.addAttribute("pagination", pagination);
-
+		
 		return "movie/detail_category3";
 	}
 
@@ -101,12 +99,9 @@ public class Movie_controller {
 			return "movie/nullPage";
 		
 		Pagination pagination = new Pagination();
-		
-		//pagination.setCurPage(b_movieVO.getPnum());
 		pagination.setPage(b_movieVO.getPnum(), board_list.size());
 	
 		model.addAttribute("sort_id", sort_id);		
-		
 		model.addAttribute("board_list", board_list);
 		model.addAttribute("pagination", pagination);
 		
@@ -163,7 +158,6 @@ public class Movie_controller {
 	// >> 게시글 작성 폼 (진입)----------------------------------
 	@RequestMapping(value = "/movie_writeForm")
 	public String movie_writeFrom(Model model, HttpSession session, HttpServletRequest request) {
-		
 		String user_id = (String) session.getAttribute("member_id");
 		if (user_id != null) {
 			MemberVO user = memberService.MemberInfo(user_id);
@@ -171,7 +165,6 @@ public class Movie_controller {
 		}
 		
 		String referer = request.getHeader("Referer");
-		System.out.println(referer);
 		model.addAttribute("address", referer);
 
 		return "movie/movie_writeForm";
@@ -187,7 +180,6 @@ public class Movie_controller {
 			String member_pic = memberService.getMember_pic(member_id);
 			model.addAttribute("member_pic", member_pic);
 		}
-		
 		// 게시글 추가 서비스
 		movieService.insertMovie(board, movie, grade, hash, movieApiVO, member_id);
 
@@ -286,7 +278,6 @@ public class Movie_controller {
 		int replyCount = movieService.replyCount(board_num);
 		model.addAttribute("replyCount", replyCount);
 		
-		// +readCount
 		movieService.plusReadCount(board_num);
 		
 		// 썸네일 확인
@@ -320,9 +311,7 @@ public class Movie_controller {
 	// 댓글 입력------------------------------------------------------
 	@RequestMapping(value = "/detail_view/{board_num}/reply", method = RequestMethod.POST)
 	public String postReply(@PathVariable int board_num, ReplyVO replyVO, HttpSession session) {
-		// ID session
 		String member_id = (String) session.getAttribute("member_id");
-
 		movieService.insertReply(replyVO, member_id);
 
 		return "redirect:/movie/detail_view/" + board_num + "/reply";
@@ -388,7 +377,6 @@ public class Movie_controller {
 	@RequestMapping(value = "/detail_view/{board_num}/likeItP", method = RequestMethod.POST)
 	public String postLikeitP(@PathVariable int board_num, HttpServletRequest request, HttpSession session, Model model,
 			LikeItVO likeVO) {
-		// ID session
 		String member_id = (String) session.getAttribute("member_id");
 
 		movieService.likeItPlus(likeVO, board_num, member_id);

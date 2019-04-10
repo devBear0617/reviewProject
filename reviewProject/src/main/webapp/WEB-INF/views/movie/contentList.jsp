@@ -3,51 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript"
 	src="/review/resources/script/jquery-3.3.1.min.js"></script>
-<script type="text/javascript">
-	var movie_nm = $('.movieinfo_2').html();
-	console.log("contentList.jsp / movie_nm : " + movie_nm);
-	function fn_paging(pnum) {
-		$.ajax({
-			type : 'POST',
-			url : "./oneContentView",
-			data : {
-				'pnum' : pnum,
-				'movie_nm' : movie_nm,
-				'start_content' : 0,
-				'end_content' : 9
-			},
-			success : function(html) {
-				$('.contentList').empty();
-				$('.contentList').append(html);
-			},
-			error : function(error) {
-				console.log(error);
-			}
-		})
-	}
-	$('.sort').click(function() {
-		console.log("contentList.jsp / sort click / movie_nm :" + movie_nm);
-		var data = {
-			'sort_id' : $(this).attr('id'),
-			'movie_nm' : movie_nm,
-			'start_content' : 0,
-			'end_content' : 9
-		}
-		$.ajax({
-			type : "POST",
-			url : "./oneContentView",
-			cache : false,
-			data : data,
-			success : function(html) {
-				$('.contentList').empty();
-				$('.contentList').append(html);
-
-			}
-		});
-	});
-</script>
+<script type="text/javascript" src="/review/resources/script/pagenation.js"></script>
+<script type="text/javascript" src="/review/resources/script/mr_sort.js"></script>
 <style type="text/css">
-
 .wrapper {
 	display: grid;
 	grid-template-columns: 300px 300px 300px;
@@ -158,23 +116,24 @@
 <div class="paging">
 	<c:if test="${pagination.startPage ne 0}">
 		<c:if test="${pagination.prevPage ne 0}">
-			<a href="#" onClick="fn_paging('${pagination.prevPage}')">[이전]</a>
+			<a href="#" onClick="fn_mr_paging('${pagination.prevPage}')">[이전]</a>
 		</c:if>
 		<c:forEach var="pnum" begin="${pagination.startPage}"
 			end="${pagination.endPage}">
 			<c:choose>
 				<c:when test="${pnum eq  pagination.curPage}">
-					<span style="font-weight: bold;"><a href="#"
-						onClick="fn_paging('${pnum}')">${pnum}</a></span>
+					<span style="font-weight: bold;">
+						<a href="#" onClick="fn_mr_paging('${pnum}')">${pnum}</a>
+					</span>
 				</c:when>
 				<c:otherwise>
-					<a href="#" onClick="fn_paging('${pnum}')">${pnum}</a>
+					<a href="#" onClick="fn_mr_paging('${pnum}')">${pnum}</a>
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
 		<c:if
 			test="${pagination.curPage ne pagination.pageCnt && pagination.pageCnt > 0}">
-			<a href="#" onClick="fn_paging('${pagination.nextPage}')">[다음]</a>
+			<a href="#" onClick="fn_mr_paging('${pagination.nextPage}')">[다음]</a>
 		</c:if>
 	</c:if>
 </div>

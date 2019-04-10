@@ -6,28 +6,19 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-
-<!-- tui-editor -->
-<script src="resources/tui-editor/jquery/dist/jquery.js"></script>
-<script src='resources/tui-editor/markdown-it/dist/markdown-it.js'></script>
-<script src="resources/tui-editor/to-mark/dist/to-mark.js"></script>
-<script
-	src="resources/tui-editor/tui-code-snippet/dist/tui-code-snippet.js"></script>
-<script src="resources/tui-editor/codemirror/lib/codemirror.js"></script>
-<script src="resources/tui-editor/highlightjs/highlight.pack.js"></script>
-<script src="resources/tui-editor/squire-rte/build/squire-raw.js"></script>
-<link rel="stylesheet"
-	href="resources/tui-editor/codemirror/lib/codemirror.css">
-<link rel="stylesheet"
-	href="resources/tui-editor/highlightjs/styles/github.css">
-
-<!-- autoComplete -->
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"
-	type="text/javascript"></script>
-<link
-	href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css"
-	rel="stylesheet" type="text/css" />
+<script src="/review/resources/tui-editor/jquery/dist/jquery.js"></script>
+<script src='/review/resources/tui-editor/markdown-it/dist/markdown-it.js'></script>
+<script src="/review/resources/tui-editor/to-mark/dist/to-mark.js"></script>
+<script src="/review/resources/tui-editor/tui-code-snippet/dist/tui-code-snippet.js"></script>
+<script src="/review/resources/tui-editor/codemirror/lib/codemirror.js"></script>
+<script src="/review/resources/tui-editor/highlightjs/highlight.pack.js"></script>
+<script src="/review/resources/tui-editor/squire-rte/build/squire-raw.js"></script>
+<link rel="stylesheet" href="/review/resources/tui-editor/codemirror/lib/codemirror.css">
+<link rel="stylesheet" href="/review/resources/tui-editor/highlightjs/styles/github.css">
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/review/resources/script/movieAutocomplete.js"></script>
+<link rel="stylesheet" href="resources/css/star.css">
 <style>
 .ui-autocomplete {
 	overflow-y: scroll;
@@ -75,58 +66,10 @@ td {
 	background-color: white;
 }
 </style>
-
-<!-- Grade1~4 Star CSS -->
-<link rel="stylesheet" href="resources/css/star.css">
-
 <script type="text/javascript">
-	$(document).ready(
-			function() {
-				$("#movie_nm").autocomplete(
-						{
-							minLength : 1,
-							delay : 30,
-							source : function(request, response) {
-								$.ajax({
-									url : "/review/movie/autocomplete",
-									type : "post",
-									dataType : "json",
-									data : {
-										movie_nm : request.term
-									},
-									success : function(data) {
-										response($.map(data, function(item) {
-											item.title = item.title.replace(
-													/<b>/gi, "").replace(
-													/<\/b>/gi, "");
-											return {
-												label : item.title,
-												value : item.title,
-												director : item.director,
-												actor : item.actor,
-												poster : item.image
-											};
-										}))
-									},
-									error : function(data) {
-										console.log("에러");
-									}
-								});
-							},
-							focus : function(event, ui) {
-								return false;
-							},
-							select : function(event, ui) {
-								$("#movie_poster").attr("src", ui.item.poster);
-								$("#movie_poster").show();
-								$("#poster").val(ui.item.poster);
-								$("#director").val(ui.item.director);
-								$("#actor").val(ui.item.actor);
-							}
-						});
-			});
-
-	//grade_name 미선택시  grade_radio 숨기기
+	$( document ).ready(function() {
+		movieAutocomplete();
+	})
 	$(document).ready(
 			function() {
 				var grade_name1 = $("#grade_name1").val(), 
@@ -147,118 +90,114 @@ td {
 					$("#on_off_grade4").css('visibility', 'hidden');
 				}
 			});
-
-	// grade_name선택시  grade값 초기화 , grade_name중복불가 
-	$(document).ready(
+	$(document).ready(function() {
+		var $select = $("select");
+	
+		$select.on("change",
 			function() {
-				var $select = $("select");
-
-				$select.on("change",
-								function() {
-									//grade 값 초기화 
-									var id = this.id
-									if (id == "grade_name1") {
-										$("#on_off_grade1").css('visibility',
-												'visible');
-										$(":radio[name='grade1']").prop(
-												"checked", false);
-									} else if (id == "grade_name2") {
-										$("#on_off_grade2").css('visibility',
-												'visible');
-										$(":radio[name='grade2']").prop(
-												"checked", false);
-									} else if (id == "grade_name3") {
-										$("#on_off_grade3").css('visibility',
-												'visible');
-										$(":radio[name='grade3']").prop(
-												"checked", false);
-									} else {
-										$("#on_off_grade4").css('visibility',
-												'visible');
-										$(":radio[name='grade4']").prop(
-												"checked", false);
-									}
-
-									//lemon_grade 재계산
-									var grade1 = parseInt($(
-											':radio[name="grade1"]:checked')
-											.val()), grade2 = parseInt($(
-											':radio[name="grade2"]:checked')
-											.val()), grade3 = parseInt($(
-											':radio[name="grade3"]:checked')
-											.val()), grade4 = parseInt($(
-											':radio[name="grade4"]:checked')
-											.val());
-
-									grade1 = (!grade1) ? 0 : grade1;
-									grade2 = (!grade2) ? 0 : grade2;
-									grade3 = (!grade3) ? 0 : grade3;
-									grade4 = (!grade4) ? 0 : grade4;
-
-									var selected1 = $("option:selected",
-											$("#grade_name1"));
-									if (selected1.parent()[0].id == "bad1") {
-										grade1 = 25 - grade1;
-									}
-
-									var selected2 = $("option:selected",
-											$("#grade_name2"));
-									if (selected2.parent()[0].id == "bad2") {
-										grade2 = 25 - grade2;
-									}
-
-									var selected3 = $("option:selected",
-											$("#grade_name3"));
-									if (selected3.parent()[0].id == "bad3") {
-										grade3 = 25 - grade3;
-									}
-
-									var selected4 = $("option:selected",
-											$("#grade_name4"));
-									if (selected4.parent()[0].id == "bad4") {
-										grade4 = 25 - grade4;
-									}
-
-									$("#lemon_grade").val(
-											grade1 + grade2 + grade3 + grade4);
-									var value = $("#lemon_grade").val();
-									if(value >= 80){
-										$("#lemon_grade_img").attr("src", "/review/movie/resources/image/REMON_grade_1.png");
-										$('.lemon_grade_name').html("달콤한 레몬");
-									}else if(value >= 60){
-										$("#lemon_grade_img").attr("src", "/review/movie/resources/image/REMON_grade_2.png");										
-										$('.lemon_grade_name').html("새콤한 레몬");
-									}else if(value >= 40){
-										$("#lemon_grade_img").attr("src", "/review/movie/resources/image/REMON_grade_3.png");										
-										$('.lemon_grade_name').html("신맛 레몬");
-									}else if(value >= 20){
-										$("#lemon_grade_img").attr("src", "/review/movie/resources/image/REMON_grade_4.png");									
-										$('.lemon_grade_name').html("씁쓸한 레몬");
-									}else {
-										$("#lemon_grade_img").attr("src", "/review/movie/resources/image/REMON_grade_5.png");										
-										$('.lemon_grade_name').html("썩은 레몬");
-									}
-									$('.total_value').html(value);
-									//----- lemon_grade 재계산 끝, select 중복방지 처리 시작 
-
-									var selected = [];
-									$.each($select, function(index, select) {
-										if (select.value !== "") {
-											selected.push(select.value);
-										}
-									});
-									$("option").prop("disabled", false);
-									for ( var index in selected) {
-										$(
-												'option[value="'
-														+ selected[index]
-														+ '"]').prop(
-												"disabled", true);
-									}
-								});
+				//grade 값 초기화 
+				var id = this.id
+				if (id == "grade_name1") {
+					$("#on_off_grade1").css('visibility',
+							'visible');
+					$(":radio[name='grade1']").prop(
+							"checked", false);
+				} else if (id == "grade_name2") {
+					$("#on_off_grade2").css('visibility',
+							'visible');
+					$(":radio[name='grade2']").prop(
+							"checked", false);
+				} else if (id == "grade_name3") {
+					$("#on_off_grade3").css('visibility',
+							'visible');
+					$(":radio[name='grade3']").prop(
+							"checked", false);
+				} else {
+					$("#on_off_grade4").css('visibility',
+							'visible');
+					$(":radio[name='grade4']").prop(
+							"checked", false);
+				}
+	
+				//lemon_grade 재계산
+				var grade1 = parseInt($(
+						':radio[name="grade1"]:checked')
+						.val()), grade2 = parseInt($(
+						':radio[name="grade2"]:checked')
+						.val()), grade3 = parseInt($(
+						':radio[name="grade3"]:checked')
+						.val()), grade4 = parseInt($(
+						':radio[name="grade4"]:checked')
+						.val());
+	
+				grade1 = (!grade1) ? 0 : grade1;
+				grade2 = (!grade2) ? 0 : grade2;
+				grade3 = (!grade3) ? 0 : grade3;
+				grade4 = (!grade4) ? 0 : grade4;
+	
+				var selected1 = $("option:selected",
+						$("#grade_name1"));
+				if (selected1.parent()[0].id == "bad1") {
+					grade1 = 25 - grade1;
+				}
+	
+				var selected2 = $("option:selected",
+						$("#grade_name2"));
+				if (selected2.parent()[0].id == "bad2") {
+					grade2 = 25 - grade2;
+				}
+	
+				var selected3 = $("option:selected",
+						$("#grade_name3"));
+				if (selected3.parent()[0].id == "bad3") {
+					grade3 = 25 - grade3;
+				}
+	
+				var selected4 = $("option:selected",
+						$("#grade_name4"));
+				if (selected4.parent()[0].id == "bad4") {
+					grade4 = 25 - grade4;
+				}
+	
+				$("#lemon_grade").val(
+						grade1 + grade2 + grade3 + grade4);
+				var value = $("#lemon_grade").val();
+				if(value >= 80){
+					$("#lemon_grade_img").attr("src", "/review/movie/resources/image/REMON_grade_1.png");
+					$('.lemon_grade_name').html("달콤한 레몬");
+				}else if(value >= 60){
+					$("#lemon_grade_img").attr("src", "/review/movie/resources/image/REMON_grade_2.png");										
+					$('.lemon_grade_name').html("새콤한 레몬");
+				}else if(value >= 40){
+					$("#lemon_grade_img").attr("src", "/review/movie/resources/image/REMON_grade_3.png");										
+					$('.lemon_grade_name').html("신맛 레몬");
+				}else if(value >= 20){
+					$("#lemon_grade_img").attr("src", "/review/movie/resources/image/REMON_grade_4.png");									
+					$('.lemon_grade_name').html("씁쓸한 레몬");
+				}else {
+					$("#lemon_grade_img").attr("src", "/review/movie/resources/image/REMON_grade_5.png");										
+					$('.lemon_grade_name').html("썩은 레몬");
+				}
+				$('.total_value').html(value);
+				//----- lemon_grade 재계산 끝, select 중복방지 처리 시작 
+	
+				var selected = [];
+				$.each($select, function(index, select) {
+					if (select.value !== "") {
+						selected.push(select.value);
+					}
+				});
+				$("option").prop("disabled", false);
+				for ( var index in selected) {
+					$(
+							'option[value="'
+									+ selected[index]
+									+ '"]').prop(
+							"disabled", true);
+				}
 			});
+	});
 
-	//개별점수 책정시 계산해서 총합점수 출력 
 	$(document).ready(
 			function() {
 				$(".rating")
@@ -326,7 +265,6 @@ td {
 									$('.total_value').html(value);
 								});
 			});
-
 	function backBT() {
 		window.history.back();
 	}
@@ -367,31 +305,22 @@ td {
 					<td colspan="2">
 						<div>
 							<div>
-								<!-- tui-editor input -->
 								<input type="hidden" name="board_content" id="board_content">
 							</div>
 							<!-- tui-editor view -->
 							<div class="code-html">
-								<script
-									src="resources/tui-editor/tui-color-picker/dist/tui-color-picker.js"></script>
-								<script
-									src="resources/tui-editor/tui-editor/dist/tui-editor-Editor.js"></script>
-								<script
-									src="resources/tui-editor/tui-editor/dist/tui-editor-extColorSyntax.js"></script>
-								<link rel="stylesheet"
-									href="resources/tui-editor/tui-editor/dist/tui-editor.css">
-								<link rel="stylesheet"
-									href="resources/tui-editor/tui-editor/dist/tui-editor-contents.css">
-								<link rel="stylesheet"
-									href="resources/tui-editor/tui-color-picker/dist/tui-color-picker.css">
-
+								<script src="/review/resources/tui-editor/tui-color-picker/dist/tui-color-picker.js"></script>
+								<script src="/review/resources/tui-editor/tui-editor/dist/tui-editor-Editor.js"></script>
+								<script src="/review/resources/tui-editor/tui-editor/dist/tui-editor-extColorSyntax.js"></script>
+								<link rel="stylesheet" href="/review/resources/tui-editor/tui-editor/dist/tui-editor.css">
+								<link rel="stylesheet" href="/review/resources/tui-editor/tui-editor/dist/tui-editor-contents.css">
+								<link rel="stylesheet" href="/review/resources/tui-editor/tui-color-picker/dist/tui-color-picker.css">
 								<div id="editSection"></div>
 							</div>
 							<script class="code-js">
 								var editor = new tui.Editor(
 										{
-											el : document
-													.querySelector('#editSection'),
+											el : document.querySelector('#editSection'),
 											initialEditType : 'wysiwyg',
 											height : '700px',
 											exts : [ 'colorSyntax' ]

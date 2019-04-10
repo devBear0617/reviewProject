@@ -6,8 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript"
-	src="/review/resources/script/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/review/resources/script/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		var data = {
@@ -106,9 +105,6 @@
 	<div>
 		<jsp:include page="/WEB-INF/views/movie/detail_category.jsp" />
 	</div>
-	<!-- 카테고리 바 -->
-	
-
 	<!-- content -->
 	<div class="center">
 		<div class="movie_info"></div>
@@ -142,5 +138,4 @@
 	<jsp:include page="/WEB-INF/views/share/footer.jsp" />
 </div>
 </body>
-
 </html>

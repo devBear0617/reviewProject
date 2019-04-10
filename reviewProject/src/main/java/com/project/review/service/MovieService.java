@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.project.review.vo.BoardVO;
 import com.project.review.vo.Board_MovieVO;
 import com.project.review.vo.CategoryVO;
@@ -64,7 +65,5 @@ public interface MovieService {
 	
 	//Category
 	public List<CategoryVO> getCategory(String ca_type);
-	//public Map<String, Object> getCategory(String ca_type);
-	public Map<String, Object> getCaMovieList(String ca_type, String cd, String nm, int pnum);
-	//public Map<String, Object> getCategory2(String category_type);
+	public List<String> getCaMovieList(String ca_type, String cd, String nm, int pnum);
 }

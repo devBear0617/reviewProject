@@ -42,5 +42,8 @@
 		<property name="mapperInterface" value="com.project.review.dao.SearchDAO" />
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>
-	
+	<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+	    <property name="defaultErrorView" value="share/error" />
+	    <property name="defaultStatusCode" value="200" />
+	</bean>
 </beans>

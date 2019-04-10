@@ -14,12 +14,7 @@ $(document).ready(function() {
 		$($(this).attr("data-target")).submit();
 	});
 });
-
 var link = document.location.href; 
-console.log(link);
-
-var link = document.location.href; 
-console.log(link);
 function addSender() {
 	sessionStorage.setItem("address", link);
 };

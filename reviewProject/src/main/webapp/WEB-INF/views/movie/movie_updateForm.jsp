@@ -29,6 +29,7 @@
 <link
 	href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css"
 	rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/review/resources/script/movieAutocomplete.js"></script>
 <style>
 .ui-autocomplete {
 	overflow-y: scroll;
@@ -81,58 +82,12 @@ td {
 	background-color: white;
 }
 </style>
-
-<!-- Grade1~4 Star CSS -->
 <link rel="stylesheet" href="../resources/css/star.css">
-
 <script type="text/javascript">
-	$(document).ready(
-			function() {
-				$("#movie_nm").autocomplete(
-						{
-							minLength : 1,
-							delay : 30,
-							source : function(request, response) {
-								$.ajax({
-									url : "../autocomplete",
-									type : "post",
-									dataType : "json",
-									data : {
-										movie_nm : request.term
-									},
-									success : function(data) {
-										response($.map(data, function(item) {
-											item.title = item.title.replace(
-													/<b>/gi, "").replace(
-													/<\/b>/gi, "");
-											return {
-												label : item.title,
-												value : item.title,
-												director : item.director,
-												actor : item.actor,
-												poster : item.image
-											};
-										}))
-									},
-									error : function(data) {
-										console.log("에러");
-									}
-								});
-							},
-							focus : function(event, ui) {
-								return false;
-							},
-							select : function(event, ui) {
-								$("#movie_poster").attr("src", ui.item.poster);
-								$("#movie_poster").show();
-								$("#poster").val(ui.item.poster);
-								$("#director").val(ui.item.director);
-								$("#actor").val(ui.item.actor);
-							}
-						});
-			});
-
 	//radio,select 기존 값 checked
+	$( document ).ready(function() {
+		movieAutocomplete();
+	})
 	$(document).ready(
 			function() {
 				$(

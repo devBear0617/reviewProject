@@ -1,26 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <script type="text/javascript" src="/review/resources/script/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/review/resources/script/category.js"></script>
 <script type="text/javascript">
-	function moreCategory(e) {
-		var data = {
-			'category_type' : $(e).attr('class')
-		};
-
-		console.log($(e).attr('class'));
-		$.ajax({
-			type : 'POST',
-			url : "./moreCategory",
-			data : data,
-			success : function(html) {
-				$('.detail_category').empty();
-				$('.detail_category').append(html);
-			},
-			error : function(error) {
-				console.log(error);
-			}
-		});
-	}
-	
 $( document ).ready(function() {
 	var idx0 = $('.cg_img_nation');
 	moreCategory(idx0);
@@ -66,20 +47,23 @@ img[class^="cg_img"] {
 	<table class="table_st">
 		<tr>
 			<td>
-				<img class="cg_img_actor" 
+				<img class="cg_img_director" 
 				src="/review/resources/image/REMON_category_director.png" onclick="moreCategory(this)">
 			</td>
 			<td>
-				<img class="cg_img_director" 
+				<img class="cg_img_actor" 
 				src="/review/resources/image/REMON_category_actor.png" onclick="moreCategory(this)">
 			</td>
-			<td><img class="cg_img_open_dt"
+			<td>
+				<img class="cg_img_open_dt"
 				src="/review/resources/image/REMON_category_new.png" onclick="moreCategory(this)">
 			</td>
-			<td><img class="cg_img_movie_type"
+			<td>
+				<img class="cg_img_movie_type"
 				src="/review/resources/image/REMON_category_type.png" onclick="moreCategory(this)">
 			</td>
-			<td><img class="cg_img_nation"
+			<td>
+				<img class="cg_img_nation"
 				src="/review/resources/image/REMON_category_country.png" onclick="moreCategory(this)">
 			</td>
 		</tr>

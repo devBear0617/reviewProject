@@ -25,6 +25,7 @@ public class Pagination {
 			setDisplayIdx(((curPage-1)%pScale)*10);
 			setStartPage(sp);
 			setNextPage(sp+pScale);
+			setPageCnt(size/10+1-sp);
 			
 			if (size/10+1<sp+4) 
 				if(size%10==0){

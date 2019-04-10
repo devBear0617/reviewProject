@@ -3,11 +3,9 @@ package com.project.review.service;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -16,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import com.project.review.dao.BoardDAO;
 import com.project.review.dao.MovieApiDAO;
 import com.project.review.vo.BoardVO;
@@ -222,21 +219,21 @@ public class MovieServiceImpl implements MovieService {
 	
 	@Override
 	public JsonArray searchMovie(String movie_nm) {
-		
-		return movieApiDAO.getMovieArray(movie_nm);
+		return movieApiDAO.getNaverMovieArray(movie_nm);
+	}
+
+	@Override
+	public MovieApiVO getMovieInfo(String movie_nm) {
+		return boardDAO.getMovieInfo(movie_nm);
 	}
 	
 	@Override
 	public void setMovieApi(MovieApiVO movieApiVO) {
-		String isMoiveNm = null;
-		try {
-			isMoiveNm = getMovieInfo(movieApiVO.getMovie_nm()).getMovie_nm();
-		} catch (Exception e) {
-			System.out.println("isMoiveNm : "+e);
-		}
+		Optional<MovieApiVO> opt = Optional.ofNullable(getMovieInfo(movieApiVO.getMovie_nm()));
 		
-		if (isMoiveNm == null) {
-			MovieApiVO movieInfo = movieApiDAO.getMovieApi(movieApiVO, true);
+		if (!opt.isPresent()) {
+			MovieApiVO movieInfo = movieApiDAO.contactMovieApi(movieApiVO, true);
+			
 			if (movieInfo != null)
 				boardDAO.insertMovieInfo(movieInfo);
 			else 
@@ -245,35 +242,16 @@ public class MovieServiceImpl implements MovieService {
 	}
 	
 	@Override
-	public MovieApiVO getMovieInfo(String movie_nm) {
-		
-		return boardDAO.getMovieInfo(movie_nm);
-	}
-	
-	@Override
 	public MovieApiVO getMovie(MovieApiVO movieApiVO) {
-		String isMoiveNm = null;
-		
-		try {
-			isMoiveNm = getMovieInfo(movieApiVO.getMovie_nm()).getMovie_nm();
-		} catch (Exception e) {
-			System.out.println("isMoiveNm : "+e);
-			isMoiveNm = null;
-		}
+		Optional<MovieApiVO> opt = Optional.ofNullable(getMovieInfo(movieApiVO.getMovie_nm()));
 
-		if (isMoiveNm == null) {
-			movieApiVO = movieApiDAO.getMovieApi(movieApiVO, false);
-			JsonArray jsonArray = searchMovie(movieApiVO.getMovie_nm());
-			
-			if (jsonArray.size() != 0) {
-				JsonObject object = (JsonObject) jsonArray.get(0);
-				movieApiVO.setDirector(object.get("director").getAsString());
-				movieApiVO.setActor(object.get("actor").getAsString());
-				movieApiVO.setPoster(object.get("image").getAsString());
-			}
+		if (!opt.isPresent()) {
+			movieApiVO = movieApiDAO.contactMovieApi(movieApiVO, false);
+			JsonArray moiveArray = searchMovie(movieApiVO.getMovie_nm());
+
+			movieApiVO = movieApiDAO.contactNMovieApi(moiveArray, movieApiVO);
 			boardDAO.insertMovieInfo(movieApiVO);
-		}
-		else
+		}else
 			movieApiVO = getMovieInfo(movieApiVO.getMovie_nm());
 		
 		return movieApiVO;
@@ -281,31 +259,24 @@ public class MovieServiceImpl implements MovieService {
 
 	@Override
 	public List<CategoryVO> getCategory(String category_type) {
-		if (!category_type.equals(null)) 
-			category_type = category_type.split("cg_img_")[1];
-		
+		category_type = category_type.split("cg_img_")[1];
 		List<CategoryVO> category = boardDAO.getCategory(category_type);
 		
 		return category;
 	}
 
 	@Override
-	public Map<String, Object> getCaMovieList(String ca_type, String cd, String nm, int pnum) {
+	public List<String> getCaMovieList(String ca_type, String cd, String nm, int pnum) {
 		if (ca_type.equals("actor") || ca_type.equals("director")) {
-			Map<String, Object> map = new HashMap<String, Object>();
-			List<String> list = movieApiDAO.getCaPeople1(nm, pnum);
-			map.put("cd", list);
-			map.put("nm", list);
+			List<String> movieList = movieApiDAO.getCaPeopleMNmList(nm, pnum);
+			movieList.subList(pnum/10, pnum/10+(movieList.size()-1)%10);
 			
-			return map;
+			return movieList;
 		}
-		if (ca_type.equals("openDt") && cd.equals("-1")) {
-			Map<String, Object> map = new HashMap<String, Object>();
+		if (ca_type.equals("open_dt") && cd.equals("-1")) {
 			String date = LocalDate.now().minusWeeks(1).format(DateTimeFormatter.BASIC_ISO_DATE);
-			map = movieApiDAO.getMap(date);
-			
-			return map;
+			return movieApiDAO.getCaRecentMNmList(date);
 		}
-		return movieApiDAO.getCaMovieArray(ca_type, cd, pnum);
+		return movieApiDAO.getCaMNmList(ca_type, cd, pnum);
 	}
 }

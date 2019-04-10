@@ -16,7 +16,6 @@ $(document).ready(function() {
 });
 
 var link = document.location.href; 
-console.log(link);
 function addSender() {
 	sessionStorage.setItem("address", link);
 };
@@ -55,7 +54,7 @@ input:focus {
 					<div class="logo"
 						style="float: left; margin-top: 10px; margin-left: 20px;">
 						<a href="/review"><img alt="REMON_LOGO"
-							src="/review/movie/resources/image/REMON_logo(white_bigsize).png"
+							src="/review/resources/image/REMON_logo(white_bigsize).png"
 							style="height: 50px;"></a>
 					</div>
 				</td>
@@ -75,11 +74,11 @@ input:focus {
 					<div style="float: right; margin-top: 10px; margin-right: 20px;">
 						<c:if test="${empty sessionScope.member_id}">
 							<a href="/review/mypage/join"  onclick="addSender();"><img alt="REMON_LOGO"
-								src="/review/movie/resources/image/REMON_Join_icon(white).png"
+								src="/review/resources/image/REMON_Login_icon(white).png"
 								style="height: 50px;"></a>
 							<a href="/review/mypage/login" onclick="addSender();">
 								<img alt="REMON_LOGO"
-									src="/review/movie/resources/image/REMON_Login_icon(white).png"
+									src="/review/resources/image/REMON_Login_icon(white).png"
 									style="height: 50px;">
 							</a>
 						</c:if>
@@ -88,12 +87,12 @@ input:focus {
 
 							<div style="float: left; margin-left: 10px;">
 								<a href="/review/mypage/logout"><img alt="REMON_LOGO"
-									src="/review/movie/resources/image/REMON_Logout_icon(white).png"
+									src="/review/resources/image/REMON_Login_icon(white).png"
 									style="height: 50px;"></a>
 							</div>
 							<div style="float: left; margin-left: 10px;">
 								<a href="/review/mypage/mypageCheck"><img alt="USER_PIC"
-									src="/review/movie/resources/memberImage/${user.member_pic}"
+									src="/review/resources/memberImage/${user.member_pic}"
 									style="height: 50px; width: 50px; border-radius: 50px;"></a>
 							</div>
 						</div>

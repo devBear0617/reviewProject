@@ -18,7 +18,6 @@
 <script type="text/javascript" src="/review/resources/script/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 var link = document.location.href; 
-console.log(link);
 function addSender() {
 	sessionStorage.setItem("address", link);
 };

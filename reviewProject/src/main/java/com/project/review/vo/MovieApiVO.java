@@ -1,6 +1,9 @@
 package com.project.review.vo;
 
 public class MovieApiVO {
+	private String movieCd;
+	private String movieNm;
+	
 	private String movie_cd;
 	private String movie_nm;
 	private String open_dt;
@@ -10,6 +13,19 @@ public class MovieApiVO {
 	private String actor;
 	private String poster;
 	
+	public String getMovieCd() {
+		return movieCd;
+	}
+	public void setMovieCd(String movieCd) {
+		this.movieCd = movieCd;
+	}
+	public String getMovieNm() {
+		return movieNm;
+	}
+	public void setMovieNm(String movieNm) {
+		this.movieNm = movieNm;
+	}
+
 	public String getMovie_cd() {
 		return movie_cd;
 	}

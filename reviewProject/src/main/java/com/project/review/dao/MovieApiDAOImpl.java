@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -69,7 +70,7 @@ public class MovieApiDAOImpl implements MovieApiDAO{
 	}
 	
 	@Override
-	public JsonArray getMovieArray(String movieNm) {
+	public JsonArray getNaverMovieArray(String movieNm) {
 		JsonArray jsonArray = null;
 		
 		try {
@@ -85,19 +86,26 @@ public class MovieApiDAOImpl implements MovieApiDAO{
 	}
 	
 	@Override
-	public MovieApiVO getMovieApi(MovieApiVO movieApiVO, Boolean isDirector) {
+	public MovieApiVO contactNMovieApi(JsonArray jsonArray, MovieApiVO movieApiVO) {
+		Optional<JsonArray> opt = Optional.ofNullable(jsonArray);
+
+		if (opt.isPresent()) {
+			JsonObject object = (JsonObject) jsonArray.get(0);
+			movieApiVO.setDirector(object.get("director").getAsString());
+			movieApiVO.setActor(object.get("actor").getAsString());
+			movieApiVO.setPoster(object.get("image").getAsString());
+		}
+		return movieApiVO;
+	}
+	
+	@Override
+	public MovieApiVO contactMovieApi(MovieApiVO movieApiVO, Boolean isDirector) {
 		String apiDirecorURL = "";
 		String movieNm = movieApiVO.getMovie_nm();
 		
 		try {
 			if (isDirector) {
 				String director = movieApiVO.getDirector().split("|")[0];
-				
-				if (movieNm.contains(" - ")) {
-					String movieNm1 = movieNm.split(" - ")[0];
-					String movieNm2 = movieNm.split(" - ")[1].split("부")[0];
-					movieNm = movieNm1+movieNm2;
-				}		
 				String queryDirector = URLEncoder.encode(director, "UTF-8");
 				apiDirecorURL = "&directorNm="+queryDirector;
 			}
@@ -121,113 +129,85 @@ public class MovieApiDAOImpl implements MovieApiDAO{
 		return movieApiVO;
 	}
 	
-	@Override
-	public Map<String, Object> setMap(JsonArray jsonArray) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		try {
-			List<String> movieCd = new ArrayList<String>();
-			List<String> movieNm = new ArrayList<String>();
-
-			for (int i=0; i<jsonArray.size(); i++) {
-				JsonObject jobj = (JsonObject) jsonArray.get(i);
-				movieCd.add(jobj.get("movieCd").getAsString());
-				movieNm.add(jobj.get("movieNm").getAsString());
-			}
-			map.put("cd", movieCd);
-			map.put("nm", movieNm);
-		} catch (Exception e) {
-			System.out.println("setMap Error : "+e);
-		}
+	
+	private Map<String, String> getTypeMap() {
+		Map<String, String> map = new HashMap<>();
+		map.put("open_dt", "&openStartDt=");
+		map.put("movie_type", "&movieTypeCd=");
+		map.put("nation", "&repNationCd=");
+		
 		return map;
-	}
+	} 
 	
 	@Override
-	public Map<String, Object> getMap(String category) {
-		Map<String, Object> map = new HashMap<String, Object>();
+	public List<String> getCaMNmList(String ca_type, String cd, int pnum) {
+		List<String> movieNmList = new ArrayList<>();
 		
 		try {
-			String queryCategory = URLEncoder.encode(category, "UTF-8");
-			String apiURL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.json?key="+key+"&targetDt="+queryCategory;
-			
-			JsonObject jsonObj = commonContent(apiURL, false);
-			JsonObject jsonObj2 = (JsonObject) jsonObj.get("boxOfficeResult");
-			JsonArray jsonArray = (JsonArray) jsonObj2.get("weeklyBoxOfficeList");
-			
-			map = setMap(jsonArray);
-		} catch (Exception e) {
-			System.out.println("getArray Error : "+e);
-		}
-		return map;
-	}
-	
-	@Override
-	public Map<String, Object> getCaMovieArray(String ca_type, String cd, int pnum) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		try {
+			Map<String, String> map = getTypeMap();
 			String queryCategory = URLEncoder.encode(cd, "UTF-8");
 			String apiURL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json?key="+key+"&curPage="+pnum;
 			
-			switch (ca_type) {
-				case "open_dt":
-					if (cd!="2010") {
-						apiURL += "&openStartDt="+queryCategory+"&openEndDt="+queryCategory;
-					}else {
-						apiURL += "&openEndDt="+queryCategory;
-					}
-					break;
-				case "movie_type":
-					apiURL += "&movieTypeCd="+queryCategory;
-					break;
-				case "nation":
-					apiURL += "&repNationCd="+queryCategory;
-					break;
-				default:
-					return null;
+			apiURL += map.get(ca_type)+queryCategory;
+			if (ca_type.equals("open_dt") && cd!="2010") {
+				apiURL += "&openEndDt="+queryCategory;
 			}
+			
 			JsonObject jsonObj = commonContent(apiURL, false);
 			jsonObj = (JsonObject) jsonObj.get("movieListResult");
-			JsonArray jsonArray = (JsonArray) jsonObj.get("movieList");
+			JsonArray movieArr = (JsonArray) jsonObj.get("movieList");
 			
-			map = setMap(jsonArray);
+			for (int i = 0; i < movieArr.size(); i++) {
+				JsonObject object = (JsonObject) movieArr.get(i);
+				movieNmList.add(object.get("movieNm").getAsString());
+			}
 		} catch (Exception e) {
 			System.out.println("getCaMovieArray Error : "+e);
 		} 
-		return map;
+		return movieNmList;
 	}
 	
 	@Override
-	public JsonArray getCaPeopleArray(String query, int pnum) {
-		JsonArray jsonArray = null;
+	public List<String> getCaPeopleMNmList(String query, int pnum) {
+		List<String> movieNmList = new ArrayList<>();
+		
 		try {
 			String queryCategory = URLEncoder.encode(query, "UTF-8");
 			String apiURL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/people/searchPeopleList.json?key="+key+"&peopleNm="+queryCategory;
 			
 			JsonObject jsonObj = commonContent(apiURL, false);
 			jsonObj = (JsonObject) jsonObj.get("peopleListResult");
-			jsonArray = (JsonArray) jsonObj.get("peopleList");
-			
-		} catch (Exception e) {
-			System.out.println("getCaPeopleArray Error : "+e);
-		} 
-		return jsonArray;
-	}
-	
-	@Override
-	public List<String> getCaPeople1(String query, int pnum) {
-		List<String> list = new ArrayList<String>();
-		
-		try {
-			JsonArray jsonArray = getCaPeopleArray(query, pnum);
+			JsonArray jsonArray = (JsonArray) jsonObj.get("peopleList");
 			
 			JsonObject obj = (JsonObject) jsonArray.get(0);
 			String[] array = obj.get("filmoNames").getAsString().split("\\|");
 			
-			list = Arrays.asList(array);
+			movieNmList = Arrays.asList(array);
 		} catch (Exception e) {
 			System.out.println("getCaPeople1 Error : "+e);
 		}
-		
-		return list;
+		return movieNmList;
 	}
 	
+	@Override
+	public List<String> getCaRecentMNmList (String ca_type) {
+		List<String> movieNmList = new ArrayList<>();
+		
+		try {
+			String queryCategory = URLEncoder.encode(ca_type, "UTF-8");
+			String apiURL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.json?key="+key+"&targetDt="+queryCategory;
+			
+			JsonObject jsonObj = commonContent(apiURL, false);
+			JsonObject jsonObj2 = (JsonObject) jsonObj.get("boxOfficeResult");
+			JsonArray movieArr = (JsonArray) jsonObj2.get("weeklyBoxOfficeList");
+			
+			for (int i = 0; i < movieArr.size(); i++) {
+				JsonObject object = (JsonObject) movieArr.get(i);
+				movieNmList.add(object.get("movieNm").getAsString());
+			}
+		} catch (Exception e) {
+			System.out.println("getArray Error : "+e);
+		}
+		return movieNmList;
+	}
 }	
