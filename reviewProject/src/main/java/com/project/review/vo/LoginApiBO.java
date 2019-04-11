@@ -128,8 +128,10 @@ public class LoginApiBO {
     public MemberVO setApiCodeToVO(String apiResult) {
     	JsonObject jsonObj = getApiCode(apiResult);
     	MemberVO member = new MemberVO();
-
-    	member.setMember_id(jsonObj.get("email").getAsString());
+    	
+    	String id = jsonObj.get("email").getAsString().split("@")[0];
+    	member.setMember_id(id);
+    	member.setMember_email(jsonObj.get("email").getAsString());
     	member.setMember_name(jsonObj.get("nickname").getAsString());
     	member.setSns_type("naver");
     	member.setSns_idx(jsonObj.get("id").getAsInt());

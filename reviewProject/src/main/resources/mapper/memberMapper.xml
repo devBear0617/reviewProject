@@ -183,9 +183,9 @@
 	</insert>	
 	<insert id="joinSnsUser" parameterType="MemberVO">
 	    INSERT INTO 
-			member (member_id, member_name, sns_type, sns_idx)
+			member (member_id, member_name, member_email, sns_type, sns_idx)
 		VALUES 
-			(#{member_id}, #{member_name}, #{sns_type}, #{sns_idx})
+			(#{member_id}, #{member_name}, #{member_email}, #{sns_type}, #{sns_idx})
   	</insert>
   	
 	<!-- 로그인 -->
