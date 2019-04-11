@@ -63,15 +63,56 @@
 	color: #000;
 	text-shadow: 0 0 5px #09f;
 }
-/* header style */
-input:focus {
-	outline: none;
-}
-
+/* 공통 style */
 .center {
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;
+}
+/* Login header style */
+.login_header_div1 {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	background: linear-gradient(to right, #ffe400, #abf200);
+	height: 90px;
+	width: 1200px;
+}
+
+.login_header_logo {
+	height: 50px;
+	margin-top: 20px;
+}
+/* main header style */
+.main_header_div1 {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	background: background: -webkit-linear-gradient(to right, #abf200, #ffe400);
+	background: linear-gradient(to right, #abf200, #ffe400);
+	width: 1200px;
+	height: 90px;
+}
+
+.main_header_div2 {
+	float: right;
+	margin-top: 20px;
+	margin-right: 30px;
+}
+
+.main_header_div3 {
+	float: right;
+	margin-right: 10px;
+	margin-top: 20px;
+}
+
+.main_header_div3_1 {
+	float: left;
+	margin-left: 10px;
+}
+/* header style */
+input:focus {
+	outline: none;
 }
 
 .header_st {

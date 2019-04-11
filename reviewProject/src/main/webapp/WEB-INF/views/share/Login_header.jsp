@@ -13,16 +13,29 @@
 	margin-right: auto;
 	text-align: center;
 }
+
+.login_header_div1 {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	background: linear-gradient(to right, #ffe400, #abf200);
+	height: 90px;
+	width: 1200px;
+}
+
+.login_header_logo {
+	height: 50px;
+	margin-top: 20px;
+}
 </style>
 </head>
 <body>
 	<!-- 로그인 -->
-	<div class="center"
-		style="background: linear-gradient(to right, #ffe400, #abf200); height: 90px; width: 1200px;">
+	<div class="login_header_div1">
 		<div class="center">
 			<a href="/review"><img alt="REMON_LOGO"
 				src="/review/movie/resources/image/REMON_logo(white_bigsize).png"
-				style="height: 50px; margin-top: 20px;"></a>
+				class="login_header_logo"></a>
 		</div>
 	</div>
 </body>
