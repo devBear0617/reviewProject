@@ -94,9 +94,7 @@ td {
 		<jsp:include page="/WEB-INF/views/share/header.jsp" />
 	</div>
 	<div class="center">
-		<form action="/review/movie/movie_write" method="post"
-			id="movie_write">
-
+		<form action="/review/movie/movie_write" method="post" id="movie_write">
 			<table class="mv_table_st">
 				<tr style="height: 80px;">
 					<td>영화</td>
@@ -391,7 +389,7 @@ td {
 			<br>
 			<div style="display: inline-block;">
 				<div style="float: left;">
-					<input type="submit" id="form-submit" value="확인"
+					<input type="submit" id="form-submit" value="확인" onclick="submitButton()"
 						style="width: 97px; height: 30px; background: linear-gradient(to left, #ffe400, #abf200); border-radius: 10px; border-style: none; margin-right: 5px;">
 				</div>
 				<div style="float: left;">
@@ -401,18 +399,7 @@ td {
 				</div>
 			</div>
 		</form>
-
 	</div>
-	<script>
-		var formSubmitButton = document.querySelector("#form-submit");
-		formSubmitButton.addEventListener('click', function() {
-			var contents = document.querySelector("#board_content");
-			contents.value = editor.getHtml();		
-			$("option").prop("disabled", false);//grade_name disabled 해제
-
-			alert("저장하시겠습니까?");
-		});
-	</script>
 	<div style="height: 20px;"></div>
 	<div>
 		<jsp:include page="/WEB-INF/views/share/footer.jsp" />

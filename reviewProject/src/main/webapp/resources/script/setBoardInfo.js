@@ -203,3 +203,12 @@ function changeRating() {
 		$('.total_value').html(value);
 	});
 }
+
+function submitButton(){
+	var formSubmitButton = document.querySelector("#form-submit");
+	var contents = document.querySelector("#board_content");
+	contents.value = editor.getHtml();		
+	$("option").prop("disabled", false);//grade_name disabled 해제
+
+	alert("저장하시겠습니까?");
+}
