@@ -31,6 +31,9 @@ function movieAutocomplete() {
 			return false;
 		},
 		select : function(event, ui) {
+			if(ui.item.poster == ""){
+	            ui.item.poster = "/review/movie/resources/image/default_poster.png";
+	         }
 			$("#movie_poster").attr("src", ui.item.poster);
 			$("#movie_poster").show();
 			$("#poster").val(ui.item.poster);

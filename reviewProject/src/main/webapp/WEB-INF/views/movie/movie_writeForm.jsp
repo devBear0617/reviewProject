@@ -132,8 +132,8 @@ td {
 										<div>
 											<input type="hidden" id="director" name="director"> <input
 												type="hidden" id="actor" name="actor"> <input
-												type="hidden" id="poster" name="poster"> <img
-												id="movie_poster" src="#">
+												type="hidden" id="poster" name="poster"> 
+												<img id="movie_poster" src="/review/movie/resources/image/default_poster.png">
 										</div>
 									</td>
 								</tr>

@@ -160,8 +160,14 @@ td {
 												value="${mApiVO.director}"> <input type="hidden"
 												id="actor" name="actor" value="${mApiVO.actor}"> <input
 												type="hidden" id="poster" name="poster"
-												value="${mApiVO.poster}"> <img id="movie_poster"
-												src="${mApiVO.poster}">
+												value="${mApiVO.poster}">
+											<c:if test="${empty mApiVO.poster}">
+												<img id="movie_poster"
+													src="/review/movie/resources/image/default_poster.png">
+											</c:if>
+											<c:if test="${not empty mApiVO.poster}">
+												<img id="movie_poster" src="${mApiVO.poster}">
+											</c:if>
 										</div>
 									</td>
 								</tr>
