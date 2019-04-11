@@ -67,7 +67,9 @@
 
 .reply_content {
 	width: 600px;
-	height: auto;
+	height: 30px;
+	border-radius: 20px;
+	border-style: none;
 }
 
 .reply_update_td_st1 {
