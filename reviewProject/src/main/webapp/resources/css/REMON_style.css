@@ -196,3 +196,84 @@ input:focus {
 	height: 100px;
 	width: 1200px;
 }
+
+/* reply style*/
+.reply_btn {
+	width: 700px;
+	height: 30px;
+	border-radius: 20px;
+	border-style: none;
+}
+
+.reply_btn_st {
+	width: 50px;
+	height: 30px;
+	border-radius: 20px;
+	border-style: none;
+}
+
+.updateReplyForm {
+	width: 50px;
+	height: 30px;
+	border-radius: 20px;
+	border-style: none;
+}
+
+.deleteReply {
+	width: 50px;
+	height: 30px;
+	border-radius: 20px;
+	border-style: none;
+}
+
+.imgform {
+	height: 30px;
+	width: auto;
+	margin-top: 30px;
+}
+
+.reply_td_st1 {
+	width: 150px;
+	border-right: 1px solid gray;
+}
+
+.reply_td_st2 {
+	width: 600px;
+	border-right: 1px solid gray;
+}
+
+.reply_td_st3 {
+	width: 200px;
+	border-right: 1px solid gray;
+}
+
+.reply_td_st4 {
+	width: 200px;
+}
+
+.reply_td_st5 {
+	wwidth: 50px;
+}
+
+.reply_content {
+	width: 600px;
+	height: auto;
+}
+
+.reply_update_td_st1 {
+	width: 150px;
+	height: 40px;
+	border-right: 1px solid white;
+	font-size: small;
+}
+
+.reply_update_td_st2 {
+	width: 1050px;
+	text-align: left;
+}
+
+.reply_UpdateContent {
+	width: 800px;
+	height: 20px;
+	border-style: none;
+}
