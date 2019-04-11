@@ -365,7 +365,7 @@
 				$(".result_Movie_Like").empty();
 				$(".result_Game").empty();
 				$(".result_TV").empty();
-				
+
 				$(".result_Movie_TitleContent").empty();
 				$(".result_Movie_TitleContent").append(html);
 			}
@@ -615,9 +615,7 @@ input:focus {
 			<div id="con" style="display: inline-block;">
 				<div id="menu">
 					<h2>검색메뉴</h2>
-					<div>
-						<hr>
-					</div>
+
 					<div class="menu_Form"></div>
 					<div class="menu_Movie_V"></div>
 					<div class="menu_Movie_memberV"></div>

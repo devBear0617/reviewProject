@@ -134,12 +134,12 @@ input:focus {
 						<c:if test="${empty sessionScope.member_id}">
 							<a href="/review/mypage/join" onclick="addSender();"><img
 								alt="REMON_LOGO"
-								src="/review/resources/image/REMON_Login_icon(white).png"
+								src="/review/resources/image/REMON_Join_icon(white).png"
 								class="header_image_btn"></a>
-							<a href="/review/mypage/login" onclick="addSender();">
-								<img alt="REMON_LOGO"
-									src="/review/resources/image/REMON_Login_icon(white).png"
-									class="header_image_btn">
+							<a href="/review/mypage/login" onclick="addSender();"> <img
+								alt="REMON_LOGO"
+								src="/review/resources/image/REMON_Login_icon(white).png"
+								class="header_image_btn">
 							</a>
 						</c:if>
 					</div> <!-- 로그인 했을 때 --> <c:if test="${not empty sessionScope.member_id}">
@@ -147,7 +147,7 @@ input:focus {
 
 							<div class="header_div3">
 								<a href="/review/mypage/logout"><img alt="REMON_LOGO"
-									src="/review/resources/image/REMON_Login_icon(white).png"
+									src="/review/resources/image/REMON_Logout_icon(white).png"
 									class="header_image_btn"></a>
 							</div>
 							<div class="header_div3">
