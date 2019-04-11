@@ -15,14 +15,17 @@
 	<http pattern="/memberImage/*" security="none" />
 
 	<http auto-config="true">
-		<intercept-url pattern="/**" access="ROLE_USER" />
-		<intercept-url pattern="/admin" access="ROLE_ADMIN" />
+		<!-- <intercept-url pattern="/**" access="ROLE_USER" /> -->
+		<!-- <intercept-url pattern="/admin" access="ROLE_ADMIN" /> -->
+		<form-login login-page="/login"
+			login-processing-url="/loginP"
+			authentication-failure-url="/login" />
 	</http>
 
 	<authentication-manager>
 		<authentication-provider>
 			<user-service>
-				<user name="guest" password="guest" authorities="ROLE_USER" />
+				<user name="member_id" password="member_pw" authorities="ROLE_USER" />
 				<!-- <user name="admin" password="admin" authorities="ROLE_ADMIN"/> -->
 			</user-service>
 		</authentication-provider>

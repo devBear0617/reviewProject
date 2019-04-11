@@ -456,7 +456,7 @@ public class Mypage_controller {
 		
 		return "mypage/login";
 	}
-	@RequestMapping(value="/login", method=RequestMethod.POST)
+	@RequestMapping(value="/loginP", method=RequestMethod.POST)
 	public String loginMember(String member_id, String member_pw, HttpServletRequest request,
 			 HttpSession session, Model model) {
 
