@@ -2,12 +2,16 @@ function fn_ca_paging(pnum) {
 	var de_category_type = $('#de_ca_type').attr('class').split(" ");
 	var de_ca_type = de_category_type[0];
 	var cd = de_category_type[1];
+	var nm = de_category_type[2];
+	console.log("de_category_type : "+de_category_type.toString());
+	console.log("nm : "+nm);
 	
 	$.ajax({
 		type : 'POST',
 		url : "./moreCaMovie",
 		data : {
 			'de_ca_type' : de_ca_type,
+			'nm' : nm,
 			'cd' : cd,
 			'pnum' : pnum
 		},

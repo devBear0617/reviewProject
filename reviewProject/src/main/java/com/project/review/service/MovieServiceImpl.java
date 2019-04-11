@@ -268,10 +268,9 @@ public class MovieServiceImpl implements MovieService {
 	@Override
 	public List<String> getCaMovieList(String ca_type, String cd, String nm, int pnum) {
 		if (ca_type.equals("actor") || ca_type.equals("director")) {
-			List<String> movieList = movieApiDAO.getCaPeopleMNmList(nm, pnum);
-			movieList.subList(pnum/10, pnum/10+(movieList.size()-1)%10);
+			List<String> movieNmList = movieApiDAO.getCaPeopleMNmList(nm, pnum);
 			
-			return movieList;
+			return movieNmList;
 		}
 		if (ca_type.equals("open_dt") && cd.equals("-1")) {
 			String date = LocalDate.now().minusWeeks(1).format(DateTimeFormatter.BASIC_ISO_DATE);

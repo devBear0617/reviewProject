@@ -36,6 +36,7 @@ function moreCaMovie(e) {
 			$('.detail2_category').append(html);
 			$('.detail2_category').find('#de_ca_type').addClass(de_ca_type);
 			$('.detail2_category').find('#de_ca_type').addClass(cd);
+			$('.detail2_category').find('#de_ca_type').addClass($(e).html());
 		},
 		error : function(error) {
 			console.log(error);

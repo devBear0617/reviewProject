@@ -72,8 +72,16 @@ public class Movie_controller {
 		Pagination pagination = new Pagination();
 		
 		List<String> movieNmList = movieService.getCaMovieList(de_ca_type, cd, nm, pnum);
-		pagination.setPage(pnum,1000);
-		//pagination.setPage(pnum, movieNmList.size());
+		if (de_ca_type.equals("actor") || de_ca_type.equals("director") || cd.equals("-1")) {
+			pagination.setPage(pnum, movieNmList.size());
+			if (pagination.getEndPage()==pnum && movieNmList.size()%10 != 0) {
+				movieNmList = movieNmList.subList((pnum-1)*10, movieNmList.size());
+			}else {
+				movieNmList = movieNmList.subList((pnum-1)*10, (pnum-1)*10+10);
+			}
+		}else {
+			pagination.setPage(pnum,1000);
+		}
 
 		model.addAttribute("movieNmList", movieNmList);
 		model.addAttribute("pagination", pagination);

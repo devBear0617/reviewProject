@@ -6,30 +6,28 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script src="/review/resources/tui-editor/jquery/dist/jquery.js"></script>
+<script src='/review/resources/tui-editor/markdown-it/dist/markdown-it.js'></script>
+<script src="/review/resources/tui-editor/to-mark/dist/to-mark.js"></script>
+<script src="/review/resources/tui-editor/tui-code-snippet/dist/tui-code-snippet.js"></script>
+<script src="/review/resources/tui-editor/codemirror/lib/codemirror.js"></script>
+<script src="/review/resources/tui-editor/highlightjs/highlight.pack.js"></script>
+<script src="/review/resources/tui-editor/squire-rte/build/squire-raw.js"></script>
+<link rel="stylesheet" href="/review/resources/tui-editor/codemirror/lib/codemirror.css">
+<link rel="stylesheet" href="/review/resources/tui-editor/highlightjs/styles/github.css">
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+<script src="/review/resources/tui-editor/tui-color-picker/dist/tui-color-picker.js"></script>
+<script src="/review/resources/tui-editor/tui-editor/dist/tui-editor-Editor.js"></script>
+<script src="/review/resources/tui-editor/tui-editor/dist/tui-editor-extColorSyntax.js"></script>
+<link rel="stylesheet" href="/review/resources/tui-editor/tui-editor/dist/tui-editor.css">
+<link rel="stylesheet" href="/review/resources/tui-editor/tui-editor/dist/tui-editor-contents.css">
+<link rel="stylesheet" href="/review/resources/tui-editor/tui-color-picker/dist/tui-color-picker.css">
 
-<!-- tui-editor -->
-<script src="../resources/tui-editor/jquery/dist/jquery.js"></script>
-<script src='../resources/tui-editor/markdown-it/dist/markdown-it.js'></script>
-<script src="../resources/tui-editor/to-mark/dist/to-mark.js"></script>
-<script
-	src="../resources/tui-editor/tui-code-snippet/dist/tui-code-snippet.js"></script>
-<script src="../resources/tui-editor/codemirror/lib/codemirror.js"></script>
-<script src="../resources/tui-editor/highlightjs/highlight.pack.js"></script>
-<script src="../resources/tui-editor/squire-rte/build/squire-raw.js"></script>
-
-<link rel="stylesheet"
-	href="../resources/tui-editor/codemirror/lib/codemirror.css">
-<link rel="stylesheet"
-	href="../resources/tui-editor/highlightjs/styles/github.css">
-
-<!-- autoComplete -->
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"
-	type="text/javascript"></script>
-<link
-	href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css"
-	rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="/review/resources/script/movieAutocomplete.js"></script>
+<script type="text/javascript" src="/review/resources/script/setBoardInfo.js"></script>
+<script type="text/javascript" src="/review/resources/script/common.js"></script>
+<link rel="stylesheet" href="../resources/css/star.css">
 <style>
 .ui-autocomplete {
 	overflow-y: scroll;
@@ -82,180 +80,13 @@ td {
 	background-color: white;
 }
 </style>
-<link rel="stylesheet" href="../resources/css/star.css">
 <script type="text/javascript">
-	//radio,select 기존 값 checked
 	$( document ).ready(function() {
 		movieAutocomplete();
+		settingGradeForUpdate();
+		changeGrade();
+		changeRating();
 	})
-	$(document).ready(
-			function() {
-				$(
-						'input:radio[name="recommend"]:input[value='
-								+ $(recommend_val).val() + ']').attr("checked",
-						true);
-				$(
-						'input:radio[name="grade1"]:input[value='
-								+ $(grade1_val).val() + ']').attr("checked",
-						true);
-				$(
-						'input:radio[name="grade2"]:input[value='
-								+ $(grade2_val).val() + ']').attr("checked",
-						true);
-				$(
-						'input:radio[name="grade3"]:input[value='
-								+ $(grade3_val).val() + ']').attr("checked",
-						true);
-				$(
-						'input:radio[name="grade4"]:input[value='
-								+ $(grade4_val).val() + ']').attr("checked",
-						true);
-
-				$("#grade_name1").val($(grade_name1_val).val());
-				$("#grade_name2").val($(grade_name2_val).val());
-				$("#grade_name3").val($(grade_name3_val).val());
-				$("#grade_name4").val($(grade_name4_val).val());
-			});
-
-	//grade_name선택시  grade값 초기화 , grade_name중복불가 
-	$(document).ready(
-			function() {
-				var $select = $("select");
-				$select
-						.on("change",
-								function() {
-
-									//grade 값 초기화 
-									var id = this.id
-									if (id == "grade_name1") {
-										$(":radio[name='grade1']").prop(
-												"checked", false);
-									} else if (id == "grade_name2") {
-										$(":radio[name='grade2']").prop(
-												"checked", false);
-									} else if (id == "grade_name3") {
-										$(":radio[name='grade3']").prop(
-												"checked", false);
-									} else {
-										$(":radio[name='grade4']").prop(
-												"checked", false);
-									}
-
-									//lemon_grade 재계산
-									var grade1 = parseInt($(
-											':radio[name="grade1"]:checked')
-											.val()), grade2 = parseInt($(
-											':radio[name="grade2"]:checked')
-											.val()), grade3 = parseInt($(
-											':radio[name="grade3"]:checked')
-											.val()), grade4 = parseInt($(
-											':radio[name="grade4"]:checked')
-											.val());
-
-									grade1 = (!grade1) ? 0 : grade1;
-									grade2 = (!grade2) ? 0 : grade2;
-									grade3 = (!grade3) ? 0 : grade3;
-									grade4 = (!grade4) ? 0 : grade4;
-
-									var selected1 = $("option:selected",
-											$("#grade_name1"));
-									if (selected1.parent()[0].id == "bad1") {
-										grade1 = 25 - grade1;
-									}
-
-									var selected2 = $("option:selected",
-											$("#grade_name2"));
-									if (selected2.parent()[0].id == "bad2") {
-										grade2 = 25 - grade2;
-									}
-
-									var selected3 = $("option:selected",
-											$("#grade_name3"));
-									if (selected3.parent()[0].id == "bad3") {
-										grade3 = 25 - grade3;
-									}
-
-									var selected4 = $("option:selected",
-											$("#grade_name4"));
-									if (selected4.parent()[0].id == "bad4") {
-										grade4 = 25 - grade4;
-									}
-
-									$("#lemon_grade").val(
-											grade1 + grade2 + grade3 + grade4);
-									var value = $("#lemon_grade").val();
-									$('.total_value').html(value);
-									//----- lemon_grade 재계산 끝, select 중복방지 처리 시작 
-
-									var selected = [];
-									$.each($select, function(index, select) {
-										if (select.value !== "") {
-											selected.push(select.value);
-										}
-									});
-									$("option").prop("disabled", false);
-									for ( var index in selected) {
-										$(
-												'option[value="'
-														+ selected[index]
-														+ '"]').prop(
-												"disabled", true);
-									}
-								});
-			});
-
-	//개별점수 책정시 계산해서 총합점수 출력 
-	$(document).ready(
-			function() {
-				$(".rating")
-						.change(
-								function() {
-									var grade1 = parseInt($(
-											':radio[name="grade1"]:checked')
-											.val()), grade2 = parseInt($(
-											':radio[name="grade2"]:checked')
-											.val()), grade3 = parseInt($(
-											':radio[name="grade3"]:checked')
-											.val()), grade4 = parseInt($(
-											':radio[name="grade4"]:checked')
-											.val());
-
-									// null체크 , 값 보정 
-									grade1 = (!grade1) ? 0 : grade1;
-									grade2 = (!grade2) ? 0 : grade2;
-									grade3 = (!grade3) ? 0 : grade3;
-									grade4 = (!grade4) ? 0 : grade4;
-
-									var selected1 = $("option:selected",
-											$("#grade_name1"));
-									if (selected1.parent()[0].id == "bad1") {
-										grade1 = 25 - grade1;
-									}
-
-									var selected2 = $("option:selected",
-											$("#grade_name2"));
-									if (selected2.parent()[0].id == "bad2") {
-										grade2 = 25 - grade2;
-									}
-
-									var selected3 = $("option:selected",
-											$("#grade_name3"));
-									if (selected3.parent()[0].id == "bad3") {
-										grade3 = 25 - grade3;
-									}
-
-									var selected4 = $("option:selected",
-											$("#grade_name4"));
-									if (selected4.parent()[0].id == "bad4") {
-										grade4 = 25 - grade4;
-									}
-
-									$("#lemon_grade").val(
-											grade1 + grade2 + grade3 + grade4);
-									var value = $("#lemon_grade").val();
-									$('.total_value').html(value);
-								});
-			});
 </script>
 </head>
 <body>
@@ -296,35 +127,11 @@ td {
 				<tr style="height: 700px;">
 					<td colspan="2">
 						<div>
-							<!-- tui-editor input -->
 							<input type="hidden" name="board_content" id="board_content">
-							<!-- tui-editor view -->
 							<div class="code-html">
-								<script
-									src="../resources/tui-editor/tui-color-picker/dist/tui-color-picker.js"></script>
-								<script
-									src="../resources/tui-editor/tui-editor/dist/tui-editor-Editor.js"></script>
-								<script
-									src="../resources/tui-editor/tui-editor/dist/tui-editor-extColorSyntax.js"></script>
-								<link rel="stylesheet"
-									href="../resources/tui-editor/tui-editor/dist/tui-editor.css">
-								<link rel="stylesheet"
-									href="../resources/tui-editor/tui-editor/dist/tui-editor-contents.css">
-								<link rel="stylesheet"
-									href="../resources/tui-editor/tui-color-picker/dist/tui-color-picker.css">
-
 								<div id="editSection">${board.board_content}</div>
 							</div>
-							<script class="code-js">
-								var editor = new tui.Editor(
-										{
-											el : document
-													.querySelector('#editSection'),
-											initialEditType : 'wysiwyg',
-											height : '700px',
-											exts : [ 'colorSyntax' ]
-										});
-							</script>
+							<script class="code-js" src="/review/resources/script/createEditor.js"></script>
 						</div>
 					</td>
 					<td>
@@ -584,7 +391,7 @@ td {
 			<br>
 			<div style="display: inline-block;">
 				<div style="float: left;">
-					<input type="submit" id="form-submit" value="확인"
+					<input type="submit" id="form-submit" value="확인" onclick="submitButton()"
 						style="width: 97px; height: 30px; background: linear-gradient(to left, #ffe400, #abf200); border-radius: 10px; border-style: none; margin-right: 5px;">
 				</div>
 				<div style="float: left;">
@@ -604,14 +411,13 @@ td {
 		var formSubmitButton = document.querySelector("#form-submit");
 		formSubmitButton.addEventListener('click', function() {
 			var contents = document.querySelector("#board_content");
-			// contents.value = editor.getMarkdown(); //markdown 저장
-			contents.value = editor.getHtml(); //html 저장
+			contents.value = editor.getHtml();		
 			$("option").prop("disabled", false);//grade_name disabled 해제
-			alert(contents.value);
+
+			alert("저장하시겠습니까?");
 		});
 	</script>
 	<div style="height: 20px;"></div>
-	<!-- 푸터 -->
 	<div>
 		<jsp:include page="/WEB-INF/views/share/footer.jsp" />
 	</div>

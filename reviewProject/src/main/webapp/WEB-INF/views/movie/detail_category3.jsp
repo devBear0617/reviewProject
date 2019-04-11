@@ -3,7 +3,7 @@
 <%@ page import="org.json.*" %>
 <script type="text/javascript" src="/review/resources/script/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="/review/resources/script/category.js"></script>
-<script type="text/javascript" src="/review/resources/script/pagenation.js"></script>
+<script type="text/javascript" src="/review/resources/script/pagenation.js?ver2"></script>
 <style type="text/css">
 .de_caM {
 	width: 220px;
@@ -53,7 +53,7 @@
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
-		<c:if test="${pagination.curPage ne pagination.pageCnt && pagination.pageCnt > 0}">
+		<c:if test="${pagination.endPage <= pagination.pageCnt}">
 			<a href="#" onClick="fn_ca_paging('${pagination.nextPage}')">▶</a>
 		</c:if>
 	</div>
