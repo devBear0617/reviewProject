@@ -310,7 +310,7 @@ public class Search_controller {
 	}
 	
 	// result form
-	@RequestMapping(value="/searchResult/{keyword}")
+	@RequestMapping(value="/searchResult/~{keyword}")
 	public String searchResultTotalKeyword(@PathVariable String keyword, 
 			HttpSession session, Model model) {
 		
@@ -330,7 +330,7 @@ public class Search_controller {
 		keyword = keyword.trim();	
 		String key =  URLEncoder.encode(keyword, "UTF-8");
 
-		return "redirect:/search/searchResult/"+key;
+		return "redirect:/search/searchResult/~"+key;
 	}
 	
 	@RequestMapping(value="/main")
