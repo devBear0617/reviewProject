@@ -6,16 +6,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-.center {
+.footer_st {
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;
+	background-image: url('/review/movie/resources/image/REMON_footer.png');
+	height: 100px;
+	width: 1200px;
 }
 </style>
 </head>
 <body>
-	<div class="center"
-		style="background-image: url('/review/movie/resources/image/REMON_footer.png'); height: 100px; width: 1200px;">
-	</div>
+	<div class="footer_st"></div>
 </body>
 </html>
