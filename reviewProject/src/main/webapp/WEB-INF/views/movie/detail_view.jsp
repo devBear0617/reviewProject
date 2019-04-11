@@ -368,7 +368,8 @@
 		<table class="center">
 			<tr>
 				<td class="td_class1" colspan="2">
-					<div class="code-html" style="width: 800px;">${board.board_content}</div>
+					<div class="code-html" style="width: 800px; word-break:break-all;">${board.board_content}</div>
+
 				</td>
 				<td style="border-left: 1px solid #F2F2F2;"><img
 					src="${mApiVO.poster}">

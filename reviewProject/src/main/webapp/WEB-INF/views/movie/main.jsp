@@ -61,7 +61,7 @@
 		if (stmnEndPoint < stmnGAP1)
 			stmnEndPoint = stmnGAP1;
 		if (stmnStartPoint != stmnEndPoint) {
-			stmnScrollAmount = Math.ceil(Math
+			stmnScrollAmount = Math.floor(Math
 					.abs(stmnEndPoint - stmnStartPoint) / 15);
 			document.getElementById('STATICMENU').style.top = parseInt(document
 					.getElementById('STATICMENU').style.top, 10)

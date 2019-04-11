@@ -29,6 +29,24 @@ function settingGradeForUpdate() {
 			.val() + ']').attr("checked",true);
 	$('input:radio[name="grade4"]:input[value='+ $(grade4_val)
 			.val() + ']').attr("checked",true);
+	
+	var value = $(grade1_val).val()+ $(grade2_val).val()+ $(grade3_val).val()+ $(grade4_val).val();
+	if(value >= 80){  
+		$("#lemon_grade_img").attr("src", "/review/movie/resources/image/REMON_grade_1.png");
+		$('.lemon_grade_name').html("달콤한 레몬");
+	}else if(value >= 60){
+		$("#lemon_grade_img").attr("src", "/review/movie/resources/image/REMON_grade_2.png");										
+		$('.lemon_grade_name').html("새콤한 레몬");
+	}else if(value >= 40){
+		$("#lemon_grade_img").attr("src", "/review/movie/resources/image/REMON_grade_3.png");										
+		$('.lemon_grade_name').html("신맛 레몬");
+	}else if(value >= 20){
+		$("#lemon_grade_img").attr("src", "/review/movie/resources/image/REMON_grade_4.png");									
+		$('.lemon_grade_name').html("씁쓸한 레몬");
+	}else {
+		$("#lemon_grade_img").attr("src", "/review/movie/resources/image/REMON_grade_5.png");										
+		$('.lemon_grade_name').html("썩은 레몬");
+	}
 
 	$("#grade_name1").val($(grade_name1_val).val());
 	$("#grade_name2").val($(grade_name2_val).val());

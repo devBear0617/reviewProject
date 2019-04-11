@@ -60,21 +60,21 @@
 
 	<!-- uploadPath -->
 	<!-- 천웅 -->
-	<beans:bean id="uploadPathS" class="java.lang.String"> <beans:constructor-arg 
+	<!-- <beans:bean id="uploadPathS" class="java.lang.String"> <beans:constructor-arg 
 		value="C:\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\reviewProject\resources\memberImage" 
 		/> </beans:bean> <beans:bean id="uploadPathE" class="java.lang.String"> <beans:constructor-arg 
 		value="C:\Users\user\git\reviewProject\reviewProject\src\main\webapp\resources\memberImage" 
-		/> </beans:bean>
+		/> </beans:bean> -->
 
 	<!-- 민근 -->
-	<!-- <beans:bean id="uploadPathS" class="java.lang.String">
+	<beans:bean id="uploadPathS" class="java.lang.String">
 		<beans:constructor-arg
 			value="C:\Java_Class\ProjectWorkspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\reviewProject\resources\memberImage" />
 	</beans:bean>
 	<beans:bean id="uploadPathE" class="java.lang.String">
 		<beans:constructor-arg
 			value="C:\Java_Class\ProjectWorkspace\reviewProject\src\main\webapp\resources\memberImage" />
-	</beans:bean> -->
+	</beans:bean>
 
 
 	<!-- 대환 -->

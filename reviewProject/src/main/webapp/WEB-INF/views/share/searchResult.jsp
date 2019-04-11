@@ -30,7 +30,8 @@
 			type : 'POST',
 			dataType : 'text',
 			data : {
-				keyword : $('.keyword').val()
+				keyword : $('.keyword').val(),
+				"pnum" : 1
 			},
 			success : function(html) {
 				$(".result_Total").append(html);
@@ -67,6 +68,7 @@
 			type : 'POST',
 			dataType : 'text',
 			data : {
+				"pnum" : 1,
 				keyword : $('.keyword').val()
 			},
 			success : function(html) {
@@ -115,6 +117,7 @@
 			type : 'POST',
 			dataType : 'text',
 			data : {
+				"pnum" : 1,
 				keyword : $('.keyword').val()
 			},
 			success : function(html) {
@@ -161,6 +164,7 @@
 			type : 'POST',
 			dataType : 'text',
 			data : {
+				"pnum" : 1,
 				keyword : $('.keyword').val()
 			},
 			success : function(html) {
@@ -207,6 +211,7 @@
 			type : 'POST',
 			dataType : 'text',
 			data : {
+				"pnum" : 1,
 				keyword : $('.keyword').val()
 			},
 			success : function(html) {
@@ -253,6 +258,7 @@
 			type : 'POST',
 			dataType : 'text',
 			data : {
+				"pnum" : 1,
 				keyword : $('.keyword').val()
 			},
 			success : function(html) {
@@ -299,6 +305,7 @@
 			type : 'POST',
 			dataType : 'text',
 			data : {
+				"pnum" : 1,
 				keyword : $('.keyword').val()
 			},
 			success : function(html) {
@@ -341,10 +348,11 @@
 		});
 
 		$.ajax({
-			url : '/review/search/searchResult/result_Movie_hashtag',
+			url : '/review/search/searchResult/result_Movie_titleContent',
 			type : 'POST',
 			dataType : 'text',
 			data : {
+				"pnum" : 1,
 				keyword : $('.keyword').val()
 			},
 			success : function(html) {
@@ -357,7 +365,7 @@
 				$(".result_Movie_Like").empty();
 				$(".result_Game").empty();
 				$(".result_TV").empty();
-
+				
 				$(".result_Movie_TitleContent").empty();
 				$(".result_Movie_TitleContent").append(html);
 			}
@@ -391,6 +399,7 @@
 			type : 'POST',
 			dataType : 'text',
 			data : {
+				"pnum" : 1,
 				keyword : $('.keyword').val()
 			},
 			success : function(html) {
@@ -437,6 +446,7 @@
 			type : 'POST',
 			dataType : 'text',
 			data : {
+				"pnum" : 1,
 				keyword : $('.keyword').val()
 			},
 			success : function(html) {
@@ -485,6 +495,7 @@
 			type : 'POST',
 			dataType : 'text',
 			data : {
+				"pnum" : 1,
 				keyword : $('.keyword').val()
 			},
 			success : function(html) {
@@ -533,6 +544,7 @@
 			type : 'POST',
 			dataType : 'text',
 			data : {
+				"pnum" : 1,
 				keyword : $('.keyword').val()
 			},
 			success : function(html) {

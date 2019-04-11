@@ -21,6 +21,7 @@ import com.project.review.service.MemberService;
 import com.project.review.service.SearchService;
 import com.project.review.vo.BoardVO;
 import com.project.review.vo.MemberVO;
+import com.project.review.vo.Pagination;
 
 @Controller
 @RequestMapping(value="/search")
@@ -78,7 +79,7 @@ public class Search_controller {
 	
 	// Movie - like desc
 	@RequestMapping(value="/searchResult/result_Movie_like", method=RequestMethod.POST)
-	public String result_Movie_like(HttpServletRequest request, HttpSession session, Model model) {
+	public String result_Movie_like(HttpServletRequest request, HttpSession session, Model model, int pnum) {
 			
 		String keyword = request.getParameter("keyword");
 		keyword = keyword.trim();
@@ -86,20 +87,29 @@ public class Search_controller {
 			model.addAttribute("keyword", keyword);
 			return "share/result_Board_null";
 		}
-		List<BoardVO> search_Result = searchService.searchMovie_likeCount(keyword);
+		List<BoardVO> search_Result = searchService.searchMovie_likeCount(keyword, pnum);
 		System.out.println(search_Result);
 		if(search_Result.isEmpty()) {
 			model.addAttribute("keyword", keyword);
 			return "share/result_Board_null";
 		}
-		model.addAttribute("search_Result", search_Result);
+		model.addAttribute("search_Result", search_Result);		
+
+		Pagination pagination = new Pagination();
+		int size = searchService.searchMovie_likeCount_cnt(keyword);
+		pagination.setPage(pnum, size);
+		
+		model.addAttribute("pagination", pagination);
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("type", "result_Movie_like");
+
 
 		return "share/result_Board";
 	}
 	
 	// Movie - grade desc
 	@RequestMapping(value="/searchResult/result_Movie_grade", method=RequestMethod.POST)
-	public String result_Movie_grade(HttpServletRequest request, HttpSession session, Model model) {
+	public String result_Movie_grade(HttpServletRequest request, HttpSession session, Model model , int pnum) {
 		
 		String keyword = request.getParameter("keyword");
 		keyword = keyword.trim();
@@ -107,20 +117,28 @@ public class Search_controller {
 			model.addAttribute("keyword", keyword);
 			return "share/result_Board_null";
 		}
-		List<BoardVO> search_Result = searchService.searchMovie_Grade(keyword);
+		List<BoardVO> search_Result = searchService.searchMovie_Grade(keyword, pnum);
 		System.out.println(search_Result);
 		if(search_Result.isEmpty()) {
 			model.addAttribute("keyword", keyword);
 			return "share/result_Board_null";
 		}
 		model.addAttribute("search_Result", search_Result);
+		
+		Pagination pagination = new Pagination();
+		int size = searchService.searchMovie_Grade_cnt(keyword);
+		pagination.setPage(pnum, size);
+		
+		model.addAttribute("pagination", pagination);
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("type", "result_Movie_grade");
 
 		return "share/result_Board";
 	}
 	
 	// Movie - title,content
 	@RequestMapping(value="/searchResult/result_Movie_titleContent", method=RequestMethod.POST)
-	public String result_Movie_titleContent(HttpServletRequest request, HttpSession session, Model model) {
+	public String result_Movie_titleContent(HttpServletRequest request, HttpSession session, Model model, int pnum) {
 		
 		String keyword = request.getParameter("keyword");
 		keyword = keyword.trim();
@@ -128,20 +146,28 @@ public class Search_controller {
 			model.addAttribute("keyword", keyword);
 			return "share/result_Board_null";
 		}
-		List<BoardVO> search_Result = searchService.searchMovie_titleContent(keyword);
+		List<BoardVO> search_Result = searchService.searchMovie_titleContent(keyword, pnum);
 		System.out.println(search_Result);
 		if(search_Result.isEmpty()) {
 			model.addAttribute("keyword", keyword);
 			return "share/result_Board_null";
 		}
 		model.addAttribute("search_Result", search_Result);
+		
+		Pagination pagination = new Pagination();
+		int size = searchService.searchMovie_titleContent_cnt(keyword);
+		pagination.setPage(pnum, size);
+		
+		model.addAttribute("pagination", pagination);
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("type", "result_Movie_titleContent");
 
 		return "share/result_Board";
 	}
 	
 	// Movie - hashtag
 	@RequestMapping(value="/searchResult/result_Movie_hashtag", method=RequestMethod.POST)
-	public String result_Movie_hashtag(HttpServletRequest request, HttpSession session, Model model) {
+	public String result_Movie_hashtag(HttpServletRequest request, HttpSession session, Model model, int pnum) {
 		
 		String keyword = request.getParameter("keyword");
 		keyword = keyword.trim();
@@ -149,20 +175,28 @@ public class Search_controller {
 			model.addAttribute("keyword", keyword);
 			return "share/result_Board_null";
 		}
-		List<BoardVO> search_Result = searchService.searchMovie_Hashtag(keyword);
+		List<BoardVO> search_Result = searchService.searchMovie_Hashtag(keyword, pnum);
 		System.out.println(search_Result);
 		if(search_Result.isEmpty()) {
 			model.addAttribute("keyword", keyword);
 			return "share/result_Board_null";
 		}
 		model.addAttribute("search_Result", search_Result);
+		
+		Pagination pagination = new Pagination();
+		int size = searchService.searchMovie_Hashtag_cnt(keyword);
+		pagination.setPage(pnum, size);
+		
+		model.addAttribute("pagination", pagination);
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("type", "result_Movie_hashtag");
 
 		return "share/result_Board";
 	}
 	
 	// Movie - reply
 	@RequestMapping(value="/searchResult/result_Movie_reply", method=RequestMethod.POST)
-	public String result_Movie_reply(HttpServletRequest request, HttpSession session, Model model) {
+	public String result_Movie_reply(HttpServletRequest request, HttpSession session, Model model, int pnum) {
 		
 		String keyword = request.getParameter("keyword");
 		keyword = keyword.trim();
@@ -170,20 +204,28 @@ public class Search_controller {
 			model.addAttribute("keyword", keyword);
 			return "share/result_Board_null";
 		}
-		List<BoardVO> search_Result = searchService.searchMovie_ReplyContent(keyword);
+		List<BoardVO> search_Result = searchService.searchMovie_ReplyContent(keyword, pnum);
 		System.out.println(search_Result);
 		if(search_Result.isEmpty()) {
 			model.addAttribute("keyword", keyword);
 			return "share/result_Board_null";
 		}
 		model.addAttribute("search_Result", search_Result);
+		
+		Pagination pagination = new Pagination();
+		int size = searchService.searchMovie_ReplyContent_cnt(keyword);
+		pagination.setPage(pnum, size);
+		
+		model.addAttribute("pagination", pagination);
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("type", "result_Movie_reply");
 
 		return "share/result_Board";
 	}
 	
 	// Movie - member
 	@RequestMapping(value="/searchResult/result_Movie_member", method=RequestMethod.POST)
-	public String result_Movie_member(HttpServletRequest request, HttpSession session, Model model) {
+	public String result_Movie_member(HttpServletRequest request, HttpSession session, Model model, int pnum) {
 		
 		String keyword = request.getParameter("keyword");
 		keyword = keyword.trim();
@@ -191,20 +233,28 @@ public class Search_controller {
 			model.addAttribute("keyword", keyword);
 			return "share/result_Board_null";
 		}
-		List<BoardVO> search_Result = searchService.searchMovie_Member(keyword);
+		List<BoardVO> search_Result = searchService.searchMovie_Member(keyword, pnum);
 		System.out.println(search_Result);
 		if(search_Result.isEmpty()) {
 			model.addAttribute("keyword", keyword);
 			return "share/result_Board_null";
 		}
 		model.addAttribute("search_Result", search_Result);
+		
+		Pagination pagination = new Pagination();
+		int size = searchService.searchMovie_Member_cnt(keyword);
+		pagination.setPage(pnum, size);
+		
+		model.addAttribute("pagination", pagination);
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("type", "result_Movie_member");
 		
 		return "share/result_Board";
 	}
 	
 	// only Movie search
 	@RequestMapping(value="/searchResult/result_Movie_only", method=RequestMethod.POST)
-	public String result_Movie_only(HttpServletRequest request, HttpSession session, Model model) {
+	public String result_Movie_only(HttpServletRequest request, HttpSession session, Model model, int pnum) {
 		
 		String keyword = request.getParameter("keyword");
 		keyword = keyword.trim();
@@ -212,20 +262,28 @@ public class Search_controller {
 			model.addAttribute("keyword", keyword);
 			return "share/result_Board_null";
 		}
-		List<BoardVO> search_Result = searchService.searchMovie(keyword);
-		System.out.println(search_Result);
+		List<BoardVO> search_Result = searchService.searchMovie(keyword , pnum);
+		//System.out.println(search_Result);
 		if(search_Result.isEmpty()) {
 			model.addAttribute("keyword", keyword);
 			return "share/result_Board_null";
 		}
 		model.addAttribute("search_Result", search_Result);
+		
+		Pagination pagination = new Pagination();
+		int size = searchService.searchMovie_cnt(keyword);
+		pagination.setPage(pnum, size);
+		
+		model.addAttribute("pagination", pagination);
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("type", "result_Movie_only");
 		
 		return "share/result_Board";
 	}
 	
 	// Total search
 	@RequestMapping(value="/searchResult/result_Total", method=RequestMethod.POST)
-	public String result_Total(HttpServletRequest request, HttpSession session, Model model) {
+	public String result_Total(HttpServletRequest request, HttpSession session, Model model, int pnum) {
 		
 		String keyword = request.getParameter("keyword");
 		keyword = keyword.trim();
@@ -233,13 +291,22 @@ public class Search_controller {
 			model.addAttribute("keyword", keyword);
 			return "share/result_Board_null";
 		}
-		List<BoardVO> search_Result = searchService.searchTotal(keyword);
-		System.out.println(search_Result);
+		List<BoardVO> search_Result = searchService.searchTotal(keyword , pnum);
+		//System.out.println(search_Result);
 		if(search_Result.isEmpty()) {
 			model.addAttribute("keyword", keyword);
 			return "share/result_Board_null";
 		}
 		model.addAttribute("search_Result", search_Result);
+		
+		Pagination pagination = new Pagination();
+		int size = searchService.searchTotal_cnt(keyword);
+		pagination.setPage(pnum, size);
+		
+		model.addAttribute("pagination", pagination);
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("type", "result_Total");
+		
 		
 		return "share/result_Board";			
 		
@@ -319,7 +386,7 @@ public class Search_controller {
 			MemberVO user = memberService.MemberInfo(user_id);
 			model.addAttribute("user", user);
 		}
-		model.addAttribute("keyword", keyword);			
+		model.addAttribute("keyword", keyword);	
 		
 		return "share/searchResult";
 	}
@@ -331,6 +398,7 @@ public class Search_controller {
 		String key =  URLEncoder.encode(keyword, "UTF-8");
 
 		return "redirect:/search/searchResult/~"+key;
+
 	}
 	
 	@RequestMapping(value="/main")

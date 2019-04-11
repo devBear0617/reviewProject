@@ -46,9 +46,39 @@
 	<input type="hidden" id="sort_id" value="${sort_id}">
 	<table class="center" style="font-size: small;">
 		<tr>
-			<td class="td_class1"><span class="sort" id="sort_time">최신순</span></td>
-			<td class="td_class1"><span class="sort" id="sort_likeit">좋아요순</span></td>
-			<td class="td_class1"><span class="sort" id="sort_grade">별점순</span></td>
+			<td class="td_class1">
+				<c:choose>
+					<c:when test="${sort_id == 'sort_time'}">
+						<span class="sort" id="sort_time"
+							style="color: #31B404; text-decoration: underline; font-weight:bold;">최신순</span>
+					</c:when>
+					<c:otherwise>
+						<span class="sort" id="sort_time">최신순</span>
+					</c:otherwise>
+				</c:choose>
+			</td>
+			<td class="td_class1">
+				<c:choose>
+					<c:when test="${sort_id == 'sort_likeit'}">
+						<span class="sort" id="sort_likeit"
+							style="color: #31B404; text-decoration: underline; font-weight:bold;">좋아요순</span>
+					</c:when>
+					<c:otherwise>
+						<span class="sort" id="sort_likeit">좋아요순</span>
+					</c:otherwise>
+				</c:choose>			
+			</td>
+			<td class="td_class1">
+				<c:choose>
+					<c:when test="${sort_id == 'sort_grade'}">
+						<span class="sort" id="sort_grade"
+							style="color: #31B404; text-decoration: underline; font-weight:bold;">별점순</span>
+					</c:when>
+					<c:otherwise>
+						<span class="sort" id="sort_grade">별점순</span>
+					</c:otherwise>
+				</c:choose>				
+			</td>
 		</tr>
 	</table>
 </div>

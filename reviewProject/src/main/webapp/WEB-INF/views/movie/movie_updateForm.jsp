@@ -7,25 +7,42 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script src="/review/resources/tui-editor/jquery/dist/jquery.js"></script>
-<script src='/review/resources/tui-editor/markdown-it/dist/markdown-it.js'></script>
+<script
+	src='/review/resources/tui-editor/markdown-it/dist/markdown-it.js'></script>
 <script src="/review/resources/tui-editor/to-mark/dist/to-mark.js"></script>
-<script src="/review/resources/tui-editor/tui-code-snippet/dist/tui-code-snippet.js"></script>
+<script
+	src="/review/resources/tui-editor/tui-code-snippet/dist/tui-code-snippet.js"></script>
 <script src="/review/resources/tui-editor/codemirror/lib/codemirror.js"></script>
 <script src="/review/resources/tui-editor/highlightjs/highlight.pack.js"></script>
-<script src="/review/resources/tui-editor/squire-rte/build/squire-raw.js"></script>
-<link rel="stylesheet" href="/review/resources/tui-editor/codemirror/lib/codemirror.css">
-<link rel="stylesheet" href="/review/resources/tui-editor/highlightjs/styles/github.css">
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
-<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-<script src="/review/resources/tui-editor/tui-color-picker/dist/tui-color-picker.js"></script>
-<script src="/review/resources/tui-editor/tui-editor/dist/tui-editor-Editor.js"></script>
-<script src="/review/resources/tui-editor/tui-editor/dist/tui-editor-extColorSyntax.js"></script>
-<link rel="stylesheet" href="/review/resources/tui-editor/tui-editor/dist/tui-editor.css">
-<link rel="stylesheet" href="/review/resources/tui-editor/tui-editor/dist/tui-editor-contents.css">
-<link rel="stylesheet" href="/review/resources/tui-editor/tui-color-picker/dist/tui-color-picker.css">
+<script
+	src="/review/resources/tui-editor/squire-rte/build/squire-raw.js"></script>
+<link rel="stylesheet"
+	href="/review/resources/tui-editor/codemirror/lib/codemirror.css">
+<link rel="stylesheet"
+	href="/review/resources/tui-editor/highlightjs/styles/github.css">
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"
+	type="text/javascript"></script>
+<link
+	href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css"
+	rel="stylesheet" type="text/css" />
+<script
+	src="/review/resources/tui-editor/tui-color-picker/dist/tui-color-picker.js"></script>
+<script
+	src="/review/resources/tui-editor/tui-editor/dist/tui-editor-Editor.js"></script>
+<script
+	src="/review/resources/tui-editor/tui-editor/dist/tui-editor-extColorSyntax.js"></script>
+<link rel="stylesheet"
+	href="/review/resources/tui-editor/tui-editor/dist/tui-editor.css">
+<link rel="stylesheet"
+	href="/review/resources/tui-editor/tui-editor/dist/tui-editor-contents.css">
+<link rel="stylesheet"
+	href="/review/resources/tui-editor/tui-color-picker/dist/tui-color-picker.css">
 
-<script type="text/javascript" src="/review/resources/script/movieAutocomplete.js"></script>
-<script type="text/javascript" src="/review/resources/script/setBoardInfo.js"></script>
+<script type="text/javascript"
+	src="/review/resources/script/movieAutocomplete.js"></script>
+<script type="text/javascript"
+	src="/review/resources/script/setBoardInfo.js"></script>
 <script type="text/javascript" src="/review/resources/script/common.js"></script>
 <link rel="stylesheet" href="../resources/css/star.css">
 <style>
@@ -51,7 +68,7 @@ td {
 	text-align: center;
 }
 
-.code-html{
+.code-html {
 	text-align: left;
 }
 
@@ -85,7 +102,7 @@ td {
 }
 </style>
 <script type="text/javascript">
-	$( document ).ready(function() {
+	$(document).ready(function() {
 		movieAutocomplete();
 		settingGradeForUpdate();
 		changeGrade();
@@ -129,7 +146,8 @@ td {
 							<div class="code-html">
 								<div id="editSection">${board.board_content}</div>
 							</div>
-							<script class="code-js" src="/review/resources/script/createEditor.js"></script>
+							<script class="code-js"
+								src="/review/resources/script/createEditor.js"></script>
 						</div>
 					</td>
 					<td rowspan="2">
@@ -154,10 +172,10 @@ td {
 											<img id="lemon_grade_img">
 										</div>
 										<div style="height: 30px;">
-											<label for="lemon_grade">총합 </label> <input type="hidden"
+											<label for="lemon_grade">총점 </label> <input type="hidden"
 												value="${board.lemon_grade}" id="lemon_grade"
-												name="lemon_grade"> <span class="total_value">${board.lemon_grade}</span>점<span
-												class="lemon_grade_name">레몬</span>
+												name="lemon_grade"> <span class="total_value">${board.lemon_grade}</span>점의
+											<span class="lemon_grade_name">레몬</span>
 										</div> <br></td>
 								</tr>
 								<tr style="height: 270px;">
@@ -381,6 +399,7 @@ td {
 									</td>
 								</tr>
 							</table>
+
 						</div>
 					</td>
 				</tr>
@@ -420,7 +439,8 @@ td {
 			<br>
 			<div style="display: inline-block;">
 				<div style="float: left;">
-					<input type="submit" id="form-submit" value="확인" onclick="submitButton()"
+					<input type="submit" id="form-submit" value="확인"
+						onclick="submitButton()"
 						style="width: 97px; height: 30px; background: linear-gradient(to left, #ffe400, #abf200); border-radius: 10px; border-style: none; margin-right: 5px;">
 				</div>
 				<div style="float: left;">
