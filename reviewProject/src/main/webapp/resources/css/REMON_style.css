@@ -1,0 +1,279 @@
+.rating {
+	display: inline-block;
+	position: relative;
+	height: 20px;
+	line-height: 20px;
+	font-size: 20px;
+}
+
+.rating label {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	cursor: pointer;
+}
+
+.rating label:last-child {
+	position: static;
+}
+
+.rating label:nth-child(1) {
+	z-index: 5;
+}
+
+.rating label:nth-child(2) {
+	z-index: 4;
+}
+
+.rating label:nth-child(3) {
+	z-index: 3;
+}
+
+.rating label:nth-child(4) {
+	z-index: 2;
+}
+
+.rating label:nth-child(5) {
+	z-index: 1;
+}
+
+.rating label input {
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0;
+}
+
+.rating label .icon {
+	float: left;
+	color: transparent;
+}
+
+.rating label:last-child .icon {
+	color: #000;
+}
+
+.rating:not (:hover ) label input:checked ~ .icon, .rating:hover label:hover input 
+	 ~ .icon {
+	color: #09f;
+}
+
+.rating label input:focus:not (:checked ) ~ .icon:last-child {
+	color: #000;
+	text-shadow: 0 0 5px #09f;
+}
+/* 공통 style */
+.center {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+/* Login header style */
+.login_header_div1 {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	background: linear-gradient(to right, #ffe400, #abf200);
+	height: 90px;
+	width: 1200px;
+}
+
+.login_header_logo {
+	height: 50px;
+	margin-top: 20px;
+}
+/* main header style */
+.main_header_div1 {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	background: background: -webkit-linear-gradient(to right, #abf200, #ffe400);
+	background: linear-gradient(to right, #abf200, #ffe400);
+	width: 1200px;
+	height: 90px;
+}
+
+.main_header_div2 {
+	float: right;
+	margin-top: 20px;
+	margin-right: 30px;
+}
+
+.main_header_div3 {
+	float: right;
+	margin-right: 10px;
+	margin-top: 20px;
+}
+
+.main_header_div3_1 {
+	float: left;
+	margin-left: 10px;
+}
+/* header style */
+input:focus {
+	outline: none;
+}
+
+.header_st {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	background: -webkit-linear-gradient(to right, #abf200, #ffe400);
+	background: linear-gradient(to right, #abf200, #ffe400);
+	width: 1200px;
+	height: 90px;
+}
+
+.header_no_background {
+	background: none;
+	width: 400px;
+	align-content: center;
+}
+
+.td_class1 {
+	width: 400px;
+}
+
+.header_logo {
+	height: 50px;
+}
+
+.header_search_bar {
+	width: 300px;
+	height: 30px;
+	border-radius: 20px;
+	border-style: none;
+	text-align: center;
+}
+
+.header_search_btn {
+	width: 50px;
+	height: 30px;
+	border-radius: 20px;
+	border-style: none;
+	background-color: yellow;
+}
+
+.header_image_btn {
+	height: 50px;
+}
+
+.header_member_btn {
+	height: 50px;
+	width: 50px;
+	border-radius: 50px;
+}
+
+.logo {
+	float: left;
+	margin-top: 10px;
+	margin-left: 20px;
+}
+
+.header_div1 {
+	float: right;
+	margin-top: 10px;
+	margin-right: 20px;
+}
+
+.header_div2 {
+	float: right;
+	margin-right: 10px;
+	margin-top: 10px;
+}
+
+.header_div3 {
+	float: left;
+	margin-left: 10px;
+}
+/* footer style */
+.footer_st {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	background-image: url('/review/movie/resources/image/REMON_footer.png');
+	height: 100px;
+	width: 1200px;
+}
+
+/* reply style*/
+.reply_btn {
+	width: 700px;
+	height: 30px;
+	border-radius: 20px;
+	border-style: none;
+}
+
+.reply_btn_st {
+	width: 50px;
+	height: 30px;
+	border-radius: 20px;
+	border-style: none;
+}
+
+.updateReplyForm {
+	width: 50px;
+	height: 30px;
+	border-radius: 20px;
+	border-style: none;
+}
+
+.deleteReply {
+	width: 50px;
+	height: 30px;
+	border-radius: 20px;
+	border-style: none;
+}
+
+.imgform {
+	height: 30px;
+	width: auto;
+	margin-top: 30px;
+}
+
+.reply_td_st1 {
+	width: 150px;
+	border-right: 1px solid gray;
+}
+
+.reply_td_st2 {
+	width: 600px;
+	border-right: 1px solid gray;
+}
+
+.reply_td_st3 {
+	width: 200px;
+	border-right: 1px solid gray;
+}
+
+.reply_td_st4 {
+	width: 200px;
+}
+
+.reply_td_st5 {
+	wwidth: 50px;
+}
+
+.reply_content {
+	width: 600px;
+	height: auto;
+}
+
+.reply_update_td_st1 {
+	width: 150px;
+	height: 40px;
+	border-right: 1px solid white;
+	font-size: small;
+}
+
+.reply_update_td_st2 {
+	width: 1050px;
+	text-align: left;
+}
+
+.reply_UpdateContent {
+	width: 800px;
+	height: 20px;
+	border-style: none;
+}

@@ -4,18 +4,18 @@
 <script type="text/javascript"
 	src="/review/resources/script/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
-$(document).ready(function(){
-	var emptyCheck = $('#emptyCheck').val();
-	if(emptyCheck == "Empty")
-		$(".best_contentList").empty();	
-})
+	$(document).ready(function() {
+		var emptyCheck = $('#emptyCheck').val();
+		if (emptyCheck == "Empty")
+			$(".best_contentList").empty();
+	})
 </script>
 <style type="text/css">
 /* 그리드 레이아웃 자료 : https://www.youtube.com/watch?v=jDD2uMJ_xNg */
 .wrapper2 {
 	display: grid;
 	grid-template-columns: 300px 300px 300px;
-	grid-template-rows: 300px 0px 0px;	
+	grid-template-rows: 300px 0px 0px;
 	grid-column-gap: 5px;
 	grid-row-gap: 5px;
 	justify-content: center;
@@ -47,83 +47,102 @@ $(document).ready(function(){
 .td_class1 {
 	width: 400px;
 }
+
+.best_content {
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #f2f2f2;
+	width: 1200px;
+	height: auto;
+	padding-bottom: 10px;
+}
+
+.best_title {
+	margin-left: auto;
+	margin-right: auto;
+	background-color: F6F6F6;
+	width: 1200px;
+	height: auto;
+	padding-bottom: 10px;
+}
 </style>
-<br>
-<div class="center">
-	<table class="center" style="font-size: small;">
-		<tr>		
-			<td class="td_class1">
-				<c:choose>
-					<c:when test="${not empty movie_nm}">
-						인기 리뷰 ( ${movie_nm} )
-					</c:when>
-					<c:otherwise>
-						인기 리뷰 (전 체)
-					</c:otherwise>
-				</c:choose>	
-			</td>
-		</tr>
-	</table>
+<div class="best_title">
+	<div class="center">
+		<table class="center" style="font-size: small;">
+			<tr>
+				<td class="td_class1"><c:choose>
+						<c:when test="${not empty movie_nm}">
+							<h2>인기 리뷰 ( ${movie_nm} )</h2>
+						</c:when>
+						<c:otherwise>
+							<h2>인기 리뷰 (전 체)</h2>
+						</c:otherwise>
+					</c:choose></td>
+			</tr>
+		</table>
+	</div>
 </div>
-<input type = "hidden" value = "${emptyCheck}" id ="emptyCheck">
-<br>
-<div class="wrapper2">
-	<c:forEach items="${board_list}" var="board">
-		<div class="items"
-			onclick="move('/review/movie/detail_view/${board.board_num}')"
-			style="background-color: rgba(255, 255, 255, 0.7);">
-			<table>
-				<tr>
-					<td style="text-align: left; padding-left: 10px;" colspan="2">
+<div class="best_content">
+	<input type="hidden" value="${emptyCheck}" id="emptyCheck"> <br>
+	<div class="wrapper2">
+		<c:forEach items="${board_list}" var="board">
+			<div class="items"
+				onclick="move('/review/movie/detail_view/${board.board_num}')"
+				style="background-color: rgba(255, 255, 255, 0.7);">
+				<table>
+					<tr>
+						<td style="text-align: left; padding-left: 10px;" colspan="2">
 							<div style="display: inline-block;">
-							<div style="float: left;">
-								<img
-									src="/review/movie/resources/memberImage/${board.memberVO.member_pic}"
-									style="width: 30px; height: 30px; border-radius: 50px;">
+								<div style="float: left;">
+									<img
+										src="/review/movie/resources/memberImage/${board.memberVO.member_pic}"
+										style="width: 30px; height: 30px; border-radius: 50px;">
+								</div>
+								<div style="float: left;">&nbsp;&nbsp;${board.member_id}</div>
 							</div>
-							<div style="float: left;">&nbsp;&nbsp;${board.member_id}</div>
-						</div>
-					</td>
-					<td style="font-size: small; text-align: right;" colspan="1">조회수
-						: ${board.board_readcount}&nbsp;</td>
-				</tr>
-				<tr>
-					<td style="" colspan="3">
-						<div
-							style="background: url('${board.thumbnail}');height: 170px; font-size: large; font-weight: bold;">
+						</td>
+						<td style="font-size: small; text-align: right;" colspan="1">조회수
+							: ${board.board_readcount}&nbsp;</td>
+					</tr>
+					<tr>
+						<td style="" colspan="3">
 							<div
-								style="background-color: rgba(255, 255, 255, 0.7); padding-top: 10px;">
-								<span style="color: black;">${board.board_title}</span>
+								style="background: url('${board.thumbnail}');height: 170px; font-size: large; font-weight: bold;">
+								<div
+									style="background-color: rgba(255, 255, 255, 0.7); padding-top: 10px;">
+									<span style="color: black;">${board.board_title}</span>
+								</div>
 							</div>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td style="font-size: small; text-align: right;" colspan="3">점수:
-						${board.lemon_grade}&nbsp;</td>
-				</tr>
-				<tr>
-					<td colspan="3"><hr></td>
-				</tr>
-				<tr>
-					<td style="font-size: small; padding-right: 30px;"><div
-							style="display: inline-block; padding-top: 5px;">
-							<div style="float: left;">
-								<img alt="likeit"
-									src="/review/resources/image/REMON_like_icon.png"
-									style="width: 20px; margin-left: -20px;">
-								${board.likeit_count}
-							</div>
-							<div style="float: left; margin-left: 30px;">
-								<img alt="likeit"
-									src="/review/resources/image/REMON_comment_icon.png"
-									style="width: 20px; margin-left: -20px;">
-								${board.reply_count}
-							</div>
-						</div></td>
-					<td style="font-size: small; text-align: right;" colspan="2">${board.board_date}&nbsp;</td>
-				</tr>
-			</table>
-		</div>
-	</c:forEach>
+						</td>
+					</tr>
+					<tr>
+						<td style="font-size: small; text-align: right;" colspan="3">점수:
+							${board.lemon_grade}&nbsp;</td>
+					</tr>
+					<tr>
+						<td colspan="3"><hr></td>
+					</tr>
+					<tr>
+						<td style="font-size: small; padding-right: 30px;"><div
+								style="display: inline-block; padding-top: 5px;">
+								<div style="float: left;">
+									<img alt="likeit"
+										src="/review/resources/image/REMON_like_icon.png"
+										style="width: 20px; margin-left: -20px;">
+									${board.likeit_count}
+								</div>
+								<div style="float: left; margin-left: 30px;">
+									<img alt="likeit"
+										src="/review/resources/image/REMON_comment_icon.png"
+										style="width: 20px; margin-left: -20px;">
+									${board.reply_count}
+								</div>
+							</div></td>
+						<td style="font-size: small; text-align: right;" colspan="2">${board.board_date}&nbsp;</td>
+					</tr>
+				</table>
+			</div>
+		</c:forEach>
+	</div>
 </div>
+<!-- <hr style="width: 1100px;"> -->

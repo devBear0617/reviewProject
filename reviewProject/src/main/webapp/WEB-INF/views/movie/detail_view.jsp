@@ -116,6 +116,30 @@
 	width: 1200px;
 	height: 90px;
 }
+
+.dv_td_st1 {
+	width: 100px;
+	text-align: right;
+	height: 50px;
+	font-size: large;
+}
+
+.dv_td_st2 {
+	width: 10px;
+	text-align: center;
+	height: 50px;
+}
+
+.dv_td_st3 {
+	width: 100px;
+	text-align: left;
+	height: 50px;
+}
+
+.dv_font {
+	font-size: large;
+	font-weight: bold;
+}
 </style>
 </head>
 
@@ -133,7 +157,8 @@
 		<table class="user">
 			<tr>
 				<td style="width: 50px; padding-left: 20px;"><img
-					alt="user_img" src="/review/resources/memberImage/${board.memberVO.member_pic}"
+					alt="user_img"
+					src="/review/resources/memberImage/${board.memberVO.member_pic}"
 					style="height: 50px; width: 50px; border-radius: 50px;"></td>
 				<td class="td_class3">&nbsp;${board.member_id}</td>
 				<td class="td_class4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${board.board_title}</td>
@@ -159,133 +184,158 @@
 				<td class="td_class1">
 					<table class="center">
 						<tr>
-							<td>
-								<c:choose>
+							<td><c:choose>
 									<c:when test="${board.lemon_grade >= 80}">
-										<img src ="/review/movie/resources/image/REMON_grade_1.png">
-										<br> 총점 ${board.lemon_grade}의 달콤한 레몬 <br><br> 
+										<img src="/review/movie/resources/image/REMON_grade_1.png">
+										<br> 총점  ${board.lemon_grade}점<span class="dv_font">달콤한
+											레몬</span>
+										<br>
+										<br>
 									</c:when>
 									<c:when test="${board.lemon_grade >= 60}">
-										<img src ="/review/movie/resources/image/REMON_grade_2.png">
-										<br> 총점  ${board.lemon_grade}의 새콤한 레몬 <br><br>
+										<img src="/review/movie/resources/image/REMON_grade_2.png">
+										<br> 총점  ${board.lemon_grade}점 <span class="dv_font">새콤한
+											레몬</span>
+										<br>
+										<br>
 									</c:when>
 									<c:when test="${board.lemon_grade >= 40}">
-										<img src ="/review/movie/resources/image/REMON_grade_3.png">
-										<br> 총점  ${board.lemon_grade}의 신맛 레몬 <br><br>
+										<img src="/review/movie/resources/image/REMON_grade_3.png">
+										<br> 총점  ${board.lemon_grade}점 <span class="dv_font">신맛
+											레몬</span>
+										<br>
+										<br>
 									</c:when>
 									<c:when test="${board.lemon_grade >= 20}">
-										<img src ="/review/movie/resources/image/REMON_grade_4.png">
-										<br> 총점  ${board.lemon_grade}의 씁쓸한 레몬 <br><br>
+										<img src="/review/movie/resources/image/REMON_grade_4.png">
+										<br> 총점  ${board.lemon_grade}점 <span class="dv_font">씁쓸한
+											레몬</span>
+										<br>
+										<br>
 									</c:when>
 									<c:otherwise>
-										<img src ="/review/movie/resources/image/REMON_grade_5.png">
-										<br> 총점  ${board.lemon_grade}의 썩은 레몬 <br><br>
+										<img src="/review/movie/resources/image/REMON_grade_5.png">
+										<br> 총점  ${board.lemon_grade}점 <span class="dv_font">썩은
+											레몬</span>
+										<br>
+										<br>
 									</c:otherwise>
-								</c:choose>
-							</td>
+								</c:choose></td>
 						</tr>
 						<tr>
 							<td><c:choose>
 									<c:when test="${board.recommend == 1}">
-								이 영화를 추천 합니다.
-							</c:when>
+										이 영화를 추천 합니다.
+									</c:when>
 									<c:otherwise>
-								이 영화를 추천하지 않습니다.
-							</c:otherwise>
+										이 영화를 추천하지 않습니다.
+									</c:otherwise>
 								</c:choose></td>
 						</tr>
 					</table>
 				</td>
 				<td style="border-left: 1px solid gray;" class="td_class1">
-					개별점수 <br> 
-					${board.gradeVO.grade_name1} :
-					<c:choose>
-						<c:when test="${board.gradeVO.grade1 == 0}">
-							<img src ="/review/movie/resources/image/REMON_0.png">
-						</c:when>
-						<c:when test="${board.gradeVO.grade1 == 5}">
-							<img src ="/review/movie/resources/image/REMON_1.png">
-						</c:when>
-						<c:when test="${board.gradeVO.grade1 == 10}">
-							<img src ="/review/movie/resources/image/REMON_2.png">
-						</c:when>
-						<c:when test="${board.gradeVO.grade1 == 15}">
-							<img src ="/review/movie/resources/image/REMON_3.png">
-						</c:when>
-						<c:when test="${board.gradeVO.grade1 == 20}">
-							<img src ="/review/movie/resources/image/REMON_4.png">
-						</c:when>
-						<c:otherwise>
-							<img src ="/review/movie/resources/image/REMON_5.png">
-						</c:otherwise>
-					</c:choose>
-					<br>					
-					${board.gradeVO.grade_name2} : 
-					<c:choose>
-						<c:when test="${board.gradeVO.grade2 == 0}">
-							<img src ="/review/movie/resources/image/REMON_0.png">
-						</c:when>
-						<c:when test="${board.gradeVO.grade2 == 5}">
-							<img src ="/review/movie/resources/image/REMON_1.png">
-						</c:when>
-						<c:when test="${board.gradeVO.grade2 == 10}">
-							<img src ="/review/movie/resources/image/REMON_2.png">
-						</c:when>
-						<c:when test="${board.gradeVO.grade2 == 15}">
-							<img src ="/review/movie/resources/image/REMON_3.png">
-						</c:when>
-						<c:when test="${board.gradeVO.grade2 == 20}">
-							<img src ="/review/movie/resources/image/REMON_4.png">
-						</c:when>
-						<c:otherwise>
-							<img src ="/review/movie/resources/image/REMON_5.png">
-						</c:otherwise>
-					</c:choose>
-					<br>
-					
-					${board.gradeVO.grade_name3} : <c:choose>
-						<c:when test="${board.gradeVO.grade3 == 0}">
-							<img src ="/review/movie/resources/image/REMON_0.png">
-						</c:when>
-						<c:when test="${board.gradeVO.grade3 == 5}">
-							<img src ="/review/movie/resources/image/REMON_1.png">
-						</c:when>
-						<c:when test="${board.gradeVO.grade3 == 10}">
-							<img src ="/review/movie/resources/image/REMON_2.png">
-						</c:when>
-						<c:when test="${board.gradeVO.grade3 == 15}">
-							<img src ="/review/movie/resources/image/REMON_3.png">
-						</c:when>
-						<c:when test="${board.gradeVO.grade3 == 20}">
-							<img src ="/review/movie/resources/image/REMON_4.png">
-						</c:when>
-						<c:otherwise>
-							<img src ="/review/movie/resources/image/REMON_5.png">
-						</c:otherwise>
-					</c:choose>
-					<br>
-					
-					${board.gradeVO.grade_name4} : <c:choose>
-						<c:when test="${board.gradeVO.grade4 == 0}">
-							<img src ="/review/movie/resources/image/REMON_0.png">
-						</c:when>
-						<c:when test="${board.gradeVO.grade4 == 5}">
-							<img src ="/review/movie/resources/image/REMON_1.png">
-						</c:when>
-						<c:when test="${board.gradeVO.grade4 == 10}">
-							<img src ="/review/movie/resources/image/REMON_2.png">
-						</c:when>
-						<c:when test="${board.gradeVO.grade4 == 15}">
-							<img src ="/review/movie/resources/image/REMON_3.png">
-						</c:when>
-						<c:when test="${board.gradeVO.grade4 == 20}">
-							<img src ="/review/movie/resources/image/REMON_4.png">
-						</c:when>
-						<c:otherwise>
-							<img src ="/review/movie/resources/image/REMON_5.png">
-						</c:otherwise>
-					</c:choose>
-					<br>
+					<div class="center">
+						<table class="center">
+							<tr>
+								<td class="dv_td_st1">${board.gradeVO.grade_name1}</td>
+								<td class="dv_td_st2">:</td>
+								<td class="dv_td_st3"><c:choose>
+										<c:when test="${board.gradeVO.grade1 == 0}">
+											<img src="/review/movie/resources/image/REMON_0.png">
+										</c:when>
+										<c:when test="${board.gradeVO.grade1 == 5}">
+											<img src="/review/movie/resources/image/REMON_1.png">
+										</c:when>
+										<c:when test="${board.gradeVO.grade1 == 10}">
+											<img src="/review/movie/resources/image/REMON_2.png">
+										</c:when>
+										<c:when test="${board.gradeVO.grade1 == 15}">
+											<img src="/review/movie/resources/image/REMON_3.png">
+										</c:when>
+										<c:when test="${board.gradeVO.grade1 == 20}">
+											<img src="/review/movie/resources/image/REMON_4.png">
+										</c:when>
+										<c:otherwise>
+											<img src="/review/movie/resources/image/REMON_5.png">
+										</c:otherwise>
+									</c:choose></td>
+							</tr>
+							<tr>
+								<td class="dv_td_st1">${board.gradeVO.grade_name2}</td>
+								<td class="dv_td_st2">:</td>
+								<td class="dv_td_st3"><c:choose>
+										<c:when test="${board.gradeVO.grade2 == 0}">
+											<img src="/review/movie/resources/image/REMON_0.png">
+										</c:when>
+										<c:when test="${board.gradeVO.grade2 == 5}">
+											<img src="/review/movie/resources/image/REMON_1.png">
+										</c:when>
+										<c:when test="${board.gradeVO.grade2 == 10}">
+											<img src="/review/movie/resources/image/REMON_2.png">
+										</c:when>
+										<c:when test="${board.gradeVO.grade2 == 15}">
+											<img src="/review/movie/resources/image/REMON_3.png">
+										</c:when>
+										<c:when test="${board.gradeVO.grade2 == 20}">
+											<img src="/review/movie/resources/image/REMON_4.png">
+										</c:when>
+										<c:otherwise>
+											<img src="/review/movie/resources/image/REMON_5.png">
+										</c:otherwise>
+									</c:choose></td>
+							</tr>
+
+							<tr>
+								<td class="dv_td_st1">${board.gradeVO.grade_name3}</td>
+								<td class="dv_td_st2">:</td>
+								<td class="dv_td_st3"><c:choose>
+										<c:when test="${board.gradeVO.grade3 == 0}">
+											<img src="/review/movie/resources/image/REMON_0.png">
+										</c:when>
+										<c:when test="${board.gradeVO.grade3 == 5}">
+											<img src="/review/movie/resources/image/REMON_1.png">
+										</c:when>
+										<c:when test="${board.gradeVO.grade3 == 10}">
+											<img src="/review/movie/resources/image/REMON_2.png">
+										</c:when>
+										<c:when test="${board.gradeVO.grade3 == 15}">
+											<img src="/review/movie/resources/image/REMON_3.png">
+										</c:when>
+										<c:when test="${board.gradeVO.grade3 == 20}">
+											<img src="/review/movie/resources/image/REMON_4.png">
+										</c:when>
+										<c:otherwise>
+											<img src="/review/movie/resources/image/REMON_5.png">
+										</c:otherwise>
+									</c:choose></td>
+							</tr>
+							<tr>
+								<td class="dv_td_st1">${board.gradeVO.grade_name4}</td>
+								<td class="dv_td_st2">:</td>
+								<td class="dv_td_st3"><c:choose>
+										<c:when test="${board.gradeVO.grade4 == 0}">
+											<img src="/review/movie/resources/image/REMON_0.png">
+										</c:when>
+										<c:when test="${board.gradeVO.grade4 == 5}">
+											<img src="/review/movie/resources/image/REMON_1.png">
+										</c:when>
+										<c:when test="${board.gradeVO.grade4 == 10}">
+											<img src="/review/movie/resources/image/REMON_2.png">
+										</c:when>
+										<c:when test="${board.gradeVO.grade4 == 15}">
+											<img src="/review/movie/resources/image/REMON_3.png">
+										</c:when>
+										<c:when test="${board.gradeVO.grade4 == 20}">
+											<img src="/review/movie/resources/image/REMON_4.png">
+										</c:when>
+										<c:otherwise>
+											<img src="/review/movie/resources/image/REMON_5.png">
+										</c:otherwise>
+									</c:choose></td>
+							</tr>
+						</table>
+					</div>
 				</td>
 			</tr>
 		</table>
@@ -294,8 +344,8 @@
 				<td class="td_class1">
 					<div
 						style="text-align: left; padding-left: 20px; padding-top: 5px;">
-						<span class="likeIt" onclick="addSender();"></span> &nbsp;<img alt="reply"
-							src="/review/resources/image/REMON_comment_icon.png"
+						<span class="likeIt" onclick="addSender();"></span> &nbsp;<img
+							alt="reply" src="/review/resources/image/REMON_comment_icon.png"
 							class="imgform"> <span> ${replyCount} </span>
 					</div>
 				</td>

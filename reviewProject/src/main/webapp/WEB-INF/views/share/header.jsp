@@ -19,7 +19,6 @@ var link = document.location.href;
 function addSender() {
 	sessionStorage.setItem("address", link);
 };
-
 </script>
 <style type="text/css">
 input:focus {
@@ -32,7 +31,17 @@ input:focus {
 	text-align: center;
 }
 
-.no_background {
+.header_st {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	background: -webkit-linear-gradient(to right, #abf200, #ffe400);
+	background: linear-gradient(to right, #abf200, #ffe400);
+	width: 1200px;
+	height: 90px;
+}
+
+.header_no_background {
 	background: none;
 	width: 400px;
 	align-content: center;
@@ -41,59 +50,110 @@ input:focus {
 .td_class1 {
 	width: 400px;
 }
+
+.header_logo {
+	height: 50px;
+}
+
+.header_search_bar {
+	width: 300px;
+	height: 30px;
+	border-radius: 20px;
+	border-style: none;
+	text-align: center;
+}
+
+.header_search_btn {
+	width: 50px;
+	height: 30px;
+	border-radius: 20px;
+	border-style: none;
+	background-color: yellow;
+}
+
+.header_image_btn {
+	height: 50px;
+}
+
+.header_member_btn {
+	height: 50px;
+	width: 50px;
+	border-radius: 50px;
+}
+
+.logo {
+	float: left;
+	margin-top: 10px;
+	margin-left: 20px;
+}
+
+.header_div1 {
+	float: right;
+	margin-top: 10px;
+	margin-right: 20px;
+}
+
+.header_div2 {
+	float: right;
+	margin-right: 10px;
+	margin-top: 10px;
+}
+
+.header_div3 {
+	float: left;
+	margin-left: 10px;
+}
 </style>
 </head>
 <body>
 	<div class="center">
 
-		<table class="center"
-			style="background: -webkit-linear-gradient(to right, #abf200, #ffe400); background: linear-gradient(to right, #abf200, #ffe400); width: 1200px; height: 90px;">
+		<table class="header_st">
 			<tr>
-				<td class="no_background">
+				<td class="header_no_background">
 					<!-- 로고 -->
-					<div class="logo"
-						style="float: left; margin-top: 10px; margin-left: 20px;">
+					<div class="logo">
 						<a href="/review"><img alt="REMON_LOGO"
 							src="/review/resources/image/REMON_logo(white_bigsize).png"
-							style="height: 50px;"></a>
+							class="header_logo"></a>
 					</div>
 				</td>
-				<td class="no_background">
+				<td class="header_no_background">
 					<!-- 검색 바 -->
 					<form action="/review/search/searchResult" method="POST"
 						id="search">
 						<input type="text" id="query" name="keyword" value="${keyword}"
-							style="width: 300px; height: 30px; border-radius: 20px; border-style: none; text-align: center;"><input
-							type="hidden" value="${keyword}" class="keyword"> <input
-							type="submit" value="검색"
-							style="width: 50px; height: 30px; border-radius: 20px; border-style: none; background-color: yellow;">
+							class="header_search_bar"><input type="hidden"
+							value="${keyword}" class="keyword"> <input type="submit"
+							value="검색" class="header_search_btn">
 					</form> <!-- </div> -->
 				</td>
-				<td class="no_background">
+				<td class="header_no_background">
 					<!-- 마이페이지 --> <!-- 로그인 필요 시 -->
-					<div style="float: right; margin-top: 10px; margin-right: 20px;">
+					<div class="header_div1">
 						<c:if test="${empty sessionScope.member_id}">
-							<a href="/review/mypage/join"  onclick="addSender();"><img alt="REMON_LOGO"
+							<a href="/review/mypage/join" onclick="addSender();"><img
+								alt="REMON_LOGO"
 								src="/review/resources/image/REMON_Login_icon(white).png"
-								style="height: 50px;"></a>
+								class="header_image_btn"></a>
 							<a href="/review/mypage/login" onclick="addSender();">
 								<img alt="REMON_LOGO"
 									src="/review/resources/image/REMON_Login_icon(white).png"
-									style="height: 50px;">
+									class="header_image_btn">
 							</a>
 						</c:if>
 					</div> <!-- 로그인 했을 때 --> <c:if test="${not empty sessionScope.member_id}">
-						<div style="float: right; margin-right: 10px; margin-top: 10px;">
+						<div class="header_div2">
 
-							<div style="float: left; margin-left: 10px;">
+							<div class="header_div3">
 								<a href="/review/mypage/logout"><img alt="REMON_LOGO"
 									src="/review/resources/image/REMON_Login_icon(white).png"
-									style="height: 50px;"></a>
+									class="header_image_btn"></a>
 							</div>
-							<div style="float: left; margin-left: 10px;">
+							<div class="header_div3">
 								<a href="/review/mypage/mypageCheck"><img alt="USER_PIC"
 									src="/review/resources/memberImage/${user.member_pic}"
-									style="height: 50px; width: 50px; border-radius: 50px;"></a>
+									class="header_member_btn"></a>
 							</div>
 						</div>
 					</c:if>

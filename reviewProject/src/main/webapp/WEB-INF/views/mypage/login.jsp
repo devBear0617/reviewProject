@@ -6,25 +6,26 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Login_page</title>
 
-<script type="text/javascript" 
+<script type="text/javascript"
 	src="/review/resources/script/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" 
-	src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+<script type="text/javascript"
+	src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
+	charset="utf-8"></script>
 
 <script type="text/javascript">
-console.log(sessionStorage.getItem("address"));
-function searchIDPW() {
-	window.open("/review/mypage/findInfo", "ID / PW 찾기", 
-			"width=430, height=340, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );
-};
-
+	console.log(sessionStorage.getItem("address"));
+	function searchIDPW() {
+		window
+				.open("/review/mypage/findInfo", "ID / PW 찾기",
+						"width=430, height=340, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+	};
 </script>
 
 <style type="text/css">
 input:focus {
-	outline:none;
-	}
-	
+	outline: none;
+}
+
 .center {
 	margin-left: auto;
 	margin-right: auto;
@@ -32,14 +33,14 @@ input:focus {
 }
 </style>
 
-<script type="text/javascript" src="/review/resources/script/jquery-3.3.1.min.js"></script>
+<script type="text/javascript"
+	src="/review/resources/script/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
-var msg = '${loginFail}';
-console.log(msg);
-if(msg) {
-	alert(msg);		
-}
-
+	var msg = '${loginFail}';
+	console.log(msg);
+	if (msg) {
+		alert(msg);
+	}
 </script>
 
 </head>
@@ -97,9 +98,10 @@ if(msg) {
 			<%-- ${address} --%>
 		</form>
 	</div>
-	<div id="naver_id_login" style="text-align:center">
-		<a href="${url}">
-			<img width="223" src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/>
+	<div style="height: 10px;"></div>
+	<div id="naver_id_login" style="text-align: center">
+		<a href="${url}"> <img width="223"
+			src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png" />
 		</a>
 	</div>
 	<div style="height: 200px;"></div>

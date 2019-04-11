@@ -94,7 +94,6 @@ td {
 </script>
 </head>
 <body>
-
 	<div>
 		<jsp:include page="/WEB-INF/views/share/header.jsp" />
 	</div>
@@ -119,12 +118,7 @@ td {
 					<td>
 						<div>
 							영화 검색 | <input type="text" id="movie_nm" name="movie_nm"
-								value="${mApiVO.movie_nm}"> <input type="hidden"
-								id="director" name="director" value="${mApiVO.director}">
-							<input type="hidden" id="actor" name="actor"
-								value="${mApiVO.actor}"> <input type="hidden"
-								id="poster" name="poster" value="${mApiVO.poster}"> <img
-								id="movie_poster" src="${mApiVO.poster}">
+								value="${mApiVO.movie_nm}">
 						</div>
 					</td>
 				</tr>
@@ -138,231 +132,281 @@ td {
 							<script class="code-js" src="/review/resources/script/createEditor.js"></script>
 						</div>
 					</td>
-					<td>
+					<td rowspan="2">
 						<div>
-							<div style="height: 300px;">
-								<h3>전체 평점</h3>
-							</div>
-							<div style="height: 30px;">
-								<label for="lemon_grade">총합 점수 : </label> <input type="hidden"
-									value="${board.lemon_grade}" id="lemon_grade"
-									name="lemon_grade"> <span class="total_value">${board.lemon_grade}</span>점
-							</div>
-							<div style="height: 20px;">
-								<hr>
-							</div>
-							<div>
-								<input type="hidden" value="${board.gradeVO.grade_name1}"
-									id="grade_name1_val"> 1. <select name="grade_name1"
-									id="grade_name1" class="select_name">
-									<option value="">+선택하기</option>
-									<optgroup label="good" id="good1" class="option_st">
-										<option value="재미">재미</option>
-										<option value="액션">액션</option>
-										<option value="연출">연출</option>
-										<option value="감동">감동</option>
-										<option value="반전">반전</option>
-										<option value="실험성">실험성</option>
-										<option value="시나리오">시나리오</option>
-										<option value="사운드">사운드</option>
-										<option value="연기">연기</option>
-										<option value="캐스팅">캐스팅</option>
-									</optgroup>
-									<optgroup label="bad" id="bad1" class="option_st">
-										<option value="bad재미">bad재미</option>
-										<option value="bad액션">bad액션</option>
-										<option value="bad연출">bad연출</option>
-										<option value="bad감동">bad감동</option>
-										<option value="bad반전">bad반전</option>
-										<option value="bad실험성">bad실험성</option>
-										<option value="bad시나리오">bad시나리오</option>
-										<option value="bad사운드">bad사운드</option>
-										<option value="bad연기">bad연기</option>
-										<option value="bad캐스팅">bad캐스팅</option>
-									</optgroup>
-								</select>
-								<div class="rating">
-									<div id="on_off_grade1">
-										<input type="hidden" value="${board.gradeVO.grade1}"
-											id="grade1_val"> <label> <input type="radio"
-											name="grade1" value="5" /> <span class="icon">★</span>
-										</label> <label> <input type="radio" name="grade1" value="10" />
-											<span class="icon">★</span> <span class="icon">★</span>
-										</label> <label> <input type="radio" name="grade1" value="15" />
-											<span class="icon">★</span> <span class="icon">★</span> <span
-											class="icon">★</span>
-										</label> <label> <input type="radio" name="grade1" value="20" />
-											<span class="icon">★</span> <span class="icon">★</span> <span
-											class="icon">★</span> <span class="icon">★</span>
-										</label> <label> <input type="radio" name="grade1" value="25" />
-											<span class="icon">★</span> <span class="icon">★</span> <span
-											class="icon">★</span> <span class="icon">★</span> <span
-											class="icon">★</span>
-										</label>
-									</div>
-								</div>
-							</div>
-							<br>
-							<div>
-								<input type="hidden" value="${board.gradeVO.grade_name2}"
-									id="grade_name2_val"> 2. <select name="grade_name2"
-									id="grade_name2" class="select_name">
-									<option value="">+선택하기</option>
-									<optgroup label="good" id="good2" class="option_st">
-										<option value="재미">재미</option>
-										<option value="액션">액션</option>
-										<option value="연출">연출</option>
-										<option value="감동">감동</option>
-										<option value="반전">반전</option>
-										<option value="실험성">실험성</option>
-										<option value="시나리오">시나리오</option>
-										<option value="사운드">사운드</option>
-										<option value="연기">연기</option>
-										<option value="캐스팅">캐스팅</option>
-									</optgroup>
-									<optgroup label="bad" id="bad2" class="option_st">
-										<option value="bad재미">bad재미</option>
-										<option value="bad액션">bad액션</option>
-										<option value="bad연출">bad연출</option>
-										<option value="bad감동">bad감동</option>
-										<option value="bad반전">bad반전</option>
-										<option value="bad실험성">bad실험성</option>
-										<option value="bad시나리오">bad시나리오</option>
-										<option value="bad사운드">bad사운드</option>
-										<option value="bad연기">bad연기</option>
-										<option value="bad캐스팅">bad캐스팅</option>
-									</optgroup>
-								</select>
-								<div class="rating">
-									<div id="on_off_grade2">
-										<input type="hidden" value="${board.gradeVO.grade2}"
-											id="grade2_val"> <label> <input type="radio"
-											name="grade2" value="5" /> <span class="icon">★</span>
-										</label> <label> <input type="radio" name="grade2" value="10" />
-											<span class="icon">★</span> <span class="icon">★</span>
-										</label> <label> <input type="radio" name="grade2" value="15" />
-											<span class="icon">★</span> <span class="icon">★</span> <span
-											class="icon">★</span>
-										</label> <label> <input type="radio" name="grade2" value="20" />
-											<span class="icon">★</span> <span class="icon">★</span> <span
-											class="icon">★</span> <span class="icon">★</span>
-										</label> <label> <input type="radio" name="grade2" value="25" />
-											<span class="icon">★</span> <span class="icon">★</span> <span
-											class="icon">★</span> <span class="icon">★</span> <span
-											class="icon">★</span>
-										</label>
-									</div>
-								</div>
-							</div>
-							<br>
-							<div>
-								<input type="hidden" value="${board.gradeVO.grade_name3}"
-									id="grade_name3_val"> 3. <select name="grade_name3"
-									id="grade_name3" class="select_name">
-									<option value="">+선택하기</option>
-									<optgroup label="good" id="good3" class="option_st">
-										<option value="재미">재미</option>
-										<option value="액션">액션</option>
-										<option value="연출">연출</option>
-										<option value="감동">감동</option>
-										<option value="반전">반전</option>
-										<option value="실험성">실험성</option>
-										<option value="시나리오">시나리오</option>
-										<option value="사운드">사운드</option>
-										<option value="연기">연기</option>
-										<option value="캐스팅">캐스팅</option>
-									</optgroup>
-									<optgroup label="bad" id="bad3" class="option_st">
-										<option value="bad재미">bad재미</option>
-										<option value="bad액션">bad액션</option>
-										<option value="bad연출">bad연출</option>
-										<option value="bad감동">bad감동</option>
-										<option value="bad반전">bad반전</option>
-										<option value="bad실험성">bad실험성</option>
-										<option value="bad시나리오">bad시나리오</option>
-										<option value="bad사운드">bad사운드</option>
-										<option value="bad연기">bad연기</option>
-										<option value="bad캐스팅">bad캐스팅</option>
-									</optgroup>
-								</select>
-								<div class="rating">
-									<div id="on_off_grade3">
-										<input type="hidden" value="${board.gradeVO.grade3}"
-											id="grade3_val"> <label> <input type="radio"
-											name="grade3" value="5" /> <span class="icon">★</span>
-										</label> <label> <input type="radio" name="grade3" value="10" />
-											<span class="icon">★</span> <span class="icon">★</span>
-										</label> <label> <input type="radio" name="grade3" value="15" />
-											<span class="icon">★</span> <span class="icon">★</span> <span
-											class="icon">★</span>
-										</label> <label> <input type="radio" name="grade3" value="20" />
-											<span class="icon">★</span> <span class="icon">★</span> <span
-											class="icon">★</span> <span class="icon">★</span>
-										</label> <label> <input type="radio" name="grade3" value="25" />
-											<span class="icon">★</span> <span class="icon">★</span> <span
-											class="icon">★</span> <span class="icon">★</span> <span
-											class="icon">★</span>
-										</label>
-									</div>
-								</div>
-							</div>
-							<br>
-							<div>
-								<input type="hidden" value="${board.gradeVO.grade_name4}"
-									id="grade_name4_val"> 4. <select name="grade_name4"
-									id="grade_name4" class="select_name">
-									<option value="">+선택하기</option>
-									<optgroup label="good" id="good4" class="option_st">
-										<option value="재미">재미</option>
-										<option value="액션">액션</option>
-										<option value="연출">연출</option>
-										<option value="감동">감동</option>
-										<option value="반전">반전</option>
-										<option value="실험성">실험성</option>
-										<option value="시나리오">시나리오</option>
-										<option value="사운드">사운드</option>
-										<option value="연기">연기</option>
-										<option value="캐스팅">캐스팅</option>
-									</optgroup>
-									<optgroup label="bad" id="bad4" class="option_st">
-										<option value="bad재미">bad재미</option>
-										<option value="bad액션">bad액션</option>
-										<option value="bad연출">bad연출</option>
-										<option value="bad감동">bad감동</option>
-										<option value="bad반전">bad반전</option>
-										<option value="bad실험성">bad실험성</option>
-										<option value="bad시나리오">bad시나리오</option>
-										<option value="bad사운드">bad사운드</option>
-										<option value="bad연기">bad연기</option>
-										<option value="bad캐스팅">bad캐스팅</option>
-									</optgroup>
-								</select>
-								<div class="rating">
-									<div id="on_off_grade4">
-										<input type="hidden" value="${board.gradeVO.grade4}"
-											id="grade4_val"> <label> <input type="radio"
-											name="grade4" value="5" /> <span class="icon">★</span>
-										</label> <label> <input type="radio" name="grade4" value="10" />
-											<span class="icon">★</span> <span class="icon">★</span>
-										</label> <label> <input type="radio" name="grade4" value="15" />
-											<span class="icon">★</span> <span class="icon">★</span> <span
-											class="icon">★</span>
-										</label> <label> <input type="radio" name="grade4" value="20" />
-											<span class="icon">★</span> <span class="icon">★</span> <span
-											class="icon">★</span> <span class="icon">★</span>
-										</label> <label> <input type="radio" name="grade4" value="25" />
-											<span class="icon">★</span> <span class="icon">★</span> <span
-											class="icon">★</span> <span class="icon">★</span> <span
-											class="icon">★</span>
-										</label>
-									</div>
-								</div>
-							</div>
+							<table>
+								<tr style="height: 250px;">
+									<td>
+										<div>
+											<input type="hidden" id="director" name="director"
+												value="${mApiVO.director}"> <input type="hidden"
+												id="actor" name="actor" value="${mApiVO.actor}"> <input
+												type="hidden" id="poster" name="poster"
+												value="${mApiVO.poster}"> <img id="movie_poster"
+												src="${mApiVO.poster}">
+										</div>
+									</td>
+								</tr>
+								<tr style="height: 340px;">
+									<td><hr>
+										<div style="height: 300px;">
+											<h3>전체 평점</h3>
+											<img id="lemon_grade_img">
+										</div>
+										<div style="height: 30px;">
+											<label for="lemon_grade">총합 </label> <input type="hidden"
+												value="${board.lemon_grade}" id="lemon_grade"
+												name="lemon_grade"> <span class="total_value">${board.lemon_grade}</span>점<span
+												class="lemon_grade_name">레몬</span>
+										</div> <br></td>
+								</tr>
+								<tr style="height: 270px;">
+									<td>
+										<div>
+											<input type="hidden" value="${board.gradeVO.grade_name1}"
+												id="grade_name1_val"> 1. <select name="grade_name1"
+												id="grade_name1" class="select_name">
+												<option value="">+선택하기</option>
+												<optgroup label="good" id="good1" class="option_st">
+													<option value="재미">재미</option>
+													<option value="액션">액션</option>
+													<option value="연출">연출</option>
+													<option value="감동">감동</option>
+													<option value="반전">반전</option>
+													<option value="실험성">실험성</option>
+													<option value="시나리오">시나리오</option>
+													<option value="사운드">사운드</option>
+													<option value="연기">연기</option>
+													<option value="캐스팅">캐스팅</option>
+												</optgroup>
+												<optgroup label="bad" id="bad1" class="option_st">
+													<option value="bad재미">bad재미</option>
+													<option value="bad액션">bad액션</option>
+													<option value="bad연출">bad연출</option>
+													<option value="bad감동">bad감동</option>
+													<option value="bad반전">bad반전</option>
+													<option value="bad실험성">bad실험성</option>
+													<option value="bad시나리오">bad시나리오</option>
+													<option value="bad사운드">bad사운드</option>
+													<option value="bad연기">bad연기</option>
+													<option value="bad캐스팅">bad캐스팅</option>
+												</optgroup>
+											</select>
+											<div class="rating">
+												<div id="on_off_grade1">
+													<input type="hidden" value="${board.gradeVO.grade1}"
+														id="grade1_val"> <label> <input
+														type="radio" name="grade1" value="5" /> <span
+														class="icon">★</span>
+													</label> <label> <input type="radio" name="grade1"
+														value="10" /> <span class="icon">★</span> <span
+														class="icon">★</span>
+													</label> <label> <input type="radio" name="grade1"
+														value="15" /> <span class="icon">★</span> <span
+														class="icon">★</span> <span class="icon">★</span>
+													</label> <label> <input type="radio" name="grade1"
+														value="20" /> <span class="icon">★</span> <span
+														class="icon">★</span> <span class="icon">★</span> <span
+														class="icon">★</span>
+													</label> <label> <input type="radio" name="grade1"
+														value="25" /> <span class="icon">★</span> <span
+														class="icon">★</span> <span class="icon">★</span> <span
+														class="icon">★</span> <span class="icon">★</span>
+													</label>
+												</div>
+											</div>
+										</div> <br>
+										<div>
+											<input type="hidden" value="${board.gradeVO.grade_name2}"
+												id="grade_name2_val"> 2. <select name="grade_name2"
+												id="grade_name2" class="select_name">
+												<option value="">+선택하기</option>
+												<optgroup label="good" id="good2" class="option_st">
+													<option value="재미">재미</option>
+													<option value="액션">액션</option>
+													<option value="연출">연출</option>
+													<option value="감동">감동</option>
+													<option value="반전">반전</option>
+													<option value="실험성">실험성</option>
+													<option value="시나리오">시나리오</option>
+													<option value="사운드">사운드</option>
+													<option value="연기">연기</option>
+													<option value="캐스팅">캐스팅</option>
+												</optgroup>
+												<optgroup label="bad" id="bad2" class="option_st">
+													<option value="bad재미">bad재미</option>
+													<option value="bad액션">bad액션</option>
+													<option value="bad연출">bad연출</option>
+													<option value="bad감동">bad감동</option>
+													<option value="bad반전">bad반전</option>
+													<option value="bad실험성">bad실험성</option>
+													<option value="bad시나리오">bad시나리오</option>
+													<option value="bad사운드">bad사운드</option>
+													<option value="bad연기">bad연기</option>
+													<option value="bad캐스팅">bad캐스팅</option>
+												</optgroup>
+											</select>
+											<div class="rating">
+												<div id="on_off_grade2">
+													<input type="hidden" value="${board.gradeVO.grade2}"
+														id="grade2_val"> <label> <input
+														type="radio" name="grade2" value="5" /> <span
+														class="icon">★</span>
+													</label> <label> <input type="radio" name="grade2"
+														value="10" /> <span class="icon">★</span> <span
+														class="icon">★</span>
+													</label> <label> <input type="radio" name="grade2"
+														value="15" /> <span class="icon">★</span> <span
+														class="icon">★</span> <span class="icon">★</span>
+													</label> <label> <input type="radio" name="grade2"
+														value="20" /> <span class="icon">★</span> <span
+														class="icon">★</span> <span class="icon">★</span> <span
+														class="icon">★</span>
+													</label> <label> <input type="radio" name="grade2"
+														value="25" /> <span class="icon">★</span> <span
+														class="icon">★</span> <span class="icon">★</span> <span
+														class="icon">★</span> <span class="icon">★</span>
+													</label>
+												</div>
+											</div>
+										</div> <br>
+										<div>
+											<input type="hidden" value="${board.gradeVO.grade_name3}"
+												id="grade_name3_val"> 3. <select name="grade_name3"
+												id="grade_name3" class="select_name">
+												<option value="">+선택하기</option>
+												<optgroup label="good" id="good3" class="option_st">
+													<option value="재미">재미</option>
+													<option value="액션">액션</option>
+													<option value="연출">연출</option>
+													<option value="감동">감동</option>
+													<option value="반전">반전</option>
+													<option value="실험성">실험성</option>
+													<option value="시나리오">시나리오</option>
+													<option value="사운드">사운드</option>
+													<option value="연기">연기</option>
+													<option value="캐스팅">캐스팅</option>
+												</optgroup>
+												<optgroup label="bad" id="bad3" class="option_st">
+													<option value="bad재미">bad재미</option>
+													<option value="bad액션">bad액션</option>
+													<option value="bad연출">bad연출</option>
+													<option value="bad감동">bad감동</option>
+													<option value="bad반전">bad반전</option>
+													<option value="bad실험성">bad실험성</option>
+													<option value="bad시나리오">bad시나리오</option>
+													<option value="bad사운드">bad사운드</option>
+													<option value="bad연기">bad연기</option>
+													<option value="bad캐스팅">bad캐스팅</option>
+												</optgroup>
+											</select>
+											<div class="rating">
+												<div id="on_off_grade3">
+													<input type="hidden" value="${board.gradeVO.grade3}"
+														id="grade3_val"> <label> <input
+														type="radio" name="grade3" value="5" /> <span
+														class="icon">★</span>
+													</label> <label> <input type="radio" name="grade3"
+														value="10" /> <span class="icon">★</span> <span
+														class="icon">★</span>
+													</label> <label> <input type="radio" name="grade3"
+														value="15" /> <span class="icon">★</span> <span
+														class="icon">★</span> <span class="icon">★</span>
+													</label> <label> <input type="radio" name="grade3"
+														value="20" /> <span class="icon">★</span> <span
+														class="icon">★</span> <span class="icon">★</span> <span
+														class="icon">★</span>
+													</label> <label> <input type="radio" name="grade3"
+														value="25" /> <span class="icon">★</span> <span
+														class="icon">★</span> <span class="icon">★</span> <span
+														class="icon">★</span> <span class="icon">★</span>
+													</label>
+												</div>
+											</div>
+										</div> <br>
+										<div>
+											<input type="hidden" value="${board.gradeVO.grade_name4}"
+												id="grade_name4_val"> 4. <select name="grade_name4"
+												id="grade_name4" class="select_name">
+												<option value="">+선택하기</option>
+												<optgroup label="good" id="good4" class="option_st">
+													<option value="재미">재미</option>
+													<option value="액션">액션</option>
+													<option value="연출">연출</option>
+													<option value="감동">감동</option>
+													<option value="반전">반전</option>
+													<option value="실험성">실험성</option>
+													<option value="시나리오">시나리오</option>
+													<option value="사운드">사운드</option>
+													<option value="연기">연기</option>
+													<option value="캐스팅">캐스팅</option>
+												</optgroup>
+												<optgroup label="bad" id="bad4" class="option_st">
+													<option value="bad재미">bad재미</option>
+													<option value="bad액션">bad액션</option>
+													<option value="bad연출">bad연출</option>
+													<option value="bad감동">bad감동</option>
+													<option value="bad반전">bad반전</option>
+													<option value="bad실험성">bad실험성</option>
+													<option value="bad시나리오">bad시나리오</option>
+													<option value="bad사운드">bad사운드</option>
+													<option value="bad연기">bad연기</option>
+													<option value="bad캐스팅">bad캐스팅</option>
+												</optgroup>
+											</select>
+											<div class="rating">
+												<div id="on_off_grade4">
+													<input type="hidden" value="${board.gradeVO.grade4}"
+														id="grade4_val"> <label> <input
+														type="radio" name="grade4" value="5" /> <span
+														class="icon">★</span>
+													</label> <label> <input type="radio" name="grade4"
+														value="10" /> <span class="icon">★</span> <span
+														class="icon">★</span>
+													</label> <label> <input type="radio" name="grade4"
+														value="15" /> <span class="icon">★</span> <span
+														class="icon">★</span> <span class="icon">★</span>
+													</label> <label> <input type="radio" name="grade4"
+														value="20" /> <span class="icon">★</span> <span
+														class="icon">★</span> <span class="icon">★</span> <span
+														class="icon">★</span>
+													</label> <label> <input type="radio" name="grade4"
+														value="25" /> <span class="icon">★</span> <span
+														class="icon">★</span> <span class="icon">★</span> <span
+														class="icon">★</span> <span class="icon">★</span>
+													</label>
+												</div>
+											</div>
+										</div>
+									</td>
+								</tr>
+							</table>
 						</div>
 					</td>
 				</tr>
-				<tr style="height: 200px;">
+				<tr style="height: 110px;">
 					<td colspan="2">
+						<div style="height: 20px;">
+							<br>#해쉬태그
+						</div>
+						<div style="height: 90px;">
+							#<input type="text" name="hashtag1" class="hashtag_st"
+								value="${board.hashtagVO.hashtag1}"> #<input type="text"
+								name="hashtag2" class="hashtag_st"
+								value="${board.hashtagVO.hashtag2}"> #<input type="text"
+								name="hashtag3" class="hashtag_st"
+								value="${board.hashtagVO.hashtag3}"><br> #<input
+								type="text" name="hashtag4" class="hashtag_st"
+								value="${board.hashtagVO.hashtag4}"> #<input type="text"
+								name="hashtag5" class="hashtag_st"
+								value="${board.hashtagVO.hashtag5}"> #<input type="text"
+								name="hashtag6" class="hashtag_st"
+								value="${board.hashtagVO.hashtag6}">
+						</div>
+					</td>
+				</tr>
+				<tr style="height: 40px;">
+					<td colspan="3">
 						<div>
 							<input type="hidden" value="${board.recommend}"
 								id="recommend_val"> <input type="radio" name="recommend"
@@ -370,32 +414,13 @@ td {
 								name="recommend" value="0">이 영화를 추천하지 않습니다.
 						</div>
 					</td>
-					<td>
-						<div style="height: 30px;">
-							#해쉬태그
-							<hr>
-						</div>
-						<div style="height: 10px;"></div>
-						<div>
-							#<input type="text" name="hashtag1"
-								value="${board.hashtagVO.hashtag1}"><br> #<input
-								type="text" name="hashtag2" value="${board.hashtagVO.hashtag2}"><br>
-							#<input type="text" name="hashtag3"
-								value="${board.hashtagVO.hashtag3}"><br> #<input
-								type="text" name="hashtag4" value="${board.hashtagVO.hashtag4}"><br>
-							#<input type="text" name="hashtag5"
-								value="${board.hashtagVO.hashtag5}"><br> #<input
-								type="text" name="hashtag6" value="${board.hashtagVO.hashtag6}"><br>
-						</div>
-						<div style="height: 20px;"></div>
-					</td>
 				</tr>
 			</table>
 
 			<br>
 			<div style="display: inline-block;">
 				<div style="float: left;">
-					<input type="submit" id="form-submit" value="확인" onclick="submitButton()"
+					<input type="submit" id="form-submit" value="확인"
 						style="width: 97px; height: 30px; background: linear-gradient(to left, #ffe400, #abf200); border-radius: 10px; border-style: none; margin-right: 5px;">
 				</div>
 				<div style="float: left;">
