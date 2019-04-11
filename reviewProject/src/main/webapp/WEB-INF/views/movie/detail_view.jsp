@@ -49,6 +49,10 @@
 	width: 1200px;
 }
 
+.code-html{
+	text-align: left;
+}
+
 .hashtag {
 	height: 20px;
 	width: 100px;
@@ -141,12 +145,9 @@
 	</div>
 	<!-- 이미지, 평점(추천합니다/안합니다), 상세별점, 리뷰의 좋아요, #  -->
 	<div class="center" style="background-color: #F2F2F2; width: 1200px;">
-
 		<table class="center">
 			<tr style="height: 300px;">
-				<td class="td_class1"
-					style="background: background: -webkit-linear-gradient(to right, #abf200, #ffe400); background: linear-gradient(to right, #abf200, #ffe400);">
-					<!-- >>==============================▶ 삽입 이미지 크기 조정 필요 -->
+				<td class="td_class1" style="background: background: -webkit-linear-gradient(to right, #abf200, #ffe400); background: linear-gradient(to right, #abf200, #ffe400);">
 					<div>
 						<img src="${board.thumbnail}"
 							style="height: 300px; width: auto; max-width: 400px;">
@@ -314,14 +315,10 @@
 	<br>
 	<!-- 리뷰 content, 영화 간단 정보 -->
 	<div class="center">
-
 		<table class="center">
 			<tr>
 				<td class="td_class1" colspan="2">
-					<div class="center">
-						<h2>review contents</h2>
-					</div> <br>
-					<div style="width: 800px;">${board.board_content}</div>
+					<div class="code-html" style="width: 800px;">${board.board_content}</div>
 				</td>
 				<td style="border-left: 1px solid #F2F2F2;"><img
 					src="${mApiVO.poster}">

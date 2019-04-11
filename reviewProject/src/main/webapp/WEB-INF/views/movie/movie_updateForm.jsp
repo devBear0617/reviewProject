@@ -51,6 +51,10 @@ td {
 	text-align: center;
 }
 
+.code-html{
+	text-align: left;
+}
+
 .mv_table_st {
 	margin-left: auto;
 	margin-right: auto;
