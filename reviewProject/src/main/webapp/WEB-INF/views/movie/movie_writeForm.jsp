@@ -406,7 +406,7 @@ td {
 								<img id="lemon_grade_img">
 							</div>
 							<div style="height: 30px;">
-								<label for="lemon_grade">총합 </label> <input type="hidden"
+								<label for="lemon_grade">총점</label> <input type="hidden"
 									value="0" id="lemon_grade" name="lemon_grade"> 
 									<span class="total_value">0</span>점의 <span class="lemon_grade_name">레몬</span>
 									

@@ -20,7 +20,7 @@
 	</resultMap>
 	
 	
-	<!-- Movie only search -->
+	<!-- TV only search -->
 	<select id="searchTV" parameterType="String" resultMap="Board">
 		SELECT *
 		FROM board A,
@@ -78,9 +78,44 @@
 		ORDER BY A.board_num DESC
 	</select>
 	
-	<!-- Movie - grade desc -->
-	<select id="searchMovie_Grade" parameterType="String" resultMap="Board">
-		SELECT *
+<!-- Movie - grade desc -->
+	<select id="searchMovie_Grade" parameterType="map" resultMap="Board">
+		SELECT aa.*
+		FROM( SELECT ROWNUM as rnum, a.*
+			  FROM (
+		
+		SELECT A.*
+		FROM board A,
+			(SELECT board_num FROM board WHERE board_title LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM board WHERE board_content LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM board WHERE member_id LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM reply WHERE reply_content LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag1 LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag2 LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag3 LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag4 LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag5 LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag6 LIKE '%' ||  #{keyword} || '%'
+			) B, board_movie C
+		WHERE A.board_num = B.board_num
+		AND A.board_num = C.board_num
+		ORDER BY A.lemon_grade DESC
+		
+		)a
+		      WHERE <![CDATA[rownum <= #{end_content}]]> )aa
+		WHERE <![CDATA[aa.rnum >= #{start_content} ]]>	
+	</select>
+	<select id="searchMovie_Grade_cnt" parameterType="String" resultType="int">
+		SELECT COUNT(*)
 		FROM board A,
 			(SELECT board_num FROM board WHERE board_title LIKE '%' ||  #{keyword} || '%'
 			UNION
@@ -107,9 +142,44 @@
 		ORDER BY A.lemon_grade DESC
 	</select>
 	
-	<!-- Movie - like desc -->
-	<select id="searchMovie_likeCount" parameterType="String" resultMap="Board">
-		SELECT *
+<!-- Movie - like desc -->
+	<select id="searchMovie_likeCount" parameterType="map" resultMap="Board">
+		SELECT aa.*
+		FROM( SELECT ROWNUM as rnum, a.*
+			  FROM (
+			  
+		SELECT A.*
+		FROM board A,
+			(SELECT board_num FROM board WHERE board_title LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM board WHERE board_content LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM board WHERE member_id LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM reply WHERE reply_content LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag1 LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag2 LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag3 LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag4 LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag5 LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag6 LIKE '%' ||  #{keyword} || '%'
+			) B, board_movie C
+		WHERE A.board_num = B.board_num
+		AND A.board_num = C.board_num
+		ORDER BY (SELECT COUNT(*) FROM likeit where board_num = A.board_num) DESC, A.board_num DESC
+		
+		)a
+		      WHERE <![CDATA[rownum <= #{end_content}]]> )aa
+		WHERE <![CDATA[aa.rnum >= #{start_content} ]]>	
+	</select>
+	<select id="searchMovie_likeCount_cnt" parameterType="String" resultType="int">	
+		SELECT COUNT(*)
 		FROM board A,
 			(SELECT board_num FROM board WHERE board_title LIKE '%' ||  #{keyword} || '%'
 			UNION
@@ -136,9 +206,29 @@
 		ORDER BY (SELECT COUNT(*) FROM likeit where board_num = A.board_num) DESC, A.board_num DESC
 	</select>
 	
-	<!-- Movie - title, content -->
-	<select id="searchMovie_titleContent" parameterType="String" resultMap="Board">
-		SELECT * 
+<!-- Movie - title, content -->
+	<select id="searchMovie_titleContent" parameterType="map" resultMap="Board">
+		SELECT aa.*
+		FROM( SELECT ROWNUM as rnum, a.*
+			  FROM (
+			   
+		SELECT X.* 
+		FROM board X, 
+			(SELECT B.board_num FROM board B, board_movie BM WHERE B.board_num=BM.board_num
+			AND B.board_title LIKE '%' || #{keyword} || '%'
+			UNION
+			SELECT B.board_num FROM board B, board_movie BM WHERE B.board_num=BM.board_num
+			AND B.board_content LIKE '%' || #{keyword} || '%') Y
+		WHERE X.board_num = Y.board_num
+		ORDER BY X.board_num DESC
+		
+		)a
+		      WHERE <![CDATA[rownum <= #{end_content}]]> )aa
+		WHERE <![CDATA[aa.rnum >= #{start_content} ]]>	
+		
+	</select>
+	<select id="searchMovie_titleContent_cnt" parameterType="String" resultType="int">
+		SELECT COUNT(*)
 		FROM board X, 
 			(SELECT B.board_num FROM board B, board_movie BM WHERE B.board_num=BM.board_num
 			AND B.board_title LIKE '%' || #{keyword} || '%'
@@ -149,9 +239,13 @@
 		ORDER BY X.board_num DESC
 	</select>
 	
-	<!-- Movie - hashtag -->
-	<select id="searchMovie_Hashtag" parameterType="String" resultMap="Board">
-		SELECT *
+<!-- Movie - hashtag -->
+	<select id="searchMovie_Hashtag" parameterType="map" resultMap="Board">
+		SELECT aa.*
+		FROM( SELECT ROWNUM as rnum, a.*
+			  FROM (
+		
+		SELECT A.*
 		FROM board A,
 			(SELECT BM.board_num FROM board_movie BM, hashtag H WHERE BM.board_num = H.board_num
 			AND H.hashtag1 LIKE '%' || #{keyword} || '%'
@@ -172,11 +266,54 @@
 			AND H.hashtag6 LIKE '%' || #{keyword} || '%') B
 		WHERE A.board_num = B.board_num
 		ORDER BY A.board_num DESC
+		
+		)a
+		      WHERE <![CDATA[rownum <= #{end_content}]]> )aa
+		WHERE <![CDATA[aa.rnum >= #{start_content} ]]>	
+	</select>
+	<select id="searchMovie_Hashtag_cnt" parameterType="String" resultType="int">
+		SELECT COUNT(*)
+		FROM board A,
+			(SELECT BM.board_num FROM board_movie BM, hashtag H WHERE BM.board_num = H.board_num
+			AND H.hashtag1 LIKE '%' || #{keyword} || '%'
+			UNION
+			SELECT BM.board_num FROM board_movie BM, hashtag H WHERE BM.board_num = H.board_num
+			AND H.hashtag2 LIKE '%' || #{keyword} || '%'
+			UNION
+			SELECT BM.board_num FROM board_movie BM, hashtag H WHERE BM.board_num = H.board_num
+			AND H.hashtag3 LIKE '%' || #{keyword} || '%'
+			UNION
+			SELECT BM.board_num FROM board_movie BM, hashtag H WHERE BM.board_num = H.board_num
+			AND H.hashtag4 LIKE '%' || #{keyword} || '%'
+			UNION
+			SELECT BM.board_num FROM board_movie BM, hashtag H WHERE BM.board_num = H.board_num
+			AND H.hashtag5 LIKE '%' || #{keyword} || '%'
+			UNION
+			SELECT BM.board_num FROM board_movie BM, hashtag H WHERE BM.board_num = H.board_num
+			AND H.hashtag6 LIKE '%' || #{keyword} || '%') B
+		WHERE A.board_num = B.board_num
+		ORDER BY A.board_num DESC		
 	</select>
 	
-	<!-- Movie - reply -->
-	<select id="searchMovie_ReplyContent" parameterType="String" resultMap="Board">
-		SELECT *
+<!-- Movie - reply -->
+	<select id="searchMovie_ReplyContent" parameterType="map" resultMap="Board">
+		SELECT aa.*
+		FROM( SELECT ROWNUM as rnum, a.*
+			  FROM (
+		
+		SELECT A.*
+		FROM board A, 
+			(SELECT DISTINCT BM.board_num FROM board_movie BM, reply R
+			WHERE BM.board_num = R.board_num AND R.reply_content LIKE '%' || #{keyword} || '%') B
+		WHERE A.board_num = B.board_num
+		ORDER BY A.board_num DESC
+		
+		)a
+		      WHERE <![CDATA[rownum <= #{end_content}]]> )aa
+		WHERE <![CDATA[aa.rnum >= #{start_content} ]]>	
+	</select>
+	<select id="searchMovie_ReplyContent_cnt" parameterType="String" resultType="int">
+		SELECT COUNT(*)
 		FROM board A, 
 			(SELECT DISTINCT BM.board_num FROM board_movie BM, reply R
 			WHERE BM.board_num = R.board_num AND R.reply_content LIKE '%' || #{keyword} || '%') B
@@ -184,17 +321,35 @@
 		ORDER BY A.board_num DESC
 	</select>
 	
-	<!-- Movie - member -->
-	<select id="searchMovie_Member" parameterType="String" resultMap="Board">
-		SELECT *
+<!-- Movie - member -->
+	<select id="searchMovie_Member" parameterType="map" resultMap="Board">
+		SELECT aa.*
+		FROM( SELECT ROWNUM as rnum, a.*
+			  FROM (
+		
+		SELECT B.*
+		FROM board_movie BM, board B 
+		WHERE BM.board_num = B.board_num AND B.member_id LIKE '%' || #{keyword} || '%'
+		ORDER BY BM.board_num DESC
+		
+		)a
+		      WHERE <![CDATA[rownum <= #{end_content}]]> )aa
+		WHERE <![CDATA[aa.rnum >= #{start_content} ]]>	
+	</select>	
+	<select id="searchMovie_Member_cnt" parameterType="String" resultType="int">			
+		SELECT COUNT(*)
 		FROM board_movie BM, board B 
 		WHERE BM.board_num = B.board_num AND B.member_id LIKE '%' || #{keyword} || '%'
 		ORDER BY BM.board_num DESC
 	</select>
 	
-	<!-- Movie only search -->
-	<select id="searchMovie" parameterType="String" resultMap="Board">
-		SELECT *
+<!-- Movie only search -->
+	<select id="searchMovie" parameterType="map" resultMap="Board">
+		SELECT aa.*
+		FROM( SELECT ROWNUM as rnum, a.*
+			  FROM (
+		
+		SELECT A.*
 		FROM board A,
 			(SELECT board_num FROM board WHERE board_title LIKE '%' ||  #{keyword} || '%'
 			UNION
@@ -219,11 +374,78 @@
 		WHERE A.board_num = B.board_num
 		AND A.board_num = C.board_num
 		ORDER BY A.board_num DESC
+		
+		)a
+		      WHERE <![CDATA[rownum <= #{end_content}]]> )aa
+		WHERE <![CDATA[aa.rnum >= #{start_content} ]]>	
+	</select>
+	<select id="searchMovie_cnt" parameterType="String" resultType="int">
+		
+		SELECT COUNT(*)
+		FROM board A,
+			(SELECT board_num FROM board WHERE board_title LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM board WHERE board_content LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM board WHERE member_id LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM reply WHERE reply_content LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag1 LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag2 LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag3 LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag4 LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag5 LIKE '%' ||  #{keyword} || '%'
+			UNION
+			SELECT board_num FROM hashtag WHERE hashtag6 LIKE '%' ||  #{keyword} || '%'
+			) B, board_movie C
+		WHERE A.board_num = B.board_num
+		AND A.board_num = C.board_num
+		ORDER BY A.board_num DESC
+		
 	</select>
 	
-	<!-- Total search -->
-	<select id="searchTotal" parameterType="String" resultMap="Board">
-		SELECT * 
+<!-- Total search -->
+	<select id="searchTotal" parameterType="map" resultMap="Board">
+		SELECT aa.*
+		FROM( SELECT ROWNUM as rnum, a.*
+			  FROM (
+		
+		SELECT A.* 
+		FROM board A,
+				(SELECT board_num FROM board WHERE board_title LIKE '%' ||  #{keyword} || '%'
+				UNION
+				SELECT board_num FROM board WHERE board_content LIKE '%' ||  #{keyword} || '%'
+				UNION
+				SELECT board_num FROM board WHERE member_id LIKE '%' ||  #{keyword} || '%'
+				UNION
+				SELECT board_num FROM reply WHERE reply_content LIKE '%' ||  #{keyword} || '%'
+				UNION
+				SELECT board_num FROM hashtag WHERE hashtag1 LIKE '%' ||  #{keyword} || '%'
+				UNION
+				SELECT board_num FROM hashtag WHERE hashtag2 LIKE '%' ||  #{keyword} || '%'
+				UNION
+				SELECT board_num FROM hashtag WHERE hashtag3 LIKE '%' ||  #{keyword} || '%'
+				UNION
+				SELECT board_num FROM hashtag WHERE hashtag4 LIKE '%' ||  #{keyword} || '%'
+				UNION
+				SELECT board_num FROM hashtag WHERE hashtag5 LIKE '%' ||  #{keyword} || '%'
+				UNION
+				SELECT board_num FROM hashtag WHERE hashtag6 LIKE '%' ||  #{keyword} || '%') B
+		WHERE A.board_num = B.board_num
+		ORDER BY A.board_num DESC
+		
+		)a
+		      WHERE <![CDATA[rownum <= #{end_content}]]> )aa
+		WHERE <![CDATA[aa.rnum >= #{start_content} ]]>	
+	</select>
+	
+	<select id="searchTotal_cnt" parameterType="String" resultType="int">		
+		SELECT COUNT(*)
 		FROM board A,
 				(SELECT board_num FROM board WHERE board_title LIKE '%' ||  #{keyword} || '%'
 				UNION

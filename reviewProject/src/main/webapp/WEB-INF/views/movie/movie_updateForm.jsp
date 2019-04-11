@@ -133,28 +133,31 @@ td {
 			});
 
 	//radio,select 기존 값 checked
-	$(document).ready(
-			function() {
-				$(
-						'input:radio[name="recommend"]:input[value='
-								+ $(recommend_val).val() + ']').attr("checked",
-						true);
-				$(
-						'input:radio[name="grade1"]:input[value='
-								+ $(grade1_val).val() + ']').attr("checked",
-						true);
-				$(
-						'input:radio[name="grade2"]:input[value='
-								+ $(grade2_val).val() + ']').attr("checked",
-						true);
-				$(
-						'input:radio[name="grade3"]:input[value='
-								+ $(grade3_val).val() + ']').attr("checked",
-						true);
-				$(
-						'input:radio[name="grade4"]:input[value='
-								+ $(grade4_val).val() + ']').attr("checked",
-						true);
+	$(document).ready(function() {
+				$('input:radio[name="recommend"]:input[value='+ $(recommend_val).val() + ']').attr("checked",true);
+				$('input:radio[name="grade1"]:input[value='+ $(grade1_val).val() + ']').attr("checked",true);
+				$('input:radio[name="grade2"]:input[value='+ $(grade2_val).val() + ']').attr("checked",true);
+				$('input:radio[name="grade3"]:input[value='+ $(grade3_val).val() + ']').attr("checked",true);
+				$('input:radio[name="grade4"]:input[value='+ $(grade4_val).val() + ']').attr("checked",true);
+				
+				var value = $(grade1_val).val()+ $(grade2_val).val()+ $(grade3_val).val()+ $(grade4_val).val();
+				if(value >= 80){  
+					$("#lemon_grade_img").attr("src", "/review/movie/resources/image/REMON_grade_1.png");
+					$('.lemon_grade_name').html("달콤한 레몬");
+				}else if(value >= 60){
+					$("#lemon_grade_img").attr("src", "/review/movie/resources/image/REMON_grade_2.png");										
+					$('.lemon_grade_name').html("새콤한 레몬");
+				}else if(value >= 40){
+					$("#lemon_grade_img").attr("src", "/review/movie/resources/image/REMON_grade_3.png");										
+					$('.lemon_grade_name').html("신맛 레몬");
+				}else if(value >= 20){
+					$("#lemon_grade_img").attr("src", "/review/movie/resources/image/REMON_grade_4.png");									
+					$('.lemon_grade_name').html("씁쓸한 레몬");
+				}else {
+					$("#lemon_grade_img").attr("src", "/review/movie/resources/image/REMON_grade_5.png");										
+					$('.lemon_grade_name').html("썩은 레몬");
+				}
+				
 
 				$("#grade_name1").val($(grade_name1_val).val());
 				$("#grade_name2").val($(grade_name2_val).val());
@@ -229,6 +232,22 @@ td {
 									$("#lemon_grade").val(
 											grade1 + grade2 + grade3 + grade4);
 									var value = $("#lemon_grade").val();
+									if(value >= 80){
+										$("#lemon_grade_img").attr("src", "/review/movie/resources/image/REMON_grade_1.png");
+										$('.lemon_grade_name').html("달콤한 레몬");
+									}else if(value >= 60){
+										$("#lemon_grade_img").attr("src", "/review/movie/resources/image/REMON_grade_2.png");										
+										$('.lemon_grade_name').html("새콤한 레몬");
+									}else if(value >= 40){
+										$("#lemon_grade_img").attr("src", "/review/movie/resources/image/REMON_grade_3.png");										
+										$('.lemon_grade_name').html("신맛 레몬");
+									}else if(value >= 20){
+										$("#lemon_grade_img").attr("src", "/review/movie/resources/image/REMON_grade_4.png");									
+										$('.lemon_grade_name').html("씁쓸한 레몬");
+									}else {
+										$("#lemon_grade_img").attr("src", "/review/movie/resources/image/REMON_grade_5.png");										
+										$('.lemon_grade_name').html("썩은 레몬");
+									}
 									$('.total_value').html(value);
 									//----- lemon_grade 재계산 끝, select 중복방지 처리 시작 
 
@@ -298,6 +317,22 @@ td {
 									$("#lemon_grade").val(
 											grade1 + grade2 + grade3 + grade4);
 									var value = $("#lemon_grade").val();
+									if(value >= 80){
+										$("#lemon_grade_img").attr("src", "/review/movie/resources/image/REMON_grade_1.png");
+										$('.lemon_grade_name').html("달콤한 레몬");
+									}else if(value >= 60){
+										$("#lemon_grade_img").attr("src", "/review/movie/resources/image/REMON_grade_2.png");										
+										$('.lemon_grade_name').html("새콤한 레몬");
+									}else if(value >= 40){
+										$("#lemon_grade_img").attr("src", "/review/movie/resources/image/REMON_grade_3.png");										
+										$('.lemon_grade_name').html("신맛 레몬");
+									}else if(value >= 20){
+										$("#lemon_grade_img").attr("src", "/review/movie/resources/image/REMON_grade_4.png");									
+										$('.lemon_grade_name').html("씁쓸한 레몬");
+									}else {
+										$("#lemon_grade_img").attr("src", "/review/movie/resources/image/REMON_grade_5.png");										
+										$('.lemon_grade_name').html("썩은 레몬");
+									}
 									$('.total_value').html(value);
 								});
 			});
@@ -376,11 +411,12 @@ td {
 						<div>
 							<div style="height: 300px;">
 								<h3>전체 평점</h3>
+									<img id="lemon_grade_img">															
 							</div>
 							<div style="height: 30px;">
-								<label for="lemon_grade">총합 점수 : </label> <input type="hidden"
-									value="${board.lemon_grade}" id="lemon_grade"
-									name="lemon_grade"> <span class="total_value">${board.lemon_grade}</span>점
+								<label for="lemon_grade">총점 </label> 
+									<input type="hidden" value="${board.lemon_grade}" id="lemon_grade" 	name="lemon_grade"> 
+									<span class="total_value">${board.lemon_grade}</span>점의 <span class="lemon_grade_name">레몬</span>
 							</div>
 							<div style="height: 20px;">
 								<hr>

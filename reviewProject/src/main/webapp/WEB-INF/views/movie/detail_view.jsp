@@ -321,7 +321,7 @@
 					<div class="center">
 						<h2>review contents</h2>
 					</div> <br>
-					<div style="width: 800px;">${board.board_content}</div>
+					<div style="width: 800px; word-break:break-all;" >${board.board_content}</div>
 				</td>
 				<td style="border-left: 1px solid #F2F2F2;"><img
 					src="${mApiVO.poster}">

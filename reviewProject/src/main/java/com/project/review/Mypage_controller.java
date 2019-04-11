@@ -223,6 +223,7 @@ public class Mypage_controller {
 		
 		Pagination pagination = new Pagination();
 		int size = memberService.myBoardCount(user_id);
+		
 		pagination.setPage(pnum, size);
 		
 		model.addAttribute("pagination", pagination);
