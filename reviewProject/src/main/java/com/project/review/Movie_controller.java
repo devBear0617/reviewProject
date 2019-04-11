@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.safety.Whitelist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -189,6 +190,7 @@ public class Movie_controller {
 		}
 		
 		// 게시글 추가 서비스
+		board.setBoard_title(Jsoup.clean(board.getBoard_title(), Whitelist.basic()));
 		movieService.insertMovie(board, movie, grade, hash, movieApiVO, member_id);
 
 		// 게시글 추가 후 추가한 게시글 확인
@@ -322,7 +324,8 @@ public class Movie_controller {
 	public String postReply(@PathVariable int board_num, ReplyVO replyVO, HttpSession session) {
 		// ID session
 		String member_id = (String) session.getAttribute("member_id");
-
+		
+		replyVO.setReply_content(Jsoup.clean(replyVO.getReply_content(), Whitelist.basic()));
 		movieService.insertReply(replyVO, member_id);
 
 		return "redirect:/movie/detail_view/" + board_num + "/reply";
