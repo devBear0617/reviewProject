@@ -1,0 +1,83 @@
+<!-- <?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
+	
+	Root Context: defines shared resources visible to all other web components
+	
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.OracleDriver" />	
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<property name="username" value="reviewProject" />
+		<property name="password" value="1234" />
+	</bean>
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="typeAliasesPackage" value="com.project.review.vo"/>
+		<property name="mapperLocations" value="classpath:/mapper/*Mapper.xml"/>
+		<property name="configLocation" value="classpath:/mapper/mybatis-config.xml" />
+	</bean>		
+	
+	<bean id="Mapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.project.review.dao.BoardDAO" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>			
+	
+ 	<bean id="Mapper1" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.project.review.dao.MemberDAO" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+	
+	<bean id="Mapper2" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.project.review.dao.SearchDAO" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+	
+</beans> -->
+
+ 
+<!-- <security:http auto-config="true" use-expressions="true"> 
+	<security:csrf disabled="true"/> 
+	<security:intercept-url pattern="/**" access="permitAll" /> 
+	<security:form-login login-page="/login" authentication-success-handler-ref="loginSuccessHandler" authentication-failure-handler-ref="loginFailureHandler" login-processing-url="/auth" username-parameter="id" password-parameter="pw" /> 
+	<security:logout logout-url="/logout" invalidate-session="true" logout-success-url="/login?status=logout" /> 
+	<security:session-management invalid-session-url="/login"> 
+		<security:concurrency-control max-sessions="1" error-if-maximum-exceeded="false" /> 
+	</security:session-management> 
+</security:http> 
+
+secured method 
+<security:global-method-security secured-annotations="enabled" /> 
+
+provider 
+<security:authentication-manager> 
+	<security:authentication-provider ref="userAuthHelper" /> 
+	</security:authentication-manager> 
+	<bean id="loginSuccessHandler" class="com.devljh.domain.user.helper.LoginSuccessHandler"> 
+		<property name="defaultTargetUrl" value="/main" /> 
+		<property name="alwaysUseDefaultTargetUrl" value="true" /> 
+	</bean> 
+	
+	<bean id="loginFailureHandler" class="com.devljh.domain.user.helper.LoginFailureHandler"> 
+		<property name="defaultFailureUrl" value="/login?status=fail" /> 
+	</bean> 
+	
+	<bean id="userAuthService" class="com.devljh.domain.user.UserAuthService" /> 
+	
+	<bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" /> 
+	
+	<bean id="userAuthProvider" class="com.devljh.domain.user.helper.UserAuthProvider"> 
+		<property name="userDetailsService" ref="userAuthService" /> 
+		<property name="passwordEncoder" ref="passwordEncoder" /> 
+	</bean>
+ -->
